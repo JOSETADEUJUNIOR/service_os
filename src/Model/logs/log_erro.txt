@@ -1,0 +1,108 @@
+--------------------------------------------------
+Data:27/10/2022
+Hora:20:37:43
+Função:CadastrarUsuarioController
+cod Logado:1
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:27/10/2022
+Hora:20:42:05
+Função:CadastrarUsuarioController
+cod Logado:1
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_controleos`.`tb_endereco`, CONSTRAINT `fk_tb_endereco_tb_cidade1` FOREIGN KEY (`cidade_id`) REFERENCES `tb_cidade` (`id`))
+--------------------------------------------------
+Data:27/10/2022
+Hora:20:47:56
+Função:CadastrarUsuarioController
+cod Logado:1
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_controleos`.`tb_endereco`, CONSTRAINT `fk_tb_endereco_tb_cidade1` FOREIGN KEY (`cidade_id`) REFERENCES `tb_cidade` (`id`))
+--------------------------------------------------
+Data:27/10/2022
+Hora:20:49:49
+Função:CadastrarUsuarioController
+cod Logado:1
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_os`.`tb_usuario`, CONSTRAINT `fk_tb_usuario_Empresa1` FOREIGN KEY (`UserEmpID`) REFERENCES `tb_empresa` (`EmpID`))
+--------------------------------------------------
+Data:27/10/2022
+Hora:20:51:21
+Função:CadastrarUsuarioController
+cod Logado:1
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_os`.`tb_usuario`, CONSTRAINT `fk_tb_usuario_Empresa1` FOREIGN KEY (`UserEmpID`) REFERENCES `tb_empresa` (`EmpID`))
+--------------------------------------------------
+Data:27/10/2022
+Hora:20:52:09
+Função:CadastrarUsuarioController
+cod Logado:1
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_controleos`.`tb_endereco`, CONSTRAINT `fk_tb_endereco_tb_cidade1` FOREIGN KEY (`cidade_id`) REFERENCES `tb_cidade` (`id`))
+--------------------------------------------------
+Data:27/10/2022
+Hora:20:56:42
+Função:CadastrarUsuarioController
+cod Logado:1
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_controleos`.`tb_endereco`, CONSTRAINT `fk_tb_endereco_tb_cidade1` FOREIGN KEY (`cidade_id`) REFERENCES `tb_cidade` (`id`))
+--------------------------------------------------
+Data:01/11/2022
+Hora:08:13:10
+Função:CadastrarUsuarioController
+cod Logado:1
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`osteste`.`tb_endereco`, CONSTRAINT `fk_tb_endereco_tb_cidade1` FOREIGN KEY (`cidade_id`) REFERENCES `tb_cidade` (`id`))
+--------------------------------------------------
+Data:01/11/2022
+Hora:12:31:34
+Função:AlterarUsuarioController
+cod Logado:1
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '31' for key 'tb_funcionario.PRIMARY'
+--------------------------------------------------
+Data:24/11/2022
+Hora:12:27:38
+Função:ExcluirSetorController
+cod Logado:1
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`osteste`.`tb_funcionario`, CONSTRAINT `fk_tb_funcionario_tb_setor1` FOREIGN KEY (`setor_id`) REFERENCES `tb_setor` (`id`))
+--------------------------------------------------
+Data:06/02/2023
+Hora:23:11:20
+Função:ExcluirSetorController
+cod Logado:1
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`db_os`.`tb_alocar`, CONSTRAINT `tb_alocar_tb_setor` FOREIGN KEY (`setor_id`) REFERENCES `tb_setor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+--------------------------------------------------
+Data:14/02/2023
+Hora:22:32:39
+Função:AlterarUsuarioController
+cod Logado:12
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_os`.`tb_endereco`, CONSTRAINT `fk_tb_endereco_tb_cidade1` FOREIGN KEY (`cidade_id`) REFERENCES `tb_cidade` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+--------------------------------------------------
+Data:14/02/2023
+Hora:22:35:13
+Função:AlterarUsuarioController
+cod Logado:12
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_os`.`tb_endereco`, CONSTRAINT `fk_tb_endereco_tb_cidade1` FOREIGN KEY (`cidade_id`) REFERENCES `tb_cidade` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+--------------------------------------------------
+Data:14/02/2023
+Hora:22:36:46
+Função:AlterarUsuarioController
+cod Logado:12
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_os`.`tb_endereco`, CONSTRAINT `fk_tb_endereco_tb_cidade1` FOREIGN KEY (`cidade_id`) REFERENCES `tb_cidade` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+--------------------------------------------------
+Data:28/02/2023
+Hora:22:55:17
+Função:CadastrarUsuarioController
+cod Logado:12
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_ordem`.`tb_usuario`, CONSTRAINT `fk_tb_usuario_Empresa1` FOREIGN KEY (`UserEmpID`) REFERENCES `tb_empresa` (`EmpID`))
+--------------------------------------------------
+Data:28/02/2023
+Hora:23:04:48
+Função:CadastrarUsuarioController
+cod Logado:12
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:28/02/2023
+Hora:23:05:22
+Função:CadastrarUsuarioController
+cod Logado:12
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:28/02/2023
+Hora:23:07:21
+Função:CadastrarUsuarioController
+cod Logado:12
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'UserEmpID' cannot be null
