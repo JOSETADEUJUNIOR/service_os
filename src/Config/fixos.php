@@ -54,11 +54,11 @@ const SITUACAO_EM_ATENDIMENTO = 2;
 const SITUACAO_ENCERRADO      = 3;
 const SITUACAO_TODOS          = 4;
 
-define('PATH_URL', $_SERVER["DOCUMENT_ROOT"] . '/syscompra/src/');
+define('PATH_URL', $_SERVER["DOCUMENT_ROOT"] . '/service_os/src/');
 
-define('SITE_ADMIN','http://localhost/syscompra/src/View/admin/login.php');
-define('SITE_FUNC', 'http://localhost/sysfuncionarioapi/src/View/login.php');
-define('SITE_TEC', 'http://localhost/systecnicoapi/src/View/login.php');
+define('SITE_ADMIN','http://localhost/service_os/src/View/admin/login.php');
+define('SITE_FUNC', 'http://localhost/service_os_funcionario/src/View/login.php');
+define('SITE_TEC', 'http://localhost/service_os_tecnico/src/View/login.php');
 
 const SECRET_JWT = 'tokenFunc';
 

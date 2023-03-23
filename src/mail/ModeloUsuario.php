@@ -361,7 +361,7 @@ class ModeloUsuario
                     <tr>
                       <td>
                         <p>Olá $nome,</p>
-                        <p>Aqui estão seus dados de acesso ao syscompras<br>Usuario: $email<br> Senha: $senha</p>
+                        <p>Aqui estão seus dados de acesso ao service_os<br>Usuario: $email<br> Senha: $senha</p>
                         <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"btn btn-primary\">
                           <tbody>
                             <tr>
@@ -377,7 +377,7 @@ class ModeloUsuario
                             </tr>
                           </tbody>
                         </table>
-                        <p>Syscompras, é um sistema de Gestão para empresas para controle de patrimônio, orçamentos, pedidos e atendimento de chamados.</p>
+                        <p>Service os, é um sistema de Gestão para empresas para controle de patrimônio, orçamentos, pedidos e atendimento de chamados.</p>
                         <p>Tenha um excelente trabalho.</p>
                       </td>
                     </tr>

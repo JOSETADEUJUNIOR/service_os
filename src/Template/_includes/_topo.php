@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-NM5o4YcYSF4Ec+J1lKjC62Otya7gqx9XbZi7oZmKw2TX0oDf+NyqKj/0zTbU6c9U9XN+jPFWF+R0QatYfDg+bQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <div id="navbar" class="navbar navbar-default          ace-save-state navbar-fixed-top">
 	<div class="navbar-container ace-save-state" id="navbar-container">
 		<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
@@ -14,7 +16,8 @@
 			<a href="index.php" class="navbar-brand">
 				<small>
 					<i class="fa fa-leaf"></i>
-					Aqui vai o nome do Site
+					<img src="" alt="">
+					JRA - Service Os <i class="fa fa-cogs"></i>
 				</small>
 			</a>
 		</div>

@@ -41,7 +41,7 @@ class Util
 
     public static function IrParaLogin()
     {
-        header('location: http://localhost/syscompra/src/View/admin/login.php');
+        header('location: http://localhost/service_os/src/View/admin/login.php');
         exit;
     }
 

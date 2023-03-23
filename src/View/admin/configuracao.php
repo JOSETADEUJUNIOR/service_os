@@ -362,74 +362,83 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 									</div>
 
 
+
+
+
+
+
 									<div id="faq-tab-3" class="tab-pane fade">
 										<h4 class="blue">
-											<i class="orange ace-icon fa fa-credit-card bigger-110"></i>
+											<i class="orange ace-icon fa fa-user bigger-110"></i>
 											Meus Dados
 										</h4>
 
 										<div class="space-8"></div>
 
-										<div id="faq-list-3" class="panel-group accordion-style1 accordion-style2">
-											<div class="panel panel-default">
-												<div class="panel-heading">
-													<a href="#faq-3-1" data-parent="#faq-list-3" data-toggle="collapse" class="accordion-toggle collapsed">
-														<i class="ace-icon fa fa-plus smaller-80" data-icon-hide="ace-icon fa fa-minus" data-icon-show="ace-icon fa fa-plus"></i>&nbsp;
-														Enim eiusmod high life accusamus terry richardson?
-													</a>
-												</div>
+										<div id="faq-list-2" class="panel-group accordion-style1 accordion-style2">
+											<form action="" class="form-horizontal" role="form" method="post">
+												<div class="form-group">
 
-												<div class="panel-collapse collapse" id="faq-3-1">
-													<div class="panel-body">
-														Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+
+													<div class="col-md-12">
+
+														<label>Nome</label>
+														<input class="form-control obg" id="nome" name="nome" value="<?= $dadosUser['nome']?>"  placeholder="Digite o aqui....">
+
+													</div>
+													<div class="col-md-12">
+
+														<label>E-mail</label>
+														<input class="form-control obg" id="email" name="email" value="<?= $dadosUser['login']?>" placeholder="Digite o aqui....">
+
+													</div>
+													<div class="col-md-12">
+
+														<label>Telefone</label>
+														<input class="form-control obg" id="telefone" name="telefone" value="<?= $dadosUser['telefone']?>" placeholder="Digite o aqui....">
+
+													</div>
+													<div class="col-md-12">
+
+														<label>Cep</label>
+														<input class="form-control obg" id="cep" name="cep" value="<?= $dadosUser['cep']?>" placeholder="Digite o aqui....">
+
+													</div>
+													<div class="col-md-12">
+
+														<label>Rua</label>
+														<input class="form-control obg" id="rua" name="rua" value="<?= $dadosUser['rua']?>" placeholder="Digite o aqui....">
+
+													</div>
+													<div class="col-md-12">
+
+														<label>Cidade</label>
+														<input class="form-control obg" id="cidade" name="cidade" value="<?= $dadosUser['cidade']?>" placeholder="Digite o aqui....">
+
+													</div>
+													<div class="col-md-12">
+
+														<label>Estado</label>
+														<input class="form-control obg" id="estado" name="estado" value="<?= $dadosUser['sigla_estado']?>" placeholder="Digite o aqui....">
+
+													</div>
+
+												</div>
+												<div class="form-group">
+													<div class="col-sm-6">
+
+														<button class="col-sm-12 btn btn-white btn-success">
+															<i class="ace-icon fa fa-check bigger-110"></i>Gravar dados
+														</button>
+													</div>
+													<div class="col-sm-6">
+														<button class="col-sm-12 btn btn-white btn-warning">
+															<i class="ace-icon fa fa-undo bigger-110"></i>Voltar
+														</button>
+
 													</div>
 												</div>
-											</div>
-
-											<div class="panel panel-default">
-												<div class="panel-heading">
-													<a href="#faq-3-2" data-parent="#faq-list-3" data-toggle="collapse" class="accordion-toggle collapsed">
-														<i class="ace-icon fa fa-plus smaller-80" data-icon-hide="ace-icon fa fa-minus" data-icon-show="ace-icon fa fa-plus"></i>&nbsp;
-														Single-origin coffee nulla assumenda shoreditch et?
-													</a>
-												</div>
-
-												<div class="panel-collapse collapse" id="faq-3-2">
-													<div class="panel-body">
-														Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-													</div>
-												</div>
-											</div>
-
-											<div class="panel panel-default">
-												<div class="panel-heading">
-													<a href="#faq-3-3" data-parent="#faq-list-3" data-toggle="collapse" class="accordion-toggle collapsed">
-														<i class="ace-icon fa fa-plus smaller-80" data-icon-hide="ace-icon fa fa-minus" data-icon-show="ace-icon fa fa-plus"></i>&nbsp;
-														Sunt aliqua put a bird on it squid?
-													</a>
-												</div>
-
-												<div class="panel-collapse collapse" id="faq-3-3">
-													<div class="panel-body">
-														Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-													</div>
-												</div>
-											</div>
-
-											<div class="panel panel-default">
-												<div class="panel-heading">
-													<a href="#faq-3-4" data-parent="#faq-list-3" data-toggle="collapse" class="accordion-toggle collapsed">
-														<i class="ace-icon fa fa-plus smaller-80" data-icon-hide="ace-icon fa fa-minus" data-icon-show="ace-icon fa fa-plus"></i>&nbsp;
-														Brunch 3 wolf moon tempor sunt aliqua put?
-													</a>
-												</div>
-
-												<div class="panel-collapse collapse" id="faq-3-4">
-													<div class="panel-body">
-														Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-													</div>
-												</div>
-											</div>
+											</form>
 										</div>
 									</div>
 
