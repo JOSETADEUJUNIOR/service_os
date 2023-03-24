@@ -146,7 +146,6 @@ function MudarStatus() {
 
 function CadastrarUsuario(id_form) {
     if (NotificarCampos(id_form)) {
-
         $.ajax({
             type: "POST",
             url: BASE_URL_AJAX("usuario_dataview"),
@@ -187,6 +186,47 @@ function CadastrarUsuario(id_form) {
     return false;
 }
 
+function CadastrarMeusDados(id_form) {
+    if (NotificarCampos(id_form)) {
+        $.ajax({
+            type: "POST",
+            url: BASE_URL_AJAX("usuario_dataview"),
+            data: {
+
+                btn_cadastrar: 'ajx',
+                idUser: $("#id_user").val(),
+                idEnd: $("#id_end").val(),
+                tipo: $("#tipo").val(),
+                setor: $("#setor").val(),
+                nome_empresa_tec: $("#nome_empresa_tec").val(),
+                nome: $("#nome").val(),
+                email: $("#email").val(),
+                telefone: $("#telefone").val(),
+                cep: $("#cep").val(),
+                endereco: $("#endereco").val(),
+                bairro: $("#bairro").val(),
+                cidade: $("#cidade").val(),
+                estado: $("#estado").val(),
+            },
+            success: function (ret) {
+                $("#usuario").modal("hide");
+                RemoverLoad();
+                if (ret == '1') {
+                    console.log(ret);
+                    MensagemSucesso();
+                    ConsultarUsuario();
+                  
+                } else {
+                    MensagemErro();
+                }
+
+            }
+        })
+
+    }
+
+    return false;
+}
 
 function AlterarUsuario(id_form) {
 

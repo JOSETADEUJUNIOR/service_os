@@ -68,7 +68,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 									<li>
 										<a data-toggle="tab" href="#faq-tab-2">
 											<i class="green ace-icon fa fa-info-circle bigger-120"></i>
-											Sobre
+											ALterar Senha
 										</a>
 									</li>
 
@@ -325,7 +325,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 									<div id="faq-tab-2" class="tab-pane fade">
 										<h4 class="blue">
 											<i class="green ace-icon fa fa-user bigger-110"></i>
-											Informações Sobre o Autor
+											Alterar senha
 										</h4>
 
 										<div class="space-8"></div>
@@ -334,28 +334,46 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 										<div id="faq-list-2" class="panel-group accordion-style1 accordion-style2">
 											<form action="" class="form-horizontal" role="form" method="post">
 												<div class="form-group">
+													<input type="hidden" id="id_end">
+													<form action="mudar_senha.php" id="form_mudarSenha" method="post">
+														<div class="col-md-12">
+															<div class="row">
+																<div class="col-md-12" id="divSenhaAtual">
+																	<div class="col-md-12">
+																		<div class="form-group">
+																			<label>Senha atual</label><span style="margin-left: 3px;"><i onclick="VerSenha()" class="fa fa-eye fa-0x"></i></span>
+																			<input type="password" class="form-control obg" id="senha" name="senha" placeholder="Digite o aqui....">
+																		</div>
+																		<button class="btn btn-success" onclick="return VerificarSenhaAtual('form_mudarSenha')">Validar</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</form>
 
-													<div class="col-sm-12">
-														<!-- <label class="control-label" for="form-field-1-1"> Full Length </label> -->
-														<textarea style="resize: vertical;" rows="10" class="form-control" id="form-field-8" placeholder="Descreva o que deve aparecer no sobre"></textarea>
-													</div>
+													<form id="formNovaSenha" action="mudar_senha.php" method="post">
+														<div class="col-md-12" id="divMudarSenha" style="display: none;">
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label>Nova senha</label>
+																		<input type="password" class="form-control obg" id="newsenha" name="newsenha" placeholder="Digite o aqui....">
+																	</div>
+																</div>
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label>Repetir senha</label>
+																		<input type="password" class="form-control obg" id="resenha" name="resenha" placeholder="Digite o aqui....">
+																	</div>
+																	<button class="btn btn-success" onclick="return AtualizarSenha()">Gravar</button>
+																</div>
+
+															</div>
+														</div>
+													</form>
 
 												</div>
-												<div class="form-group">
-													<div class="col-sm-6">
-
-														<button class="col-sm-12 btn btn-white btn-success">
-															<i class="ace-icon fa fa-check bigger-110"></i>Gravar dados
-														</button>
-													</div>
-													<div class="col-sm-6">
-														<button class="col-sm-12 btn btn-white btn-warning">
-															<i class="ace-icon fa fa-undo bigger-110"></i>Voltar
-														</button>
-
-													</div>
-												</div>
-											</form>
+												
 										</div>
 
 
@@ -376,50 +394,58 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 										<div class="space-8"></div>
 
 										<div id="faq-list-2" class="panel-group accordion-style1 accordion-style2">
-											<form action="" class="form-horizontal" role="form" method="post">
+											<form action="" id="form_meus_dados" class="form-horizontal" role="form" method="post">
 												<div class="form-group">
 
-
+													<input type="hidden" id="id_user" value="<?= $dadosUser['id_user'] ?>">
+													<input type="hidden" id="id_end" value="<?= $dadosUser['id_end'] ?>">
+													<input type="text" id="tipo" value="<?= $dadosUser['tipo'] ?>">
 													<div class="col-md-12">
 
 														<label>Nome</label>
-														<input class="form-control obg" id="nome" name="nome" value="<?= $dadosUser['nome']?>"  placeholder="Digite o aqui....">
+														<input class="form-control obg" id="nome" name="nome" value="<?= $dadosUser['nome'] ?>" placeholder="Digite o aqui....">
 
 													</div>
 													<div class="col-md-12">
 
 														<label>E-mail</label>
-														<input class="form-control obg" id="email" name="email" value="<?= $dadosUser['login']?>" placeholder="Digite o aqui....">
+														<input class="form-control obg" id="email" name="email" value="<?= $dadosUser['login'] ?>" placeholder="Digite o aqui....">
 
 													</div>
 													<div class="col-md-12">
 
 														<label>Telefone</label>
-														<input class="form-control obg" id="telefone" name="telefone" value="<?= $dadosUser['telefone']?>" placeholder="Digite o aqui....">
+														<input class="form-control obg" id="telefone" name="telefone" value="<?= $dadosUser['telefone'] ?>" placeholder="Digite o aqui....">
 
 													</div>
 													<div class="col-md-12">
 
 														<label>Cep</label>
-														<input class="form-control obg" id="cep" name="cep" value="<?= $dadosUser['cep']?>" placeholder="Digite o aqui....">
+														<input class="form-control obg" id="cep" name="cep" value="<?= $dadosUser['cep'] ?>" placeholder="Digite o aqui....">
 
 													</div>
 													<div class="col-md-12">
 
 														<label>Rua</label>
-														<input class="form-control obg" id="rua" name="rua" value="<?= $dadosUser['rua']?>" placeholder="Digite o aqui....">
+														<input class="form-control obg" id="endereco" name="endereco" value="<?= $dadosUser['rua'] ?>" placeholder="Digite o aqui....">
 
 													</div>
 													<div class="col-md-12">
 
 														<label>Cidade</label>
-														<input class="form-control obg" id="cidade" name="cidade" value="<?= $dadosUser['cidade']?>" placeholder="Digite o aqui....">
+														<input class="form-control obg" id="cidade" name="cidade" value="<?= $dadosUser['cidade'] ?>" placeholder="Digite o aqui....">
+
+													</div>
+													<div class="col-md-12">
+
+														<label>Bairro</label>
+														<input class="form-control obg" id="bairro" name="bairro" value="<?= $dadosUser['bairro'] ?>" placeholder="Digite o aqui....">
 
 													</div>
 													<div class="col-md-12">
 
 														<label>Estado</label>
-														<input class="form-control obg" id="estado" name="estado" value="<?= $dadosUser['sigla_estado']?>" placeholder="Digite o aqui....">
+														<input class="form-control obg" id="estado" name="estado" value="<?= $dadosUser['sigla_estado'] ?>" placeholder="Digite o aqui....">
 
 													</div>
 
@@ -427,7 +453,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 												<div class="form-group">
 													<div class="col-sm-6">
 
-														<button class="col-sm-12 btn btn-white btn-success">
+														<button onclick="return CadastrarMeusDados('form_meus_dados')" class="col-sm-12 btn btn-white btn-success">
 															<i class="ace-icon fa fa-check bigger-110"></i>Gravar dados
 														</button>
 													</div>
@@ -536,6 +562,9 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 
 
 	<?php include_once PATH_URL . '/Template/_includes/_scripts.php' ?>
+	<script src="../../Resource/js/mensagem.js"></script>
+	<script src="../../Resource/ajax/usuario-ajx.js"></script>
+	<script src="../../Resource/ajax/buscar_cep_ajx.js"></script>
 </body>
 
 
