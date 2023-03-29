@@ -160,7 +160,7 @@ use Src\_public\Util;
 														echo '<a class="btn btn-primary pages btn-sm'.$classeBotao.'" href="?pagina=' . $i . '">' . $i . '</a> ';
 													}
 
-													echo '<a class="btn btn-primary btn-sm" href="?pagina=' . $totalPaginas . '">>></a>'; ?>
+													echo '<a class="btn btn-primary btn-sm" href="?pagina=' . $totalPaginas . '">>></a>';?>
 
 												</div>
 

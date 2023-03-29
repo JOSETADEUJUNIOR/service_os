@@ -38,6 +38,11 @@ class UsuarioSQL
         return $sql;
     }
 
+    public static function CRIAR_LOG_USUARIO_SQL()
+    {
+        $sql = 'INSERT INTO tb_log (hora, usuario_id, data_logl, ip) VALUES (?,?,?,?)';
+        return $sql;
+    }
     public static function ALTERAR_TECNICO()
     {
         $sql = 'UPDATE tb_tecnico set empresa_tecnico  = ? WHERE tecnico_id = ?';

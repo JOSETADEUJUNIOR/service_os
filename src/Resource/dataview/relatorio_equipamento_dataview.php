@@ -11,7 +11,7 @@ if (isset($_GET['filtro'])) {
   $options = new Options();
   $options->setChroot('../../Resource/dataview/arquivos');
 
-
+  $html="";
   $ctrl = new EquipamentoController();
   $BuscarTipo = $_GET['filtro'];
   $filtro_palavra = $_GET['desc_filtro'];
@@ -73,7 +73,7 @@ if (isset($_GET['filtro'])) {
 
 
     ?>
-    <?php for ($i = 0; $i < count($equipamento); $i++) {
+    <?php $servicoZ=0; for ($i = 0; $i < count($equipamento); $i++) {
       $servicoZ++; ?>
       <tr>
         <td>

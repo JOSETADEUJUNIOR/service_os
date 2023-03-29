@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__DIR__, 2) . '/Resource/dataview/usuario_dataview.php'; ?>
+require_once dirname(__DIR__, 2) . '/Resource/dataview/acesso_dataview.php'; ?>
 <!DOCTYPE html>
 <html>
 

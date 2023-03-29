@@ -1,9 +1,9 @@
 <?php
 
-require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+include_once '_include_autoload.php';
 
 use Src\_public\Util;
-
+Util::VerificarLogado();
 use Src\Controller\UsuarioController;
 use Src\Controller\SendMailController;
 use Src\VO\UsuarioVO;
@@ -45,9 +45,7 @@ if (isset($_POST['VerificaEmail']) and $_POST['VerificaEmail'] == 'ajx') {
     } else {
         echo -1;
     }
-} else if (isset($_POST['btn_acessar'])) {
-    $ret = $ctrl_usuario->ValidarLoginController($_POST['login'], $_POST['senha']);
-} else if (isset($_POST['mudar_status']) && $_POST['mudar_status'] == 'ajx') {
+}else if (isset($_POST['mudar_status']) && $_POST['mudar_status'] == 'ajx') {
 
     $vo =  new UsuarioVO;
 
@@ -68,7 +66,22 @@ if (isset($_POST['VerificaEmail']) and $_POST['VerificaEmail'] == 'ajx') {
         $ctrl_setor = new SetorController;
         $setores = $ctrl_setor->RetornarSetorController();
     }
-} else if (isset($_POST['btn_cadastrar'])) {
+}else if (isset($_POST['btnVerificarSenha'])){
+  
+  $senhaAtual = $ctrl_usuario->ValidarSenhaAdmin($_POST['senha']);
+    echo $senhaAtual;
+  
+}else if(isset($_POST['btnAtualizarSenha'])){
+    $vo = new UsuarioVO;
+    $vo->setSenha($_POST['senha']);
+    $vo->setId(Util::CodigoLogado());
+    $resenha = $_POST['repetir_senha'];
+
+    $senhaAlterada = $ctrl_usuario->AtualizarSenhaAtual($vo, $resenha);
+    if ($_POST['btnAtualizarSenha']=='ajx') {
+        echo $senhaAlterada;
+    }
+}else if (isset($_POST['btn_cadastrar'])) {
 
 
     if ($_POST['idUser'] == '') {
@@ -426,4 +439,6 @@ if (isset($_POST['VerificaEmail']) and $_POST['VerificaEmail'] == 'ajx') {
 
     // Obtém os registros para exibir na página atual
     $pessoas = array_slice($registros, $indiceInicial, $registrosPorPagina);
-} ?>
+}
+
+?>

@@ -45,6 +45,18 @@ class Util
         exit;
     }
 
+
+    public static function LogHoraUsuario(){
+        // Obtém o horário atual e o endereço IP do usuário
+        $hora = date('H:i:s');
+        return $hora;
+    }
+    public static function LogIPUsuario(){
+        // Obtém o horário atual e o endereço IP do usuário
+        $ip = $_SERVER['REMOTE_ADDR'];
+        return $ip;
+    }
+    
     public static function VerificarLogado()
     {
         self::IniciarSessao();

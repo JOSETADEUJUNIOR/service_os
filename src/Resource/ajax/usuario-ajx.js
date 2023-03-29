@@ -285,5 +285,68 @@ function ChecarFiltro(filtro) {
     })
 }
 
+function VerificarSenhaAtual(id_form) {
+    if (NotificarCampos(id_form)) {
+        alert($("#senha").val());
+       $.ajax({
+            type: "POST",
+            // url: BASE_URL_AJAX("funcionario_api"),
+            url: BASE_URL_AJAX("usuario_dataview"),
+            data: {
+                btnVerificarSenha: 'ajx',
+                senha: $("#senha").val()
+            }, success: function(dados_ret) {
+                if (dados_ret == 1) {
+                    console.log(dados_ret);
+                    $("#divSenhaAtual").hide();
+                    $("#divMudarSenha").show();
+                } else if (dados_ret == -1) {
+                    MensagemGenerica("Senha não confere", "info");
+                    $("#senha").focus();
+                }
+            }
 
+
+        })
+    }
+    return false;
+}
+
+function AtualizarSenha(id_form){
+    if (NotificarCampos(id_form)) {
+        newsenha = $("#newsenha").val();
+        resenha = $("#resenha").val();
+        console.log(newsenha);
+        console.log(resenha);
+       $.ajax({
+            type: "POST",
+            // url: BASE_URL_AJAX("funcionario_api"),
+            url: BASE_URL_AJAX("usuario_dataview"),
+            data: {
+                btnAtualizarSenha: 'ajx',
+                senha: newsenha,
+                repetir_senha: resenha
+            }, success: function(dados_ret) {
+                console.log(dados_ret);
+                if (dados_ret == 1) {
+                   MensagemGenerica("Senha alterada com sucesso", "success");
+                    $("#divSenhaAtual").show();
+                    $("#divMudarSenha").hide();
+                }else if(dados_ret == -2){
+                    
+                    MensagemGenerica("Senha precisa ter no mínimo 6 digitos", "info");
+                    $("#newsenha").focus();
+                }
+                 else if (dados_ret == -4) {
+                   
+                    MensagemGenerica("Senha não confere", "info");
+                    $("#newsenha").focus();
+                }
+            }
+
+
+        })
+    }
+    return false;
+}
 

@@ -111,6 +111,17 @@ class usuarioDAO extends Conexao
         return $sql->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function CriarLogUsuario(){
+        $sql = $this->conexao->prepare(UsuarioSQL::CRIAR_LOG_USUARIO_SQL());
+        $i = 1;
+        $sql->bindValue($i++, Util::HoraAtual());
+        $sql->bindValue($i++, Util::CodigoLogado());
+        $sql->bindValue($i++, Util::DataAtualBd());
+        $sql->bindValue($i++, Util::LogIPUsuario());
+        $sql->execute();
+        return 1;
+    }
+
     public function ValidarAcesso($login, $status, $tipo)
     {
         $sql =  $this->conexao->prepare(UsuarioSQL::VALIDAR_ACESSO());

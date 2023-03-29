@@ -80,7 +80,7 @@ if (isset($_GET['close']) && $_GET['close'] == '1') {
 
             <ul class="submenu">
                 <li class="hover">
-                    <a href="usuario.php">
+                    <a href="usuario.php?pagina=1">
                         <i class="menu-icon fa fa-users"></i>
                         Usuários
                     </a>

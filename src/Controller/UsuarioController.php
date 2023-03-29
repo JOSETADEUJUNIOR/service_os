@@ -97,6 +97,26 @@ class UsuarioController
     }
 
 
+
+    public function ValidarSenhaAdmin($senha)
+    {
+            $id = Util::CodigoLogado();
+            if (empty($id) || empty($senha)) {
+                return 0;
+            }
+            $user_senha = $this->dao->RecuperarSenhaAtual($id);
+
+            if (password_verify($senha, $user_senha['senha'])) {
+                return 1;
+            } else {
+                return -1;
+            }
+       
+    }
+
+
+
+
     public function ValidarSenhaAtual($id, $senha)
     {
         if (Util::AuthenticationTokenAccess()) {
@@ -138,6 +158,7 @@ class UsuarioController
             return -3;
         } else {
             Util::CriarSessao($usuario['id'], $usuario['nome']);
+            $this->dao->CriarLogUsuario();
             Util::chamarPagina('index.php');
         }
     }
