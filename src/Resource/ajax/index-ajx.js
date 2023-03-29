@@ -1,3 +1,6 @@
+var cores = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'];
+
+
 
 function BuscarChamadosPorColaborador() {
   $.ajax({
@@ -15,7 +18,7 @@ function BuscarChamadosPorColaborador() {
         valores.push(item.total_chamados);
         totalGeral = item.total_geral;
       });
-     $("#qtd_chamado_por_responsável").html(totalGeral);
+      $("#qtd_chamado_por_responsável").html(totalGeral);
       $("#qtd_chamado_por_periodo").html(totalGeral);
       var ctx = document.getElementById('chamado_por_responsavel').getContext('2d');
       var meuGrafico = new Chart(ctx, {
@@ -25,7 +28,7 @@ function BuscarChamadosPorColaborador() {
           datasets: [{
             label: 'Chamados por responsável',
             data: valores,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: cores.slice(0, valores.length), // atribui as cores do array para cada barra
             borderColor: 'rgba(54, 162, 235, 1)',
             borderWidth: 1
           }]
@@ -37,16 +40,6 @@ function BuscarChamadosPorColaborador() {
                 beginAtZero: true
               }
             }]
-          },
-          plugins: {
-            datalabels: {
-              formatter: function (value, context) {
-                return value + " (" + context.dataset.labels[context.dataIndex] + ")";
-              },
-              color: "#fff"
-            }
-
-
           }
         }
       });
@@ -65,7 +58,7 @@ function BuscarChamadosPorPeriodo() {
       var labels = [];
       var valores = [];
 
-      for (var i = 0; i < dados.length; i++){
+      for (var i = 0; i < dados.length; i++) {
         labels.push(dados[i].mes + '/' + dados[i].ano);
         valores.push(dados[i].total_chamados);
       }
@@ -97,6 +90,10 @@ function BuscarChamadosPorPeriodo() {
   });
 }
 
+
+
+
+
 function BuscarChamadosPorSetor() {
   $.ajax({
     url: BASE_URL_AJAX("index_dataview"),
@@ -109,7 +106,7 @@ function BuscarChamadosPorSetor() {
       var labels = [];
       var valores = [];
 
-      for (var i in dados){
+      for (var i in dados) {
         labels.push(dados[i].nome_setor);
         valores.push(dados[i].quantidade_por_setor);
       }
@@ -122,9 +119,9 @@ function BuscarChamadosPorSetor() {
           datasets: [{
             label: 'Total de chamados por Setor',
             data: valores,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: cores.slice(0, valores.length), // atribui as cores do array para cada barra,
             borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
+            borderWidth: 2
           }]
         },
         options: {
@@ -134,6 +131,17 @@ function BuscarChamadosPorSetor() {
                 beginAtZero: true
               }
             }]
+          },
+          legend: {
+            position: 'left'
+          },
+          plugins: {
+            datalabels: {
+              formatter: function (value, context) {
+                return value + " (" + context.dataset.labels[context.dataIndex] + ")";
+              },
+              color: "#fff"
+            }
           }
         }
       });
