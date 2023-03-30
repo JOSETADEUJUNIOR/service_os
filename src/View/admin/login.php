@@ -16,11 +16,11 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/acesso_dataview.php'; ?>
                     <div class="login-container">
                         <div class="center">
                             <h1>
-                                <i class="ace-icon fa fa-leaf green"></i>
-                                <span class="red">Gestão</span>
-                                <span class="grey" id="id-text2">de Conteúdos</span>
+                                <i class="ace-icon fa fa-cogs white"></i>
+                                <span class="white">JRA - </span>
+                                <span class="white" id="id-text2">Services OS</span>
                             </h1>
-                            <h4 class="blue" id="id-company-text">&copy; MGT Serviços</h4>
+                            <h4 class="white" id="id-company-text">&copy; Acesso de Admin</h4>
                         </div>
 
                         <div class="space-6"></div>
@@ -30,7 +30,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/acesso_dataview.php'; ?>
                                 <div class="widget-body">
                                     <div class="widget-main">
                                         <h4 class="header blue lighter bigger">
-                                            <i class="ace-icon fa fa-coffee green"></i>
+                                            <i class="ace-icon fa fa-lock green"></i>
                                             Insira seus dados de acesso
                                         </h4>
 

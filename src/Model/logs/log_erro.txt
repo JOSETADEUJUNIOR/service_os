@@ -106,3 +106,9 @@ Hora:23:07:21
 Função:CadastrarUsuarioController
 cod Logado:12
 Erro:SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'UserEmpID' cannot be null
+--------------------------------------------------
+Data:29/03/2023
+Hora:20:44:09
+Função:AbrirChamadoController
+cod Logado:26
+Erro:SQLSTATE[42S22]: Column not found: 1054 Unknown column 'alocar_id' in 'field list'

@@ -45,7 +45,7 @@ if (isset($_POST['btn_cadastrar'])) {
     $filtro_palavra = $_POST['filtro_palavra'];
     $equipamento = $ctrl->ConsultarEquipamentoController($BuscarTipo, $filtro_palavra); 
     if (count($equipamento) > 0) { ?>
-        <div id="tabela_result_equipamento">
+        <div class="table-resposive" id="tabela_result_equipamento">
             <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
@@ -128,7 +128,7 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
     
 
     if (count($equipamento) > 0) { ?>
-        <div id="tabela_result_equipamento">
+        <div  class="table-resposive" id="tabela_result_equipamento">
             <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
@@ -209,7 +209,7 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
 
     if (count($equipamento) > 0) { ?>
 
-        <div id="tabela_result_equipamento">
+        <div class="table-resposive" id="tabela_result_equipamento">
             <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>

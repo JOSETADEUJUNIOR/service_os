@@ -150,7 +150,7 @@ class TecnicoApi extends ApiRequest
     {
         return (new ChamadoController)->FiltrarChamadoController($this->params['situacao']);
     }
-
+*/
     public function VerificarSenhaAtual()
     {
 
@@ -164,8 +164,5 @@ class TecnicoApi extends ApiRequest
         $vo->setSenha($this->params['senha']);
         return (new UsuarioController)->AtualizarSenhaAtual($vo, $this->params['repetir_senha']);
     }
-    public function Autenticar()
-    {
-        return (new UsuarioController)->ValidarAcessoFuncionarioAPI($this->params['email'], $this->params['senha']);
-    } */
+    
 }

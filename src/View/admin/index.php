@@ -77,7 +77,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                         <i class="ace-icon fa fa-home home-icon"></i>
                         <a href="#">Dashboard</a>
                     </li>
-                    <li class="active">Form Elements</li>
+                    <li class="active">gráficos</li>
                 </ul><!-- /.breadcrumb -->
 
 

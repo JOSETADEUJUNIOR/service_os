@@ -73,10 +73,10 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php'
 										<input id="filtro_palavra" name="filtro_palavra" class="form-control obg">
 									</div>
 
-									<div class="col-md-12">
-										<center>
-											<button name="btn_consultar" id="btn_consultar" class="btn btn-secondary" onclick=" return FiltrarEquipamentos('form_consultaEquip')">Pesquisar</button>
-										</center>
+									<div class="col-md-12 text-center">
+										
+											<button name="btn_consultar" id="btn_consultar" class="btn btn-primary btn-xs" onclick=" return FiltrarEquipamentos('form_consultaEquip')">Pesquisar</button>
+										
 									</div>
 								</form>
 							</div>
@@ -92,8 +92,8 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php'
 
 							</div>
 
-							<div id="tabela_result_equipamento">
-								<table id="dynamic-table" class="table table-striped table-bordered table-hover">
+							<div class="table-resposive" id="tabela_result_equipamento">
+								<table id="dynamic-table" style="max-width: 100%;" class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
 											<th class="sorting_desc">Tipo</th>

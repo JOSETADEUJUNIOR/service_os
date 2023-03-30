@@ -6,7 +6,6 @@ function RemoverLoad() {
 }
 
 function AlterarSetorModal(id, nome) {
-    alert(id, nome)
     $("#AlteraID").val(id);
     $("#nome").val(nome);
 }
@@ -28,7 +27,7 @@ function ExcluirModal(id, nome) {
 
 }
 function AlterarUsuarioModal(id, tipo, nome, email, telefone, cep, rua, bairro, cidade, sigla_estado, empresa_tecnico, setor_id, id_end) {
-    alert('chamou');
+    
     EscolherUsuario(tipo);
     $("#id_user").val(id);
     $("#tipo").val(tipo);
@@ -97,8 +96,7 @@ function BASE_URL_AJAX(dataview) {
 }
 
 function EscolherUsuario(tipo) {
-    alert(tipo);
-
+    
     switch (tipo) {
         case '2':
             $("#divFunc").show();

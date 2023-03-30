@@ -12,7 +12,6 @@ function ConsultarEquipamentos() {
 }
 
 function ConsultarEquipamentosNaoAlocados() {
-    alert('chamou o alocado');
     $.ajax({
         type: "POST",
         url: BASE_URL_AJAX("alocar_dataview"),
@@ -28,7 +27,6 @@ function ConsultarEquipamentosNaoAlocados() {
 function alocarEquipamento(id_form) {
 
     if (NotificarCampos(id_form)) {
-        alert(id_form);
         let equip = $("#equipamento").val();
         let setor = $("#setor").val();
         $.ajax({

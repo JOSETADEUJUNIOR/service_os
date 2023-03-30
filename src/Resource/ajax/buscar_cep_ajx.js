@@ -18,7 +18,7 @@ function TravarCamposEndereco(readonly){
 
  //Quando o campo cep perde o foco.
 function BuscarCep(){
-alert('ceppp');
+
     //Nova variável "cep" somente com dígitos.
     var cep = $("#cep").val().replace(/\D/g, '');
 

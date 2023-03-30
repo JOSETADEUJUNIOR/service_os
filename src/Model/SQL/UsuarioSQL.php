@@ -40,7 +40,7 @@ class UsuarioSQL
 
     public static function CRIAR_LOG_USUARIO_SQL()
     {
-        $sql = 'INSERT INTO tb_log (hora, usuario_id, data_logl, ip) VALUES (?,?,?,?)';
+        $sql = 'INSERT INTO tb_log (usuario_id, data_log, hora, ip) VALUES (?,?,?,?)';
         return $sql;
     }
     public static function ALTERAR_TECNICO()

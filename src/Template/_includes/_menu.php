@@ -10,7 +10,7 @@ if (isset($_GET['close']) && $_GET['close'] == '1') {
             <script>
                 MensagemSucesso();
             </script>';
-    Util::Deslogar();
+    Util::Deslogar("login.php");
 }
 
 ?>
@@ -87,11 +87,11 @@ if (isset($_GET['close']) && $_GET['close'] == '1') {
 
                     <b class="arrow"></b>
                 </li>
-                <li class="hover">
+               <!--  <li class="hover">
                 <a href="permissao_usuario.php">
                     <i class="menu-icon fa fa-user"></i>
                     Permissões
-                </a>
+                </a> -->
 
                 <b class="arrow"></b>
         </li>

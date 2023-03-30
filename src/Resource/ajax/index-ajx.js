@@ -9,7 +9,7 @@ function BuscarChamadosPorColaborador() {
     dataType: 'json',
     data: { acao: 'requisicao' },
     success: function (data) {
-      console.log(data);
+     
       var labels = [];
       var valores = [];
       var totalGeral = [];
@@ -101,7 +101,7 @@ function BuscarChamadosPorSetor() {
     dataType: 'json',
     data: { acao: 'chamado_por_setor' },
     success: function (setor) {
-      console.log(setor);
+     
       var dados = setor;
       var labels = [];
       var valores = [];
@@ -295,8 +295,8 @@ $.ajax({
       for (var i = 0; i < data.length; i++) {
         nomes.push(data[i].nome);
         totais.push(data[i].total_chamados);
-        console.log(nomes);
-        console.log(totais);
+       
+       
       }
 
       // Configuração do gráfico

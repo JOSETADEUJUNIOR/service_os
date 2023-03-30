@@ -58,7 +58,7 @@ use Src\_public\Util;
 										Usuarios Cadastrados
 
 										<div style="display:inline-flex" id="dynamic-table_filter">
-											<input type="search" onkeyup="FiltrarUsuario(this.value)" class="form-control input-sm" placeholder="buscar por setor" aria-controls="dynamic-table">
+											<input type="search" onkeyup="FiltrarUsuario(this.value)" class="form-control input-sm" placeholder="buscar por usuário" aria-controls="dynamic-table">
 
 										</div>
 										<label style="margin-left:10px">
@@ -74,7 +74,7 @@ use Src\_public\Util;
 											<span class="lbl"> Todos</span>
 										</label>
 									</div>
-									<div id="table_result_Usuario">
+									<div class="table-responsive" id="table_result_Usuario">
 										<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 											<thead>
 												<tr>

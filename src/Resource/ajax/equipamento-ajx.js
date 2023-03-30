@@ -14,7 +14,6 @@ function ConsultarEquipamentos() {
 function alocarEquipamento(id_form) {
 
     if (NotificarCampos(id_form)) {
-        alert(id_form);
         let equip = $("#equipamento").val();
         let setor = $("#setor").val();
         $.ajax({
@@ -164,8 +163,6 @@ return false;
 
 
 function Imprimir() {
-    alert('teste');
-  
     let tipo = $("#tipoFiltro").val();
     let filtrar_palavra = $("#filtro_palavra").val();
     location = "relatorio_equipamento.php?filtro=" + tipo + "&desc_filtro="+ filtrar_palavra;

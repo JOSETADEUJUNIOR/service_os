@@ -32,7 +32,7 @@ function SalvarPermissao() {
         success: function (ret) {
             if (ret == 1) {
 
-                console.log(ret);
+                
             } else {
                 MensagemSucesso();
 
@@ -63,7 +63,7 @@ function EnviarEmailAcesso(nome, email, site) {
             EnviarEmail: 'ajx'
         },
         success: function (resultado) {
-            console.log(resultado);
+            
             if (resultado == 1) {
                 MensagemGenerica('Email enviado com successo', 'success');
                 // FiltrarUsuario($("#nome_pesquisar").val()); para poder pesquisar direto
@@ -119,9 +119,6 @@ function MudarStatus() {
 
     let id = $("#id_status").val();
     let status_atual = $("#status_atual").val();
-    alert(id);
-    alert(status_atual);
-
     $.ajax({
         type: 'post',
         url: BASE_URL_AJAX("usuario_dataview"),
@@ -170,7 +167,7 @@ function CadastrarUsuario(id_form) {
                 $("#usuario").modal("hide");
                 RemoverLoad();
                 if (ret == '1') {
-                    console.log(ret);
+                    
                     MensagemSucesso();
                     ConsultarUsuario();
                     LimparCampos(id_form);
@@ -212,7 +209,7 @@ function CadastrarMeusDados(id_form) {
                 $("#usuario").modal("hide");
                 RemoverLoad();
                 if (ret == '1') {
-                    console.log(ret);
+                    
                     MensagemSucesso();
                     ConsultarUsuario();
                   
@@ -287,7 +284,6 @@ function ChecarFiltro(filtro) {
 
 function VerificarSenhaAtual(id_form) {
     if (NotificarCampos(id_form)) {
-        alert($("#senha").val());
        $.ajax({
             type: "POST",
             // url: BASE_URL_AJAX("funcionario_api"),
@@ -297,7 +293,7 @@ function VerificarSenhaAtual(id_form) {
                 senha: $("#senha").val()
             }, success: function(dados_ret) {
                 if (dados_ret == 1) {
-                    console.log(dados_ret);
+                    
                     $("#divSenhaAtual").hide();
                     $("#divMudarSenha").show();
                 } else if (dados_ret == -1) {
@@ -316,8 +312,8 @@ function AtualizarSenha(id_form){
     if (NotificarCampos(id_form)) {
         newsenha = $("#newsenha").val();
         resenha = $("#resenha").val();
-        console.log(newsenha);
-        console.log(resenha);
+        
+        
        $.ajax({
             type: "POST",
             // url: BASE_URL_AJAX("funcionario_api"),
@@ -327,7 +323,7 @@ function AtualizarSenha(id_form){
                 senha: newsenha,
                 repetir_senha: resenha
             }, success: function(dados_ret) {
-                console.log(dados_ret);
+                
                 if (dados_ret == 1) {
                    MensagemGenerica("Senha alterada com sucesso", "success");
                     $("#divSenhaAtual").show();
@@ -350,3 +346,15 @@ function AtualizarSenha(id_form){
     return false;
 }
 
+function VerSenha() {
+
+    if ($("#senha").prop('type') == 'password') {
+        $("#senha").prop('type', 'text');
+
+    } else {
+        $("#senha").prop('type', 'password');
+
+    }
+
+
+}
