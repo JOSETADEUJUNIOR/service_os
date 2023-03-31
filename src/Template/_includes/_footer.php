@@ -2,8 +2,8 @@
     <div class="footer-inner">
         <div class="footer-content">
             <span class="bigger-120">
-                <span class="blue bolder">MGT</span>
-                Serviços &copy; <?php echo date('Y') ?>;
+                <span class="blue bolder">JRA</span>
+                Service OS &copy; <?php echo date('Y') ?>;
             </span>
 
             &nbsp; &nbsp;

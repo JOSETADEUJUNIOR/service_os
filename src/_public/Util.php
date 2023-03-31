@@ -31,21 +31,17 @@ class Util
         return $_SESSION['nome'];
     }
 
-    public static function Deslogar($pag)
+    public static function Deslogar()
     {
         self::IniciarSessao();
         unset($_SESSION['id']);
         unset($_SESSION['nome']);
-        self::chamarPagina($pag);
+        self::IrParaLogin();
     }
 
     public static function IrParaLogin()
     {
-        #para acesso local
-       /*  header('location: http://localhost/service_os/src/View/admin/login.php');
-         */
-        #para acesso em produção
-        header('location: https://siteparaseunegocio.com/service_os/src/View/admin/login.php');
+        header('location: login.php');
         exit;
 
     }

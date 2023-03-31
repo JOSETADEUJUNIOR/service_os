@@ -3,16 +3,6 @@
 
 require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 
-use Src\_public\Util;
-
-if (isset($_GET['close']) && $_GET['close'] == '1') {
-    echo '
-            <script>
-                MensagemSucesso();
-            </script>';
-    Util::Deslogar("login.php");
-}
-
 ?>
 <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
     <script type="text/javascript">
@@ -35,7 +25,7 @@ if (isset($_GET['close']) && $_GET['close'] == '1') {
                 <i class="ace-icon fa fa-envelope"></i>
             </a>
 
-            <a href="../../Template/_includes/_menu.php?close=1" class="btn btn-danger">
+            <a href="login.php?close=1" class="btn btn-danger">
                 <i class="ace-icon fa fa-power-off bigger-110"></i>
             </a>
         </div>

@@ -6,84 +6,122 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/acesso_dataview.php'; ?>
 
 <head>
     <?php include_once PATH_URL . '/Template/_includes/_head.php' ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">
+		body {
+			background-color: #f0f0f0;
+			font-family: Arial, sans-serif;
+		}
+
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+		.image {
+			float: left;
+			width: 200%;
+			height: 82%;
+			background-image: url("../../Template/assets/images/post_login.png");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+
+		.form-container {
+			float: right;
+			width: 100%;
+			height: 82%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			background-color: #fff;
+			box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+			border-radius: 5px;
+		}
+
+		.form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 20px;
+			width: 100%;
+			height: 100%;
+		}
+
+		.form input[type="email"], .form input[type="password"] {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 10px;
+			border-radius: 5px;
+			border: 1px solid #006666;
+			box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+		}
+
+		.form button[type="submit"] {
+			width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: none;
+			background-color: #008080;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		.form button[type="submit"]:hover {
+			background-color: #006666;
+		}
+
+		@media screen and (max-width: 768px) {
+			.container {
+				flex-direction: column;
+				height: auto;
+			}
+
+			.image {
+				float: none;
+				width: 100%;
+				height: 300px;
+			}
+
+			.form-container {
+				float: none;
+				width: 100%;
+				height: auto;
+				margin-top: 20px;
+				border-radius: 0px;
+			}
+		}
+	</style>
 </head>
 
 <body class="login-layout light-login">
-    <div class="main-container">
-        <div class="main-content">
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <div class="login-container">
-                        <div class="center">
-                            <h1>
-                                <i class="ace-icon fa fa-cogs white"></i>
-                                <span class="white">JRA - </span>
-                                <span class="white" id="id-text2">Services OS</span>
-                            </h1>
-                            <h4 class="white" id="id-company-text">&copy; Acesso de Admin</h4>
-                        </div>
-
-                        <div class="space-6"></div>
-
-                        <div class="position-relative">
-                            <div id="login-box" class="login-box visible widget-box no-border">
-                                <div class="widget-body">
-                                    <div class="widget-main">
-                                        <h4 class="header blue lighter bigger">
-                                            <i class="ace-icon fa fa-lock green"></i>
-                                            Insira seus dados de acesso
-                                        </h4>
-
-                                        <div class="space-6"></div>
-
-                                        <form id="form_login" action="login.php" method="post">
-                                            <fieldset>
-                                                <label class="block clearfix">
-                                                    <span class="block input-icon input-icon-right">
-                                                        <input type="text" class="form-control obg" name="login" id="login" autocomplete="off" placeholder="E-mail" />
-                                                        <i class="ace-icon fa fa-user"></i>
-                                                    </span>
-                                                </label>
-
-                                                <label class="block clearfix">
-                                                    <span class="block input-icon input-icon-right">
-                                                        <input type="password" class="form-control obg" name="senha" id="senha" placeholder="Senha" />
-                                                        <i class="ace-icon fa fa-lock"></i>
-                                                    </span>
-                                                </label>
-
-                                                <div class="space"></div>
-
-                                                <div class="clearfix col-md-12">
-
-                                                    <button name="btn_acessar" onclick="return NotificarCampos('form_login')" class="width-100 pull-right btn btn-sm btn-primary">
-                                                        <i class="ace-icon fa fa-key"></i>
-                                                        <span class="bigger-110">Logar</span>
-                                                    </button>
-                                                </div>
-
-                                                <div class="space-4"></div>
-                                            </fieldset>
-                                        </form>
 
 
-                                    </div><!-- /.widget-main -->
+<div class="container">
+		<div class="container">
+		<div class="image"></div>
+		<div class="form-container">
+			<div class="form">
+				<h1><i class="blue ace-icon fa fa-database fa-1x"></i>&nbsp;&nbsp;Acesse o sistema</h1>
+                <div style="margin-top: 20px;">
+                    <form id="form_login" action="login.php" method="post">
+                    <h5 style="text-align: center;"><i class="ace-icon fa fa-lock"></i>&nbsp;&nbsp;Acesso para administrador</h5>
+                        <input type="email"  class="obg" name="login" id="login" autocomplete="off" placeholder="Email">
+                       
+                        <input  type="password" class="obg" name="senha" id="senha">
+                        
+                        <button type="submit" name="btn_acessar"  onclick="return NotificarCampos('form_login')"><i class="ace-icon fa fa-key"></i>  Entrar</button>
+                    </form>
 
 
-                                </div><!-- /.widget-body -->
-                            </div><!-- /.login-box -->
-
-
-
-
-                        </div><!-- /.position-relative -->
-
-
-                    </div>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.main-content -->
-    </div><!-- /.main-container -->
+                </div>
+			</div>
+		</div>
+	</div>
 
     <!-- basic scripts -->
 
