@@ -105,7 +105,7 @@ class EquipamentoSQL
                        ';
 
         if (!empty($situacao)) {
-            $sql .= ' WHERE al.situacao = ?';
+            $sql .= ' WHERE eq.descricao = ?';
         }
 
         return $sql;

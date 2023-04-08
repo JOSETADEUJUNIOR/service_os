@@ -79,7 +79,6 @@ function Excluir() {
 
 
 function FiltrarEquipamento(nome_filtro) {
-
     $.ajax({
         type: "POST",
         url: BASE_URL_AJAX("alocar_dataview"),
@@ -87,6 +86,7 @@ function FiltrarEquipamento(nome_filtro) {
             btnFiltrar: 'ajx',
             FiltrarNome: nome_filtro
         }, success: function (dados) {
+            console.log(dados);
             $("#tabela_result_alocado").html(dados);
         }
     })

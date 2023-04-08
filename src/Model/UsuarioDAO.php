@@ -153,11 +153,14 @@ class usuarioDAO extends Conexao
 
     public function CadastrarUsuarioDAO($vo)
     {
-        $sql = $this->conexao->prepare(UsuarioSQL::INSERIR_EMPRESA());
-        $sql->bindValue(1, Util::DataAtualBd());
-        $sql->execute();
-
-        $idEmpresa = $this->conexao->lastInsertId();
+        if ($vo->getEmpID()>0) {
+            $sql = $this->conexao->prepare(UsuarioSQL::INSERIR_EMPRESA());
+            $sql->bindValue(1, Util::DataAtualBd());
+            $sql->execute();
+    
+            $idEmpresa = $this->conexao->lastInsertId();
+            
+        }
 
         # Cadastra usuario
         $sql = $this->conexao->prepare(UsuarioSQL::INSERIR_USUARIO());
@@ -168,7 +171,11 @@ class usuarioDAO extends Conexao
         $sql->bindValue($i++, $vo->getSenha());
         $sql->bindValue($i++, $vo->getStatus());
         $sql->bindValue($i++, $vo->getTelefone());
-        $sql->bindValue($i++, $idEmpresa);
+        if ($vo->getEmpID()>0) {
+            $sql->bindValue($i++, $vo->getEmpID());  
+        }else{
+            $sql->bindValue($i++, $idEmpresa);
+        }
         $this->conexao->beginTransaction();
         try {
             $sql->execute();

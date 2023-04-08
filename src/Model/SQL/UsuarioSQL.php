@@ -191,7 +191,7 @@ LEFT JOIN tb_setor as st
     public static function BUSCAR_DADOS_ACESSO()
     {
 
-        $sql = 'SELECT id, nome, senha, tipo
+        $sql = 'SELECT id, nome, senha, tipo, UserEmpID
                 FROM tb_usuario
                     WHERE login = ? AND status = ?';
 

@@ -53,6 +53,7 @@ class UsuarioController
 
         $vo->setFuncao(CADASTRO_USUARIO);
         $vo->setIdLogado(Util::CodigoLogado());
+        $vo->setEmpID(Util::EmpresaLogado());
 
         return $this->dao->CadastrarUsuarioDAO($vo);
     }
@@ -157,7 +158,7 @@ class UsuarioController
         if (!Util::ValidarSenhaBanco($senha, $usuario['senha'])) {
             return -3;
         } else {
-            Util::CriarSessao($usuario['id'], $usuario['nome']);
+            Util::CriarSessao($usuario['id'], $usuario['nome'], $usuario['UserEmpID']);
             $this->dao->CriarLogUsuario();
             Util::chamarPagina('index.php');
         }

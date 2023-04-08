@@ -15,6 +15,7 @@ class UsuarioVO extends EnderecoVO
     private $senha;
     private $telefone;
     private $status;
+    private $UserEmpID;
     
 
 
@@ -29,6 +30,18 @@ class UsuarioVO extends EnderecoVO
     {
 
         return $this->id;
+    }
+
+    public function setEmpID($UserEmpID)
+    {
+
+        $this->UserEmpID = $UserEmpID;
+    }
+
+    public function getEmpID()
+    {
+
+        return $this->UserEmpID;
     }
 
     # Get Set Identificacao

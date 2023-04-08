@@ -146,7 +146,9 @@ class EquipamentoDAO extends Conexao
     {
         $sql = $this->conexao->prepare(EquipamentoSQL::SelecionarEquipamentoAlocado($situacao));
         if (!empty($situacao)) {
-            $sql->bindValue(1, $situacao);
+
+            $sql->bindValue(1, "%" . $situacao . "%");
+            
         }
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);

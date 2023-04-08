@@ -12,11 +12,12 @@ class Util
         }
     }
 
-    public static function CriarSessao($id, $nome)
+    public static function CriarSessao($id, $nome, $empresa)
     {
         self::IniciarSessao();
         $_SESSION['id']   = $id;
         $_SESSION['nome'] = $nome;
+        $_SESSION['UserEmpID'] = $empresa;
     }
 
     public static function CodigoLogado()
@@ -31,6 +32,11 @@ class Util
         return $_SESSION['nome'];
     }
 
+    public static function EmpresaLogado()
+    {
+        self::IniciarSessao();
+        return $_SESSION['UserEmpID'];
+    }
     public static function Deslogar()
     {
         self::IniciarSessao();
