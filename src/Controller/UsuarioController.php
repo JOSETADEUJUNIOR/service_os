@@ -5,6 +5,7 @@ namespace Src\Controller;
 use Src\Model\UsuarioDAO;
 use Src\_public\Util;
 use Src\VO\UsuarioVO;
+use Src\VO\EmpresaVO;
 
 class UsuarioController
 {
@@ -12,6 +13,22 @@ class UsuarioController
     public function __construct()
     {
         $this->dao = new UsuarioDAO;
+    }
+
+    public function RetornarDadosCadastraisController() : array
+    {
+        return $this->dao->RetornaDadosCadastraisDAO();
+    }
+
+    public function AlterarEmpresaController(EmpresaVO $vo):int
+    {
+        if (empty($vo->getNomeEmpresa()) || empty($vo->getCNPJ())) {
+            return 0;
+        }
+        $vo->setfuncao(ALTERA_EMPRESA);
+        $vo->setIdLogado(Util::CodigoLogado());
+
+        return $this->dao->AlterarEmpresaDAO($vo);
     }
 
     public function VerificarEmailController($email, $id = ''): bool

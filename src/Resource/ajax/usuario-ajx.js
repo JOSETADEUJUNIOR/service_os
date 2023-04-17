@@ -224,6 +224,46 @@ function CadastrarMeusDados(id_form) {
 
     return false;
 }
+function CadastrarDadosEmpresa(){
+    alert('empddresa');
+    var formData = new FormData();
+    formData.append("EmpNome",$("#nome").val());
+    formData.append("EmpCNPJ",$("#cnpj").val());
+    formData.append("EmpCep",$("#cep").val());
+    formData.append("EmpEnd",$("#endereco").val());
+    formData.append("EmpNumero",$("#numero").val());
+    formData.append("EmpCidade",$("#cidade").val());
+    formData.append("arquivos",$("#logo").prop("files")[0]);
+    formData.append("btnAlterar",'ajx');
+    console.log(formData);
+    $.ajax({
+     type: "POST",
+     url: BASE_URL_AJAX("usuario_dataview"),
+     data:
+         formData,
+         processData: false,
+         contentType: false,
+     success: function(ret){
+        console.log(ret);
+         if(ret == 1){
+             MensagemSucesso();
+             LimparCampos();
+             ConsultarEmpresa();
+            
+         }else{
+             MensagemErro();
+         }
+     }
+ })
+
+ return false;
+
+
+}
+
+
+
+
 
 function AlterarUsuario(id_form) {
 

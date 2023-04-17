@@ -7,6 +7,7 @@ use Src\_public\Util;
 use Src\Model\Conexao;
 use Src\Model\SQL\UsuarioSQL;
 use Src\Model\SQL\EnderecoSQL;
+use Src\VO\EmpresaVO;
 use Src\VO\UsuarioVO;
 
 class usuarioDAO extends Conexao
@@ -17,6 +18,54 @@ class usuarioDAO extends Conexao
     {
         $this->conexao = parent::retornaConexao();
     }
+
+    public function RetornaDadosCadastraisDAO(): array
+    {
+        $sql = $this->conexao->prepare(UsuarioSQL::RetornarDadosCadastrais());
+        $sql->bindValue(1, Util::CodigoLogado());
+        $sql->execute();
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+
+    }
+    public function AlterarEmpresaDAO(EmpresaVO $vo):int
+    {
+        if ($vo->getEmpLogo()=='') {
+        
+        $sql = $this->conexao->prepare(UsuarioSQL::AlterarEmpresaSLSQL());
+        $sql->bindValue(1, $vo->getNomeEmpresa());
+        $sql->bindValue(2, $vo->getCNPJ());
+        $sql->bindValue(3, $vo->getEndereco());
+        $sql->bindValue(4, $vo->getCep());
+        $sql->bindValue(5, $vo->getNumero());
+        $sql->bindValue(6, $vo->getCidade());
+        $sql->bindValue(7, Util::EmpresaLogado());
+        }else {
+            
+        
+        $sql = $this->conexao->prepare(UsuarioSQL::AlterarEmpresaSQL());
+        $sql->bindValue(1, $vo->getNomeEmpresa());
+        $sql->bindValue(2, $vo->getCNPJ());
+        $sql->bindValue(3, $vo->getEndereco());
+        $sql->bindValue(4, $vo->getCep());
+        $sql->bindValue(5, $vo->getNumero());
+        $sql->bindValue(6, $vo->getCidade());
+        $sql->bindValue(7, $vo->getEmpLogo());
+        $sql->bindValue(8, $vo->getLogoPath());
+        $sql->bindValue(9, Util::EmpresaLogado());
+    }
+        try {
+            $sql->execute();
+            return 1;
+        } catch (\Exception $ex) {
+            $vo->setmsg_erro($ex->getMessage());
+            parent::GravarLogErro($vo);
+            return -2;
+        }
+
+
+    }
+
+
 
     public function VerificarEmailDuplicadoDAO($id, $email)
     {

@@ -112,3 +112,9 @@ Hora:20:44:09
 Função:AbrirChamadoController
 cod Logado:26
 Erro:SQLSTATE[42S22]: Column not found: 1054 Unknown column 'alocar_id' in 'field list'
+--------------------------------------------------
+Data:08/04/2023
+Hora:12:59:33
+Função:AlterarUsuarioController
+cod Logado:25
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_ordem`.`tb_endereco`, CONSTRAINT `fk_tb_endereco_tb_cidade1` FOREIGN KEY (`cidade_id`) REFERENCES `tb_cidade` (`id`))

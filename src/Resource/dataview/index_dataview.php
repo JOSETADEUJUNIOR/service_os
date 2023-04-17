@@ -38,5 +38,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_por_setor') {
 }
 
 $dadosUser = $userController->DetalharUsuarioController($_SESSION['id']);
+$dados = $userController->RetornarDadosCadastraisController(); 
 
-//Util::debug($dadosUser);
+Util::debug($dados);
+?>

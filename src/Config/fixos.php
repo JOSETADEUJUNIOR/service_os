@@ -13,6 +13,8 @@ const CADASTRO_SETOR = 'CadastrarSetor';
 const ALTERA_SETOR = 'AlterarSetor';
 const EXCLUI_SETOR = 'ExcluirSetorController';
 
+const ALTERA_EMPRESA = 'AlterarEmpresaController';
+
 const CADASTRO_TIPO_EQUIPAMENTO = "CadastrarTipoEquipamento";
 const ALTERAR_TIPO_EQUIPAMENTO = "AlterarTipoEquipamentoController";
 const EXCLUIR_TIPO_EQUIPAMENTO = "ExcluirTipoEquipamento";

@@ -8,6 +8,7 @@ use Src\Controller\UsuarioController;
 use Src\Controller\SendMailController;
 use Src\VO\UsuarioVO;
 use Src\VO\TecnicoVO;
+use Src\VO\EmpresaVO;
 use Src\VO\FuncionarioVO;
 use Src\mail\ModeloUsuario;
 
@@ -34,7 +35,40 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
     }
 }
 
+else if (isset($_POST['btnAlterar'])) {
+    $vo = new EmpresaVO;
+    $vo->setNomeEmpresa($_POST['EmpNome']);
+    $vo->setCNPJ($_POST['EmpCNPJ']);
+    $vo->setEndereco($_POST['EmpEnd']);
+    $vo->setCep($_POST['EmpCep']);
+    $vo->setNumero($_POST['EmpNumero']);
+    $vo->setCidade($_POST['EmpCidade']);
+    $arquivos = $_FILES['arquivos'];
 
+    if ($arquivos['size'] > 2097152)
+        die("Arquivo muito grande !! Max: 2MB");
+
+    $pasta = "arquivos/";
+    @mkdir($pasta);
+    $nomeDoArquivo = $arquivos['name'];
+    $novoNomeDoArquivo = uniqid();
+    $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
+    if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != '')
+        die("Tipo de arquivo não aceito");
+
+    $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
+    $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
+    $vo->setEmpLogo($nomeDoArquivo);
+    $vo->setLogoPath($path);
+
+    $ret = $ctrl_usuario->AlterarEmpresaController($vo);
+
+    if ($_POST['btnAlterar'] == 'ajx') {
+        echo $ret;
+    } else {
+        $dados = $ctrl_usuario->RetornarDadosCadastraisController();
+    }
+}
 
 if (isset($_POST['VerificaEmail']) and $_POST['VerificaEmail'] == 'ajx') {
     $ret = $ctrl_usuario->VerificarEmailController($_POST['Email']);

@@ -7,6 +7,36 @@ namespace Src\Model\SQL;
 class UsuarioSQL
 {
 
+    public static function RetornarDadosCadastrais()
+    {
+        $sql =  'SELECT EmpID, id, EmpNome, EmpEnd, EmpCNPJ, EmpEnd, EmpCep, EmpNumero, EmpCidade, EmpStatus, EmpLogo, 
+	                    EmpLogoPath,
+                        case tipo
+                            When 1 Then \'Administrador\'
+                            When 2 Then \'funcionario\'
+                            When 3 Then \'Tecnico\'
+                            End as tipo,
+                        nome, login, senha, telefone
+                 FROM tb_empresa
+		         INNER JOIN tb_usuario on
+			            tb_empresa.EmpID = tb_usuario.UserEmpID WHERE id = ?';
+
+        return $sql;
+    }
+
+    public static function AlterarEmpresaSQL()
+    {
+        $sql = 'UPDATE tb_empresa set EmpNome = ?, EmpCNPJ = ?, EmpEnd = ?,
+                                      EmpCep = ?, EmpNumero = ?, EmpCidade = ?, EmpLogo = ?, EmpLogoPath = ? WHERE EmpID = ? ';
+        return $sql;
+    }
+
+    public static function AlterarEmpresaSLSQL()
+    {
+        $sql = 'UPDATE tb_empresa set EmpNome = ?, EmpCNPJ = ?, EmpEnd = ?,
+                                      EmpCep = ?, EmpNumero = ?, EmpCidade = ? WHERE EmpID = ? ';
+        return $sql;
+    }
     public static function INSERIR_USUARIO()
     {
 
