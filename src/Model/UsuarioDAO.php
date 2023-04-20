@@ -123,6 +123,7 @@ class usuarioDAO extends Conexao
     public function RetornarUsuariosDAO()
     {
         $sql =  $this->conexao->prepare(UsuarioSQL::RETORNAR_USUARIOS());
+        $sql->bindValue(1, Util::EmpresaLogado());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }

@@ -171,8 +171,8 @@ LEFT JOIN tb_funcionario as fun
 LEFT JOIN tb_tecnico as tec
         ON usu.id = tec.tecnico_id
 LEFT JOIN tb_setor as st
-		ON fun.setor_id = st.id';
-
+		ON fun.setor_id = st.id
+            WHERE usu.UserEmpID = ?';
         return $sql;
     }
 
