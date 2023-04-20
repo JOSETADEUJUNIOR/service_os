@@ -10,6 +10,17 @@ function ConsultarUsuario() {
         }
     })
 }
+function ConsultarEmpresa() {
+    $.ajax({
+        type: "POST",
+        url: BASE_URL_AJAX("usuario_dataview"),
+        data: {
+            btn_consultar_empresa: 'ajx'
+        }, success: function (tabela_preenchida) {
+            $("#resultDadosEmpresa").html(tabela_preenchida);
+        }
+    })
+}
 
 
 
@@ -208,7 +219,7 @@ function CadastrarMeusDados(id_form) {
             success: function (ret) {
                 $("#usuario").modal("hide");
                 RemoverLoad();
-                if (ret == '1') {
+                if (ret != '') {
                     
                     MensagemSucesso();
                     ConsultarUsuario();
@@ -225,7 +236,6 @@ function CadastrarMeusDados(id_form) {
     return false;
 }
 function CadastrarDadosEmpresa(){
-    alert('empddresa');
     var formData = new FormData();
     formData.append("EmpNome",$("#nome").val());
     formData.append("EmpCNPJ",$("#cnpj").val());
@@ -233,8 +243,13 @@ function CadastrarDadosEmpresa(){
     formData.append("EmpEnd",$("#endereco").val());
     formData.append("EmpNumero",$("#numero").val());
     formData.append("EmpCidade",$("#cidade").val());
-    formData.append("arquivos",$("#logo").prop("files")[0]);
-    formData.append("btnAlterar",'ajx');
+    if ($("#logo").prop("files")[0]=="") {
+        formData.append("arquivos",'');
+    }else{
+
+        formData.append("arquivos",$("#logo").prop("files")[0]);
+    }
+    formData.append("btnAlterar",'ajxx');
     console.log(formData);
     $.ajax({
      type: "POST",
@@ -244,11 +259,10 @@ function CadastrarDadosEmpresa(){
          processData: false,
          contentType: false,
      success: function(ret){
-        console.log(ret);
-         if(ret == 1){
-             MensagemSucesso();
-             LimparCampos();
-             ConsultarEmpresa();
+         console.log(ret);
+         if(ret !=""){
+           MensagemSucesso();
+           ConsultarEmpresa();
             
          }else{
              MensagemErro();

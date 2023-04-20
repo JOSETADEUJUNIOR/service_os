@@ -36,6 +36,9 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 }
 
 else if (isset($_POST['btnAlterar'])) {
+    
+    $nomeDoArquivo="";
+    $path="";
     $vo = new EmpresaVO;
     $vo->setNomeEmpresa($_POST['EmpNome']);
     $vo->setCNPJ($_POST['EmpCNPJ']);
@@ -43,7 +46,9 @@ else if (isset($_POST['btnAlterar'])) {
     $vo->setCep($_POST['EmpCep']);
     $vo->setNumero($_POST['EmpNumero']);
     $vo->setCidade($_POST['EmpCidade']);
-    $arquivos = $_FILES['arquivos'];
+    if ($_FILES['arquivos']!="") {
+       
+    $arquivos = $_FILES['arquivos'] ??"";
 
     if ($arquivos['size'] > 2097152)
         die("Arquivo muito grande !! Max: 2MB");
@@ -58,19 +63,20 @@ else if (isset($_POST['btnAlterar'])) {
 
     $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
     $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
+    }
     $vo->setEmpLogo($nomeDoArquivo);
     $vo->setLogoPath($path);
 
     $ret = $ctrl_usuario->AlterarEmpresaController($vo);
 
-    if ($_POST['btnAlterar'] == 'ajx') {
+    if ($_POST['btnAlterar'] == 'ajxx') {
         echo $ret;
     } else {
         $dados = $ctrl_usuario->RetornarDadosCadastraisController();
     }
 }
 
-if (isset($_POST['VerificaEmail']) and $_POST['VerificaEmail'] == 'ajx') {
+else if (isset($_POST['VerificaEmail']) and $_POST['VerificaEmail'] == 'ajx') {
     $ret = $ctrl_usuario->VerificarEmailController($_POST['Email']);
 
 
@@ -458,7 +464,87 @@ if (isset($_POST['VerificaEmail']) and $_POST['VerificaEmail'] == 'ajx') {
             </tbody>
         </table>
     </div>
-<?php } else {
+<?php }else if (isset($_POST['btn_consultar_empresa']) && $_POST['btn_consultar_empresa'] == "ajx") {
+
+$dados = $ctrl_usuario->RetornarDadosCadastraisController();
+
+if ($dados!="") { ?>
+    <div class="row" id="resultDadosEmpresa">
+        <input type="hidden" id="id_user" value="<?= $dados[0]['id'] ?>">
+        <input type="hidden" id="id_emp" value="<?= $dados[0]['EmpID'] ?>">
+        <input type="hidden" id="tipo" value="<?= $dados[0]['tipo'] ?>">
+        <div class="col-md-4">
+
+            <label>Nome empresa</label>
+            <input class="form-control obg" id="nome" name="nome" value="<?= $dados[0]['EmpNome'] ?>" placeholder="Digite o aqui....">
+
+        </div>
+        <div class="col-md-4">
+
+            <label>CNPJ</label>
+            <input class="form-control obg" id="cnpj" name="cnpj" value="<?= $dados[0]['EmpCNPJ'] ?>" placeholder="Digite o aqui....">
+
+        </div>
+        <div class="col-md-4">
+
+            <label>Cep</label>
+            <input class="form-control obg" id="cep" name="cep" value="<?= $dados[0]['EmpCep'] ?>" placeholder="Digite o aqui....">
+
+        </div>
+        <div class="col-md-4">
+
+            <label>Endereço</label>
+            <input class="form-control obg" id="endereco" name="endereco" value="<?= $dados[0]['EmpEnd'] ?>" placeholder="Digite o aqui....">
+
+        </div>
+        <div class="col-md-4">
+
+            <label>Numero</label>
+            <input class="form-control obg" id="numero" name="numero" value="<?= $dados[0]['EmpNumero'] ?>" placeholder="Digite o aqui....">
+
+        </div>
+        <div class="col-md-4">
+
+            <label>Cidade</label>
+            <input class="form-control obg" id="cidade" name="cidade" value="<?= $dados[0]['EmpCidade'] ?>" placeholder="Digite o aqui....">
+
+        </div>
+        
+        
+        <div class="col-sm-12">
+
+            <div class="position-relative">
+                <img src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid">
+
+            </div>
+
+        </div>
+        <div class="col-sm-12">
+            <label for="">Incluir Logo</label>
+            <input type="file" name="logo" id="logo" value="<?= $dados[0]['EmpLogo'] ?>" class="custom-file-input">
+            
+
+        </div>
+
+        <div style="margin-top: 10px;" class="col-sm-6 col-xs-6">
+
+            <button onclick="return CadastrarDadosEmpresa('formAlterarEmpresa')" class="col-sm-12 col-xs-12 btn btn-success">
+                <i class="ace-icon fa fa-check bigger-110"></i>Gravar dados
+            </button>
+        </div>
+        <div style="margin-top: 10px;" class="col-sm-6 col-xs-6">
+            <button class="col-sm-12 col-xs-12 btn btn-warning">
+                <i class="ace-icon fa fa-undo bigger-110"></i>Voltar
+            </button>
+
+        </div>
+    </div>
+<?php }else {
+    $dados = $ctrl_usuario->RetornarDadosCadastraisController();
+}
+
+
+}else {
     $registros = $ctrl_usuario->FiltrarUsuariosController();
 
     $registrosPorPagina = REGISTRO_POR_PAGINA;

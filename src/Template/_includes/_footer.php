@@ -1,9 +1,13 @@
+<?php
+
+use Src\_public\Util;
+?>
 <div class="footer">
     <div class="footer-inner">
         <div class="footer-content">
             <span class="bigger-120">
-                <span class="blue bolder">JRA</span>
-                Service OsssS &copy; <?php echo date('Y') ?>;
+                <span class="blue bolder">Usuário logado:</span>
+                <?= Util::NomeLogado() ?> &copy; <?php echo date('d/m/Y') ?>;
             </span>
 
             &nbsp; &nbsp;

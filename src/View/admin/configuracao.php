@@ -191,7 +191,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 
 														<form action="" id="formAlterarEmpresa">
 															<fieldset>
-																<div class="row">
+																<div class="row" id="resultDadosEmpresa">
 																	<input type="hidden" id="id_user" value="<?= $dados[0]['id'] ?>">
 																	<input type="hidden" id="id_emp" value="<?= $dados[0]['EmpID'] ?>">
 																	<input type="hidden" id="tipo" value="<?= $dados[0]['tipo'] ?>">
@@ -204,7 +204,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																	<div class="col-md-4">
 
 																		<label>CNPJ</label>
-																		<input class="form-control obg" id="email" name="email" value="<?= $dados[0]['EmpCNPJ'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg" id="cnpj" name="cnpj" value="<?= $dados[0]['EmpCNPJ'] ?>" placeholder="Digite o aqui....">
 
 																	</div>
 																	<div class="col-md-4">
@@ -244,7 +244,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																	<div class="col-sm-12">
 																		<label for="">Incluir Logo</label>
 																		<input type="file" name="logo" id="logo" value="<?= $dados[0]['EmpLogo'] ?>" class="custom-file-input">
-																		<label class="custom-file-label" for="customFile">escolher a logo</label>
+																		
 
 																	</div>
 
