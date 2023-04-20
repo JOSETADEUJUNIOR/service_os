@@ -110,6 +110,7 @@ function EscolherUsuario(tipo) {
             $("#divTecnico").hide();
             $("#divFunc").hide();
             $("#setor").removeClass('obg');
+            $("#nome_empresa_tec").removeClass('obg');
             $("#divGeral").show();
             $("#divButton").show();
             break;
