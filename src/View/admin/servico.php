@@ -36,7 +36,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/servico_dataview.php';
 							<a href="#">Home</a>
 						</li>
 
-						<li class="active">Servicos</li>
+						<li class="active">Servico</li>
 					</ul><!-- /.breadcrumb -->
 				</div>
 				<!-- conteudo da pagina -->
