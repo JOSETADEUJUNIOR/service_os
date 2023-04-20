@@ -3,7 +3,9 @@
 include_once '_include_autoload.php';
 
 use Src\_public\Util;
+
 Util::VerificarLogado();
+
 use Src\Controller\UsuarioController;
 use Src\Controller\SendMailController;
 use Src\VO\UsuarioVO;
@@ -33,12 +35,10 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
     } else {
         echo -1;
     }
-}
+} else if (isset($_POST['btnAlterar'])) {
 
-else if (isset($_POST['btnAlterar'])) {
-    
-    $nomeDoArquivo="";
-    $path="";
+    $nomeDoArquivo = "";
+    $path = "";
     $vo = new EmpresaVO;
     $vo->setNomeEmpresa($_POST['EmpNome']);
     $vo->setCNPJ($_POST['EmpCNPJ']);
@@ -46,23 +46,23 @@ else if (isset($_POST['btnAlterar'])) {
     $vo->setCep($_POST['EmpCep']);
     $vo->setNumero($_POST['EmpNumero']);
     $vo->setCidade($_POST['EmpCidade']);
-    if ($_FILES['arquivos']!="") {
-       
-    $arquivos = $_FILES['arquivos'] ??"";
+    if ($_FILES['arquivos'] != "") {
 
-    if ($arquivos['size'] > 2097152)
-        die("Arquivo muito grande !! Max: 2MB");
+        $arquivos = $_FILES['arquivos'] ?? "";
 
-    $pasta = "arquivos/";
-    @mkdir($pasta);
-    $nomeDoArquivo = $arquivos['name'];
-    $novoNomeDoArquivo = uniqid();
-    $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
-    if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != '')
-        die("Tipo de arquivo não aceito");
+        if ($arquivos['size'] > 2097152)
+            die("Arquivo muito grande !! Max: 2MB");
 
-    $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
-    $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
+        $pasta = "arquivos/";
+        @mkdir($pasta);
+        $nomeDoArquivo = $arquivos['name'];
+        $novoNomeDoArquivo = uniqid();
+        $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
+        if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != '')
+            die("Tipo de arquivo não aceito");
+
+        $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
+        $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
     }
     $vo->setEmpLogo($nomeDoArquivo);
     $vo->setLogoPath($path);
@@ -74,9 +74,7 @@ else if (isset($_POST['btnAlterar'])) {
     } else {
         $dados = $ctrl_usuario->RetornarDadosCadastraisController();
     }
-}
-
-else if (isset($_POST['VerificaEmail']) and $_POST['VerificaEmail'] == 'ajx') {
+} else if (isset($_POST['VerificaEmail']) and $_POST['VerificaEmail'] == 'ajx') {
     $ret = $ctrl_usuario->VerificarEmailController($_POST['Email']);
 
 
@@ -85,7 +83,7 @@ else if (isset($_POST['VerificaEmail']) and $_POST['VerificaEmail'] == 'ajx') {
     } else {
         echo -1;
     }
-}else if (isset($_POST['mudar_status']) && $_POST['mudar_status'] == 'ajx') {
+} else if (isset($_POST['mudar_status']) && $_POST['mudar_status'] == 'ajx') {
 
     $vo =  new UsuarioVO;
 
@@ -106,22 +104,21 @@ else if (isset($_POST['VerificaEmail']) and $_POST['VerificaEmail'] == 'ajx') {
         $ctrl_setor = new SetorController;
         $setores = $ctrl_setor->RetornarSetorController();
     }
-}else if (isset($_POST['btnVerificarSenha'])){
-  
-  $senhaAtual = $ctrl_usuario->ValidarSenhaAdmin($_POST['senha']);
+} else if (isset($_POST['btnVerificarSenha'])) {
+
+    $senhaAtual = $ctrl_usuario->ValidarSenhaAdmin($_POST['senha']);
     echo $senhaAtual;
-  
-}else if(isset($_POST['btnAtualizarSenha'])){
+} else if (isset($_POST['btnAtualizarSenha'])) {
     $vo = new UsuarioVO;
     $vo->setSenha($_POST['senha']);
     $vo->setId(Util::CodigoLogado());
     $resenha = $_POST['repetir_senha'];
 
     $senhaAlterada = $ctrl_usuario->AtualizarSenhaAtual($vo, $resenha);
-    if ($_POST['btnAtualizarSenha']=='ajx') {
+    if ($_POST['btnAtualizarSenha'] == 'ajx') {
         echo $senhaAlterada;
     }
-}else if (isset($_POST['btn_cadastrar'])) {
+} else if (isset($_POST['btn_cadastrar'])) {
 
 
     if ($_POST['idUser'] == '') {
@@ -464,87 +461,123 @@ else if (isset($_POST['VerificaEmail']) and $_POST['VerificaEmail'] == 'ajx') {
             </tbody>
         </table>
     </div>
-<?php }else if (isset($_POST['btn_consultar_empresa']) && $_POST['btn_consultar_empresa'] == "ajx") {
+    <?php } else if (isset($_POST['btn_consultar_empresa']) && $_POST['btn_consultar_empresa'] == "ajx") {
 
-$dados = $ctrl_usuario->RetornarDadosCadastraisController();
+    $dados = $ctrl_usuario->RetornarDadosCadastraisController();
 
-if ($dados!="") { ?>
-    <div class="row" id="resultDadosEmpresa">
-        <input type="hidden" id="id_user" value="<?= $dados[0]['id'] ?>">
-        <input type="hidden" id="id_emp" value="<?= $dados[0]['EmpID'] ?>">
-        <input type="hidden" id="tipo" value="<?= $dados[0]['tipo'] ?>">
-        <div class="col-md-4">
+    if ($dados != "") { ?>
+        <div class="row" id="resultDadosEmpresa">
+            <input type="hidden" id="id_user" value="<?= $dados[0]['id'] ?>">
+            <input type="hidden" id="id_emp" value="<?= $dados[0]['EmpID'] ?>">
+            <input type="hidden" id="tipo" value="<?= $dados[0]['tipo'] ?>">
+            <div class="col-md-4">
 
-            <label>Nome empresa</label>
-            <input class="form-control obg" id="nome" name="nome" value="<?= $dados[0]['EmpNome'] ?>" placeholder="Digite o aqui....">
+                <label>Nome empresa</label>
+                <input class="form-control obg" id="nome" name="nome" value="<?= $dados[0]['EmpNome'] ?>" placeholder="Digite o aqui....">
 
-        </div>
-        <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
 
-            <label>CNPJ</label>
-            <input class="form-control obg" id="cnpj" name="cnpj" value="<?= $dados[0]['EmpCNPJ'] ?>" placeholder="Digite o aqui....">
+                <label>CNPJ</label>
+                <input class="form-control obg" id="cnpj" name="cnpj" value="<?= $dados[0]['EmpCNPJ'] ?>" placeholder="Digite o aqui....">
 
-        </div>
-        <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
 
-            <label>Cep</label>
-            <input class="form-control obg" id="cep" name="cep" value="<?= $dados[0]['EmpCep'] ?>" placeholder="Digite o aqui....">
+                <label>Cep</label>
+                <input class="form-control obg" id="cep" name="cep" value="<?= $dados[0]['EmpCep'] ?>" placeholder="Digite o aqui....">
 
-        </div>
-        <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
 
-            <label>Endereço</label>
-            <input class="form-control obg" id="endereco" name="endereco" value="<?= $dados[0]['EmpEnd'] ?>" placeholder="Digite o aqui....">
+                <label>Endereço</label>
+                <input class="form-control obg" id="endereco" name="endereco" value="<?= $dados[0]['EmpEnd'] ?>" placeholder="Digite o aqui....">
 
-        </div>
-        <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
 
-            <label>Numero</label>
-            <input class="form-control obg" id="numero" name="numero" value="<?= $dados[0]['EmpNumero'] ?>" placeholder="Digite o aqui....">
+                <label>Numero</label>
+                <input class="form-control obg" id="numero" name="numero" value="<?= $dados[0]['EmpNumero'] ?>" placeholder="Digite o aqui....">
 
-        </div>
-        <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
 
-            <label>Cidade</label>
-            <input class="form-control obg" id="cidade" name="cidade" value="<?= $dados[0]['EmpCidade'] ?>" placeholder="Digite o aqui....">
-
-        </div>
-        
-        
-        <div class="col-sm-12">
-
-            <div class="position-relative">
-                <img src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid">
+                <label>Cidade</label>
+                <input class="form-control obg" id="cidade" name="cidade" value="<?= $dados[0]['EmpCidade'] ?>" placeholder="Digite o aqui....">
 
             </div>
 
+
+            <!-- <div class="col-sm-12">
+
+                <div class="position-relative">
+                    <img src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid">
+
+                </div>
+
+            </div> -->
+            <div style="margin-top: 10px;" class="col-sm-12 col-xs-12">
+                <div class="widget-box">
+                    <div class="widget-header">
+                        <h4 class="widget-title">Logo da empresa</h4>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="collapse">
+                                <i class="ace-icon fa fa-chevron-up"></i>
+                            </a>
+
+                            <a href="#" data-action="close">
+                                <i class="ace-icon fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div class="form-group">
+                                <div class="position-relative">
+                                    <img src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label class="ace-file-input"><input type="file" name="logo" id="logo" value="<?= $dados[0]['EmpLogo'] ?>"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."><i class=" ace-icon fa fa-upload"></i></span></span><a class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a></label>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group">
+																						<div class="col-xs-12">
+																							<label class="ace-file-input ace-file-multiple"><input multiple="" type="file" id="id-input-file-3"><span class="ace-file-container" data-title="Drop files here or click to choose"><span class="ace-file-name" data-title="No File ..."><i class=" ace-icon ace-icon fa fa-cloud-upload"></i></span></span><a class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a></label>
+																						</div>
+																					</div> -->
+
+                            <label>
+                                <!-- <input type="checkbox" name="file-format" id="id-file-format" class="ace"> -->
+                                <span class="lbl"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 10px;" class="col-sm-6 col-xs-6">
+
+                <button onclick="return CadastrarDadosEmpresa('formAlterarEmpresa')" class="col-sm-12 col-xs-12 btn btn-success">
+                    <i class="ace-icon fa fa-check bigger-110"></i>Gravar dados
+                </button>
+            </div>
+            <div style="margin-top: 10px;" class="col-sm-6 col-xs-6">
+                <button class="col-sm-12 col-xs-12 btn btn-warning">
+                    <i class="ace-icon fa fa-undo bigger-110"></i>Voltar
+                </button>
+
+            </div>
         </div>
-        <div class="col-sm-12">
-            <label for="">Incluir Logo</label>
-            <input type="file" name="logo" id="logo" value="<?= $dados[0]['EmpLogo'] ?>" class="custom-file-input">
-            
-
-        </div>
-
-        <div style="margin-top: 10px;" class="col-sm-6 col-xs-6">
-
-            <button onclick="return CadastrarDadosEmpresa('formAlterarEmpresa')" class="col-sm-12 col-xs-12 btn btn-success">
-                <i class="ace-icon fa fa-check bigger-110"></i>Gravar dados
-            </button>
-        </div>
-        <div style="margin-top: 10px;" class="col-sm-6 col-xs-6">
-            <button class="col-sm-12 col-xs-12 btn btn-warning">
-                <i class="ace-icon fa fa-undo bigger-110"></i>Voltar
-            </button>
-
-        </div>
-    </div>
-<?php }else {
-    $dados = $ctrl_usuario->RetornarDadosCadastraisController();
-}
-
-
-}else {
+<?php } else {
+        $dados = $ctrl_usuario->RetornarDadosCadastraisController();
+    }
+} else {
     $registros = $ctrl_usuario->FiltrarUsuariosController();
 
     $registrosPorPagina = REGISTRO_POR_PAGINA;

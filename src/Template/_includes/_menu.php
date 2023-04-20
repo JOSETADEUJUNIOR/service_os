@@ -95,6 +95,14 @@ require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
             <b class="arrow"></b>
         </li>
         <li class="hover">
+            <a href="servico.php">
+                <i class="menu-icon fa fa-laptop"></i>
+                Serviços
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+        <li class="hover">
             <a href="tipoequipamento.php">
                 <i class="menu-icon fa fa-desktop"></i>
                 Tipo Equipamento

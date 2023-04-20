@@ -231,22 +231,80 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																		<input class="form-control obg" id="cidade" name="cidade" value="<?= $dados[0]['EmpCidade'] ?>" placeholder="Digite o aqui....">
 
 																	</div>
-																	
-																	
+
+
 																	<div class="col-sm-12">
 
-																		<div class="position-relative">
-																			<img src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid">
 
-																		</div>
 
 																	</div>
-																	<div class="col-sm-12">
+																	<!-- <div class="col-sm-12">
 																		<label for="">Incluir Logo</label>
 																		<input type="file" name="logo" id="logo" value="<?= $dados[0]['EmpLogo'] ?>" class="custom-file-input">
-																		
 
+
+																	</div> -->
+
+
+																	<div style="margin-top: 10px;" class="col-sm-12 col-xs-12">
+																		<div class="widget-box">
+																			<div class="widget-header">
+																				<h4 class="widget-title">Logo da empresa</h4>
+
+																				<div class="widget-toolbar">
+																					<a href="#" data-action="collapse">
+																						<i class="ace-icon fa fa-chevron-up"></i>
+																					</a>
+
+																					<a href="#" data-action="close">
+																						<i class="ace-icon fa fa-times"></i>
+																					</a>
+																				</div>
+																			</div>
+
+																			<div class="widget-body">
+																				<div class="widget-main">
+																					<div class="form-group">
+																						<div class="position-relative">
+																							<img src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid">
+
+																						</div>
+																					</div>
+																					<div class="form-group">
+																						<div class="col-xs-12">
+																							<label class="ace-file-input"><input type="file" name="logo" id="logo" value="<?= $dados[0]['EmpLogo'] ?>"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."><i class=" ace-icon fa fa-upload"></i></span></span><a class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a></label>
+																						</div>
+																					</div>
+
+																					<!-- <div class="form-group">
+																						<div class="col-xs-12">
+																							<label class="ace-file-input ace-file-multiple"><input multiple="" type="file" id="id-input-file-3"><span class="ace-file-container" data-title="Drop files here or click to choose"><span class="ace-file-name" data-title="No File ..."><i class=" ace-icon ace-icon fa fa-cloud-upload"></i></span></span><a class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a></label>
+																						</div>
+																					</div> -->
+
+																					<label>
+																						<!-- <input type="checkbox" name="file-format" id="id-file-format" class="ace"> -->
+																						<span class="lbl"></span>
+																					</label>
+																				</div>
+																			</div>
+																		</div>
 																	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 																	<div style="margin-top: 10px;" class="col-sm-6 col-xs-6">
 
