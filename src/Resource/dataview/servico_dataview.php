@@ -74,5 +74,5 @@ if (isset($_POST['btn_consultar']) && $_POST['btn_consultar'] == 'OK') {
 <?php } else {
 
 $servico = $ctrlServico->RetornarServicoController();
-
+Util::debug($servico);
 } ?>
