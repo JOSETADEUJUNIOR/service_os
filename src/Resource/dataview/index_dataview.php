@@ -14,8 +14,7 @@ $chamadosPorFuncionario = [];
 
 $ctrl = new ChamadoController();
 $userController = new UsuarioController();
-//
-// Util::debug($dados);
+
 if (isset($_GET['acao']) && $_GET['acao'] == 'requisicao') {
     $chamadosPorFuncionario = $ctrl->ChamadosPorFuncionarioController();
     echo json_encode($chamadosPorFuncionario);
