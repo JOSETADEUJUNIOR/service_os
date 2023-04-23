@@ -12,7 +12,7 @@ class ProdutoSQL{
 
     public static function UPDATE_PRODUTO_SQL()
     {
-        $sql = 'UPDATE tb_produto SET ProdDescricao = ?, ProdDtCriacao = ?, ProdCodBarra = ?, ProdValorCompra = ?, ProdValorVenda = ?, ProdEstoqueMin = ?, ProdEstoque = ?, ProdImagem = ?, ProdImagemPath = ? WHERE ProdID = ? AND ProdEmpID = ?';
+        $sql = 'UPDATE tb_produto SET ProdDescricao = ?, ProdCodBarra = ?, ProdValorCompra = ?, ProdValorVenda = ?, ProdEstoqueMin = ?, ProdEstoque = ?, ProdImagem = ?, ProdImagemPath = ? WHERE ProdID = ? AND ProdEmpID = ?';
         return $sql;
     }
 

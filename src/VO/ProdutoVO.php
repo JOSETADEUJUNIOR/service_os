@@ -16,6 +16,7 @@ class ProdutoVO extends LogErro{
     private $ProdImagemPath;
     private $ProdEmpID;
     private $ProdUserID;
+    private $ProdStatus;
 
     public function setProdID($ProdID)
     {
@@ -135,6 +136,16 @@ class ProdutoVO extends LogErro{
     public function getProdUserID()
     {
         return $this->ProdUserID;
+    }
+
+    public function getProdStatus()
+    {
+        return $this->ProdStatus;
+    }
+
+    public function setProdStatus($ProdStatus)
+    {
+        $this->ProdStatus = Util::TratarDados($ProdStatus);
     }
 }
 ?>

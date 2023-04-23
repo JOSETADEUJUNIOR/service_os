@@ -1,0 +1,64 @@
+<?php
+
+namespace Src\Controller;
+
+use Src\Model\ClienteDAO;
+use Src\VO\ClienteVO;
+use Src\_public\Util;
+
+
+class SetorController
+{
+    private $dao;
+
+    public function __construct()
+    {
+        $this->dao = new ClienteDAO;
+    }
+
+    public function CadastrarClienteCTRL(ClienteVO $vo): int
+    {
+        if (empty($vo->getCliNome()) || empty($vo->getCliTelefone()) || empty($vo->getCliEmail()) || empty($vo->getCliCep()) || empty($vo->getCliEndereco()) || empty($vo->getCliNumero()) || empty($vo->getCliBairro()) || empty($vo->getCliCidade()) || empty($vo->getCliEstado()) || empty($vo->getCliEmpID()) || empty($vo->getCliUserID()))
+            return 0;
+        
+        $vo->setCliStatus(STATUS_ATIVO);
+        $vo->setfuncao(CADASTRO_CLIENTE);
+        $vo->setIdLogado(Util::CodigoLogado());
+
+        return $this->dao->CadastrarClienteDAO($vo);
+    }
+
+    public function AlterarClienteCTRL(ClienteVO $vo): int
+    {
+        if (empty($vo->getCliNome()) || empty($vo->getCliTelefone()) || empty($vo->getCliEmail()) || empty($vo->getCliCep()) || empty($vo->getCliEndereco()) || empty($vo->getCliNumero()) || empty($vo->getCliBairro()) || empty($vo->getCliCidade()) || empty($vo->getCliEstado()) || empty($vo->getCliEmpID()) || empty($vo->getCliUserID()))
+            return 0;
+
+        $vo->setfuncao(ALTERA_CLIENTE);
+        $vo->setIdLogado(Util::CodigoLogado());
+        return $this->dao->AlterarClienteDAO($vo);
+    }
+
+    public function AlterarStatusClienteCTRL(ClienteVO $vo): int
+    {
+        if ($vo->getCliStatus() == "")
+            return 0;
+
+        $vo->setfuncao(STATUS_CLIENTE);
+        $vo->setIdLogado(Util::CodigoLogado());
+        return $this->dao->AlterarStatusClienteDAO($vo);
+    }
+
+    public function SelecioneClienteCTRL($CliEmpID): array
+    {
+        $dados = $this->dao->SelecionarClienteDAO($CliEmpID);
+        for($i = 0; $i < count($dados); $i++){
+            $dados[$i]['CliStatus'] = $dados[$i]['CliStatus'] == STATUS_ATIVO ? 'Ativo' : 'Inativo';
+        }
+        return $dados;
+    }
+
+    public function DetalharCliutoCTRL($CliID, $CliEmpID)
+    {
+        return $this->dao->DetalharClienteDAO($CliID, $CliEmpID);
+    }
+}
