@@ -5,20 +5,28 @@ namespace Src\Model\SQL;
 
 class ServicoSQL{
 
-    public static function InserirServico()
+    public static function InserirServicoSQL()
     {
         $sql = 'INSERT into tb_servico (ServNome, ServValor, ServDescricao, ServEmpID, ServUserID) VALUES (?,?,?,?,?)';
+        dd($sql);
         return $sql;
     }
 
-    public static function RetornarServico()
+    public static function DetalharServicoSQL()
     {
         $sql = 'SELECT ServID, ServNome, ServValor, ServDescricao, ServEmpID, ServUserID
                     FROM tb_servico WHERE ServEmpID = ?' ;
         return $sql;
     }
+// Precisei incluir esta funçao devido a um erro que estava sendo mostrado na tela
+    public static function RetornarServicoSQL()
+    {
+        $sql = 'SELECT ServID, ServNome, ServValor, ServDescricao, ServEmpID, ServUserID
+                    FROM tb_servico';
+        return $sql;
+    }
 
-    public static function AlterarServico()
+    public static function AlterarServicoSQL()
     {
         $sql = 'UPDATE tb_servico set ServNome = ?, ServValor = ?, ServDescricao = ?, ServEmpID = ?, ServUserID = ? where ServID = ?';
         return $sql;

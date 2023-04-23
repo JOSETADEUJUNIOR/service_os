@@ -10,23 +10,28 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Nome</label>
-                            <input type="hidden" name="AlteraID" id="AlteraID">
-                            <input class="form-control obg" id="nome" name="nome" placeholder="Digite o aqui....">
+                            <input type="hidden" name="ServID" id="ServID">
+                            <input class="form-control obg" id="ServNome" name="ServNome" placeholder="Digite o aqui....">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Valor</label>
-                            <input type="hidden" name="valor" id="valor">
-                            <input class="form-control obg" id="nome" name="nome" placeholder="Digite o aqui....">
+                            <input class="form-control obg" id="ServValor" name="ServValor" placeholder="Digite o aqui....">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Descrição</label>
+                            <input class="form-control obg" id="ServDescricao" name="ServDescricao" placeholder="Digite o aqui....">
                         </div>
                     </div>
                 </div>
 
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="button" id="btnCancelar" onclick="FechandoModal('form_modelo')" class="btn btn-info" data-dismiss="modal">Cancelar</button>
-                <button name="btnGravar" class="btn btn-success" onclick="return CadastrarModelo('form_modelo')">Salvar</button>
+                <button type="button" id="btnCancelar" onclick="FechandoModal('form_servico')" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+                <button name="btn_cadastrar" class="btn btn-success" onclick="return CadastrarServico('form_servico')">Salvar</button>
             </div>
         </div>
         <!-- /.modal-content -->

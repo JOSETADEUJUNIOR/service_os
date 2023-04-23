@@ -101,7 +101,6 @@ class EquipamentoDAO extends Conexao
     }
     public function RetornarEquipamentoDAO()
     {
-
         $sql = $this->conexao->prepare(EquipamentoSQL::RetornarEquipamentoSQL());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);

@@ -27,7 +27,7 @@ function RetornarMsg(n) {
             msg = "Erro ao tentar excluir, itens em uso";
             break;
         case -1:
-            msg = "ocorreu um erro na operação, tente mais tarde";
+            msg = "erro na operação, tente mais tarde";
             break;
         case 0:
             msg = "Preencher o(s) campo(s) obrigatorio(s)";

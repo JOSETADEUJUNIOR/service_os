@@ -84,7 +84,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/servico_dataview.php';
 																<a class="green" href="#servico" role="button" data-toggle="modal" onclick="AlterarServicoModal('<?= $servico[$i]['ServID'] ?>', '<?= $servico[$i]['ServNome'] ?>','<?= $servico[$i]['ServValor'] ?>','<?= $servico[$i]['ServDescricao'] ?>')">
 																	<i title="Alterar Tipo Equipamento" class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
-																<a class="red" href="#modalExcluir" data-toggle="modal" onclick="ExcluirModal('<?= $modelo[$i]['id'] ?>', '<?= $modelo[$i]['nome'] ?>')">
+																<a class="red" href="#modalExcluir" data-toggle="modal" onclick="ExcluirModal('<?= $servico[$i]['ServID'] ?>', '<?= $servico[$i]['ServNome'] ?>')">
 																	<i title="Excluir Tipo Equipamento" class="ace-icon fa fa-trash-o bigger-130"></i>
 																</a>
 															</div>
@@ -96,14 +96,14 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/servico_dataview.php';
 
 																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 																		<li>
-																			<a href="#modelo" onclick="AlterarModeloModal('<?= $modelo[$i]['id'] ?>', '<?= $modelo[$i]['nome'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
+																			<a href="#servico" onclick="AlterarServicoModal('<?= $servico[$i]['ServID'] ?>', '<?= $servico[$i]['ServNome'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
 																				<span class="green">
 																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																				</span>
 																			</a>
 																		</li>
 																		<li>
-																			<a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="ExcluirModal('<?= $modelo[$i]['id'] ?>', '<?= $modelo[$i]['nome'] ?>')">
+																			<a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="ExcluirModal('<?= $servico[$i]['ServID'] ?>', '<?= $servico[$i]['ServNome'] ?>')">
 																				<span class="red">
 																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																				</span>
@@ -129,7 +129,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/servico_dataview.php';
 				</div>
 			</div>
 		</div><!-- /.main-content -->
-		<form id="form_modelo" action="modelo.php" method="post">
+		<form id="form_servico" action="servico.php" method="post">
 			<?php include_once 'modal/_servico.php' ?>
 			<?php include_once 'modal/_excluir.php' ?>
 
