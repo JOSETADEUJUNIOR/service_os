@@ -42,6 +42,14 @@ const ABRIR_CHAMADO = 'AbrirChamadoController';
 const ATENDER_CHAMADO = 'AtenderChamadoController';
 const FINALIZAR_CHAMADO = 'FinalizarChamadoController';
 
+const CADASTRO_PRODUTO = 'CadastrarProdutoController';
+const ALTERA_PRODUTO = 'AlterarProdutoController';
+const STATUS_PRODUTO = 'StatusProdutoController';
+
+const CADASTRO_CLIENTE = 'CadastrarClienteController';
+const ALTERA_CLIENTE = 'AlterarClienteController';
+const STATUS_CLIENTE = 'StatusClienteController';
+
 # DADOS COMBO FILTRO
 const PERFIL_ADM         = 1;
 const PERFIL_FUNCIONARIO = 2;
