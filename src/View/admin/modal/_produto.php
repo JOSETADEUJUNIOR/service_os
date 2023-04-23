@@ -1,0 +1,59 @@
+<div class="modal fade" id="produto">
+    <div class="modal-dialog modal-xs">
+        <div class="modal-content bg-white">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title">Produto</h4>
+
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group col-md-12">
+                            <label>Nome/Descrição</label>
+                            <input type="hidden" name="ProdID" id="ProdID">
+                            <textarea class="form-control obg" id="ProdDescricao" name="ProdDescricao" style="resize: vertical" placeholder="Digite aqui...." maxlength="1000"></textarea>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Código de Barra</label>
+                            <input type="text" class="form-control obg" id="ProdCodBarra" name="ProdCodBarra" placeholder="Digite aqui...." maxlength="100">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Valor Campra</label>
+                            <input class="form-control obg" id="ProdValorCompra" name="ProdValorCompra" placeholder="Digite aqui....">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Valor Venda</label>
+                            <input class="form-control obg" id="ProdValorVenda" name="ProdValorVenda" placeholder="Digite aqui....">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Estoque</label>
+                            <input class="form-control obg" id="ProdEstoque" name="ProdEstoque" placeholder="Digite aqui....">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Estoque Mínimo</label>
+                            <input class="form-control obg" id="ProdEstoqueMin" name="ProdEstoqueMin" placeholder="Digite aqui....">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="ace-file-input">
+                                <input type="file" class="form-control obg" id="ProdImagem" name="ProdImagem" placeholder="Digite aqui...." maxlength="100">
+                                <span class="ace-file-container" data-title="Arquivo">
+                                    <span class="ace-file-name" data-title="Selecione um arquivo">
+                                        <i class=" ace-icon fa fa-upload"></i>
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" onclick="FechandoModal('form_setor')" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+            <button name="btnGravar" class="btn btn-success" onclick="return CadastrarSetor('form_setor')">Salvar</button>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
