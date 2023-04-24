@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label class="ace-file-input">
-                                <input type="file" class="form-control obg" id="ProdImagem" name="ProdImagem" placeholder="Digite aqui...." maxlength="100">
+                                <input type="file" class="form-control" id="ProdImagem" name="ProdImagem" placeholder="Digite aqui...." maxlength="100">
                                 <span class="ace-file-container" data-title="Arquivo">
                                     <span class="ace-file-name" data-title="Selecione um arquivo">
                                         <i class=" ace-icon fa fa-upload"></i>
@@ -49,8 +49,8 @@
 
         </div>
         <div class="modal-footer justify-content-between">
-            <button type="button" onclick="FechandoModal('form_setor')" class="btn btn-info" data-dismiss="modal">Cancelar</button>
-            <button name="btnGravar" class="btn btn-success" onclick="return CadastrarSetor('form_setor')">Salvar</button>
+            <button type="button" onclick="FechandoModal('form_produto')" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+            <button name="btnGravar" class="btn btn-success" onclick="return CadastrarProduto('form_produto')">Salvar</button>
         </div>
     </div>
     <!-- /.modal-content -->

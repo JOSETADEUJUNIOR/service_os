@@ -2,6 +2,7 @@
 
 namespace Src\Model;
 
+use Src\_public\Util;
 use Src\Model\Conexao;
 use Src\VO\ProdutoVO;
 use Src\Model\SQL\ProdutoSQL;
@@ -29,8 +30,8 @@ class ProdutoDAO extends Conexao
         $sql->bindValue($i++, $vo->getProdEstoque());
         $sql->bindValue($i++, $vo->getProdImagem());
         $sql->bindValue($i++, $vo->getProdImagemPath());
-        $sql->bindValue($i++, $vo->getProdEmpID());
-        $sql->bindValue($i++, $vo->getProdUserID());
+        $sql->bindValue($i++, Util::EmpresaLogado());
+        $sql->bindValue($i++, Util::CodigoLogado());
         $sql->bindValue($i++, $vo->getProdStatus());
 
         try {
@@ -55,8 +56,8 @@ class ProdutoDAO extends Conexao
         $sql->bindValue($i++, $vo->getProdEstoque());
         $sql->bindValue($i++, $vo->getProdImagem());
         $sql->bindValue($i++, $vo->getProdImagemPath());
-        $sql->bindValue($i++, $vo->getProdID());
-        $sql->bindValue($i++, $vo->getProdEmpID());
+        $sql->bindValue($i++, Util::CodigoLogado());
+        $sql->bindValue($i++, Util::EmpresaLogado());
 
         try {
             $sql->execute();
@@ -86,21 +87,21 @@ class ProdutoDAO extends Conexao
         }
     }
 
-    public function SelecionarProdutoDAO($ProdEmpID)
+    public function SelecionarProdutoDAO()
     {
         $sql = $this->conexao->prepare(ProdutoSQL::SELECT_PRODUTO_SQL());
         $i = 1;
-        $sql->bindValue($i++, $ProdEmpID);
+        $sql->bindValue($i++, Util::EmpresaLogado());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function DetalharProdutoDAO($ProdID, $ProdEmpID)
+    public function DetalharProdutoDAO($ProdID)
     {
         $sql = $this->conexao->prepare(ProdutoSQL::DETAIL_PRODUTO_SQL());
         $i = 1;
         $sql->bindValue($i++, $ProdID);
-        $sql->bindValue($i++, $ProdEmpID);
+        $sql->bindValue($i++, Util::EmpresaLogado());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }

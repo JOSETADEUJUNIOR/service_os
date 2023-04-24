@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__, 2) . '/Resource/dataview/setor_dataview.php';
+require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,9 +43,11 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/setor_dataview.php';
 								<div class="col-xs-12">
 									<h4 class="pink">
 										<a href="#produto" role="button" class="btn btn-success" data-toggle="modal"><i class="ace-icon fa fa-plus white"></i>Novo</a>
-										<?php if (count($setor) > 0) { ?>
-											<button type="button" onclick="Imprimir()"class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
-										<?php } ?>
+										<?php //if (count($setor) > 0) { 
+										?>
+										<button type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
+										<?php //} 
+										?>
 									</h4>
 									<div class="table-header">
 										Produtos Cadastrados
@@ -54,35 +56,32 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/setor_dataview.php';
 											<input type="search" onkeyup="FiltrarSetor(this.value)" class="form-control input-sm" placeholder="buscar por setor" aria-controls="dynamic-table">
 										</div>
 									</div>
-									<div id="table_result_Setor">
+									<div id="table_result_produto">
 										<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 											<thead>
 												<tr>
 													<th class="sorting_desc">Nome/Descrição</th>
-                                                    <th class="sorting_desc">Valor Compra</th>
-                                                    <th class="sorting_desc">Valor Venda</th>
-                                                    <th class="sorting_desc">Estoque Total</th>
-                                                    <th class="sorting_desc">Estoque Mínimo</th>
+													<th class="sorting_desc">Valor Compra</th>
+													<th class="sorting_desc">Valor Venda</th>
+													<th class="sorting_desc">Estoque Total</th>
+													<th class="sorting_desc">Estoque Mínimo</th>
 													<th class="hidden-480">Status</th>
 													<th>Ações</th>
 												</tr>
 											</thead>
 											<tbody>
-												<?php for ($i = 0; $i < count($setor); $i++) { ?>
+												<?php for ($i = 0; $i < count($produto); $i++) { ?>
 													<tr>
-														<td>
-															<?= $setor[$i]['nome_setor'] ?>
-														</td>
-														<td class="hidden-480">
-															<span class="label label-sm label-warning">Ativo</span>
-														</td>
+														<td><?= $produto[$i]['ProdDescricao'] ?></td>
+														<td><?= $produto[$i]['ProdValorCompra'] ?></td>
+														<td><?= $produto[$i]['ProdValorVenda'] ?></td>
+														<td><?= $produto[$i]['ProdEstoque'] ?></td>
+														<td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
+														<td><?= $produto[$i]['ProdStatus'] ?></td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="green" href="#setor" role="button" data-toggle="modal" onclick="AlterarSetorModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-																	<i title="Alterar Setor" class="ace-icon fa fa-pencil bigger-130"></i>
-																</a>
-																<a class="red" href="#modalExcluir" data-toggle="modal" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-																	<i title="Excluir Setor" class="ace-icon fa fa-trash-o bigger-130"></i>
+																<a class="green" href="#produto" role="button" data-toggle="modal" onclick="">
+																	<i title="Alterar Produto" class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
 															</div>
 															<div class="hidden-md hidden-lg">
@@ -90,20 +89,18 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/setor_dataview.php';
 																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
 																		<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
 																	</button>
-
 																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 																		<li>
-																			<a href="#setor" onclick="AlterarSetorModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
-																				<span class="green">
-																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																			<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+																				<span class="blue">
+																					<i class="ace-icon fa fa-search-plus bigger-120"></i>
 																				</span>
 																			</a>
 																		</li>
-																		<a href="#setor" role="button" class="btn btn-info btn-xs" data-toggle="modal">Adicionar Setor</a>
 																		<li>
-																			<a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-																				<span class="red">
-																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																			<a href="#produto" onclick="" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
+																				<span class="green">
+																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																				</span>
 																			</a>
 																		</li>
@@ -142,7 +139,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/setor_dataview.php';
 	<?php include_once PATH_URL . '/Template/_includes/_scripts.php' ?>
 	<script src="../../Template/assets/js/bootbox.js"></script>
 	<script src="../../Resource/js/mensagem.js"></script>
-	<script src="../../Resource/ajax/setor-ajx.js"></script>
+	<script src="../../Resource/ajax/produto-ajx.js"></script>
 	<script type="text/javascript">
 		if ('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
 	</script>

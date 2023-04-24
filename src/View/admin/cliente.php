@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__, 2) . '/Resource/dataview/setor_dataview.php';
+require_once dirname(__DIR__, 2) . '/Resource/dataview/cliente_dataview.php';
 ?>
 <!DOCTYPE html>
 <html>

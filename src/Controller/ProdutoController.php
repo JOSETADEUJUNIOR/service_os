@@ -7,7 +7,7 @@ use Src\VO\ProdutoVO;
 use Src\_public\Util;
 
 
-class SetorController
+class ProdutoController
 {
     private $dao;
 
@@ -21,7 +21,7 @@ class SetorController
         if (empty($vo->getProdDescricao()) || empty($vo->getProdCodBarra()) || empty($vo->getProdValorCompra()) || empty($vo->getProdValorVenda()) || empty($vo->getProdEstoqueMin()) || empty($vo->getProdEstoque()))
             return 0;
         
-        $vo->setProdDtCriacao(Util::DataAtual());
+        $vo->setProdDtCriacao(date('Y-m-d'));
         $vo->setProdStatus(STATUS_ATIVO);
         $vo->setfuncao(CADASTRO_PRODUTO);
         $vo->setIdLogado(Util::CodigoLogado());
@@ -49,17 +49,17 @@ class SetorController
         return $this->dao->AlterarStatusProdutoDAO($vo);
     }
 
-    public function SelecioneProdutoCTRL($ProdEmpID): array
+    public function SelecioneProdutoCTRL(): array
     {
-        $dados = $this->dao->SelecionarProdutoDAO($ProdEmpID);
+        $dados = $this->dao->SelecionarProdutoDAO();
         for($i = 0; $i < count($dados); $i++){
             $dados[$i]['ProdStatus'] = $dados[$i]['ProdStatus'] == STATUS_ATIVO ? 'Ativo' : 'Inativo';
         }
         return $dados;
     }
 
-    public function DetalharProdutoCTRL($ProdID, $ProdEmpID)
+    public function DetalharProdutoCTRL($ProdID)
     {
-        return $this->dao->DetalharProdutoDAO($ProdID, $ProdEmpID);
+        return $this->dao->DetalharProdutoDAO($ProdID);
     }
 }

@@ -7,7 +7,7 @@ use Src\VO\ClienteVO;
 use Src\_public\Util;
 
 
-class SetorController
+class ClienteController
 {
     private $dao;
 
