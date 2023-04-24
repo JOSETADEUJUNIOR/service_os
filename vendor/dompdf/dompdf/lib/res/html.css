@@ -516,3 +516,8 @@ noembed, param {
   display: none;
   -dompdf-keep: yes;
 }
+
+.textarea-modal {
+  max-width: calc(100% - 20px);
+  /* largura máxima igual à largura do modal menos 20px de margem */
+}

@@ -23,12 +23,13 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Descrição</label>
-                            <input class="form-control obg" id="ServDescricao" name="ServDescricao" placeholder="Digite o aqui....">
+                            <textarea class="form-control obg" id="ServDescricao" name="ServDescricao" placeholder="Digite aqui...." rows="4" style="max-width: 100%; font-size: 1.5rem;"></textarea>
                         </div>
                     </div>
                 </div>
-
             </div>
+
+            
             <div class="modal-footer justify-content-between">
                 <button type="button" id="btnCancelar" onclick="FechandoModal('form_servico')" class="btn btn-info" data-dismiss="modal">Cancelar</button>
                 <button name="btn_cadastrar" class="btn btn-success" onclick="return CadastrarServico('form_servico')">Salvar</button>
@@ -40,7 +41,7 @@
 </div>
 
 <script>
-/* $(window).on("load", function(){
+    /* $(window).on("load", function(){
    // página totalmente carregada (DOM, imagens etc.)
    $("#nome").focus();
    $("#nome").reset();
