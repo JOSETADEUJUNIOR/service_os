@@ -6,7 +6,7 @@ namespace Src\Model;
 define('HOST', 'localhost'); //IP
 define('USER', 'root'); //usuario
 define('PASS', NULL); //senha
-define('DB', 'db_ordem'); //banco
+define('DB', 'db_os_jra'); //banco
 
 /**
  * Conexao.class TIPO [Conexão]
