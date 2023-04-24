@@ -13,6 +13,12 @@ function AlterarModeloModal(id, nome) {
     $("#AlteraID").val(id);
     $("#nome").val(nome);
 }
+function AlterarServicoModal(servID, servNome, servValor, servDescricao) {
+    $("#ServID").val(servID);
+    $("#ServNome").val(servNome);
+    $("#ServValor").val(servValor);
+    $("#ServDescricao").val(servDescricao);
+}
 function AlterarEquipamentoModal(id, nomeTipo, nomeModelo, identificacao, descricao) {
     $("#idEquip").val(id);
     $("#tipo").val(nomeTipo);

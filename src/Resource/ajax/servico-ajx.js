@@ -67,7 +67,6 @@ function CadastrarServico(id_form) {
         let nome = $("#ServNome").val();
         let valor = $("#ServValor").val();
         let descricao = $("#ServDescricao").val();
-        console.log('Parou aqui', id);
         $.ajax({
             type: "POST",
             url: "../../Resource/dataview/servico_dataview.php",
@@ -78,13 +77,13 @@ function CadastrarServico(id_form) {
                 ServValor: valor,
                 ServDescricao: descricao,
             },
-            success: function (ret) {
+            success: function(ret) {
                 $("#servico").modal("hide");
-                RemoverLoad();
+                console.log(ret);
                 if (ret == '1') {
                     MensagemSucesso();
                     LimparCampos(id_form);
-                    ConsultarSetor();
+                    ConsultarServico();
                 } else {
                     // console.log('aqui está o problema!');
                     MensagemErro();

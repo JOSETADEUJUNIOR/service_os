@@ -118,3 +118,51 @@ Hora:12:59:33
 Função:AlterarUsuarioController
 cod Logado:25
 Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_ordem`.`tb_endereco`, CONSTRAINT `fk_tb_endereco_tb_cidade1` FOREIGN KEY (`cidade_id`) REFERENCES `tb_cidade` (`id`))
+--------------------------------------------------
+Data:24/04/2023
+Hora:12:16:05
+Função:AlterarServico
+cod Logado:25
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:24/04/2023
+Hora:12:19:02
+Função:AlterarServico
+cod Logado:25
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:24/04/2023
+Hora:12:19:19
+Função:AlterarServico
+cod Logado:25
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:24/04/2023
+Hora:12:24:23
+Função:AlterarServico
+cod Logado:25
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:24/04/2023
+Hora:12:26:51
+Função:AlterarServico
+cod Logado:25
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:24/04/2023
+Hora:12:28:12
+Função:AlterarServico
+cod Logado:25
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:24/04/2023
+Hora:12:34:29
+Função:AlterarServico
+cod Logado:25
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:24/04/2023
+Hora:12:36:50
+Função:AlterarServico
+cod Logado:25
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens

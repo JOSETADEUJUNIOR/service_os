@@ -19,6 +19,14 @@ const EXCLUI_SERVICO = 'ExcluirServicoController';
 
 const ALTERA_EMPRESA = 'AlterarEmpresaController';
 
+const CADASTRO_OS = 'CadastrarOsController';
+const ALTERA_OS = 'AlterarOsController';
+const FATURA_OS = 'FaturarOsController';
+const EXCLUI_OS = 'ExcluirOsController';
+const EXCLUI_ITEM_OS = 'ExcluirItemOSController';
+const CADASTRO_ANX_OS = 'InserirAnxOrdemController';
+const EXCLUIR_ANX = 'ExcluirAnxOSController';
+
 const CADASTRO_TIPO_EQUIPAMENTO = "CadastrarTipoEquipamento";
 const ALTERAR_TIPO_EQUIPAMENTO = "AlterarTipoEquipamentoController";
 const EXCLUIR_TIPO_EQUIPAMENTO = "ExcluirTipoEquipamento";

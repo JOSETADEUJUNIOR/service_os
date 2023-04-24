@@ -8,7 +8,6 @@ class ServicoSQL{
     public static function InserirServicoSQL()
     {
         $sql = 'INSERT into tb_servico (ServNome, ServValor, ServDescricao, ServEmpID, ServUserID) VALUES (?,?,?,?,?)';
-        dd($sql);
         return $sql;
     }
 

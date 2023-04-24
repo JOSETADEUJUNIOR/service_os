@@ -18,32 +18,33 @@ class ServicoController {
 
     public function CadastrarServico(ServicoVO $vo): int
     {
-        var_dump('Chegouuu!');
 
-        if (empty($vo->getServNome()) || empty($vo->getServValor()) || empty($vo->getServDescricao()) || empty($vo->ServEmpID()) || empty($vo->ServUserID()))
+        if (empty($vo->getServNome()) || empty($vo->getServValor()))
 
             return 0;
 
         $vo->setfuncao(CADASTRO_SERVICO);
         $vo->setIdLogado(Util::CodigoLogado());
+        $vo->setServUserID(Util::CodigoLogado());
+        $vo->setServEmpID(Util::EmpresaLogado());
 
         return $this->dao->CadastrarServico($vo);
     }
 
-    public function ConsultarServicoController($ServNome, $filtro_palavra): array
+   /*  public function ConsultarServicoController($ServNome, $filtro_palavra): array
     {
         if (empty(trim($filtro_palavra))) {
             return 0;
         }
         return $this->dao->ConsultarServicoDAO($ServNome, $filtro_palavra);
-    }
+    } */
 
-    public function ConsultarServicoAllController(): array
+  /*   public function ConsultarServicoAllController(): array
     {
         return $this->dao->ConsultarServicoAllDAO();
-    }
+    } */
 
-    public function DetalharServiçoController($id)
+    public function DetalharServicoController($id)
     {
         if (empty(trim($id))) {
             return 0;
@@ -56,11 +57,11 @@ class ServicoController {
         return $this->dao->RetornarServicoDAO();
     }
 
-    public function FiltrarServicoController($ServNome_filtro)
+  /*   public function FiltrarServicoController($ServNome_filtro)
     {
 
         return $this->dao->FiltrarServicoDAO($ServNome_filtro);
-    }
+    } */
 
     public function AlterarServicoController(ServicoVO $vo): int
     {
@@ -69,12 +70,15 @@ class ServicoController {
 
         $vo->setfuncao(ALTERA_SERVICO);
         $vo->setIdLogado(Util::CodigoLogado());
-        return $this->dao->AlterarServicoDAO($vo);
+
+        $vo->setServUserID(Util::CodigoLogado());
+        $vo->setServEmpID(Util::EmpresaLogado());
+        return $this->dao->CadastrarServico($vo);
     }
 
     public function ExcluirServicoController(ServicoVO $vo): int
     {
-        if (empty($vo->getID()))
+        if (empty($vo->getServID()))
             return 0;
 
         $vo->setfuncao(EXCLUI_SERVICO);

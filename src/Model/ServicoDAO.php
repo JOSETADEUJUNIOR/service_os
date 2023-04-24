@@ -21,14 +21,14 @@ class ServicoDAO extends Conexao{
     public function CadastrarServico(ServicoVO $vo): int
     {
 
-        if (!empty($vo->getId())) {
+        if (!empty($vo->getServID())) {
             $sql = $this->conexao->prepare(ServicoSQL::AlterarServicoSQL());
             $sql->bindValue(1, $vo->getServNome());
             $sql->bindValue(2, $vo->getServValor());
             $sql->bindValue(3, $vo->getServDescricao());
             $sql->bindValue(4, $vo->getServEmpID());
             $sql->bindValue(5, $vo->getServUserID());
-            $sql->bindValue(6, $vo->getId());
+            $sql->bindValue(6, $vo->getServID());
         } else {
             $sql = $this->conexao->prepare(ServicoSQL::InserirServicoSQL());
             $sql->bindValue(1, $vo->getServNome());
@@ -48,22 +48,22 @@ class ServicoDAO extends Conexao{
         }
     }
 
-    public function ConsultarServicoDAO($ServNome, $filtro_palavra): array
+   /*  public function ConsultarServicoDAO($ServNome, $filtro_palavra): array
     {
 
         $sql = $this->conexao->prepare(ServicoSQL::ConsultarServicoBuscaSQL($ServNome, $filtro_palavra));
         $sql->bindValue(1, "%" . $filtro_palavra . "%");
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
-    }
+    } */
 
-    public function ConsultarServicoAllDAO(): array
+  /*   public function ConsultarServicoAllDAO(): array
     {
 
         $sql = $this->conexao->prepare(ServicoSQL::ConsultarServico());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
-    }
+    } */
 
     public function DetalharServicoDAO($id)
     {
@@ -83,9 +83,9 @@ class ServicoDAO extends Conexao{
 
     public function AlterarServicoDAO(ServicoVO $vo): int
     {
-        $sql = $this->conexao->prepare(Servico::AlterarServicoDAO());
-        $sql->bindValue(1, $vo->getNomeServico());
-        $sql->bindValue(2, $vo->getID());
+        $sql = $this->conexao->prepare(ServicoSQL::AlterarServicoSQL());
+        $sql->bindValue(1, $vo->getServNome());
+        $sql->bindValue(2, $vo->getServID());
 
         try {
             $sql->execute();
@@ -99,8 +99,8 @@ class ServicoDAO extends Conexao{
 
     public function ExcluirServicoDAO(ServicoVO $vo): int
     {
-        $sql = $this->conexao->prepare(Servico::ExcluirServico());
-        $sql->bindValue(1, $vo->getID());
+        $sql = $this->conexao->prepare(ServicoSQL::ExcluirServico());
+        $sql->bindValue(1, $vo->getServID());
 
         try {
             $sql->execute();
