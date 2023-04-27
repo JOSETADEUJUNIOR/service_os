@@ -28,9 +28,13 @@ class ProdutoSQL{
         return $sql;
     }
 
-    public static function DETAIL_PRODUTO_SQL()
+    public static function FILTER_PRODUTO_SQL($nome_filtro)
     {
-        $sql = 'SELECT * FROM tb_produto WHERE ProdID = ? AND ProdEmpID = ?';
+        $sql = 'SELECT ProdID, ProdDescricao, ProdCodBarra, ProdValorCompra, ProdValorVenda, ProdEstoqueMin, ProdEstoque, ProdStatus FROM tb_produto WHERE ProdEmpID = ?';
+
+        if (!empty($nome_filtro))
+            $sql = $sql . ' AND ProdDescricao LIKE ?';
+
         return $sql;
     }
 }

@@ -35,7 +35,6 @@ if (isset($_POST['btn_cadastrar'])) {
         $vo->setProdValorVenda($_POST['ProdValorVenda']);
         $vo->setProdEstoqueMin($_POST['ProdEstoqueMin']);
         $vo->setProdEstoque($_POST['ProdEstoque']);
-        $vo->setProdEmpID($_POST['ProdEmpID']);
         $ret = $ctrl->AlterarProdutoCTRL($vo);
         if ($_POST['btn_cadastrar'] == 'ajx') {
             echo $ret;
@@ -43,42 +42,43 @@ if (isset($_POST['btn_cadastrar'])) {
     }
 } else if (isset($_GET['btn_pdf'])) {
     //$dados = $ctrl->RetornarSetorController();
-  
+
     //$relatorio = $pdfController->gerarPdf('relatorio_setor.php', $dados);
-  
+
 } else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
 
-   // $nome_filtro = $_POST['FiltrarNome'];
+    $nome_filtro = $_POST['FiltrarNome'];
 
-    //$setor = $ctrl->FiltrarSetorController($nome_filtro);
+    $produto = $ctrl->FiltrarProdutoCTRL($nome_filtro);
 
-    if (count($setor) > 0) { ?>
+    if (count($produto) > 0) { ?>
 
-        <div id="table_result_Setor">
+        <div id="table_result_produto">
             <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th class="sorting_desc">Nome Setor</th>
+                        <th class="sorting_desc">Nome/Descrição</th>
+                        <th class="sorting_desc">Valor Compra</th>
+                        <th class="sorting_desc">Valor Venda</th>
+                        <th class="sorting_desc">Estoque Total</th>
+                        <th class="sorting_desc">Estoque Mínimo</th>
                         <th class="hidden-480">Status</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php //for ($i = 0; $i < count($setor); $i++) { ?>
+                    <?php for ($i = 0; $i < count($produto); $i++) { ?>
                         <tr>
-                            <td>
-                                <?php //$setor[$i]['nome_setor'] ?>
-                            </td>
-                            <td class="hidden-480">
-                                <span class="label label-sm label-warning">Ativo</span>
-                            </td>
+                            <td><?= $produto[$i]['ProdDescricao'] ?></td>
+                            <td><?= $produto[$i]['ProdValorCompra'] ?></td>
+                            <td><?= $produto[$i]['ProdValorVenda'] ?></td>
+                            <td><?= $produto[$i]['ProdEstoque'] ?></td>
+                            <td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
+                            <td><?= $produto[$i]['ProdStatus'] ?></td>
                             <td>
                                 <div class="hidden-sm hidden-xs action-buttons">
-                                    <a class="green" href="#setor" role="button" data-toggle="modal" onclick="AlterarSetorModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-                                        <i title="Alterar Setor" class="ace-icon fa fa-pencil bigger-130"></i>
-                                    </a>
-                                    <a class="red" href="#modalExcluir" data-toggle="modal" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-                                        <i title="Excluir Setor" class="ace-icon fa fa-trash-o bigger-130"></i>
+                                    <a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>')">
+                                        <i title="Alterar Produto" class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
                                 </div>
                                 <div class="hidden-md hidden-lg">
@@ -95,19 +95,10 @@ if (isset($_POST['btn_cadastrar'])) {
                                                     </span>
                                                 </a>
                                             </li>
-
                                             <li>
-                                                <a href="#setor" onclick="AlterarSetorModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                <a href="#produto" onclick="" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
                                                     <span class="green">
                                                         <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <a href="#setor" role="button" class="btn btn-info btn-xs" data-toggle="modal">Adicionar Setor</a>
-                                            <li>
-                                                <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-                                                    <span class="red">
-                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                     </span>
                                                 </a>
                                             </li>
@@ -116,7 +107,7 @@ if (isset($_POST['btn_cadastrar'])) {
                                 </div>
                             </td>
                         </tr>
-                    <?php // } ?>
+                    <?php } ?>
 
                 </tbody>
             </table>
@@ -133,13 +124,13 @@ if (isset($_POST['btn_cadastrar'])) {
         <table id="dynamic-table" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
-                <th class="sorting_desc">Nome/Descrição</th>
-                <th class="sorting_desc">Valor Compra</th>
-                <th class="sorting_desc">Valor Venda</th>
-                <th class="sorting_desc">Estoque Total</th>
-                <th class="sorting_desc">Estoque Mínimo</th>
-                <th class="hidden-480">Status</th>
-                <th>Ações</th>
+                    <th class="sorting_desc">Nome/Descrição</th>
+                    <th class="sorting_desc">Valor Compra</th>
+                    <th class="sorting_desc">Valor Venda</th>
+                    <th class="sorting_desc">Estoque Total</th>
+                    <th class="sorting_desc">Estoque Mínimo</th>
+                    <th class="hidden-480">Status</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -153,11 +144,8 @@ if (isset($_POST['btn_cadastrar'])) {
                         <td><?= $produto[$i]['ProdStatus'] ?></td>
                         <td>
                             <div class="hidden-sm hidden-xs action-buttons">
-                                <a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarSetorModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-                                    <i title="Alterar Setor" class="ace-icon fa fa-pencil bigger-130"></i>
-                                </a>
-                                <a class="red" href="#modalExcluir" data-toggle="modal" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-                                    <i title="Excluir Setor" class="ace-icon fa fa-trash-o bigger-130"></i>
+                                <a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>')">
+                                    <i title="Alterar Produto" class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </div>
                             <div class="hidden-md hidden-lg">

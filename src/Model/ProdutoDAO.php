@@ -56,7 +56,7 @@ class ProdutoDAO extends Conexao
         $sql->bindValue($i++, $vo->getProdEstoque());
         $sql->bindValue($i++, $vo->getProdImagem());
         $sql->bindValue($i++, $vo->getProdImagemPath());
-        $sql->bindValue($i++, Util::CodigoLogado());
+        $sql->bindValue($i++, $vo->getProdID());
         $sql->bindValue($i++, Util::EmpresaLogado());
 
         try {
@@ -96,12 +96,14 @@ class ProdutoDAO extends Conexao
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function DetalharProdutoDAO($ProdID)
+    public function FiltrarProdutoDAO($nome_filtro)
     {
-        $sql = $this->conexao->prepare(ProdutoSQL::DETAIL_PRODUTO_SQL());
+        $sql = $this->conexao->prepare(ProdutoSQL::FILTER_PRODUTO_SQL($nome_filtro));
         $i = 1;
-        $sql->bindValue($i++, $ProdID);
         $sql->bindValue($i++, Util::EmpresaLogado());
+        if (!empty($nome_filtro)) {
+            $sql->bindValue($i++, "%" . $nome_filtro . "%");
+        }
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }

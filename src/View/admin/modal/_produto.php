@@ -15,23 +15,23 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Código de Barra</label>
-                            <input type="text" class="form-control obg" id="ProdCodBarra" name="ProdCodBarra" placeholder="Digite aqui...." maxlength="100">
+                            <input type="text" class="form-control obg num" id="ProdCodBarra" name="ProdCodBarra" placeholder="Digite aqui...." maxlength="100">
                         </div>
                         <div class="form-group col-md-6">
                             <label>Valor Campra</label>
-                            <input class="form-control obg" id="ProdValorCompra" name="ProdValorCompra" placeholder="Digite aqui....">
+                            <input class="form-control obg dinheiro num" id="ProdValorCompra" name="ProdValorCompra" placeholder="Digite aqui....">
                         </div>
                         <div class="form-group col-md-6">
                             <label>Valor Venda</label>
-                            <input class="form-control obg" id="ProdValorVenda" name="ProdValorVenda" placeholder="Digite aqui....">
+                            <input class="form-control obg dinheiro num" id="ProdValorVenda" name="ProdValorVenda" placeholder="Digite aqui....">
                         </div>
                         <div class="form-group col-md-6">
                             <label>Estoque</label>
-                            <input class="form-control obg" id="ProdEstoque" name="ProdEstoque" placeholder="Digite aqui....">
+                            <input class="form-control obg num" id="ProdEstoque" name="ProdEstoque" placeholder="Digite aqui....">
                         </div>
                         <div class="form-group col-md-6">
                             <label>Estoque Mínimo</label>
-                            <input class="form-control obg" id="ProdEstoqueMin" name="ProdEstoqueMin" placeholder="Digite aqui....">
+                            <input class="form-control obg num" id="ProdEstoqueMin" name="ProdEstoqueMin" placeholder="Digite aqui....">
                         </div>
                         <div class="form-group col-md-12">
                             <label class="ace-file-input">

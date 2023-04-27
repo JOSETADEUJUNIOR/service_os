@@ -58,8 +58,12 @@ class ProdutoController
         return $dados;
     }
 
-    public function DetalharProdutoCTRL($ProdID)
+    public function FiltrarProdutoCTRL($nome_filtro)
     {
-        return $this->dao->DetalharProdutoDAO($ProdID);
+        $dados = $this->dao->FiltrarProdutoDAO($nome_filtro);
+        for($i = 0; $i < count($dados); $i++){
+            $dados[$i]['ProdStatus'] = $dados[$i]['ProdStatus'] == STATUS_ATIVO ? 'Ativo' : 'Inativo';
+        }
+        return $dados;
     }
 }

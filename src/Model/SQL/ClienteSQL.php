@@ -28,9 +28,13 @@ class ClienteSQL{
         return $sql;
     }
 
-    public static function DETAIL_CLIENTE_SQL()
+    public static function FILTER_CLIENTE_SQL($nome_filtro)
     {
-        $sql = 'SELECT * FROM tb_cliente WHERE CliID = ? AND CliEmpID = ?';
+        $sql = 'SELECT * FROM tb_cliente WHERE CliEmpID = ?';
+
+        if (!empty($nome_filtro))
+            $sql = $sql . ' AND CliNome LIKE ?';
+
         return $sql;
     }
 }

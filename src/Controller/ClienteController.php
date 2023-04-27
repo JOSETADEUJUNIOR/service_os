@@ -18,7 +18,7 @@ class ClienteController
 
     public function CadastrarClienteCTRL(ClienteVO $vo): int
     {
-        if (empty($vo->getCliNome()) || empty($vo->getCliTelefone()) || empty($vo->getCliEmail()) || empty($vo->getCliCep()) || empty($vo->getCliEndereco()) || empty($vo->getCliNumero()) || empty($vo->getCliBairro()) || empty($vo->getCliCidade()) || empty($vo->getCliEstado()) || empty($vo->getCliEmpID()) || empty($vo->getCliUserID()))
+        if (empty($vo->getCliNome()) || empty($vo->getCliTelefone()) || empty($vo->getCliEmail()) || empty($vo->getCliCep()) || empty($vo->getCliEndereco()) || empty($vo->getCliNumero()) || empty($vo->getCliBairro()) || empty($vo->getCliCidade()) || empty($vo->getCliEstado()))
             return 0;
         
         $vo->setCliStatus(STATUS_ATIVO);
@@ -30,7 +30,7 @@ class ClienteController
 
     public function AlterarClienteCTRL(ClienteVO $vo): int
     {
-        if (empty($vo->getCliNome()) || empty($vo->getCliTelefone()) || empty($vo->getCliEmail()) || empty($vo->getCliCep()) || empty($vo->getCliEndereco()) || empty($vo->getCliNumero()) || empty($vo->getCliBairro()) || empty($vo->getCliCidade()) || empty($vo->getCliEstado()) || empty($vo->getCliEmpID()) || empty($vo->getCliUserID()))
+        if (empty($vo->getCliNome()) || empty($vo->getCliTelefone()) || empty($vo->getCliEmail()) || empty($vo->getCliCep()) || empty($vo->getCliEndereco()) || empty($vo->getCliNumero()) || empty($vo->getCliBairro()) || empty($vo->getCliCidade()) || empty($vo->getCliEstado()))
             return 0;
 
         $vo->setfuncao(ALTERA_CLIENTE);
@@ -48,17 +48,21 @@ class ClienteController
         return $this->dao->AlterarStatusClienteDAO($vo);
     }
 
-    public function SelecioneClienteCTRL($CliEmpID): array
+    public function SelecioneClienteCTRL(): array
     {
-        $dados = $this->dao->SelecionarClienteDAO($CliEmpID);
+        $dados = $this->dao->SelecionarClienteDAO();
         for($i = 0; $i < count($dados); $i++){
             $dados[$i]['CliStatus'] = $dados[$i]['CliStatus'] == STATUS_ATIVO ? 'Ativo' : 'Inativo';
         }
         return $dados;
     }
 
-    public function DetalharCliutoCTRL($CliID, $CliEmpID)
+    public function FiltrarClienteCTRL($nome_filtro)
     {
-        return $this->dao->DetalharClienteDAO($CliID, $CliEmpID);
+        $dados = $this->dao->FiltrarClienteDAO($nome_filtro);
+        for($i = 0; $i < count($dados); $i++){
+            $dados[$i]['CliStatus'] = $dados[$i]['CliStatus'] == STATUS_ATIVO ? 'Ativo' : 'Inativo';
+        }
+        return $dados;
     }
 }

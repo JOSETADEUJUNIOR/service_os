@@ -53,7 +53,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 										Produtos Cadastrados
 
 										<div style="display:inline-flex" id="dynamic-table_filter">
-											<input type="search" onkeyup="FiltrarSetor(this.value)" class="form-control input-sm" placeholder="buscar por setor" aria-controls="dynamic-table">
+											<input type="search" onkeyup="FiltrarProduto(this.value)" class="form-control input-sm" placeholder="buscar por produto" aria-controls="dynamic-table">
 										</div>
 									</div>
 									<div id="table_result_produto">
@@ -80,7 +80,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 														<td><?= $produto[$i]['ProdStatus'] ?></td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="green" href="#produto" role="button" data-toggle="modal" onclick="">
+																<a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>')">
 																	<i title="Alterar Produto" class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
 															</div>
