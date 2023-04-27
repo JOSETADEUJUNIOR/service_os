@@ -85,7 +85,6 @@ function CadastrarServico(id_form) {
                     LimparCampos(id_form);
                     ConsultarServico();
                 } else {
-                    // console.log('aqui está o problema!');
                     MensagemErro();
                 }
             }

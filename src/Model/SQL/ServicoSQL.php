@@ -17,7 +17,7 @@ class ServicoSQL{
                     FROM tb_servico WHERE ServEmpID = ?' ;
         return $sql;
     }
-// Precisei incluir esta funçao devido a um erro que estava sendo mostrado na tela
+
     public static function RetornarServicoSQL()
     {
         $sql = 'SELECT ServID, ServNome, ServValor, ServDescricao, ServEmpID, ServUserID

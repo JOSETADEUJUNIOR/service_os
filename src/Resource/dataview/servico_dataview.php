@@ -32,6 +32,7 @@ if (isset($_POST['btn_cadastrar'])) {
             echo $ret;
         }
     }
+
 } else if (isset($_POST['btnExcluir'])) {
     $vo = new ServicoVO;
     $vo->setServID($_POST['ExcluirID']);
@@ -42,16 +43,17 @@ if (isset($_POST['btn_cadastrar'])) {
         $servico = $ctrlServico->RetornarServicoController();
     }
     //} else if (isset($_GET['btn_pdf'])) {
-    //    $dados = $ctrl->RetornarServicoController();
+    //   $dados = $ctrl->RetornarServicoController();
 
     //    $relatorio = $pdfController->gerarPdf('relatorio_servico.php', $dados);
 
-}/*  else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
+}  else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
 
     $nome_filtro = $_POST['FiltrarNome'];
 
     $servico = $ctrlServico->FiltrarServicoController($nome_filtro);
-} */
+    var_dump($servico);
+} 
 if (isset($_POST['btn_consultar']) && $_POST['btn_consultar'] == 'ajx') {
     $servico = $ctrlServico->RetornarServicoController(); ?>
     <div id="tabela_result_servico">
