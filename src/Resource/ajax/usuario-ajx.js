@@ -22,6 +22,30 @@ function ConsultarEmpresa() {
     })
 }
 
+function MudarStatus(id_usuario, valor) {
+    let status_atual = valor;
+    let id = id_usuario;
+    $.ajax({
+        type: 'post',
+        url: BASE_URL_AJAX("usuario_dataview"),
+        data: {
+            id_user: id,
+            status_user: status_atual,
+            mudar_status: 'ajx'
+        },
+        success: function (resultado) {
+            if (resultado == 1) {
+                MensagemSucesso();
+                ConsultarUsuario();
+                $("#modal_status").modal("hide");
+                // FiltrarUsuario($("#nome_pesquisar").val()); para poder pesquisar direto
+            } else {
+                MensagemErro();
+            }
+        }
+    })
+
+}
 
 
 function SalvarPermissao() {
@@ -43,7 +67,7 @@ function SalvarPermissao() {
         success: function (ret) {
             if (ret == 1) {
 
-                
+
             } else {
                 MensagemSucesso();
 
@@ -74,7 +98,7 @@ function EnviarEmailAcesso(nome, email, site) {
             EnviarEmail: 'ajx'
         },
         success: function (resultado) {
-            
+
             if (resultado == 1) {
                 MensagemGenerica('Email enviado com successo', 'success');
                 // FiltrarUsuario($("#nome_pesquisar").val()); para poder pesquisar direto
@@ -126,32 +150,6 @@ function FiltrarUsuario(nome_filtro) {
     })
 }
 
-function MudarStatus() {
-
-    let id = $("#id_status").val();
-    let status_atual = $("#status_atual").val();
-    $.ajax({
-        type: 'post',
-        url: BASE_URL_AJAX("usuario_dataview"),
-        data: {
-            id_user: id,
-            status_user: status_atual,
-            mudar_status: 'ajx'
-        },
-        success: function (resultado) {
-            if (resultado == 1) {
-                MensagemSucesso();
-                ConsultarUsuario();
-                $("#modal_status").modal("hide");
-                // FiltrarUsuario($("#nome_pesquisar").val()); para poder pesquisar direto
-            } else {
-                MensagemErro();
-            }
-        }
-    })
-}
-
-
 function CadastrarUsuario(id_form) {
     if (NotificarCampos(id_form)) {
         $.ajax({
@@ -178,7 +176,7 @@ function CadastrarUsuario(id_form) {
                 $("#usuario").modal("hide");
                 RemoverLoad();
                 if (ret == '1') {
-                    
+
                     MensagemSucesso();
                     ConsultarUsuario();
                     LimparCampos(id_form);
@@ -220,10 +218,10 @@ function CadastrarMeusDados(id_form) {
                 $("#usuario").modal("hide");
                 RemoverLoad();
                 if (ret != '') {
-                    
+
                     MensagemSucesso();
                     ConsultarUsuario();
-                  
+
                 } else {
                     MensagemErro();
                 }
@@ -235,42 +233,42 @@ function CadastrarMeusDados(id_form) {
 
     return false;
 }
-function CadastrarDadosEmpresa(){
+function CadastrarDadosEmpresa() {
     var formData = new FormData();
-    formData.append("EmpNome",$("#nome").val());
-    formData.append("EmpCNPJ",$("#cnpj").val());
-    formData.append("EmpCep",$("#cep").val());
-    formData.append("EmpEnd",$("#endereco").val());
-    formData.append("EmpNumero",$("#numero").val());
-    formData.append("EmpCidade",$("#cidade").val());
-    if ($("#logo").prop("files")[0]=="") {
-        formData.append("arquivos",'');
-    }else{
+    formData.append("EmpNome", $("#nome").val());
+    formData.append("EmpCNPJ", $("#cnpj").val());
+    formData.append("EmpCep", $("#cep").val());
+    formData.append("EmpEnd", $("#endereco").val());
+    formData.append("EmpNumero", $("#numero").val());
+    formData.append("EmpCidade", $("#cidade").val());
+    if ($("#logo").prop("files")[0] == "") {
+        formData.append("arquivos", '');
+    } else {
 
-        formData.append("arquivos",$("#logo").prop("files")[0]);
+        formData.append("arquivos", $("#logo").prop("files")[0]);
     }
-    formData.append("btnAlterar",'ajxx');
+    formData.append("btnAlterar", 'ajxx');
     console.log(formData);
     $.ajax({
-     type: "POST",
-     url: BASE_URL_AJAX("usuario_dataview"),
-     data:
-         formData,
-         processData: false,
-         contentType: false,
-     success: function(ret){
-         console.log(ret);
-         if(ret !=""){
-           MensagemSucesso();
-           ConsultarEmpresa();
-            
-         }else{
-             MensagemErro();
-         }
-     }
- })
+        type: "POST",
+        url: BASE_URL_AJAX("usuario_dataview"),
+        data:
+            formData,
+        processData: false,
+        contentType: false,
+        success: function (ret) {
+            console.log(ret);
+            if (ret != "") {
+                MensagemSucesso();
+                ConsultarEmpresa();
 
- return false;
+            } else {
+                MensagemErro();
+            }
+        }
+    })
+
+    return false;
 
 
 }
@@ -338,16 +336,16 @@ function ChecarFiltro(filtro) {
 
 function VerificarSenhaAtual(id_form) {
     if (NotificarCampos(id_form)) {
-       $.ajax({
+        $.ajax({
             type: "POST",
             // url: BASE_URL_AJAX("funcionario_api"),
             url: BASE_URL_AJAX("usuario_dataview"),
             data: {
                 btnVerificarSenha: 'ajx',
                 senha: $("#senha").val()
-            }, success: function(dados_ret) {
+            }, success: function (dados_ret) {
                 if (dados_ret == 1) {
-                    
+
                     $("#divSenhaAtual").hide();
                     $("#divMudarSenha").show();
                 } else if (dados_ret == -1) {
@@ -362,13 +360,13 @@ function VerificarSenhaAtual(id_form) {
     return false;
 }
 
-function AtualizarSenha(id_form){
+function AtualizarSenha(id_form) {
     if (NotificarCampos(id_form)) {
         newsenha = $("#newsenha").val();
         resenha = $("#resenha").val();
-        
-        
-       $.ajax({
+
+
+        $.ajax({
             type: "POST",
             // url: BASE_URL_AJAX("funcionario_api"),
             url: BASE_URL_AJAX("usuario_dataview"),
@@ -376,19 +374,19 @@ function AtualizarSenha(id_form){
                 btnAtualizarSenha: 'ajx',
                 senha: newsenha,
                 repetir_senha: resenha
-            }, success: function(dados_ret) {
-                
+            }, success: function (dados_ret) {
+
                 if (dados_ret == 1) {
-                   MensagemGenerica("Senha alterada com sucesso", "success");
+                    MensagemGenerica("Senha alterada com sucesso", "success");
                     $("#divSenhaAtual").show();
                     $("#divMudarSenha").hide();
-                }else if(dados_ret == -2){
-                    
+                } else if (dados_ret == -2) {
+
                     MensagemGenerica("Senha precisa ter no mínimo 6 digitos", "info");
                     $("#newsenha").focus();
                 }
-                 else if (dados_ret == -4) {
-                   
+                else if (dados_ret == -4) {
+
                     MensagemGenerica("Senha não confere", "info");
                     $("#newsenha").focus();
                 }

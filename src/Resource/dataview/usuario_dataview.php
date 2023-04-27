@@ -206,82 +206,89 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
     $pessoas = $ctrl_usuario->FiltrarPessoaController($nome_filtro, $tipo);
     if (count($pessoas) > 0) { ?>
 
-        <div id="table_result_Usuario">
-            <table id="dynamic-table" class="table table-striped table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th class="sorting_desc">Nome</th>
-                        <th class="sorting_desc">E-mail</th>
-                        <th class="sorting_desc">Setor/Empresa</th>
-                        <th class="sorting_desc">Tipo</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($i = 0; $i < count($pessoas); $i++) { ?>
-                        <tr>
-                            <td>
-                                <?= $pessoas[$i]['nome'] ?>
-                            </td>
-                            <td>
-                                <?= $pessoas[$i]['login'] ?>
-                            </td>
-                            <td>
-                                <?= ($pessoas[$i]['nome_setor'] != '' ? $pessoas[$i]['nome_setor'] : $pessoas[$i]['empresa_tecnico']) ?>
-                            </td>
-                            <td>
-                                <?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
-                            </td>
-                            <td>
-                                <div class="hidden-sm hidden-xs action-buttons">
-                                    <a st class="green btn btn-warning btn-xs" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
-                                        Alterar
-                                    </a>
-                                    <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
-                                        Enviar e-mail
-                                    </a>
-                                    <a href="#modal_status" data-toggle="modal" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
-                                    </a>
-                                </div>
-                                <div class="hidden-md hidden-lg">
-                                    <div class="inline pos-rel">
-                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                            <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                        </button>
+        <div class="table-responsive" id="table_result_Usuario">
+										<table id="dynamic-table" class="table table-striped table-bordered table-hover">
+											<thead>
+												<tr>
+													<th class="sorting_desc">Nome</th>
+													<th class="sorting_desc">E-mail</th>
+													<th class="sorting_desc">Setor/Empresa</th>
+													<th class="sorting_desc">Tipo</th>
+													<th>Ativo/inativo</th>
 
-                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                            <li>
-                                                <a href="#usuario" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                    <span class="green">
-                                                        <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <a href="#setor" role="button" class="btn btn-info btn-xs" data-toggle="modal">Adicionar Setor</a>
-                                            <li>
-                                                <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
-                                                    <span class="red">
-                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
-                                                    <span class="red">
-                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php } ?>
+													<th>Ações</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php for ($i = 0; $i < count($pessoas); $i++) { ?>
+													<tr>
+														<td>
+															<?= $pessoas[$i]['nome'] ?>
+														</td>
+														<td>
+															<?= $pessoas[$i]['login'] ?>
+														</td>
+														<td>
+															<?= ($pessoas[$i]['nome_setor'] != '' ? $pessoas[$i]['nome_setor'] : $pessoas[$i]['empresa_tecnico']) ?>
+														</td>
+														<td>
+															<?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
+														</td>
+														<td><div class="col-xs-3">
+																	<label>
+																		<input name="switch-field-1" value="0" id="usuario_status" onclick="MudarStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['status'] ?>')" title="Ativar/inativar usuário" class="ace ace-switch ace-switch-6" <?= $pessoas[$i]['status'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
+																		<span class="lbl"></span>
+																	</label>
+																</div></td>
+														<td>
+															<div class="hidden-sm hidden-xs action-buttons">
+																<a st class="green btn btn-warning btn-xs" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
+																	Alterar
+																</a>
+																<a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
+																	Enviar e-mail
+																</a>
+																
+															</div>
+															<div class="hidden-md hidden-lg">
+																<div class="inline pos-rel">
+																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+																		<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+																	</button>
 
-                </tbody>
-            </table>
-        </div>
+																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+																		<li>
+																			<a href="#usuario" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
+																				<span class="green">
+																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																				</span>
+																			</a>
+																		</li>
+																		<a href="#setor" role="button" class="btn btn-info btn-xs" data-toggle="modal">Adicionar Setor</a>
+																		<li>
+																			<a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
+																				<span class="red">
+																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																				</span>
+																			</a>
+																		</li>
+																		<li>
+																			<a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
+																				<span class="red">
+																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																				</span>
+																			</a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+														</td>
+													</tr>
+												<?php } ?>
+
+											</tbody>
+										</table>
+									</div>
     <?php
     } else {
         echo '<h4><center>Nenhum registro encontrado!</center><h4>';
@@ -290,82 +297,89 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 
     $pessoas = $ctrl_usuario->FiltrarUsuariosController(); ?>
 
-    <div id="table_result_Usuario">
-        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
-            <thead>
+<div class="table-responsive" id="table_result_Usuario">
+    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th class="sorting_desc">Nome</th>
+                <th class="sorting_desc">E-mail</th>
+                <th class="sorting_desc">Setor/Empresa</th>
+                <th class="sorting_desc">Tipo</th>
+                <th>Ativo/inativo</th>
+
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php for ($i = 0; $i < count($pessoas); $i++) { ?>
                 <tr>
-                    <th class="sorting_desc">Nome</th>
-                    <th class="sorting_desc">E-mail</th>
-                    <th class="sorting_desc">Setor/Empresa</th>
-                    <th class="sorting_desc">Tipo</th>
-                    <th>Ações</th>
+                    <td>
+                        <?= $pessoas[$i]['nome'] ?>
+                    </td>
+                    <td>
+                        <?= $pessoas[$i]['login'] ?>
+                    </td>
+                    <td>
+                        <?= ($pessoas[$i]['nome_setor'] != '' ? $pessoas[$i]['nome_setor'] : $pessoas[$i]['empresa_tecnico']) ?>
+                    </td>
+                    <td>
+                        <?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
+                    </td>
+                    <td><div class="col-xs-3">
+                                <label>
+                                    <input name="switch-field-1" value="0" id="usuario_status" onclick="MudarStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['status'] ?>')" title="Ativar/inativar usuário" class="ace ace-switch ace-switch-6" <?= $pessoas[$i]['status'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </div></td>
+                    <td>
+                        <div class="hidden-sm hidden-xs action-buttons">
+                            <a st class="green btn btn-warning btn-xs" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
+                                Alterar
+                            </a>
+                            <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
+                                Enviar e-mail
+                            </a>
+                            
+                        </div>
+                        <div class="hidden-md hidden-lg">
+                            <div class="inline pos-rel">
+                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                    <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                </button>
+
+                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                    <li>
+                                        <a href="#usuario" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                            <span class="green">
+                                                <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <a href="#setor" role="button" class="btn btn-info btn-xs" data-toggle="modal">Adicionar Setor</a>
+                                    <li>
+                                        <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
+                                            <span class="red">
+                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
+                                            <span class="red">
+                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php for ($i = 0; $i < count($pessoas); $i++) { ?>
-                    <tr>
-                        <td>
-                            <?= $pessoas[$i]['nome'] ?>
-                        </td>
-                        <td>
-                            <?= $pessoas[$i]['login'] ?>
-                        </td>
-                        <td>
-                            <?= ($pessoas[$i]['nome_setor'] != '' ? $pessoas[$i]['nome_setor'] : $pessoas[$i]['empresa_tecnico']) ?>
-                        </td>
-                        <td>
-                            <?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
-                        </td>
-                        <td>
-                            <div class="hidden-sm hidden-xs action-buttons">
-                                <a st class="green btn btn-warning btn-xs" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
-                                    Alterar
-                                </a>
-                                <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
-                                    Enviar e-mail
-                                </a>
-                                <a href="#modal_status" data-toggle="modal" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
-                                </a>
-                            </div>
-                            <div class="hidden-md hidden-lg">
-                                <div class="inline pos-rel">
-                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                        <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                    </button>
+            <?php } ?>
 
-                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                        <li>
-                                            <a href="#usuario" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                <span class="green">
-                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <a href="#setor" role="button" class="btn btn-info btn-xs" data-toggle="modal">Adicionar Setor</a>
-                                        <li>
-                                            <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
-                                                <span class="red">
-                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
-                                                <span class="red">
-                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+</div>
 <?php } else if (isset($_POST['btn_consultar']) && $_GET['btn_consultar'] == "ajx") {
 
     $registros = $ctrl_usuario->FiltrarUsuariosController();
@@ -385,82 +399,89 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
     $pessoas = array_slice($registros, $indiceInicial, $registrosPorPagina);
 ?>
 
-    <div id="table_result_Usuario">
-        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th class="sorting_desc">Nome</th>
-                    <th class="sorting_desc">E-mail</th>
-                    <th class="sorting_desc">Setor/Empresa</th>
-                    <th class="sorting_desc">Tipo</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php for ($i = 0; $i < count($pessoas); $i++) { ?>
-                    <tr>
-                        <td>
-                            <?= $pessoas[$i]['nome'] ?>
-                        </td>
-                        <td>
-                            <?= $pessoas[$i]['login'] ?>
-                        </td>
-                        <td>
-                            <?= ($pessoas[$i]['nome_setor'] != '' ? $pessoas[$i]['nome_setor'] : $pessoas[$i]['empresa_tecnico']) ?>
-                        </td>
-                        <td>
-                            <?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
-                        </td>
-                        <td>
-                            <div class="hidden-sm hidden-xs action-buttons">
-                                <a st class="green btn btn-warning btn-xs" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
-                                    Alterar
-                                </a>
-                                <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
-                                    Enviar e-mail
-                                </a>
-                                <a href="#modal_status" data-toggle="modal" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
-                                </a>
-                            </div>
-                            <div class="hidden-md hidden-lg">
-                                <div class="inline pos-rel">
-                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                        <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                    </button>
+    <div class="table-responsive" id="table_result_Usuario">
+										<table id="dynamic-table" class="table table-striped table-bordered table-hover">
+											<thead>
+												<tr>
+													<th class="sorting_desc">Nome</th>
+													<th class="sorting_desc">E-mail</th>
+													<th class="sorting_desc">Setor/Empresa</th>
+													<th class="sorting_desc">Tipo</th>
+													<th>Ativo/inativo</th>
 
-                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                        <li>
-                                            <a href="#usuario" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                <span class="green">
-                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <a href="#setor" role="button" class="btn btn-info btn-xs" data-toggle="modal">Adicionar Setor</a>
-                                        <li>
-                                            <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
-                                                <span class="red">
-                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
-                                                <span class="red">
-                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
+													<th>Ações</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php for ($i = 0; $i < count($pessoas); $i++) { ?>
+													<tr>
+														<td>
+															<?= $pessoas[$i]['nome'] ?>
+														</td>
+														<td>
+															<?= $pessoas[$i]['login'] ?>
+														</td>
+														<td>
+															<?= ($pessoas[$i]['nome_setor'] != '' ? $pessoas[$i]['nome_setor'] : $pessoas[$i]['empresa_tecnico']) ?>
+														</td>
+														<td>
+															<?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
+														</td>
+														<td><div class="col-xs-3">
+																	<label>
+																		<input name="switch-field-1" value="0" id="usuario_status" onclick="MudarStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['status'] ?>')" title="Ativar/inativar usuário" class="ace ace-switch ace-switch-6" <?= $pessoas[$i]['status'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
+																		<span class="lbl"></span>
+																	</label>
+																</div></td>
+														<td>
+															<div class="hidden-sm hidden-xs action-buttons">
+																<a st class="green btn btn-warning btn-xs" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
+																	Alterar
+																</a>
+																<a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
+																	Enviar e-mail
+																</a>
+																
+															</div>
+															<div class="hidden-md hidden-lg">
+																<div class="inline pos-rel">
+																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+																		<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+																	</button>
 
-            </tbody>
-        </table>
-    </div>
+																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+																		<li>
+																			<a href="#usuario" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
+																				<span class="green">
+																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																				</span>
+																			</a>
+																		</li>
+																		<a href="#setor" role="button" class="btn btn-info btn-xs" data-toggle="modal">Adicionar Setor</a>
+																		<li>
+																			<a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
+																				<span class="red">
+																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																				</span>
+																			</a>
+																		</li>
+																		<li>
+																			<a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
+																				<span class="red">
+																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																				</span>
+																			</a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+														</td>
+													</tr>
+												<?php } ?>
+
+											</tbody>
+										</table>
+									</div>
     <?php } else if (isset($_POST['btn_consultar_empresa']) && $_POST['btn_consultar_empresa'] == "ajx") {
 
     $dados = $ctrl_usuario->RetornarDadosCadastraisController();
