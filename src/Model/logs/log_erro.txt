@@ -166,3 +166,69 @@ Hora:12:36:50
 Função:AlterarServico
 cod Logado:25
 Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:28/04/2023
+Hora:12:33:58
+Função:CadastrarOsController
+cod Logado:25
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_ordem`.`tb_os`, CONSTRAINT `fk_tb_os_1` FOREIGN KEY (`OsCliID`) REFERENCES `tb_cliente` (`CliID`))
+--------------------------------------------------
+Data:28/04/2023
+Hora:12:35:25
+Função:CadastrarOsController
+cod Logado:25
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_ordem`.`tb_os`, CONSTRAINT `fk_tb_os_1` FOREIGN KEY (`OsCliID`) REFERENCES `tb_cliente` (`CliID`))
+--------------------------------------------------
+Data:28/04/2023
+Hora:12:44:21
+Função:CadastrarOsController
+cod Logado:25
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'OsEmpID' cannot be null
+--------------------------------------------------
+Data:28/04/2023
+Hora:12:45:34
+Função:CadastrarOsController
+cod Logado:25
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'OsNumeroNF' cannot be null
+--------------------------------------------------
+Data:28/04/2023
+Hora:12:45:49
+Função:CadastrarOsController
+cod Logado:25
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'OsNumeroNF' cannot be null
+--------------------------------------------------
+Data:28/04/2023
+Hora:12:47:13
+Função:CadastrarOsController
+cod Logado:25
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_ordem`.`tb_os`, CONSTRAINT `fk_tb_os_1` FOREIGN KEY (`OsCliID`) REFERENCES `tb_cliente` (`CliID`))
+--------------------------------------------------
+Data:28/04/2023
+Hora:12:50:08
+Função:CadastrarOsController
+cod Logado:25
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_ordem`.`tb_os`, CONSTRAINT `fk_tb_os_1` FOREIGN KEY (`OsCliID`) REFERENCES `tb_cliente` (`CliID`))
+--------------------------------------------------
+Data:28/04/2023
+Hora:12:51:42
+Função:CadastrarOsController
+cod Logado:25
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_ordem`.`tb_os`, CONSTRAINT `fk_tb_os_1` FOREIGN KEY (`OsCliID`) REFERENCES `tb_cliente` (`CliID`))
+--------------------------------------------------
+Data:28/04/2023
+Hora:12:52:24
+Função:CadastrarOsController
+cod Logado:25
+Erro:SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_ordem`.`tb_os`, CONSTRAINT `fk_tb_os_4` FOREIGN KEY (`OsTecID`) REFERENCES `tb_tecnico` (`tecnico_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+--------------------------------------------------
+Data:28/04/2023
+Hora:12:53:58
+Função:CadastrarOsController
+cod Logado:25
+Erro:SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+--------------------------------------------------
+Data:28/04/2023
+Hora:12:54:12
+Função:CadastrarOsController
+cod Logado:25
+Erro:SQLSTATE[HY093]: Invalid parameter number: parameter was not defined

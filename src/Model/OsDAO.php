@@ -31,10 +31,11 @@ class OsDAO extends Conexao
         $sql->bindValue(5, $vo->getOsDefeito());
         $sql->bindValue(6, $vo->getOsObs());
         $sql->bindValue(7, $vo->getOsCliID());
-        $sql->bindValue(8, $vo->getOsTecID());
-        $sql->bindValue(9, $vo->getOsStatus());
-        $sql->bindValue(10, $vo->getOsLaudoTec());
-        $sql->bindValue(11, Util::EmpresaLogado());
+        #$sql->bindValue(8, $vo->getOsTecID());
+        $sql->bindValue(8, $vo->getOsStatus());
+        $sql->bindValue(9, $vo->getOsLaudoTec());
+        $sql->bindValue(10, Util::EmpresaLogado());
+        $sql->bindValue(11, $vo->getOsNumeroNF());
 
         try {
             $sql->execute();

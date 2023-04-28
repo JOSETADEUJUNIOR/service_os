@@ -8,7 +8,7 @@ class Os
 
     public static function InserirOsSQL()
     {
-        $sql = 'INSERT into tb_os (OsDtInicial, OsDtFinal, OsGarantia, OsDescProdServ, OsDefeito, OsObs, OsCliID, OsTecID, OsStatus, OsLaudoTec, OsEmpID) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
+        $sql = 'INSERT into tb_os (OsDtInicial, OsDtFinal, OsGarantia, OsDescProdServ, OsDefeito, OsObs, OsCliID, OsStatus, OsLaudoTec, OsEmpID, OsNumeroNF) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
         return $sql;
     }
     public static function RetornarOsSQL()

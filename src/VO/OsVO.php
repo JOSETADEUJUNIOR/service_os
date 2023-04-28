@@ -19,6 +19,7 @@ class OsVO extends LancamentoVO
     private $OsTecID;
     private $OsStatus;
     private $OsLaudoTec;
+    private $OsNumeroNF;
     private $OsValorTotal;
     private $OsFaturado;
 
@@ -163,5 +164,15 @@ class OsVO extends LancamentoVO
     public function getOsFaturado()
     {
         return $this->OsFaturado;
+    }
+    public function setOsNumeroNF($p)
+    {
+
+        $this->OsNumeroNF = $p;
+    }
+
+    public function getOsNumeroNF()
+    {
+        return $this->OsNumeroNF;
     }
 }

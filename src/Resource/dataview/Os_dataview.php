@@ -55,6 +55,7 @@ if (isset($_GET['OsMes'])) {
     $vo->setOsTecID($_POST['tecnico']);
     $vo->setOsStatus($_POST['status']);
     $vo->setOsLaudoTec($_POST['laudo']);
+    $vo->setOsNumeroNF($_POST['NumeroNF']);
     if ($_POST['OsID'] > 0) {
         $vo->setID($_POST['OsID']);
         $ret = $ctrl->AlterarOsController($vo);
