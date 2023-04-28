@@ -3,7 +3,8 @@
 namespace Src\Model\SQL;
 
 
-class ServicoSQL{
+class ServicoSQL
+{
 
     public static function InserirServicoSQL()
     {
@@ -14,7 +15,7 @@ class ServicoSQL{
     public static function DetalharServicoSQL()
     {
         $sql = 'SELECT ServID, ServNome, ServValor, ServDescricao, ServEmpID, ServUserID
-                    FROM tb_servico WHERE ServEmpID = ?' ;
+                    FROM tb_servico WHERE ServEmpID = ?';
         return $sql;
     }
 
@@ -30,12 +31,13 @@ class ServicoSQL{
         $sql = 'UPDATE tb_servico set ServNome = ?, ServValor = ?, ServDescricao = ?, ServEmpID = ?, ServUserID = ? where ServID = ?';
         return $sql;
     }
+
     public static function FiltrarServicoSQL($nome_filtro)
     {
         $sql = 'SELECT ServID, ServNome, ServValor, ServDescricao
                      FROM tb_servico WHERE ServEmpID = ?';
         if (!empty($nome_filtro)) {
-            $sql = $sql . ' And ServNome LIKE ? OR ServValor LIKE ? OR ServDescricao LIKE ?';
+            $sql = $sql . ' And (ServNome LIKE ?)';
         }
         return $sql;
     }
@@ -45,21 +47,4 @@ class ServicoSQL{
         $sql = 'DELETE FROM tb_servico where Servid = ?';
         return $sql;
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

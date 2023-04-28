@@ -48,11 +48,14 @@ class ServicoDAO extends Conexao
         }
     }
 
-    public function ConsultarServicoDAO($ServNome, $filtro_palavra): array
+    public function FiltrarServicoDAO($nome_filtro): array
     {
-
-        $sql = $this->conexao->prepare(ServicoSQL::ConsultarServicoBuscaSQL($ServNome, $filtro_palavra));
-        $sql->bindValue(1, "%" . $filtro_palavra . "%");
+        $sql = $this->conexao->prepare(ServicoSQL::FiltrarServicoSQL($nome_filtro));
+        $i = 1;
+        $sql->bindValue($i++, Util::EmpresaLogado());
+        if (!empty($nome_filtro)) {
+        $sql->bindValue($i++, "%" . $nome_filtro . "%");
+        }
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
