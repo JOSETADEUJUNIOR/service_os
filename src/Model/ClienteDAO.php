@@ -2,13 +2,13 @@
 
 namespace Src\Model;
 
+use Src\_public\Util;
 use Src\Model\Conexao;
 use Src\VO\ClienteVO;
 use Src\Model\SQL\ClienteSQL;
 
 class ClienteDAO extends Conexao
 {
-
     private $conexao;
 
     public function __construct()
@@ -31,9 +31,9 @@ class ClienteDAO extends Conexao
         $sql->bindValue($i++, $vo->getCliCidade());
         $sql->bindValue($i++, $vo->getCliEstado());
         $sql->bindValue($i++, $vo->getCliDescricao());
-        $sql->bindValue($i++, $vo->getCliEmpID());
+        $sql->bindValue($i++, Util::EmpresaLogado());
         $sql->bindValue($i++, $vo->getCliStatus());
-        $sql->bindValue($i++, $vo->getCliUserID());
+        $sql->bindValue($i++, Util::CodigoLogado());
         $sql->bindValue($i++, $vo->getCliCpfCnpj());
         $sql->bindValue($i++, $vo->getCilTipo());
 
@@ -62,9 +62,10 @@ class ClienteDAO extends Conexao
         $sql->bindValue($i++, $vo->getCliCidade());
         $sql->bindValue($i++, $vo->getCliEstado());
         $sql->bindValue($i++, $vo->getCliDescricao());
+        $sql->bindValue($i++, $vo->getCliCpfCnpj());
         $sql->bindValue($i++, $vo->getCilTipo());
         $sql->bindValue($i++, $vo->getCliID());
-        $sql->bindValue($i++, $vo->getCliEmpID());
+        $sql->bindValue($i++, Util::EmpresaLogado());
 
         try {
             $sql->execute();
@@ -94,21 +95,23 @@ class ClienteDAO extends Conexao
         }
     }
 
-    public function SelecionarClienteDAO($CliEmpID)
+    public function SelecionarClienteDAO()
     {
         $sql = $this->conexao->prepare(ClienteSQL::SELECT_CLIENTE_SQL());
         $i = 1;
-        $sql->bindValue($i++, $CliEmpID);
+        $sql->bindValue($i++, Util::EmpresaLogado());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function DetalharClienteDAO($CliID, $CliEmpID)
+    public function FiltrarClienteDAO($nome_filtro)
     {
-        $sql = $this->conexao->prepare(ClienteSQL::DETAIL_CLIENTE_SQL());
+        $sql = $this->conexao->prepare(ClienteSQL::FILTER_CLIENTE_SQL($nome_filtro));
         $i = 1;
-        $sql->bindValue($i++, $CliID);
-        $sql->bindValue($i++, $CliEmpID);
+        $sql->bindValue($i++, Util::EmpresaLogado());
+        if (!empty($nome_filtro)) {
+            $sql->bindValue($i++, "%" . $nome_filtro . "%");
+        }
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }

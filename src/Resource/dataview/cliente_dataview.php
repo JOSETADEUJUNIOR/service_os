@@ -5,78 +5,92 @@ use Src\_public\Util;
 
 Util::VerificarLogado();
 
-use Src\Controller\SetorController;
-use Src\VO\SetorVO;
+use Src\Controller\ClienteController;
+use Src\VO\ClienteVO;
 use Src\Controller\PdfController;
 
-$ctrl = new SetorController();
+$ctrl = new ClienteController();
 $pdfController = new PdfController;
 
 if (isset($_POST['btn_cadastrar'])) {
-    if ($_POST['AlteraID'] == '') {
+    if ($_POST['CliID'] == '') {
 
-        $vo = new SetorVO;
-        $vo->setNomeSetor($_POST['nome']);
-        $ret = $ctrl->CadastrarSetor($vo);
+        $vo = new ClienteVO;
+        $vo->setCliNome($_POST['CliNome']);
+        $vo->setCliDtNasc($_POST['CliDtNasc']);
+        $vo->setCliCpfCnpj($_POST['CliCpfCnpj']);
+        $vo->setCilTipo($_POST['CliTipo']);
+        $vo->setCliTelefone($_POST['CliTelefone']);
+        $vo->setCliEmail($_POST['CliEmail']);
+        $vo->setCliCep($_POST['cep']);
+        $vo->setCliEndereco($_POST['endereco']);
+        $vo->setCliBairro($_POST['bairro']);
+        $vo->setCliNumero($_POST['CliNumero']);
+        $vo->setCliCidade($_POST['cidade']);
+        $vo->setCliEstado($_POST['estado']);
+        $vo->setCliDescricao($_POST['CliDescricao']);
+        $ret = $ctrl->CadastrarClienteCTRL($vo);
         if ($_POST['btn_cadastrar'] == 'ajx') {
             echo $ret;
         }
     } else {
-        $vo = new SetorVO;
-        $vo->setID($_POST['AlteraID']);
-        $vo->setNomeSetor($_POST['nome']);
-        $ret = $ctrl->AlterarSetorController($vo);
+        $vo = new ClienteVO;
+        $vo->setCliID($_POST['CliID']);
+        $vo->setCliNome($_POST['CliNome']);
+        $vo->setCliDtNasc($_POST['CliDtNasc']);
+        $vo->setCliCpfCnpj($_POST['CliCpfCnpj']);
+        $vo->setCilTipo($_POST['CliTipo']);
+        $vo->setCliTelefone($_POST['CliTelefone']);
+        $vo->setCliEmail($_POST['CliEmail']);
+        $vo->setCliCep($_POST['cep']);
+        $vo->setCliEndereco($_POST['endereco']);
+        $vo->setCliBairro($_POST['bairro']);
+        $vo->setCliNumero($_POST['CliNumero']);
+        $vo->setCliCidade($_POST['cidade']);
+        $vo->setCliEstado($_POST['estado']);
+        $vo->setCliDescricao($_POST['CliDescricao']);
+        $ret = $ctrl->AlterarClienteCTRL($vo);
         if ($_POST['btn_cadastrar'] == 'ajx') {
             echo $ret;
         }
-    }
-} else if (isset($_POST['btnExcluir'])) {
-    $vo = new SetorVO;
-    $vo->setID($_POST['ExcluirID']);
-    $ret = $ctrl->ExcluirSetorController($vo);
-    if ($_POST['btnExcluir'] == 'ajx') {
-        echo $ret;
-    } else {
-        $setor = $ctrl->RetornarSetorController();
     }
 } else if (isset($_GET['btn_pdf'])) {
-    $dados = $ctrl->RetornarSetorController();
-  
-    $relatorio = $pdfController->gerarPdf('relatorio_setor.php', $dados);
-  
+    //$dados = $ctrl->RetornarSetorController();
+
+    //$relatorio = $pdfController->gerarPdf('relatorio_setor.php', $dados);
+
 } else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
 
     $nome_filtro = $_POST['FiltrarNome'];
 
-    $setor = $ctrl->FiltrarSetorController($nome_filtro);
+    $cliente = $ctrl->FiltrarClienteCTRL($nome_filtro);
 
-    if (count($setor) > 0) { ?>
+    if (count($cliente) > 0) { ?>
 
-        <div id="table_result_Setor">
+        <div id="table_result_cliente">
             <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th class="sorting_desc">Nome Setor</th>
+                        <th class="sorting_desc">Nome</th>
+                        <th class="sorting_desc">Data Nascimento</th>
+                        <th class="sorting_desc">Telefone</th>
+                        <th class="sorting_desc">E-mail</th>
                         <th class="hidden-480">Status</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for ($i = 0; $i < count($setor); $i++) { ?>
+                    <?php for ($i = 0; $i < count($cliente); $i++) { ?>
                         <tr>
-                            <td>
-                                <?= $setor[$i]['nome_setor'] ?>
-                            </td>
-                            <td class="hidden-480">
-                                <span class="label label-sm label-warning">Ativo</span>
-                            </td>
+                            <td><?= $cliente[$i]['CliNome'] ?></td>
+                            <td><?= $cliente[$i]['CliDtNasc'] ?></td>
+                            <td><?= $cliente[$i]['CliTelefone'] ?></td>
+                            <td><?= $cliente[$i]['CliEmail'] ?></td>
+                            <td><?= $cliente[$i]['CliStatus'] ?></td>
                             <td>
                                 <div class="hidden-sm hidden-xs action-buttons">
-                                    <a class="green" href="#setor" role="button" data-toggle="modal" onclick="AlterarSetorModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-                                        <i title="Alterar Setor" class="ace-icon fa fa-pencil bigger-130"></i>
-                                    </a>
-                                    <a class="red" href="#modalExcluir" data-toggle="modal" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-                                        <i title="Excluir Setor" class="ace-icon fa fa-trash-o bigger-130"></i>
+                                    <a class="green" href="#cliente" role="button" data-toggle="modal" onclick="AlterarClienteModal('<?= $cliente[$i]['CliID'] ?>','<?= $cliente[$i]['CliNome'] ?>','<?= $cliente[$i]['CliDtNasc'] ?>','<?= $cliente[$i]['CliCpfCnpj'] ?>','<?= $cliente[$i]['CliTipo'] ?>','<?= $cliente[$i]['CliTelefone'] ?>','<?= $cliente[$i]['CliEmail'] ?>','<?= $cliente[$i]['CliCep'] ?>','<?= $cliente[$i]['CliEndereco'] ?>','<?= $cliente[$i]['CliBairro'] ?>','<?= $cliente[$i]['CliNumero'] ?>','<?= $cliente[$i]['CliCidade'] ?>','<?= $cliente[$i]['CliEstado'] ?>','<?= $cliente[$i]['CliDescricao'] ?>')">
+                                        <i title="Alterar cliente" class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
                                 </div>
                                 <div class="hidden-md hidden-lg">
@@ -93,19 +107,10 @@ if (isset($_POST['btn_cadastrar'])) {
                                                     </span>
                                                 </a>
                                             </li>
-
                                             <li>
-                                                <a href="#setor" onclick="AlterarSetorModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                <a href="#cliente" onclick="" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
                                                     <span class="green">
                                                         <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <a href="#setor" role="button" class="btn btn-info btn-xs" data-toggle="modal">Adicionar Setor</a>
-                                            <li>
-                                                <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-                                                    <span class="red">
-                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                     </span>
                                                 </a>
                                             </li>
@@ -125,33 +130,32 @@ if (isset($_POST['btn_cadastrar'])) {
     }
 } else if (isset($_POST['btn_consultar']) && $_POST['btn_consultar'] == "ajx") {
 
-    $setor = $ctrl->RetornarSetorController(); ?>
+    $cliente = $ctrl->SelecioneclienteCTRL(); ?>
 
-    <div id="table_result_Setor">
+    <div id="table_result_cliente">
         <table id="dynamic-table" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
-                    <th class="sorting_desc">Nome Setor</th>
+                    <th class="sorting_desc">Nome</th>
+                    <th class="sorting_desc">Data Nascimento</th>
+                    <th class="sorting_desc">Telefone</th>
+                    <th class="sorting_desc">E-mail</th>
                     <th class="hidden-480">Status</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <?php for ($i = 0; $i < count($setor); $i++) { ?>
+                <?php for ($i = 0; $i < count($cliente); $i++) { ?>
                     <tr>
-                        <td>
-                            <?= $setor[$i]['nome_setor'] ?>
-                        </td>
-                        <td class="hidden-480">
-                            <span class="label label-sm label-warning">Ativo</span>
-                        </td>
+                        <td><?= $cliente[$i]['CliNome'] ?></td>
+                        <td><?= $cliente[$i]['CliDtNasc'] ?></td>
+                        <td><?= $cliente[$i]['CliTelefone'] ?></td>
+                        <td><?= $cliente[$i]['CliEmail'] ?></td>
+                        <td><?= $cliente[$i]['CliStatus'] ?></td>
                         <td>
                             <div class="hidden-sm hidden-xs action-buttons">
-                                <a class="green" href="#setor" role="button" data-toggle="modal" onclick="AlterarSetorModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-                                    <i title="Alterar Setor" class="ace-icon fa fa-pencil bigger-130"></i>
-                                </a>
-                                <a class="red" href="#modalExcluir" data-toggle="modal" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-                                    <i title="Excluir Setor" class="ace-icon fa fa-trash-o bigger-130"></i>
+                                <a class="green" href="#cliente" role="button" data-toggle="modal" onclick="AlterarClienteModal('<?= $cliente[$i]['CliID'] ?>','<?= $cliente[$i]['CliNome'] ?>','<?= $cliente[$i]['CliDtNasc'] ?>','<?= $cliente[$i]['CliCpfCnpj'] ?>','<?= $cliente[$i]['CliTipo'] ?>','<?= $cliente[$i]['CliTelefone'] ?>','<?= $cliente[$i]['CliEmail'] ?>','<?= $cliente[$i]['CliCep'] ?>','<?= $cliente[$i]['CliEndereco'] ?>','<?= $cliente[$i]['CliBairro'] ?>','<?= $cliente[$i]['CliNumero'] ?>','<?= $cliente[$i]['CliCidade'] ?>','<?= $cliente[$i]['CliEstado'] ?>','<?= $cliente[$i]['CliDescricao'] ?>')">
+                                    <i title="Alterar cliente" class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </div>
                             <div class="hidden-md hidden-lg">
@@ -168,19 +172,10 @@ if (isset($_POST['btn_cadastrar'])) {
                                                 </span>
                                             </a>
                                         </li>
-
                                         <li>
-                                            <a href="#setor" onclick="AlterarSetorModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                            <a href="#cliente" onclick="" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
                                                 <span class="green">
                                                     <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <a href="#setor" role="button" class="btn btn-info btn-xs" data-toggle="modal">Adicionar Setor</a>
-                                        <li>
-                                            <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
-                                                <span class="red">
-                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                 </span>
                                             </a>
                                         </li>
@@ -194,9 +189,6 @@ if (isset($_POST['btn_cadastrar'])) {
             </tbody>
         </table>
     </div>
-
-
 <?php } else {
-    $setor = $ctrl->RetornarSetorController();
-    /* Util::debug($setor); */
+    $cliente = $ctrl->SelecioneClienteCTRL();
 } ?>

@@ -82,6 +82,8 @@ use Src\_public\Util;
 													<th class="sorting_desc">E-mail</th>
 													<th class="sorting_desc">Setor/Empresa</th>
 													<th class="sorting_desc">Tipo</th>
+													<th>Ativo/inativo</th>
+
 													<th>Ações</th>
 												</tr>
 											</thead>
@@ -100,6 +102,12 @@ use Src\_public\Util;
 														<td>
 															<?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
 														</td>
+														<td><div class="col-xs-3">
+																	<label>
+																		<input name="switch-field-1" value="0" id="usuario_status" onclick="MudarStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['status'] ?>')" title="Ativar/inativar usuário" class="ace ace-switch ace-switch-6" <?= $pessoas[$i]['status'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
+																		<span class="lbl"></span>
+																	</label>
+																</div></td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
 																<a st class="green btn btn-warning btn-xs" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
@@ -108,8 +116,7 @@ use Src\_public\Util;
 																<a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
 																	Enviar e-mail
 																</a>
-																<a href="#modal_status" data-toggle="modal" onclick="CarregarModalStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['status'] ?>')" class=" btn btn-xs btn-<?= $pessoas[$i]['status'] == STATUS_ATIVO ? "danger" : "success" ?> "><?= $pessoas[$i]['status'] == STATUS_ATIVO ? "INATIVAR " : "ATIVAR " ?>
-																</a>
+																
 															</div>
 															<div class="hidden-md hidden-lg">
 																<div class="inline pos-rel">

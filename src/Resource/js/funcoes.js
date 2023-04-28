@@ -5,6 +5,35 @@ function RemoverLoad() {
     $("#divload").removeClass("overlay").html('');
 }
 
+function AlterarProdutoModal(ProdID, ProdDescricao, ProdCodBarra, ProdValorCompra, ProdValorVenda, ProdEstoque, ProdEstoqueMin) {
+    
+    $("#ProdID").val(ProdID);
+    $("#ProdDescricao").val(ProdDescricao);
+    $("#ProdCodBarra").val(ProdCodBarra);
+    $("#ProdValorCompra").val(ProdValorCompra);
+    $("#ProdValorVenda").val(ProdValorVenda);
+    $("#ProdEstoque").val(ProdEstoque);
+    $("#ProdEstoqueMin").val(ProdEstoqueMin);
+}
+
+function AlterarClienteModal(CliID, CliNome, CliDtNasc, CliCpfCnpj, CliTipo, CliTelefone, CliEmail, cep, endereco, bairro, CliNumero, cidade, estado) {
+    
+    $("#CliID").val(CliID);
+    $("#CliNome").val(CliNome);
+    $("#CliDtNasc").val(CliDtNasc);
+    $("#CliCpfCnpj").val(CliCpfCnpj);
+    $("#CliTipo").val(CliTipo);
+    $("#CliTelefone").val(CliTelefone);
+    $("#CliEmail").val(CliEmail);
+    $("#cep").val(cep);
+    $("#endereco").val(endereco);
+    $("#bairro").val(bairro);
+    $("#CliNumero").val(CliNumero);
+    $("#cidade").val(cidade);
+    $("#estado").val(estado);
+    $("#CliDescricao").val(CliDescricao);
+}
+
 function AlterarSetorModal(id, nome) {
     $("#AlteraID").val(id);
     $("#nome").val(nome);

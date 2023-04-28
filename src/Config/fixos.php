@@ -58,6 +58,10 @@ const CADASTRO_CLIENTE = 'CadastrarClienteController';
 const ALTERA_CLIENTE = 'AlterarClienteController';
 const STATUS_CLIENTE = 'StatusClienteController';
 
+# Dados cliente
+const TIPO_CLIENTE    = 1;
+const TIPO_FORNECEDOR = 2;
+
 # DADOS COMBO FILTRO
 const PERFIL_ADM         = 1;
 const PERFIL_FUNCIONARIO = 2;
