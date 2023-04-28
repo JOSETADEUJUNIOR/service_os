@@ -16,7 +16,7 @@ function AlterarProdutoModal(ProdID, ProdDescricao, ProdCodBarra, ProdValorCompr
     $("#ProdEstoqueMin").val(ProdEstoqueMin);
 }
 
-function AlterarClienteModal(CliID, CliNome, CliDtNasc, CliCpfCnpj, CliTipo, CliTelefone, CliEmail, cep, endereco, bairro, CliNumero, cidade, estado) {
+function AlterarClienteModal(CliID, CliNome, CliDtNasc, CliCpfCnpj, CliTipo, CliTelefone, CliEmail, cep, endereco, bairro, CliNumero, cidade, estado, CliDescricao) {
     
     $("#CliID").val(CliID);
     $("#CliNome").val(CliNome);

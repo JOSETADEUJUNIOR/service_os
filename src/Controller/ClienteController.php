@@ -40,9 +40,8 @@ class ClienteController
 
     public function AlterarStatusClienteCTRL(ClienteVO $vo): int
     {
-        if ($vo->getCliStatus() == "")
-            return 0;
-
+        $vo->setCliStatus($vo->getCliStatus() == STATUS_ATIVO ? STATUS_INATIVO : STATUS_ATIVO);
+        $vo->setCliEmpID(Util::EmpresaLogado());
         $vo->setfuncao(STATUS_CLIENTE);
         $vo->setIdLogado(Util::CodigoLogado());
         return $this->dao->AlterarStatusClienteDAO($vo);
@@ -50,19 +49,11 @@ class ClienteController
 
     public function SelecioneClienteCTRL(): array
     {
-        $dados = $this->dao->SelecionarClienteDAO();
-        for($i = 0; $i < count($dados); $i++){
-            $dados[$i]['CliStatus'] = $dados[$i]['CliStatus'] == STATUS_ATIVO ? 'Ativo' : 'Inativo';
-        }
-        return $dados;
+        return $this->dao->SelecionarClienteDAO();
     }
 
     public function FiltrarClienteCTRL($nome_filtro)
     {
-        $dados = $this->dao->FiltrarClienteDAO($nome_filtro);
-        for($i = 0; $i < count($dados); $i++){
-            $dados[$i]['CliStatus'] = $dados[$i]['CliStatus'] == STATUS_ATIVO ? 'Ativo' : 'Inativo';
-        }
-        return $dados;
+        return $this->dao->FiltrarClienteDAO($nome_filtro);
     }
 }
