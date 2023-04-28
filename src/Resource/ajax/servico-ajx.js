@@ -77,9 +77,8 @@ function CadastrarServico(id_form) {
                 ServValor: valor,
                 ServDescricao: descricao,
             },
-            success: function(ret) {
+            success: function (ret) {
                 $("#servico").modal("hide");
-                console.log(ret);
                 if (ret == '1') {
                     MensagemSucesso();
                     LimparCampos(id_form);
@@ -95,7 +94,7 @@ function CadastrarServico(id_form) {
 }
 
 
-function FiltrarServicos(nome_filtro) {
+function FiltrarServico(nome_filtro) {
     $.ajax({
         type: "POST",
         url: BASE_URL_AJAX("servico_dataview"),
@@ -103,7 +102,7 @@ function FiltrarServicos(nome_filtro) {
             btnFiltrar: 'ajx',
             FiltrarNome: nome_filtro
         }, success: function (dados) {
-            $("#table_result_Servico").html(dados);
+            $("#tabela_result_servico").html(dados);
         }
     })
 }

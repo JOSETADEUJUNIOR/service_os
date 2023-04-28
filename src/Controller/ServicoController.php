@@ -6,14 +6,14 @@ use Src\Model\ServicoDAO;
 use Src\VO\ServicoVO;
 use Src\_public\Util;
 
-class ServicoController {
+class ServicoController
+{
 
     private $dao;
 
     public function __construct()
     {
         $this->dao = new ServicoDAO;
-        
     }
 
     public function CadastrarServico(ServicoVO $vo): int
@@ -31,18 +31,18 @@ class ServicoController {
         return $this->dao->CadastrarServico($vo);
     }
 
-     public function ConsultarServicoController($ServNome, $filtro_palavra): array
+    /*  public function ConsultarServicoController($filtro_palavra): array
     {
         if (empty(trim($filtro_palavra))) {
             return 0;
         }
-        return $this->dao->ConsultarServicoDAO($ServNome, $filtro_palavra);
-    } 
+        return $this->dao->FiltrarServicoDAO($filtro_palavra);
+    }  */
 
     public function ConsultarServicoAllController(): array
     {
         return $this->dao->ConsultarServicoAllDAO();
-    } 
+    }
 
     public function DetalharServicoController($id)
     {
@@ -57,11 +57,11 @@ class ServicoController {
         return $this->dao->RetornarServicoDAO();
     }
 
-     public function FiltrarServicoController($ServNome_filtro)
+    public function FiltrarServicoController($ServNome_filtro)
     {
 
         return $this->dao->FiltrarServicoDAO($ServNome_filtro);
-    } 
+    }
 
     public function AlterarServicoController(ServicoVO $vo): int
     {
