@@ -23,6 +23,7 @@ $ctrlServ = new ServicoController();
 $servicos = $ctrlServ->RetornarServicoController();
 $produtos = $ctrlProd->SelecioneProdutoCTRL();
 $clientes = $cliCtrl->SelecioneClienteCTRL();
+Util::debug($clientes);
 
 $ctrl = new OsController();
 $dadosOS = $ctrl->RetornarDadosOsController();

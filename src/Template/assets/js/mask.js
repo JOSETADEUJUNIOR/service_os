@@ -31,6 +31,29 @@ $(document).ready(function () {
         if ($('.date').val().length < 10)
             $('.date').val('');
     });
-   
+    var options = {
+        onKeyPress: function(cpf, ev, el, op) {
+            var masks = ['000.000.000-000', '00.000.000/0000-00'];
+            $('.cpfCnpj').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+        }
+    }
+
+    $('.cpfCnpj').length > 11 ? $('$cpfCnpj').mask('00.000.000/0000-00', options) : $('.cpfCnpj').mask('000.000.000-00#', options);
+    var options = {
+        onKeyPress: function(cpf, ev, el, op) {
+            var masks = ['000.000.000-000', '00.000.000/0000-00'];
+            $('#AlteracpfCnpj').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+        }
+    }
+
+    $('#AlteracpfCnpj').length > 11 ? $('$AlteracpfCnpj').mask('00.000.000/0000-00', options) : $('#AlteracpfCnpj').mask('000.000.000-00#', options);
+
+    $(document).ready(function() {
+        $("#telefone").mask('(00)00000-0000')
+        $("#Alteratelefone").mask('(00)00000-0000')
+        $("#AlteraCep").mask('00.000-000')
+        $("#cep").mask('00.000-000')
+
+    });
    
 });

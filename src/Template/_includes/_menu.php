@@ -157,6 +157,14 @@ require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
         <b class="arrow"></b>
     </li>
     <li class="">
+        <a href="os.php">
+            <i class="menu-icon fa fa-exchange"></i>
+            <span class="menu-text"> Ordem serviço </span>
+        </a>
+
+        <b class="arrow"></b>
+    </li>
+    <li class="">
         <a href="<?= SITE_FUNC ?>" target="_blank">
             <i class="menu-icon fa fa-globe"></i>
             <span class="menu-text"> Acesso funcionário </span>

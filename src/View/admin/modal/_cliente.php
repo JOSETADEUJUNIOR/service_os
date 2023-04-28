@@ -19,7 +19,7 @@
                         </div>
                         <div class="form-group col-md-8">
                             <label>CPF/CNPJ</label>
-                            <input class="form-control obg num" id="CliCpfCnpj" name="CliCpfCnpj" placeholder="Digite aqui...." maxlength="45">
+                            <input class="form-control obg cpfCnpj" id="CliCpfCnpj" name="CliCpfCnpj" placeholder="Digite aqui...." maxlength="45">
                         </div>
                         <div class="form-group col-md-4">
                             <label>Tipo</label>
