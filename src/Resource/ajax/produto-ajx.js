@@ -1,19 +1,22 @@
 function CadastrarProduto(id_form) {
 
     if (NotificarCampos(id_form)) {
+        var formData = new FormData();
+        formData.append("ProdID", $("#ProdID").val());
+        formData.append("ProdDescricao", $("#ProdDescricao").val());
+        formData.append("ProdCodBarra", $("#ProdCodBarra").val());
+        formData.append("ProdValorCompra", $("#ProdValorCompra").val());
+        formData.append("ProdValorVenda", $("#ProdValorVenda").val());
+        formData.append("ProdEstoque", $("#ProdEstoque").val());
+        formData.append("ProdEstoqueMin", $("#ProdEstoqueMin").val());
+        formData.append("ProdImagem", $("#ProdImagem").prop("files")[0]);
+        formData.append("btn_cadastrar", 'ajx');
         $.ajax({
             type: "POST",
             url: BASE_URL_AJAX("produto_dataview"),
-            data: {
-                btn_cadastrar: 'ajx',
-                ProdID: $("#ProdID").val(),
-                ProdDescricao: $("#ProdDescricao").val(),
-                ProdCodBarra: $("#ProdCodBarra").val(),
-                ProdValorCompra: $("#ProdValorCompra").val(),
-                ProdValorVenda: $("#ProdValorVenda").val(),
-                ProdEstoqueMin: $("#ProdEstoqueMin").val(),
-                ProdEstoque: $("#ProdEstoque").val()
-            },
+            data: formData,
+            processData: false,
+            contentType: false,
             success: function (ret) {
                 $("#produto").modal("hide");
                 RemoverLoad();
@@ -51,6 +54,28 @@ function FiltrarProduto(nome_filtro) {
             FiltrarNome: nome_filtro
         }, success: function (dados) {
             $("#table_result_produto").html(dados);
+        }
+    })
+}
+
+function MudarStatusProduto(id_produto, valor) {
+    let status_atual = valor;
+    let id = id_produto;
+    $.ajax({
+        type: 'post',
+        url: BASE_URL_AJAX("produto_dataview"),
+        data: {
+            ProdID: id,
+            status_produto: status_atual,
+            mudar_status: 'ajx'
+        },
+        success: function (resultado) {
+            if (resultado == 1) {
+                MensagemSucesso();
+                // FiltrarUsuario($("#nome_pesquisar").val()); para poder pesquisar direto
+            } else {
+                MensagemErro();
+            }
         }
     })
 }

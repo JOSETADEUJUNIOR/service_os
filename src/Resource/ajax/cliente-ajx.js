@@ -61,3 +61,25 @@ function FiltrarCliente(nome_filtro) {
         }
     })
 }
+
+function MudarStatusCliente(id_cliente, valor) {
+    let status_atual = valor;
+    let id = id_cliente;
+    $.ajax({
+        type: 'post',
+        url: BASE_URL_AJAX("cliente_dataview"),
+        data: {
+            CliID: id,
+            status_cliente: status_atual,
+            mudar_status: 'ajx'
+        },
+        success: function (resultado) {
+            if (resultado == 1) {
+                MensagemSucesso();
+                // FiltrarUsuario($("#nome_pesquisar").val()); para poder pesquisar direto
+            } else {
+                MensagemErro();
+            }
+        }
+    })
+}

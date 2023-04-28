@@ -59,6 +59,14 @@ if (isset($_POST['btn_cadastrar'])) {
 
     //$relatorio = $pdfController->gerarPdf('relatorio_setor.php', $dados);
 
+} else if (isset($_POST['mudar_status']) && $_POST['mudar_status'] == 'ajx') {
+
+    $vo =  new ClienteVO;
+
+    $vo->setCliID($_POST['CliID']);
+    $vo->setCliStatus($_POST['status_cliente']);
+    echo $ctrl->AlterarStatusClienteCTRL($vo);
+
 } else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
 
     $nome_filtro = $_POST['FiltrarNome'];
@@ -75,7 +83,7 @@ if (isset($_POST['btn_cadastrar'])) {
                         <th class="sorting_desc">Data Nascimento</th>
                         <th class="sorting_desc">Telefone</th>
                         <th class="sorting_desc">E-mail</th>
-                        <th class="hidden-480">Status</th>
+                        <th class="hidden-480">Ativo/Inativo</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -86,10 +94,17 @@ if (isset($_POST['btn_cadastrar'])) {
                             <td><?= $cliente[$i]['CliDtNasc'] ?></td>
                             <td><?= $cliente[$i]['CliTelefone'] ?></td>
                             <td><?= $cliente[$i]['CliEmail'] ?></td>
-                            <td><?= $cliente[$i]['CliStatus'] ?></td>
+                            <td>
+                                <div class="col-xs-3">
+                                    <label>
+                                        <input name="switch-field-1" value="0" id="status_cliente" onclick="MudarStatusCliente('<?= $cliente[$i]['CliID'] ?>', '<?= $cliente[$i]['CliStatus'] ?>')" title="Ativar/Inativar Cliente" class="ace ace-switch ace-switch-6" <?= $cliente[$i]['CliStatus'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
+                                        <span class="lbl"></span>
+                                    </label>
+                                </div>
+                            </td>
                             <td>
                                 <div class="hidden-sm hidden-xs action-buttons">
-                                    <a class="green" href="#cliente" role="button" data-toggle="modal" onclick="AlterarClienteModal('<?= $cliente[$i]['CliID'] ?>','<?= $cliente[$i]['CliNome'] ?>','<?= $cliente[$i]['CliDtNasc'] ?>','<?= $cliente[$i]['CliCpfCnpj'] ?>','<?= $cliente[$i]['CliTipo'] ?>','<?= $cliente[$i]['CliTelefone'] ?>','<?= $cliente[$i]['CliEmail'] ?>','<?= $cliente[$i]['CliCep'] ?>','<?= $cliente[$i]['CliEndereco'] ?>','<?= $cliente[$i]['CliBairro'] ?>','<?= $cliente[$i]['CliNumero'] ?>','<?= $cliente[$i]['CliCidade'] ?>','<?= $cliente[$i]['CliEstado'] ?>','<?= $cliente[$i]['CliDescricao'] ?>')">
+                                    <a class="green" href="#cliente" role="button" data-toggle="modal" onclick="AlterarClienteModal('<?= $cliente[$i]['CliID'] ?>','<?= $cliente[$i]['CliNome'] ?>','<?= $cliente[$i]['CliDtNasc'] ?>','<?= $cliente[$i]['CliCpfCnpj'] ?>','<?= $cliente[$i]['CliTipo'] ?>','<?= $cliente[$i]['CliTelefone'] ?>','<?= $cliente[$i]['CliEmail'] ?>','<?= $cliente[$i]['CliCep'] ?>','<?= $cliente[$i]['CliEndereco'] ?>','<?= $cliente[$i]['CliBairro'] ?>','<?= $cliente[$i]['CliNumero'] ?>','<?= $cliente[$i]['CliCidade'] ?>','<?= $cliente[$i]['CliEstado'] ?>')">
                                         <i title="Alterar cliente" class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
                                 </div>
@@ -140,7 +155,7 @@ if (isset($_POST['btn_cadastrar'])) {
                     <th class="sorting_desc">Data Nascimento</th>
                     <th class="sorting_desc">Telefone</th>
                     <th class="sorting_desc">E-mail</th>
-                    <th class="hidden-480">Status</th>
+                    <th class="hidden-480">Ativo/Inativo</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -151,7 +166,14 @@ if (isset($_POST['btn_cadastrar'])) {
                         <td><?= $cliente[$i]['CliDtNasc'] ?></td>
                         <td><?= $cliente[$i]['CliTelefone'] ?></td>
                         <td><?= $cliente[$i]['CliEmail'] ?></td>
-                        <td><?= $cliente[$i]['CliStatus'] ?></td>
+                        <td>
+                            <div class="col-xs-3">
+                                <label>
+                                    <input name="switch-field-1" value="0" id="status_cliente" onclick="MudarStatusCliente('<?= $cliente[$i]['CliID'] ?>', '<?= $cliente[$i]['CliStatus'] ?>')" title="Ativar/Inativar Cliente" class="ace ace-switch ace-switch-6" <?= $cliente[$i]['CliStatus'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </div>
+                        </td>
                         <td>
                             <div class="hidden-sm hidden-xs action-buttons">
                                 <a class="green" href="#cliente" role="button" data-toggle="modal" onclick="AlterarClienteModal('<?= $cliente[$i]['CliID'] ?>','<?= $cliente[$i]['CliNome'] ?>','<?= $cliente[$i]['CliDtNasc'] ?>','<?= $cliente[$i]['CliCpfCnpj'] ?>','<?= $cliente[$i]['CliTipo'] ?>','<?= $cliente[$i]['CliTelefone'] ?>','<?= $cliente[$i]['CliEmail'] ?>','<?= $cliente[$i]['CliCep'] ?>','<?= $cliente[$i]['CliEndereco'] ?>','<?= $cliente[$i]['CliBairro'] ?>','<?= $cliente[$i]['CliNumero'] ?>','<?= $cliente[$i]['CliCidade'] ?>','<?= $cliente[$i]['CliEstado'] ?>','<?= $cliente[$i]['CliDescricao'] ?>')">

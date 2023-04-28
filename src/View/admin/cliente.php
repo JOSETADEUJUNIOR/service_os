@@ -64,7 +64,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/cliente_dataview.php';
 													<th class="sorting_desc">Data Nascimento</th>
 													<th class="sorting_desc">Telefone</th>
 													<th class="sorting_desc">E-mail</th>
-													<th class="hidden-480">Status</th>
+													<th class="hidden-480">Ativo/Inativo</th>
 													<th>Ações</th>
 												</tr>
 											</thead>
@@ -75,7 +75,14 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/cliente_dataview.php';
 														<td><?= $cliente[$i]['CliDtNasc'] ?></td>
 														<td><?= $cliente[$i]['CliTelefone'] ?></td>
 														<td><?= $cliente[$i]['CliEmail'] ?></td>
-														<td><?= $cliente[$i]['CliStatus'] ?></td>
+														<td>
+															<div class="col-xs-3">
+																<label>
+																	<input name="switch-field-1" value="0" id="status_cliente" onclick="MudarStatusCliente('<?= $cliente[$i]['CliID'] ?>', '<?= $cliente[$i]['CliStatus'] ?>')" title="Ativar/Inativar Cliente" class="ace ace-switch ace-switch-6" <?= $cliente[$i]['CliStatus'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
+																	<span class="lbl"></span>
+																</label>
+															</div>
+														</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
 																<a class="green" href="#cliente" role="button" data-toggle="modal" onclick="AlterarClienteModal('<?= $cliente[$i]['CliID'] ?>','<?= $cliente[$i]['CliNome'] ?>','<?= $cliente[$i]['CliDtNasc'] ?>','<?= $cliente[$i]['CliCpfCnpj'] ?>','<?= $cliente[$i]['CliTipo'] ?>','<?= $cliente[$i]['CliTelefone'] ?>','<?= $cliente[$i]['CliEmail'] ?>','<?= $cliente[$i]['CliCep'] ?>','<?= $cliente[$i]['CliEndereco'] ?>','<?= $cliente[$i]['CliBairro'] ?>','<?= $cliente[$i]['CliNumero'] ?>','<?= $cliente[$i]['CliCidade'] ?>','<?= $cliente[$i]['CliEstado'] ?>','<?= $cliente[$i]['CliDescricao'] ?>')">
