@@ -64,7 +64,7 @@
                         <div class="col-md-12">
                         <div class="form-group">
                             <label>Descrição</label>
-                            <textarea class="form-control obg" id="CliDescricao" name="CliDescricao" style="resize: vertical" placeholder="Digite aqui...." maxlength="1000"></textarea>
+                            <textarea class="form-control" id="CliDescricao" name="CliDescricao" style="resize: vertical" placeholder="Digite aqui...." maxlength="1000"></textarea>
                         </div>
                     </div>
                     </div>

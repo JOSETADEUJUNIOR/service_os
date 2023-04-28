@@ -41,9 +41,8 @@ class ProdutoController
 
     public function AlterarStatusProdutoCTRL(ProdutoVO $vo): int
     {
-        if ($vo->getProdStatus() == "")
-            return 0;
-
+        $vo->setProdID($vo->getProdStatus() == STATUS_ATIVO ? STATUS_INATIVO : STATUS_ATIVO);
+        $vo->setProdEmpID(Util::EmpresaLogado());
         $vo->setfuncao(STATUS_PRODUTO);
         $vo->setIdLogado(Util::CodigoLogado());
         return $this->dao->AlterarStatusProdutoDAO($vo);
@@ -51,19 +50,11 @@ class ProdutoController
 
     public function SelecioneProdutoCTRL(): array
     {
-        $dados = $this->dao->SelecionarProdutoDAO();
-        for($i = 0; $i < count($dados); $i++){
-            $dados[$i]['ProdStatus'] = $dados[$i]['ProdStatus'] == STATUS_ATIVO ? 'Ativo' : 'Inativo';
-        }
-        return $dados;
+        return $this->dao->SelecionarProdutoDAO();
     }
 
     public function FiltrarProdutoCTRL($nome_filtro)
-    {
-        $dados = $this->dao->FiltrarProdutoDAO($nome_filtro);
-        for($i = 0; $i < count($dados); $i++){
-            $dados[$i]['ProdStatus'] = $dados[$i]['ProdStatus'] == STATUS_ATIVO ? 'Ativo' : 'Inativo';
-        }
-        return $dados;
+    {   
+        return $this->dao->FiltrarProdutoDAO($nome_filtro);
     }
 }

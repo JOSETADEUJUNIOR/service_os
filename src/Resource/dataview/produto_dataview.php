@@ -22,6 +22,23 @@ if (isset($_POST['btn_cadastrar'])) {
         $vo->setProdValorVenda($_POST['ProdValorVenda']);
         $vo->setProdEstoqueMin($_POST['ProdEstoqueMin']);
         $vo->setProdEstoque($_POST['ProdEstoque']);
+        $arquivos = $_FILES['ProdImagem'];
+
+        if ($arquivos['size'] > 2097152)
+            die("Arquivo muito grande !! Max: 2MB");
+
+        $pasta = "arquivos/";
+        @mkdir($pasta);
+        $nomeDoArquivo = $arquivos['name'];
+        $novoNomeDoArquivo = uniqid();
+        $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
+        if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != '')
+            die("Tipo de arquivo não aceito");
+
+        $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
+        $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
+        $vo->setProdImagem($nomeDoArquivo);
+        $vo->setProdImagemPath($path);
         $ret = $ctrl->CadastrarProdutoCTRL($vo);
         if ($_POST['btn_cadastrar'] == 'ajx') {
             echo $ret;
@@ -35,6 +52,23 @@ if (isset($_POST['btn_cadastrar'])) {
         $vo->setProdValorVenda($_POST['ProdValorVenda']);
         $vo->setProdEstoqueMin($_POST['ProdEstoqueMin']);
         $vo->setProdEstoque($_POST['ProdEstoque']);
+        $arquivos = $_FILES['ProdImagem'];
+
+        if ($arquivos['size'] > 2097152)
+            die("Arquivo muito grande !! Max: 2MB");
+
+        $pasta = "arquivos/";
+        @mkdir($pasta);
+        $nomeDoArquivo = $arquivos['name'];
+        $novoNomeDoArquivo = uniqid();
+        $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
+        if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != '')
+            die("Tipo de arquivo não aceito");
+
+        $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
+        $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
+        $vo->setProdImagem($nomeDoArquivo);
+        $vo->setProdImagemPath($path);
         $ret = $ctrl->AlterarProdutoCTRL($vo);
         if ($_POST['btn_cadastrar'] == 'ajx') {
             echo $ret;
@@ -45,6 +79,13 @@ if (isset($_POST['btn_cadastrar'])) {
 
     //$relatorio = $pdfController->gerarPdf('relatorio_setor.php', $dados);
 
+} else if (isset($_POST['mudar_status']) && $_POST['mudar_status'] == 'ajx') {
+
+    $vo =  new ProdutoVO;
+
+    $vo->setProdID($_POST['ProdID']);
+    $vo->setProdStatus($_POST['status_produto']);
+    echo $ctrl->AlterarStatusProdutoCTRL($vo);
 } else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
 
     $nome_filtro = $_POST['FiltrarNome'];
@@ -62,8 +103,9 @@ if (isset($_POST['btn_cadastrar'])) {
                         <th class="sorting_desc">Valor Venda</th>
                         <th class="sorting_desc">Estoque Total</th>
                         <th class="sorting_desc">Estoque Mínimo</th>
-                        <th class="hidden-480">Status</th>
-                        <th>Ações</th>
+                        <th class="sorting_desc">Img Produto</th>
+                        <th class="hidden-480">Ativo/Inativo</th>
+                        <th class="sorting_desc">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,7 +116,17 @@ if (isset($_POST['btn_cadastrar'])) {
                             <td><?= $produto[$i]['ProdValorVenda'] ?></td>
                             <td><?= $produto[$i]['ProdEstoque'] ?></td>
                             <td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
-                            <td><?= $produto[$i]['ProdStatus'] ?></td>
+                            <?php if ($produto[$i]['ProdImagemPath'] != "") { ?>
+                            <td><center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center></td>
+                            <?php } else { ?><td></td><?php } ?>
+                            <td>
+                                <div class="col-xs-3">
+                                    <label>
+                                        <input name="switch-field-1" value="0" id="status_produto" onclick="MudarStatusProduto('<?= $produto[$i]['ProdID'] ?>', '<?= $produto[$i]['ProdStatus'] ?>')" title="Ativar/Inativar Produto" class="ace ace-switch ace-switch-6" <?= $produto[$i]['ProdStatus'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
+                                        <span class="lbl"></span>
+                                    </label>
+                                </div>
+                            </td>
                             <td>
                                 <div class="hidden-sm hidden-xs action-buttons">
                                     <a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>')">
@@ -129,8 +181,9 @@ if (isset($_POST['btn_cadastrar'])) {
                     <th class="sorting_desc">Valor Venda</th>
                     <th class="sorting_desc">Estoque Total</th>
                     <th class="sorting_desc">Estoque Mínimo</th>
-                    <th class="hidden-480">Status</th>
-                    <th>Ações</th>
+                    <th class="sorting_desc">Img Produto</th>
+                    <th class="hidden-480">Ativo/Inativo</th>
+                    <th class="sorting_desc">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -141,7 +194,17 @@ if (isset($_POST['btn_cadastrar'])) {
                         <td><?= $produto[$i]['ProdValorVenda'] ?></td>
                         <td><?= $produto[$i]['ProdEstoque'] ?></td>
                         <td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
-                        <td><?= $produto[$i]['ProdStatus'] ?></td>
+                        <?php if ($produto[$i]['ProdImagemPath'] != "") { ?>
+                        <td><center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center></td>
+                        <?php } else { ?><td></td><?php } ?>
+                        <td>
+                            <div class="col-xs-3">
+                                <label>
+                                    <input name="switch-field-1" value="0" id="status_produto" onclick="MudarStatusProduto('<?= $produto[$i]['ProdID'] ?>', '<?= $produto[$i]['ProdStatus'] ?>')" title="Ativar/Inativar Produto" class="ace ace-switch ace-switch-6" <?= $produto[$i]['ProdStatus'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </div>
+                        </td>
                         <td>
                             <div class="hidden-sm hidden-xs action-buttons">
                                 <a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>')">
