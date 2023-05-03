@@ -39,7 +39,8 @@ class OsDAO extends Conexao
 
         try {
             $sql->execute();
-            return 1;
+            $UltimoLancID = $this->conexao->lastInsertId();
+            return $UltimoLancID ;
         } catch (\Exception $ex) {
 
             $vo->setmsg_erro($ex->getMessage());

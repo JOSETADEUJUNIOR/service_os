@@ -84,6 +84,7 @@ function ExcluirItemOs() {
 
 function Excluir() {
     let id = $("#ExcluirID").val();
+    alert($("#ExcluirID").val());
     $.ajax({
         type: "POST",
         url: BASE_URL_AJAX("Os_dataview"),
@@ -217,13 +218,12 @@ alert($("#Oscliente").val());
                 OsID: OsID
             },
             success: function (ret) {
-                RemoverLoad();
-                if (ret == 1) {
+                if (ret !="") {
                     MensagemSucesso();
-                    LimparCampos(id_form);
-                    ConsultarOs();
-                    $("#CadOs").addClass('collapsed-card');
-                    window.location.replace("ordem_servico.php")
+                    console.log(ret);
+                    $("#DivProduto").show();
+                    $("#OsID").val(ret);
+                    
                 } else {
                     MensagemErro();
                 }
@@ -310,11 +310,11 @@ function InserirAnxOs(form_id) {
     return false;
 }
 
-function InserirProd(form_id) {
-    if (NotificarCampos(form_id)) {
-        let produto = $("#produto").val();
+function InserirProd() {
+   alert('produt');
+    let produto = $("#produto").val();
         let qtdProd = $("#qtdProd").val();
-        let OsID = $("#OsProdID").val();
+        let OsID = $("#OsID").val();
 
         $.ajax({
             type: "POST",
@@ -341,7 +341,7 @@ function InserirProd(form_id) {
                 }
             }
         })
-    }
+
     return false;
 }
 

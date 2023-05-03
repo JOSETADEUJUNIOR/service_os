@@ -1,5 +1,5 @@
 <div class="modal fade" id="os">
-    <div class="modal-dialog modal-xs">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content bg-white">
             <div class="modal-header bg-primary">
                 <h4 class="modal-title">Ordem de Serviço</h4>
@@ -17,7 +17,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Data da OS</label>
-                            <input type="date" class="form-control obg" id="dtInicial" name="dtInicial" value="<?= date("Y-m-d")?>">
+                            <input type="date" class="form-control obg" id="dtInicial" name="dtInicial" value="<?= date("Y-m-d") ?>">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -77,7 +77,113 @@
                             <textarea class="form-control" id="laudo" name="laudo" style="resize: vertical" placeholder="Laudo técnico...."></textarea>
                         </div>
                     </div>
+                    <div id="DivProduto" style="display:none">
+                        <div class="col-md-8">
+                            <form id="form_itens_os">
+                                <input type="hidden" name="OsProdID" id="OsProdID" value="<?= $ordemOS[0]['OsID'] ?>">
+                                <div class="form-group">
+                                    <label>Produto</label>
+                                    <select class="chosen-select" data-placeholder="Selecione o produto" id="produto" name="produto" style="width: 100%;">
+                                        <option value="">Selecione...</option>
+                                        <?php foreach ($produtos as $produto) { ?>
+                                            <option value="<?= $produto['ProdID'] ?>"><?= $produto['ProdDescricao'] . '| Preço: ' . $produto['ProdValorVenda'] . '| Estoque: ' . $produto['ProdEstoque'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Quantidade</label>
+                                <input class="form-control" name="qtdProd" id="qtdProd">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Add</label>
+                                <button class="form-control btn btn-success btn-xs" onclick="return InserirProd()" name="btnAddItem"><i class="fa fa-edit"></i></button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+                    </form>
+
+
+
                 </div>
+                <div id="table_result_Setor">
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="sorting_desc">Nome produto</th>
+                                <th class="hidden-480">Quantidade</th>
+                                <th class="hidden-480">Valor</th>
+                                <th class="hidden-480">Valor Total</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php for ($i = 0; $i < count($ProdOrdem); $i++) { ?>
+                                <tr>
+                                    <td>
+                                        <?= $ProdOrdem[$i]['ProdDescricao'] ?>
+                                    </td>
+                                    <td class="hidden-480">
+                                        <span class="label label-sm label-warning"><?= $ProdOrdem[$i]['ProdOsQtd'] ?></span>
+                                    </td>
+                                    <td class="hidden-480">
+                                        <span class="label label-sm label-warning"><?= $ProdOrdem[$i]['ProdValorVenda'] ?></span>
+                                    </td>
+                                    <td class="hidden-480">
+                                        <span class="label label-sm label-warning"><?= $ProdOrdem[$i]['ProdOsSubTotal'] ?></span>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" id="ExcluirID" name="ExcluirID">
+                                        <input type="hidden" id="ExcluirOsID" name="ExcluirOsID">
+                                        <input type="hidden" id="ExcluirProdID" name="ExcluirProdID">
+                                        <input type="hidden" id="ExcluirQtd" name="ExcluirQtd">
+                                        <div class="hidden-sm hidden-xs action-buttons">
+
+                                            <a class="red" href="#modalExcluir" data-toggle="modal" onclick="ExcluirModal('<?= $ProdOrdem[$i]['ProdOsID'] ?>','<?= $ProdOrdem[$i]['ProdDescricao'] ?>')">
+                                                <i title="Excluir Setor" class="ace-icon fa fa-trash-o bigger-130"></i>
+                                            </a>
+                                        </div>
+                                        <div class="hidden-md hidden-lg">
+                                            <div class="inline pos-rel">
+                                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                    <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                                </button>
+
+                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                    <li>
+                                                        <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
+                                                            <span class="red">
+                                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
+
+
 
             </div>
             <div class="modal-footer justify-content-between">
