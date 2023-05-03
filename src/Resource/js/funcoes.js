@@ -6,7 +6,7 @@ function RemoverLoad() {
 }
 
 function AlterarProdutoModal(ProdID, ProdDescricao, ProdCodBarra, ProdValorCompra, ProdValorVenda, ProdEstoque, ProdEstoqueMin) {
-    
+
     $("#ProdID").val(ProdID);
     $("#ProdDescricao").val(ProdDescricao);
     $("#ProdCodBarra").val(ProdCodBarra);
@@ -16,8 +16,24 @@ function AlterarProdutoModal(ProdID, ProdDescricao, ProdCodBarra, ProdValorCompr
     $("#ProdEstoqueMin").val(ProdEstoqueMin);
 }
 
+function AlterarOs(OsID, NumerNF, dtInicial, status, cliente, descricao, defeito, observacao, laudo ) {
+    alert('oi');
+    if (OsID > 0) {
+        $("#DivProduto").show();
+        $("#OsID").val(OsID);
+        $("#numeroNF").val(NumerNF);
+        $("#dtInicial").val(dtInicial);
+        $("#status").val(status);
+        $("#Oscliente").val(cliente);
+        $("#descProd").val(descricao);
+        $("#defeito").val(defeito);
+        $("#obs").val(observacao);
+        $("#laudo").val(laudo);
+    }
+}
+
 function AlterarClienteModal(CliID, CliNome, CliDtNasc, CliCpfCnpj, CliTipo, CliTelefone, CliEmail, cep, endereco, bairro, CliNumero, cidade, estado, CliDescricao) {
-    
+
     $("#CliID").val(CliID);
     $("#CliNome").val(CliNome);
     $("#CliDtNasc").val(CliDtNasc);
@@ -62,7 +78,7 @@ function ExcluirModal(id, nome) {
 
 }
 function AlterarUsuarioModal(id, tipo, nome, email, telefone, cep, rua, bairro, cidade, sigla_estado, empresa_tecnico, setor_id, id_end) {
-    
+
     EscolherUsuario(tipo);
     $("#id_user").val(id);
     $("#tipo").val(tipo);
@@ -131,7 +147,7 @@ function BASE_URL_AJAX(dataview) {
 }
 
 function EscolherUsuario(tipo) {
-    
+
     switch (tipo) {
         case '2':
             $("#divFunc").show();

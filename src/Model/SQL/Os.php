@@ -13,7 +13,7 @@ class Os
     }
     public static function RetornarOsSQL()
     {
-        $sql = 'SELECT OsID, OsDtInicial, OsDtFinal, OsGarantia, OsDescProdServ, OsDefeito, OsObs, OsCliID,tb_cliente.CliNome as nomeCliente, tb_cliente.CliTelefone as CliTelefone, OsTecID, OsStatus, OsLaudoTec, OsValorTotal, OsDesconto, OsFaturado FROM tb_os
+        $sql = 'SELECT OsID, OsDtInicial, OsDtFinal, OsGarantia, OsDescProdServ, OsDefeito, OsObs, OsCliID,tb_cliente.CliNome as nomeCliente, tb_cliente.CliTelefone as CliTelefone, OsTecID, OsStatus, OsLaudoTec, OsNumeroNF, OsValorTotal, OsDesconto, OsFaturado FROM tb_os
                 Inner Join tb_cliente on tb_cliente.CliID = tb_os.OsCliID
 
              WHERE OsEmpID = ? ';
