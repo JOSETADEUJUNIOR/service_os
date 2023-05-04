@@ -24,17 +24,19 @@ $ctrlServ = new ServicoController();
 $servicos = $ctrlServ->RetornarServicoController();
 $produtos = $ctrlProd->SelecioneProdutoCTRL();
 $clientes = $cliCtrl->SelecioneClienteCTRL();
-
 $ctrl = new OsController();
-$dadosOS = $ctrl->RetornarDadosOsController();
-$vo = new OsVO;
+/* $vo = new OsVO;
 $vo->setID(34);
-$ordemOS = $ctrl->RetornaOrdem($vo);
-$ProdOrdem = $ctrl->RetornaProdOrdem($vo);
-$ProdServOrdem = $ctrl->RetornaServOrdem($vo);
-$AnxOs = $ctrl->RetornaAnxOS($vo);
-Util::debug($ProdOrdem);
+$ProdOrdem = $ctrl->RetornaProdOrdem($vo); */
 
+$dadosOS = $ctrl->RetornarDadosOsController();
+
+if (isset($_POST['btn_detalhar_os'])) {
+$vo = new OsVO;
+$vo->setID($_POST['OsID']);
+$ProdOrdem = $ctrl->RetornaProdOrdem($vo);
+echo $ProdOrdem;
+}
 if (isset($_GET['OsMes'])) {
     $os = $ctrl->RetornarOsMesController();
 } else if (isset($_GET['OsID']) &&  is_numeric($_GET['OsID'])) {
@@ -451,109 +453,67 @@ if (isset($_GET['OsMes'])) {
     $ordemOS = $ctrl->RetornaOrdem($vo);
     $ProdServOrdem = $ctrl->RetornaServOrdem($vo); ?>
 
-    <table class="table table-hover" id="tabela_result_item">
-        <thead>
-            <tr>
-                <th>Ação</th>
-                <th>Produto/Serviço</th>
-                <th>Tipo</th>
-                <th>Quantidade</th>
-                <th>Valor</th>
-                <th>Valor Total</th>
+<div id="table_result_item">
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="sorting_desc">Nome produto</th>
+                                <th class="hidden-480">Quantidade</th>
+                                <th class="hidden-480">Valor</th>
+                                <th class="hidden-480">Valor Total</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php for ($i = 0; $i < count($ProdOrdem); $i++) { ?>
+                                <tr>
+                                    <td>
+                                        <?= $ProdOrdem[$i]['ProdDescricao'] ?>
+                                    </td>
+                                    <td class="hidden-480">
+                                        <span class="label label-sm label-warning"><?= $ProdOrdem[$i]['ProdOsQtd'] ?></span>
+                                    </td>
+                                    <td class="hidden-480">
+                                        <span class="label label-sm label-warning"><?= $ProdOrdem[$i]['ProdValorVenda'] ?></span>
+                                    </td>
+                                    <td class="hidden-480">
+                                        <span class="label label-sm label-warning"><?= $ProdOrdem[$i]['ProdOsSubTotal'] ?></span>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" id="ExcluirID" name="ExcluirID">
+                                        <input type="hidden" id="ExcluirOsID" name="ExcluirOsID">
+                                        <input type="hidden" id="ExcluirProdID" name="ExcluirProdID">
+                                        <input type="hidden" id="ExcluirQtd" name="ExcluirQtd">
+                                        <div class="hidden-sm hidden-xs action-buttons">
 
-            </tr>
-        </thead>
-        <tbody>
-            <?php $subTotal = 0;
-            for ($i = 0; $i < count($ProdOrdem); $i++) {
-                if ($ProdOrdem[$i]['ProdOsProdID'] != '') {
-                    $subTotal = $subTotal + $ProdOrdem[$i]['ProdValorVenda'] ?>
-                    <tr>
-                        <td>
-                            <a href="#" onclick="ExcluirModalItem('<?= $ProdOrdem[$i]['OsID'] ?>','<?= $ProdOrdem[$i]['ProdOsID'] ?>','<?= $ProdOrdem[$i]['ProdDescricao'] ?>','<?= $ProdOrdem[$i]['ProdOsProdID'] ?>','<?= $ProdOrdem[$i]['ProdOsQtd'] ?>')" data-toggle="modal" data-target="#modalExcluirItem"><i style="color:red" class="fas fa-trash-alt"></i></a>
-                        </td>
-                        <td><?= $ProdOrdem[$i]['ProdDescricao'] ?></td>
-                        <td><span class="btn btn-block btn-outline-primary btn-xs"> Produto</span></td>
-                        <td><?= $ProdOrdem[$i]['ProdOsQtd'] ?></td>
-                        <td><?= $ProdOrdem[$i]['ProdValorVenda'] ?></td>
-                        <td><?= $ProdOrdem[$i]['ProdOsSubTotal'] ?></td>
+                                            <a class="red" href="#modalExcluir" data-toggle="modal" onclick="ExcluirModal('<?= $ProdOrdem[$i]['ProdOsID'] ?>','<?= $ProdOrdem[$i]['ProdDescricao'] ?>')">
+                                                <i title="Excluir Setor" class="ace-icon fa fa-trash-o bigger-130"></i>
+                                            </a>
+                                        </div>
+                                        <div class="hidden-md hidden-lg">
+                                            <div class="inline pos-rel">
+                                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                    <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                                </button>
 
+                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                    <li>
+                                                        <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
+                                                            <span class="red">
+                                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
 
-                    </tr>
-            <?php }
-            } ?>
-
-        </tbody>
-        </hr>
-        <tbody>
-            <?php for ($i = 0; $i < count($ProdServOrdem); $i++) {
-                if ($ProdServOrdem[$i]['ServOsServID'] != '') {
-                    $subTotal = $subTotal + $ProdServOrdem[$i]['ServValor']  ?>
-                    <tr>
-                        <td>
-                            <a href="#" onclick="ExcluirModalServ('<?= $ProdServOrdem[$i]['OsID'] ?>','<?= $ProdServOrdem[$i]['ServOsID'] ?>','<?= $ProdServOrdem[$i]['ServNome'] ?>','<?= $ProdServOrdem[$i]['ServOsServID'] ?>','<?= $ProdServOrdem[$i]['ServOsQtd'] ?>')" data-toggle="modal" data-target="#modalExcluirServ"><i style="color:red" class="fas fa-trash-alt"></i></a>
-                        </td>
-                        <td><?= $ProdServOrdem[$i]['ServNome'] ?></td>
-                        <td><span class="btn btn-block btn-outline-secondary btn-xs"> Serviço</span></td>
-                        <td><?= $ProdServOrdem[$i]['ServOsQtd'] ?></td>
-                        <td><?= $ProdServOrdem[$i]['ServValor'] ?></td>
-                        <td><?= $ProdServOrdem[$i]['ServOsSubTotal'] ?></td>
-                    </tr>
-                <?php } ?>
-            <?php } ?>
-
-        </tbody>
-        <tbody>
-            <tr style="background-color: #dfdfdf;">
-                <td colspan="4"><span><strong>Total de valores da OS: </strong></span></td>
-                <td colspan="1"><strong><?= 'R$: ' . Util::FormatarValor($subTotal) ?></strong></td>
-                <td colspan="2"><strong><?= 'R$: ' . Util::FormatarValor($ordemOS[0]['OsValorTotal']) ?></strong></td>
-            </tr>
-        </tbody>
-    </table>
-
-
-<?php } else if (isset($_POST['btn_consultar_anx']) && $_POST['btn_consultar_anx'] == 'ajx') {
-
-    $vo = new OsVO;
-    $vo->setID($_POST['OsID']);
-    $AnxOs = $ctrl->RetornaAnxOS($vo);
-
-?>
-
-    <table class="table table-hover" id="tabela_result_anx">
-        <thead>
-            <tr>
-                <th>Ação</th>
-                <th>Nome</th>
-                <th>Tipo</th>
-                <th>Arquivo</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <?php $subTotal = 0;
-            for ($i = 0; $i < count($AnxOs); $i++) {
-                if ($AnxOs[$i]['AnxOsID'] != '') { ?>
-                    <tr>
-                        <td>
-                            <a href="#" onclick="ExcluirModalAnx('<?= $AnxOs[$i]['AnxOsID'] ?>','<?= $AnxOs[$i]['AnxID'] ?>','<?= $AnxOs[$i]['AnxNome'] ?>')" data-toggle="modal" data-target="#modalExcluirAnx"><i style="color:red" class="fas fa-trash-alt"></i></a>
-                        </td>
-                        <td><?= $AnxOs[$i]['AnxNome'] ?></td>
-                        <td><i style="color:red" class="<?= (explode('.', $AnxOs[$i]['AnxPath'])[1] == 'png' ? 'fas fa-image' : 'fa fa-file-pdf') ?>"></i></td>
-                        <td><a href="../../Resource/dataview/<?= $AnxOs[$i]['AnxPath'] ?>" target="_blank" rel="noopener noreferrer">visualizar arquivo </a>
-                        </td>
-
-
-
-                    </tr>
-            <?php }
-            } ?>
-
-        </tbody>
-
-    </table>
-
+                        </tbody>
+                    </table>
+                </div>
 
 <?php } else if (isset($_POST['btn_consultar_serv']) && $_POST['btn_consultar_serv'] == 'ajx') {
 

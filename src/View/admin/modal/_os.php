@@ -115,7 +115,7 @@
 
 
                 </div>
-                <div id="table_result_Setor">
+                <div id="table_result_item">
                     <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
@@ -202,4 +202,5 @@
    $("#nome").focus();
    $("#nome").reset();
 }); */
+
 </script>

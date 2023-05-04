@@ -25,6 +25,28 @@ function ConsultarItensOs(OsID) {
         }
     })
 }
+function AlterarOs(OsID, NumerNF, dtInicial, status, cliente, descricao, defeito, observacao, laudo ) {
+    alert('mudou');
+    if (OsID > 0) {
+        
+            $("#DivProduto").show();
+            $("#OsID").val(OsID);
+            $("#numeroNF").val(NumerNF);
+            $("#dtInicial").val(dtInicial);
+            $("#status").val(status);
+            $("#Oscliente").val(cliente);
+            $("#descProd").val(descricao);
+            $("#defeito").val(defeito);
+            $("#obs").val(observacao);
+            $("#laudo").val(laudo);
+    
+            ConsultarItensOs(OsID);    
+        }
+}
+
+
+
+
 
 function ConsultarAnxOs(OsID) {
     let idAnx = OsID;
@@ -311,7 +333,6 @@ function InserirAnxOs(form_id) {
 }
 
 function InserirProd() {
-   alert('produt');
     let produto = $("#produto").val();
         let qtdProd = $("#qtdProd").val();
         let OsID = $("#OsID").val();
@@ -324,7 +345,6 @@ function InserirProd() {
                 produto: produto,
                 qtdProd: qtdProd,
                 OsID: OsID
-
 
             },
             success: function (ret) {
