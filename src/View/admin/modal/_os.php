@@ -33,12 +33,12 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <!-- <div class="col-md-12">
                         <div class="form-group">
                             <label>Titulo da OS</label>
                             <input class="form-control obg" id="titulo" name="titulo" placeholder="Titulo da OS">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-12">
                         <!-- <input type="hidden" name="OsID" id="OsID" value="<?= $OsID != '' ? $ordemOS[0]['OsID'] : '' ?>">
                         <input type="hidden" name="ValorOS" id="ValorOS" value="<?= $ordemOS[0]['OsValorTotal'] ?>"> -->
@@ -103,20 +103,46 @@
                                 <button class="form-control btn btn-success btn-xs" onclick="return InserirProd()" name="btnAddItem"><i class="fa fa-edit"></i></button>
                             </div>
                         </div>
-
-
+                    </form>
+                    <?php # aqui abaixo vai ser carregado os serviços ?>
+                    <div class="col-md-8">
+                            <form id="form_serv_os">
+                                <input type="hidden" name="OsProdID" id="OsProdID" value="<?= $ordemOS[0]['OsID'] ?>">
+                                <div class="form-group">
+                                    <label>Serviço</label>
+                                    <select class="chosen-select" data-placeholder="Selecione o produto" id="servico" name="servico" style="width: 100%;">
+                                        <option value="">Selecione...</option>
+                                        <?php foreach ($servicos as $servico) { ?>
+                                             <option value="<?= $servico['ServID'] ?>"><?= $servico['ServNome'] . '| Preço: ' . $servico['ServValor'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Quantidade</label>
+                                <input class="form-control" name="qtdServ" id="qtdServ">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Add</label>
+                                <button class="form-control btn btn-success btn-xs" onclick="return InserirServ('form_serv_os')" name="btnAddItem"><i class="fa fa-edit"></i></button>
+                            </div>
+                        </div>
+                        </form>
 
 
 
 
                     </div>
-                    </form>
+                    
 
 
 
                 </div>
-                <div id="table_result_item">
-                    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                <div id="tabela_result_item">
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover bg-primary">
                         <thead>
                             <tr>
                                 <th class="sorting_desc">Nome produto</th>

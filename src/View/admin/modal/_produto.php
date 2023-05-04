@@ -11,7 +11,7 @@
                         <div class="form-group col-md-12">
                             <label>Nome/Descrição</label>
                             <input type="hidden" name="ProdID" id="ProdID">
-                            <textarea class="form-control obg" id="ProdDescricao" name="ProdDescricao" style="resize: vertical" placeholder="Digite aqui...." maxlength="1000"></textarea>
+                            <textarea class="form-control obg" id="ProdDescricao" maxlength="100" name="ProdDescricao" style="resize: vertical" placeholder="Digite aqui...." maxlength="1000"></textarea>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Código de Barra</label>

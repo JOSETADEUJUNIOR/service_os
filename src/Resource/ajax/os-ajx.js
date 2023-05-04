@@ -2,7 +2,7 @@
 function ConsultarOs() {
     $.ajax({
         type: "POST",
-        url: BASE_URL_AJAX("Os_dataview"),
+        url: BASE_URL_AJAX("os_dataview"),
         data: {
             OsID: $("#OsProdID").val(),
             btn_consultar: 'ajx'
@@ -16,7 +16,7 @@ function ConsultarItensOs(OsID) {
     let idProd = OsID;
     $.ajax({
         type: "POST",
-        url: BASE_URL_AJAX("Os_dataview"),
+        url: BASE_URL_AJAX("os_dataview"),
         data: {
             OsID: idProd,
             btn_consultar_item: 'ajx'
@@ -25,23 +25,23 @@ function ConsultarItensOs(OsID) {
         }
     })
 }
-function AlterarOs(OsID, NumerNF, dtInicial, status, cliente, descricao, defeito, observacao, laudo ) {
+function AlterarOs(OsID, NumerNF, dtInicial, status, cliente, descricao, defeito, observacao, laudo) {
     alert('mudou');
     if (OsID > 0) {
-        
-            $("#DivProduto").show();
-            $("#OsID").val(OsID);
-            $("#numeroNF").val(NumerNF);
-            $("#dtInicial").val(dtInicial);
-            $("#status").val(status);
-            $("#Oscliente").val(cliente);
-            $("#descProd").val(descricao);
-            $("#defeito").val(defeito);
-            $("#obs").val(observacao);
-            $("#laudo").val(laudo);
-    
-            ConsultarItensOs(OsID);    
-        }
+
+        $("#DivProduto").show();
+        $("#OsID").val(OsID);
+        $("#numeroNF").val(NumerNF);
+        $("#dtInicial").val(dtInicial);
+        $("#status").val(status);
+        $("#Oscliente").val(cliente);
+        $("#descProd").val(descricao);
+        $("#defeito").val(defeito);
+        $("#obs").val(observacao);
+        $("#laudo").val(laudo);
+
+        ConsultarItensOs(OsID);
+    }
 }
 
 
@@ -52,7 +52,7 @@ function ConsultarAnxOs(OsID) {
     let idAnx = OsID;
     $.ajax({
         type: "POST",
-        url: BASE_URL_AJAX("Os_dataview"),
+        url: BASE_URL_AJAX("os_dataview"),
         data: {
             OsID: idAnx,
             btn_consultar_anx: 'ajx'
@@ -66,7 +66,7 @@ function ConsultarServOs(OsID) {
     let idServOS = OsID
     $.ajax({
         type: "POST",
-        url: BASE_URL_AJAX("Os_dataview"),
+        url: BASE_URL_AJAX("os_dataview"),
         data: {
             OsID: idServOS,
             btn_consultar_serv: 'ajx'
@@ -83,7 +83,7 @@ function ExcluirItemOs() {
     let produto = $("#ExcluirProdID").val();
     $.ajax({
         type: "POST",
-        url: BASE_URL_AJAX("Os_dataview"),
+        url: BASE_URL_AJAX("os_dataview"),
         data: {
             btnExcluirItemOs: 'ajx',
             OsID: OsID,
@@ -109,7 +109,7 @@ function Excluir() {
     alert($("#ExcluirID").val());
     $.ajax({
         type: "POST",
-        url: BASE_URL_AJAX("Os_dataview"),
+        url: BASE_URL_AJAX("os_dataview"),
         data: {
             btnExcluir: 'ajx',
             ExcluirID: id
@@ -130,7 +130,7 @@ function ExcluirAnx() {
     let OsID = $("#AnxOsID").val();
     $.ajax({
         type: "POST",
-        url: BASE_URL_AJAX("Os_dataview"),
+        url: BASE_URL_AJAX("os_dataview"),
         data: {
             btnExcluirAnx: 'ajx',
             AnxID: id
@@ -155,7 +155,7 @@ function ExcluirServ() {
     let servico = $("#ExcluirServID").val();
     $.ajax({
         type: "POST",
-        url: BASE_URL_AJAX("Os_dataview"),
+        url: BASE_URL_AJAX("os_dataview"),
         data: {
             btnExcluirServ: 'ajx',
             OsID: OsID,
@@ -186,7 +186,7 @@ function faturarOs(id, clienteID, valor) {
     let OsValor = valor;
     $.ajax({
         type: "POST",
-        url: BASE_URL_AJAX("Os_dataview"),
+        url: BASE_URL_AJAX("os_dataview"),
         data: {
             btnFaturar: 'ajx',
             OsID: OsID,
@@ -207,7 +207,7 @@ function faturarOs(id, clienteID, valor) {
 }
 
 function CadastrarOs(id_form) {
-alert($("#Oscliente").val());
+    alert($("#Oscliente").val());
     if (NotificarCampos(id_form)) {
         let OsID = $("#OsID").val();
         let OsNumeroNF = $("#numeroNF").val();
@@ -240,12 +240,12 @@ alert($("#Oscliente").val());
                 OsID: OsID
             },
             success: function (ret) {
-                if (ret !="") {
+                if (ret != "") {
                     MensagemSucesso();
                     console.log(ret);
                     $("#DivProduto").show();
                     $("#OsID").val(ret);
-                    
+
                 } else {
                     MensagemErro();
                 }
@@ -270,7 +270,7 @@ function CadastrarGarantia(id_form) {
         let laudo = $("#laudo").val();
         $.ajax({
             type: "POST",
-            url: BASE_URL_AJAX("Os_dataview"),
+            url: BASE_URL_AJAX("os_dataview"),
             data: {
                 btn_cadastrar: 'ajx',
                 Oscliente: Oscliente,
@@ -313,7 +313,7 @@ function InserirAnxOs(form_id) {
 
         $.ajax({
             type: "POST",
-            url: BASE_URL_AJAX("Os_dataview"),
+            url: BASE_URL_AJAX("os_dataview"),
             data:
                 formData,
             processData: false,
@@ -334,33 +334,33 @@ function InserirAnxOs(form_id) {
 
 function InserirProd() {
     let produto = $("#produto").val();
-        let qtdProd = $("#qtdProd").val();
-        let OsID = $("#OsID").val();
+    let qtdProd = $("#qtdProd").val();
+    let OsID = $("#OsID").val();
 
-        $.ajax({
-            type: "POST",
-            url: BASE_URL_AJAX("Os_dataview"),
-            data: {
-                btn_addItem: 'ajx',
-                produto: produto,
-                qtdProd: qtdProd,
-                OsID: OsID
+    $.ajax({
+        type: "POST",
+        url: BASE_URL_AJAX("os_dataview"),
+        data: {
+            btn_addItem: 'ajx',
+            produto: produto,
+            qtdProd: qtdProd,
+            OsID: OsID
 
-            },
-            success: function (ret) {
-                RemoverLoad();
-                if (ret == 1) {
-                    MensagemSucesso();
-                    $("#produto").val('');
-                    $("#qtdProd").val('');
-                    ConsultarItensOs(OsID);
-                    ConsultarServOs(OsID);
-                } else if (ret == -13) {
-                    alert('Você não possui estoque suficiênte!');
-                    MensagemErro();
-                }
+        },
+        success: function (ret) {
+            RemoverLoad();
+            if (ret == 1) {
+                MensagemSucesso();
+                $("#produto").val('');
+                $("#qtdProd").val('');
+                ConsultarItensOs(OsID);
+                ConsultarServOs(OsID);
+            } else if (ret == -13) {
+                alert('Você não possui estoque suficiênte!');
+                MensagemErro();
             }
-        })
+        }
+    })
 
     return false;
 }
@@ -371,11 +371,12 @@ function InserirServ(form_id) {
     if (NotificarCampos(form_id)) {
         let servico = $("#servico").val();
         let qtdServ = $("#qtdServ").val();
-        let OsID = $("#OsProdID").val();
+        let OsID = $("#OsID").val();
+        alert($("#OsProdID").val());
 
         $.ajax({
             type: "POST",
-            url: BASE_URL_AJAX("Os_dataview"),
+            url: BASE_URL_AJAX("os_dataview"),
             data: {
                 btn_addServ: 'ajx',
                 servico: servico,
@@ -416,7 +417,7 @@ function FiltrarStatus() {
     let filtrarate = $("#filtrarate").val();
     $.ajax({
         type: "POST",
-        url: BASE_URL_AJAX("Os_dataview"),
+        url: BASE_URL_AJAX("os_dataview"),
         data: {
             btnFiltrarStatus: 'ajx',
             filtroDe: filtrarde,
@@ -448,7 +449,7 @@ function StatusOS() {
 function FiltrarOrdem(nome_filtro) {
     $.ajax({
         type: "POST",
-        url: BASE_URL_AJAX("Os_dataview"),
+        url: BASE_URL_AJAX("os_dataview"),
         data: {
             btnFiltrar: 'ajx',
             FiltrarNome: nome_filtro
