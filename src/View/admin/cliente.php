@@ -45,7 +45,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/cliente_dataview.php';
 										<a href="#cliente" role="button" class="btn btn-success" data-toggle="modal"><i class="ace-icon fa fa-plus white"></i>Novo</a>
 										<?php //if (count($setor) > 0) { 
 										?>
-										<button type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
+										<button style="display: none;" type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
 										<?php //} 
 										?>
 									</h4>
