@@ -52,7 +52,7 @@ use Src\_public\Util;
 							<div class="row">
 								<div class="col-xs-12">
 									<h4 class="pink">
-										<a href="#os" role="button" class="btn btn-success" data-toggle="modal"><i class="ace-icon fa fa-plus white"></i>Novo</a>
+										<a href="#ordem" role="button" class="btn btn-success" data-toggle="modal"><i class="ace-icon fa fa-plus white"></i>Novo</a>
 									</h4>
 									<div class="table-header">
 										Buscar ordem de serviço
@@ -121,7 +121,7 @@ use Src\_public\Util;
 														</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="green" href="#os" role="button" data-toggle="modal" onclick="AlterarOs('<?=$os[$i]['OsID'] ?>','<?= $os[$i]['OsNumeroNF'] ?>', '<?=$os[$i]['OsDtInicial'] ?>','<?=$os[$i]['OsStatus'] ?>','<?=$os[$i]['OsCliID'] ?>','<?=$os[$i]['OsDescProdServ'] ?>','<?=$os[$i]['OsDefeito'] ?>','<?=$os[$i]['OsObs'] ?>','<?=$os[$i]['OsLaudoTec'] ?>')">
+																<a class="green" href="#ordem" role="button" data-toggle="modal" onclick="AlterarOs('<?=$os[$i]['OsID'] ?>','<?= $os[$i]['OsNumeroNF'] ?>', '<?=$os[$i]['OsDtInicial'] ?>','<?=$os[$i]['OsStatus'] ?>','<?=$os[$i]['OsCliID'] ?>','<?=$os[$i]['OsDescProdServ'] ?>','<?=$os[$i]['OsDefeito'] ?>','<?=$os[$i]['OsObs'] ?>','<?=$os[$i]['OsLaudoTec'] ?>')">
 																	<i title="Alterar Setor" class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
 																<a class="red" href="#modalExcluir" data-toggle="modal" onclick="ExcluirModal('<?= $equipamentosAlocados[$i]['id_alocar'] ?>', '<?= $equipamentosAlocados[$i]['descricao'] ?>')">

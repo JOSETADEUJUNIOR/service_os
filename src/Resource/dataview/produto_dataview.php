@@ -117,7 +117,11 @@ if (isset($_POST['btn_cadastrar'])) {
                             <td><?= $produto[$i]['ProdEstoque'] ?></td>
                             <td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
                             <?php if ($produto[$i]['ProdImagemPath'] != "") { ?>
-                            <td><center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center></td>
+                                <td>
+                                    <!-- <center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center> -->
+                                    <img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>">
+
+                                </td>
                             <?php } else { ?><td></td><?php } ?>
                             <td>
                                 <div class="col-xs-3">
@@ -138,7 +142,6 @@ if (isset($_POST['btn_cadastrar'])) {
                                         <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
                                             <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
                                         </button>
-
                                         <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                             <li>
                                                 <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
@@ -195,7 +198,11 @@ if (isset($_POST['btn_cadastrar'])) {
                         <td><?= $produto[$i]['ProdEstoque'] ?></td>
                         <td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
                         <?php if ($produto[$i]['ProdImagemPath'] != "") { ?>
-                        <td><center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center></td>
+                            <td>
+                                <!-- <center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center> -->
+                                <img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem brand-image img-circle elevation-3" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>">
+
+                            </td>
                         <?php } else { ?><td></td><?php } ?>
                         <td>
                             <div class="col-xs-3">
@@ -216,7 +223,6 @@ if (isset($_POST['btn_cadastrar'])) {
                                     <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
                                         <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
                                     </button>
-
                                     <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                         <li>
                                             <a href="#" class="tooltip-info" data-rel="tooltip" title="View">

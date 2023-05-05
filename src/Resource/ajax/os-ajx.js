@@ -336,7 +336,6 @@ function InserirProd() {
     let produto = $("#produto").val();
     let qtdProd = $("#qtdProd").val();
     let OsID = $("#OsID").val();
-
     $.ajax({
         type: "POST",
         url: BASE_URL_AJAX("os_dataview"),
@@ -356,8 +355,7 @@ function InserirProd() {
                 ConsultarItensOs(OsID);
                 ConsultarServOs(OsID);
             } else if (ret == -13) {
-                alert('Você não possui estoque suficiênte!');
-                MensagemErro();
+                MensagemGenerica('Você não possui estoque suficiênte!');
             }
         }
     })

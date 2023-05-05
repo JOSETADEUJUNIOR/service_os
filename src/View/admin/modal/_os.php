@@ -1,4 +1,4 @@
-<div class="modal fade" id="os">
+<div class="modal fade" id="ordem">
     <div class="modal-dialog modal-lg">
         <div class="modal-content bg-white">
             <div class="modal-header bg-primary">
@@ -78,9 +78,8 @@
                         </div>
                     </div>
                     <div id="DivProduto" style="display:none">
-                        <div class="col-md-8">
+                        <div class="col-md-9">
                             <form id="form_itens_os">
-                                <input type="hidden" name="OsProdID" id="OsProdID" value="<?= $ordemOS[0]['OsID'] ?>">
                                 <div class="form-group">
                                     <label>Produto</label>
                                     <select class="chosen-select" data-placeholder="Selecione o produto" id="produto" name="produto" style="width: 100%;">
@@ -97,7 +96,7 @@
                                 <input class="form-control" name="qtdProd" id="qtdProd">
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <div class="form-group">
                                 <label>Add</label>
                                 <button class="form-control btn btn-success btn-xs" onclick="return InserirProd()" name="btnAddItem"><i class="fa fa-edit"></i></button>
@@ -105,9 +104,8 @@
                         </div>
                     </form>
                     <?php # aqui abaixo vai ser carregado os serviços ?>
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                             <form id="form_serv_os">
-                                <input type="hidden" name="OsProdID" id="OsProdID" value="<?= $ordemOS[0]['OsID'] ?>">
                                 <div class="form-group">
                                     <label>Serviço</label>
                                     <select class="chosen-select" data-placeholder="Selecione o produto" id="servico" name="servico" style="width: 100%;">
@@ -124,7 +122,7 @@
                                 <input class="form-control" name="qtdServ" id="qtdServ">
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <div class="form-group">
                                 <label>Add</label>
                                 <button class="form-control btn btn-success btn-xs" onclick="return InserirServ('form_serv_os')" name="btnAddItem"><i class="fa fa-edit"></i></button>

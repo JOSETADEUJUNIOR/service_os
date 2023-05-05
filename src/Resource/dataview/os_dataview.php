@@ -25,9 +25,8 @@ $servicos = $ctrlServ->RetornarServicoController();
 $produtos = $ctrlProd->SelecioneProdutoCTRL();
 $clientes = $cliCtrl->SelecioneClienteCTRL();
 $ctrl = new OsController();
-/* $vo = new OsVO;
-$vo->setID(34);
-$ProdOrdem = $ctrl->RetornaProdOrdem($vo); */
+$vo = new OsVO;
+$ProdOrdem = $ctrl->RetornaProdOrdem($vo);
 
 $dadosOS = $ctrl->RetornarDadosOsController();
 
@@ -562,7 +561,7 @@ if (isset($_GET['OsMes'])) {
                                 <input type="hidden" id="ExcluirProdID" name="ExcluirProdID">
                                 <input type="hidden" id="ExcluirQtd" name="ExcluirQtd">
                         </td>
-                        <td><span class="btn btn-block btn-outline-primary btn-xs"> Produto</span></td>
+                        <td><span class="label label-info arrowed-right arrowed-in">produto</span></td>
                         <td><?= $ProdOrdem[$i]['ProdOsQtd'] ?></td>
                         <td><?= $ProdOrdem[$i]['ProdValorVenda'] ?></td>
                         <td><?= $ProdOrdem[$i]['ProdOsSubTotal'] ?></td>
@@ -583,7 +582,7 @@ if (isset($_GET['OsMes'])) {
                             <a href="#" onclick="ExcluirModalServ('<?= $ProdServOrdem[$i]['OsID'] ?>','<?= $ProdServOrdem[$i]['ServOsID'] ?>','<?= $ProdServOrdem[$i]['ServNome'] ?>','<?= $ProdServOrdem[$i]['ServOsServID'] ?>','<?= $ProdServOrdem[$i]['ServOsQtd'] ?>')" data-toggle="modal" data-target="#modalExcluirServ"><i style="color:red" class="fas fa-trash-alt"></i></a>
                         </td>
                         <td><?= $ProdServOrdem[$i]['ServNome'] ?></td>
-                        <td><span class="btn btn-block btn-outline-secondary btn-xs"> Serviço</span></td>
+                        <td><span class="label label-warning arrowed arrowed-right">serviço</span></td>
                         <td><?= $ProdServOrdem[$i]['ServOsQtd'] ?></td>
                         <td><?= $ProdServOrdem[$i]['ServValor'] ?></td>
                         <td><?= $ProdServOrdem[$i]['ServOsSubTotal'] ?></td>
@@ -593,7 +592,7 @@ if (isset($_GET['OsMes'])) {
 
         </tbody>
         <tbody>
-            <tr style="background-color: #dfdfdf;">
+            <tr style="background-color: #FFA500;">
                 <td colspan="4"><span><strong>Total de valores da OS: </strong></span></td>
                 <td colspan="1"><strong><?= 'R$: ' . $subTotal ?></strong></td>
                 <td colspan="2"><strong><?= 'R$: ' . $ordemOS[0]['OsValorTotal'] ?></strong></td>
