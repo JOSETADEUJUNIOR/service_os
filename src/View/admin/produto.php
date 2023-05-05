@@ -80,7 +80,9 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 														<td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
 														<?php if ($produto[$i]['ProdImagemPath'] != "") { ?>
 															<td>
-																<center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center>
+																<!-- <center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center> -->
+																<img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>">
+
 															</td>
 														<?php } else { ?><td></td><?php } ?>
 														<td>
@@ -135,6 +137,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 			</div><!-- /.main-content -->
 			<form id="form_produto" action="produto.php" method="post">
 				<?php include_once 'modal/_produto.php' ?>
+				<?php include_once 'modal/_imagens.php' ?>
 			</form>
 			<?php include_once PATH_URL . '/Template/_includes/_footer.php' ?>
 		</div><!-- /.final do conteudo Princial -->
