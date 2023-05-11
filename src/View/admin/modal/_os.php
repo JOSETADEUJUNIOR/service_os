@@ -102,16 +102,17 @@
                                 <button class="form-control btn btn-success btn-xs" onclick="return InserirProd()" name="btnAddItem"><i class="fa fa-edit"></i></button>
                             </div>
                         </div>
-                    </form>
-                    <?php # aqui abaixo vai ser carregado os serviços ?>
-                    <div class="col-md-9">
+                        </form>
+                        <?php # aqui abaixo vai ser carregado os serviços 
+                        ?>
+                        <div class="col-md-9">
                             <form id="form_serv_os">
                                 <div class="form-group">
                                     <label>Serviço</label>
                                     <select class="chosen-select" data-placeholder="Selecione o produto" id="servico" name="servico" style="width: 100%;">
                                         <option value="">Selecione...</option>
                                         <?php foreach ($servicos as $servico) { ?>
-                                             <option value="<?= $servico['ServID'] ?>"><?= $servico['ServNome'] . '| Preço: ' . $servico['ServValor'] ?></option>
+                                            <option value="<?= $servico['ServID'] ?>"><?= $servico['ServNome'] . '| Preço: ' . $servico['ServValor'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -134,7 +135,7 @@
 
 
                     </div>
-                    
+
 
 
 
@@ -226,5 +227,4 @@
    $("#nome").focus();
    $("#nome").reset();
 }); */
-
 </script>

@@ -77,7 +77,7 @@ use Src\_public\Util;
 											<span class="lbl"> Concluídas</span>
 										</label>
 									</div>
-									<div id="tabela_result_alocado">
+									<div id="tabela_result_os">
 										<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 											<thead>
 												<tr>
@@ -124,6 +124,9 @@ use Src\_public\Util;
 																<a class="green" href="#ordem" role="button" data-toggle="modal" onclick="AlterarOs('<?=$os[$i]['OsID'] ?>','<?= $os[$i]['OsNumeroNF'] ?>', '<?=$os[$i]['OsDtInicial'] ?>','<?=$os[$i]['OsStatus'] ?>','<?=$os[$i]['OsCliID'] ?>','<?=$os[$i]['OsDescProdServ'] ?>','<?=$os[$i]['OsDefeito'] ?>','<?=$os[$i]['OsObs'] ?>','<?=$os[$i]['OsLaudoTec'] ?>')">
 																	<i title="Alterar Setor" class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
+																<a class="green" href="#itens-os" role="button" data-toggle="modal" onclick="VerItens('<?=$os[$i]['OsID'] ?>')">
+																	<i title="Itens da os" class="ace-icon fa fa-list bigger-130"></i>
+																</a>
 																<a class="red" href="#modalExcluir" data-toggle="modal" onclick="ExcluirModal('<?= $equipamentosAlocados[$i]['id_alocar'] ?>', '<?= $equipamentosAlocados[$i]['descricao'] ?>')">
 																	<i title="Excluir Equipamento" class="ace-icon fa fa-trash-o bigger-130"></i>
 																</a>
@@ -169,6 +172,9 @@ use Src\_public\Util;
 		<form id="form_os" action="os.php" method="post">
 			<?php include_once 'modal/_os.php' ?>
 			<?php include_once 'modal/_excluir.php' ?>
+			<?php include_once 'modal/_itens_os.php' ?>
+			<?php include_once 'modal/_excluirServ.php' ?>
+			<?php include_once 'modal/_excluirItem.php' ?>
 
 		</form>
 

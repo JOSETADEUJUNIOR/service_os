@@ -18,7 +18,7 @@ class ChamadoController
 
     public function AbrirChamadoController(ChamadoVO $vo)
     {
-        if (empty($vo->getDescrciaoProblema()) || empty($vo->getAlocar())) {
+        if (empty($vo->getDescrciaoProblema()) || empty($vo->getNumero_nf()) || empty($vo->getCliente_id()) || empty($vo->getDefeito()) || empty($vo->getObservacao())) {
             return 0;
         }
 
@@ -41,13 +41,13 @@ class ChamadoController
         return $this->dao->FiltrarChamado($tipo, $setor);
     }
 
-    public function FiltrarChamadoGeralController($tipo, $setorID)
+    public function FiltrarChamadoGeralController($empresa_id, $tipo, $setorID)
     {
         if ($tipo == '') {
             return 0;
         }
 
-        return $this->dao->FiltrarChamadoGeralDAO($tipo, $setorID);
+        return $this->dao->FiltrarChamadoGeralDAO($empresa_id, $tipo, $setorID);
     }
 
     public function AtenderChamadoController(ChamadoVO $vo): int

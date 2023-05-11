@@ -104,14 +104,14 @@ require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
             <b class="arrow"></b>
         </li>
 
-        <li class="hover">
+       <!--  <li class="hover">
             <a href="equipamento.php">
                 <i class="menu-icon fa fa-laptop"></i>
                 Equipamento
             </a>
 
             <b class="arrow"></b>
-        </li>
+        </li> -->
         <li class="hover">
             <a href="servico.php">
                 <i class="menu-icon fa fa-laptop"></i>
@@ -120,14 +120,14 @@ require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 
             <b class="arrow"></b>
         </li>
-        <li class="hover">
+        <!-- <li class="hover">
             <a href="tipoequipamento.php">
                 <i class="menu-icon fa fa-desktop"></i>
                 Tipo Equipamento
             </a>
 
             <b class="arrow"></b>
-        </li>
+        </li> -->
         <li class="hover">
             <a href="setor.php">
                 <i class="menu-icon fa fa-users"></i>
@@ -136,29 +136,29 @@ require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 
             <b class="arrow"></b>
         </li>
-        <li class="hover">
+       <!--  <li class="hover">
             <a href="modelo.php">
                 <i class="menu-icon fa fa-list"></i>
                 Modelo
             </a>
 
             <b class="arrow"></b>
-        </li>
+        </li> -->
 
     </ul>
     </li>
 
-    <li class="">
+    <!-- <li class="">
         <a href="alocar_equipamento.php">
             <i class="menu-icon fa fa-exchange"></i>
             <span class="menu-text"> Alocar Equipamento </span>
         </a>
 
         <b class="arrow"></b>
-    </li>
+    </li> -->
     <li class="">
         <a href="os.php">
-            <i class="menu-icon fa fa-exchange"></i>
+            <i class="menu-icon fa fa-wrench"></i>
             <span class="menu-text"> Ordem serviço </span>
         </a>
 

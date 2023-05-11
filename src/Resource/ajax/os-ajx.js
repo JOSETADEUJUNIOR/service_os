@@ -1,3 +1,18 @@
+function VerItens(OsID){
+    alert('asd');
+    $.ajax({
+        type: "POST",
+        url: BASE_URL_AJAX("os_dataview"),
+        data: {
+            OsID: OsID,
+            btn_consultar_os: 'ajx'
+        }, success: function (tabela_preenchida) {
+            $("#tabela_result_os_itens").html(tabela_preenchida);
+        }
+    })
+}
+
+
 
 function ConsultarOs() {
     $.ajax({
@@ -245,6 +260,7 @@ function CadastrarOs(id_form) {
                     console.log(ret);
                     $("#DivProduto").show();
                     $("#OsID").val(ret);
+                    ConsultarOs();
 
                 } else {
                     MensagemErro();

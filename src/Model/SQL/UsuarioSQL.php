@@ -249,7 +249,8 @@ LEFT JOIN tb_setor as st
                         senha,
                         tipo,
                         setor_id,
-                        status
+                        status,
+                        UserEmpID
                 FROM tb_usuario
                 LEFT JOIN tb_funcionario
                     ON tb_usuario.id = tb_funcionario.funcionario_id

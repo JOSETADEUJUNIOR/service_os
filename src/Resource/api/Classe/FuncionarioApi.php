@@ -7,6 +7,8 @@ use Src\Resource\api\Classe\ApiRequest;
 use Src\Controller\UsuarioController;
 use Src\VO\FuncionarioVO;
 use Src\Controller\EquipamentoController;
+use Src\Controller\ProdutoController;
+use Src\Controller\ClienteController;
 use Src\VO\ChamadoVO;
 use Src\VO\UsuarioVO;
 
@@ -61,8 +63,11 @@ class FuncionarioApi extends ApiRequest
 
         $vo->setId($this->params['id_user']);
         $vo->setDescrciaoProblema($this->params['problema']);
-        $vo->setAlocar($this->params['id_alocar']);
-
+        $vo->setNumero_nf($this->params['numero_nf']);
+        $vo->setDefeito($this->params['defeito']);
+        $vo->setObservacao($this->params['observacao']);
+        $vo->setCliente_id($this->params['cliente_id']);
+        $vo->setEmpresa_id($this->params['empresa_id']);
         return (new ChamadoController)->AbrirChamadoController($vo);
     }
 
@@ -75,6 +80,14 @@ class FuncionarioApi extends ApiRequest
         return (new EquipamentoController)->SelecionarEquipamentosAlocadosSetorController($this->params['id_setor']);
     }
 
+    public function RetornarProdutos()
+    {
+        return (new ProdutoController)->SelecioneProdutoCTRL();
+    }
+    public function RetornarClientes()
+    {
+        return (new ClienteController)->SelecioneClienteCTRL();
+    }
     public function FiltrarChamado()
     {
         return (new ChamadoController)->FiltrarChamadoController($this->params['situacao'], $this->params['id_setor']);
@@ -82,7 +95,7 @@ class FuncionarioApi extends ApiRequest
 
     public function FiltrarChamadoGeral()
     {
-        return (new ChamadoController)->FiltrarChamadoGeralController($this->params['situacao'], $this->params['id_setor'] ?? '');
+        return (new ChamadoController)->FiltrarChamadoGeralController($this->params['empresa_id'], $this->params['situacao'], $this->params['id_setor'] ?? '');
     }
 
     public function VerificarSenhaAtual()

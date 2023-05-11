@@ -16,6 +16,23 @@ function AlterarProdutoModal(ProdID, ProdDescricao, ProdCodBarra, ProdValorCompr
     $("#ProdEstoqueMin").val(ProdEstoqueMin);
 }
 
+function ExcluirModalItem(OsID, id, nome, idProduto, qtd) {
+    alert('item');
+    $("#ExcluirOsID").val(OsID);
+    $("#ExcluirID").val(id);
+    $("#ExcluirNome").html(nome);
+    $("#ExcluirProdID").val(idProduto);
+    $("#ExcluirQtd").val(qtd);
+}
+function ExcluirModalServ(OsID, id, nomeServ, idServ, qtd) {
+    $("#ExcluirOsID").val(OsID);
+    $("#ExcluirID").val(id);
+    $("#ExcluirNomeServ").html(nomeServ);
+    $("#ExcluirServID").val(idServ);
+    $("#ExcluirQtd").val(qtd);
+}
+
+
 function AlterarClienteModal(CliID, CliNome, CliDtNasc, CliCpfCnpj, CliTipo, CliTelefone, CliEmail, cep, endereco, bairro, CliNumero, cidade, estado, CliDescricao) {
 
     $("#CliID").val(CliID);

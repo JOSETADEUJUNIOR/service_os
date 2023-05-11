@@ -24,19 +24,16 @@ class ChamadoDAO extends Conexao
         $sql->bindValue($i++, $vo->getDataAbertura());
         $sql->bindValue($i++, $vo->getDescrciaoProblema());
         $sql->bindValue($i++, $vo->getId());
-        $sql->bindValue($i++, $vo->getAlocar());
+        $sql->bindValue($i++, $vo->getNumero_nf());
+        $sql->bindValue($i++, $vo->getDefeito());
+        $sql->bindValue($i++, $vo->getObservacao());
+        $sql->bindValue($i++, $vo->getCliente_id());
+        $sql->bindValue($i++, $vo->getEmpresa_id());
+        
 
-        $this->conexao->beginTransaction();
+       
         try {
             $sql->execute();
-
-            $sql = $this->conexao->prepare(ChamadoSQL::ATUALIZAR_ALOCAMENTO());
-            $i = 1;
-            $sql->bindValue($i++, $vo->getSituacao());
-            $sql->bindValue($i++, $vo->getAlocar());
-            $sql->execute();
-
-            $this->conexao->commit();
             return 1;
         } catch (\Exception $ex) {
             $this->conexao->rollBack();
@@ -59,12 +56,13 @@ class ChamadoDAO extends Conexao
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function FiltrarChamadoGeralDAO($tipo, $setorID)
+    public function FiltrarChamadoGeralDAO($empresa_id, $tipo, $setorID)
     {
         $sql = $this->conexao->prepare(ChamadoSQL::FILTRAR_CHAMADO_GERAL($tipo, $setorID));
         if (!empty($setorID)) {
 
-            $sql->bindValue(1, $setorID);
+            $sql->bindValue(1, $empresa_id);
+            $sql->bindValue(2, $setorID);
         }
         $sql->execute();
 

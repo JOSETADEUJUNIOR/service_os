@@ -8,7 +8,7 @@ class ChamadoSQL
 
     public static function AbrirChamadoSQL()
     {
-        $sql = 'INSERT into tb_chamado (data_abertura, descricao_problema, funcionario_id, alocar_id) VALUES (?,?,?,?)';
+        $sql = 'INSERT into tb_chamado (data_abertura, descricao_problema, funcionario_id, numero_nf, defeito, observacao, cliente_CliID, empresa_EmpID) VALUES (?,?,?,?,?,?,?,?)';
         return $sql;
     }
 
@@ -29,9 +29,6 @@ class ChamadoSQL
                        ch.laudo_tecnico,
                        us_fu.nome as nome_funcionario,
                        us_te.nome as nome_tecnico,
-                       eq.identificacao,
-                       mo.nome as nome_modelo,
-                       ti.nome as nome_tipo,
                        (SELECT nome From tb_usuario Where id = ch.tecnico_encerramento) as tecnico_encerramento
 	                    FROM
 	                    tb_chamado as ch
@@ -43,14 +40,6 @@ class ChamadoSQL
 	                    on te.tecnico_id = ch.tecnico_atendimento
 	                    LEFT JOIN tb_usuario as us_te
 	                    on us_te.id = te.tecnico_id
-	                    INNER JOIN tb_alocar as al
-	                    on al.id = ch.alocar_id
-	                    INNER JOIN tb_equipamento as eq
-	                    on eq.id = al.equipamento_id
-	                    INNER JOIN tb_modeloequip as mo
-	                    on mo.id = eq.modeloequip_id
-	                    INNER JOIN tb_tipoequip as ti
-	                    on ti.id = eq.tipoequip_id
                         ';
         switch ($tipo) {
             case '1':
@@ -85,10 +74,10 @@ class ChamadoSQL
                        ch.tecnico_encerramento,
                        us_fu.nome as nome_funcionario,
                        us_te.nome as nome_tecnico,
-                       eq.identificacao,
-                       mo.nome as nome_modelo,
-                       ti.nome as nome_tipo,
-                       al.id as idAlocado, 
+                       cli.CliNome as nome_cliente,
+                       ch.numero_nf as numero_nf,
+                       ch.defeito as defeito,
+                       ch.observacao as observacao,
                        (SELECT nome From tb_usuario Where id = ch.tecnico_encerramento) as tecnico_encerramento
 	                    FROM
 	                    tb_chamado as ch
@@ -100,28 +89,25 @@ class ChamadoSQL
 	                    on te.tecnico_id = ch.tecnico_atendimento
 	                    LEFT JOIN tb_usuario as us_te
 	                    on us_te.id = te.tecnico_id
-	                    INNER JOIN tb_alocar as al
-	                    on al.id = ch.alocar_id
-	                    INNER JOIN tb_equipamento as eq
-	                    on eq.id = al.equipamento_id
-	                    INNER JOIN tb_modeloequip as mo
-	                    on mo.id = eq.modeloequip_id
-	                    INNER JOIN tb_tipoequip as ti
-	                    on ti.id = eq.tipoequip_id';
+                        INNER JOIN tb_cliente as cli
+                        on ch.cliente_CliID = cli.CliID
+                        INNER JOIN tb_empresa as emp
+                        on ch.empresa_EmpID = emp.EmpID
+	                    WHERE emp.EmpID = ?';
 
         switch ($tipo) {
             case '1':
-                $sql .= ' WHERE data_atendimento is null';
+                $sql .= ' AND data_atendimento is null';
                 break;
             case '2':
-                $sql .= ' WHERE data_atendimento is not null AND data_encerramento is null';
+                $sql .= ' AND data_atendimento is not null AND data_encerramento is null';
                 break;
             case '3':
-                $sql .= ' WHERE data_encerramento is not null';
+                $sql .= ' AND data_encerramento is not null';
                 break;
         }
         if (!empty($setorID)) {
-            $sql .= ' AND al.setor_id = ?';
+            $sql .= ' AND fu.setor_id = ?';
         }
         $sql .= ' Order by data_encerramento desc, data_abertura desc';
         return $sql;

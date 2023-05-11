@@ -18,6 +18,11 @@ class ChamadoVO extends TecnicoVO
     private $tecnico_encerramento;
     private $alocar;
     private $situacao;
+    private $numero_nf;
+    private $defeito;
+    private $observacao;
+    private $cliente_id;
+    private $empresa_id;
 
 
 
@@ -198,6 +203,107 @@ class ChamadoVO extends TecnicoVO
     public function setSituacao($situacao)
     {
         $this->situacao = $situacao;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of numero_nf
+     */ 
+    public function getNumero_nf()
+    {
+        return $this->numero_nf;
+    }
+
+    /**
+     * Set the value of numero_nf
+     *
+     * @return  self
+     */ 
+    public function setNumero_nf($numero_nf)
+    {
+        $this->numero_nf = $numero_nf;
+
+        return $this;
+    }
+    
+
+    /**
+     * Get the value of defeito
+     */ 
+    public function getDefeito()
+    {
+        return $this->defeito;
+    }
+
+    /**
+     * Set the value of defeito
+     *
+     * @return  self
+     */ 
+    public function setDefeito($defeito)
+    {
+        $this->defeito = $defeito;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of observacao
+     */ 
+    public function getObservacao()
+    {
+        return $this->observacao;
+    }
+
+    /**
+     * Set the value of observacao
+     *
+     * @return  self
+     */ 
+    public function setObservacao($observacao)
+    {
+        $this->observacao = $observacao;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cliente_id
+     */ 
+    public function getCliente_id()
+    {
+        return $this->cliente_id;
+    }
+
+    /**
+     * Set the value of cliente_id
+     *
+     * @return  self
+     */ 
+    public function setCliente_id($cliente_id)
+    {
+        $this->cliente_id = $cliente_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of empresa_id
+     */ 
+    public function getEmpresa_id()
+    {
+        return $this->empresa_id;
+    }
+
+    /**
+     * Set the value of empresa_id
+     *
+     * @return  self
+     */ 
+    public function setEmpresa_id($empresa_id)
+    {
+        $this->empresa_id = $empresa_id;
 
         return $this;
     }
