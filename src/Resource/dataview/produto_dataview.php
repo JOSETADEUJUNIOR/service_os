@@ -22,24 +22,31 @@ if (isset($_POST['btn_cadastrar'])) {
         $vo->setProdValorVenda($_POST['ProdValorVenda']);
         $vo->setProdEstoqueMin($_POST['ProdEstoqueMin']);
         $vo->setProdEstoque($_POST['ProdEstoque']);
-        $arquivos = $_FILES['ProdImagem'];
-
-        if ($arquivos['size'] > 2097152)
-            die("Arquivo muito grande !! Max: 2MB");
-
-        $pasta = "arquivos/";
-        @mkdir($pasta);
-        $nomeDoArquivo = $arquivos['name'];
-        $novoNomeDoArquivo = uniqid();
-        $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
-        if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != '')
-            die("Tipo de arquivo não aceito");
-
-        $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
-        $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
-        $vo->setProdImagem($nomeDoArquivo);
-        $vo->setProdImagemPath($path);
-        $ret = $ctrl->CadastrarProdutoCTRL($vo);
+        if (isset($_FILES) && $_FILES != null) {
+            $arquivos = $_FILES['ProdImagem'];
+            if ($arquivos['name'] != "") {
+                if ($arquivos['size'] > 2097152) { # 2097152 = 2MB
+                    $ret = 10;
+                } else {
+                    $pasta = CAMINHO_PARA_SALVAR_IMG_PRODUTO;
+                    @mkdir($pasta);
+                    $nomeDoArquivo = $arquivos['name'];
+                    $novoNomeDoArquivo = uniqid();
+                    $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
+                    if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != '') {
+                        $ret = 11;
+                    } else {
+                        $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
+                        $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
+                        $vo->setProdImagem($nomeDoArquivo);
+                        $vo->setProdImagemPath($path);
+                        $ret = $ctrl->CadastrarProdutoCTRL($vo);
+                    }
+                }
+            }
+        } else {
+            $ret = $ctrl->CadastrarProdutoCTRL($vo);
+        }
         if ($_POST['btn_cadastrar'] == 'ajx') {
             echo $ret;
         }
@@ -52,24 +59,31 @@ if (isset($_POST['btn_cadastrar'])) {
         $vo->setProdValorVenda($_POST['ProdValorVenda']);
         $vo->setProdEstoqueMin($_POST['ProdEstoqueMin']);
         $vo->setProdEstoque($_POST['ProdEstoque']);
-        $arquivos = $_FILES['ProdImagem'];
-
-        if ($arquivos['size'] > 2097152)
-            die("Arquivo muito grande !! Max: 2MB");
-
-        $pasta = "arquivos/";
-        @mkdir($pasta);
-        $nomeDoArquivo = $arquivos['name'];
-        $novoNomeDoArquivo = uniqid();
-        $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
-        if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != '')
-            die("Tipo de arquivo não aceito");
-
-        $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
-        $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
-        $vo->setProdImagem($nomeDoArquivo);
-        $vo->setProdImagemPath($path);
-        $ret = $ctrl->AlterarProdutoCTRL($vo);
+        if (isset($_FILES) && $_FILES != null) {
+            $arquivos = $_FILES['ProdImagem'];
+            if ($arquivos['name'] != "") {
+                if ($arquivos['size'] > 2097152) { # 2097152 = 2MB
+                    $ret = 10;
+                } else {
+                    $pasta = CAMINHO_PARA_SALVAR_IMG_PRODUTO;
+                    @mkdir($pasta);
+                    $nomeDoArquivo = $arquivos['name'];
+                    $novoNomeDoArquivo = uniqid();
+                    $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
+                    if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != '') {
+                        $ret = 11;
+                    } else {
+                        $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
+                        $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
+                        $vo->setProdImagem($nomeDoArquivo);
+                        $vo->setProdImagemPath($path);
+                        $ret = $ctrl->AlterarProdutoCTRL($vo);
+                    }
+                }
+            }
+        } else {
+            $ret = $ctrl->AlterarProdutoCTRL($vo);
+        }
         if ($_POST['btn_cadastrar'] == 'ajx') {
             echo $ret;
         }

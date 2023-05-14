@@ -86,6 +86,9 @@ const ORDEM_EM_ANDAMENTO    = "EA";
 const ORDEM_CANCELADA       = "C";
 const ORDEM_CONCLUIDA       = "F";
 
+# Caminho para salvar img do produto
+const CAMINHO_PARA_SALVAR_IMG_PRODUTO = "arquivos/";
+
 #para acessos localhost
 define('PATH_URL', $_SERVER["DOCUMENT_ROOT"] . '/service_os/src/');
 

@@ -33,7 +33,11 @@
                             <label>Estoque Mínimo</label>
                             <input class="form-control obg num" id="ProdEstoqueMin" name="ProdEstoqueMin" placeholder="Digite aqui....">
                         </div>
-                        <div class="form-group col-md-12">
+                        <center>
+                            <img style="display: none;" id="imgProd" height="100px" width="150px" alt="Photo 2" class="img-fluid obg">
+                            <p>
+                        </center>
+                        <!-- <div class="form-group col-md-12">
                             <label class="ace-file-input">
                                 <input type="file" class="form-control" id="ProdImagem" name="ProdImagem" placeholder="Digite aqui...." maxlength="100">
                                 <span class="ace-file-container" data-title="Arquivo">
@@ -42,6 +46,9 @@
                                     </span>
                                 </span>
                             </label>
+                        </div> -->
+                        <div class="form-group col-md-12">
+                            <input type="file" class="form-control" id="ProdImagem" name="ProdImagem">
                         </div>
                     </div>
                 </div>
@@ -49,7 +56,7 @@
 
         </div>
         <div class="modal-footer justify-content-between">
-            <button type="button" onclick="FechandoModal('form_produto')" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+            <button type="button" onclick="FechandoModal('form_produto'); LimparImgProdutoAjx();" class="btn btn-info" data-dismiss="modal">Cancelar</button>
             <button name="btnGravar" class="btn btn-success" onclick="return CadastrarProduto('form_produto')">Salvar</button>
         </div>
     </div>
