@@ -49,11 +49,19 @@ class ClienteController
 
     public function SelecioneClienteCTRL(): array
     {
-        return $this->dao->SelecionarClienteDAO();
+        $dados = $this->dao->SelecionarClienteDAO(); 
+        for ($i = 0; $i < count($dados); $i++){
+            $dados[$i]['CliDtNasc'] = Util::ExibirDataBr($dados[$i]['CliDtNasc']);
+        }
+        return $dados;
     }
 
     public function FiltrarClienteCTRL($nome_filtro)
     {
-        return $this->dao->FiltrarClienteDAO($nome_filtro);
+        $dados = $this->dao->FiltrarClienteDAO($nome_filtro);
+        for ($i = 0; $i < count($dados); $i++){
+            $dados[$i]['CliDtNasc'] = Util::ExibirDataBr($dados[$i]['CliDtNasc']);
+        }
+        return $dados;
     }
 }

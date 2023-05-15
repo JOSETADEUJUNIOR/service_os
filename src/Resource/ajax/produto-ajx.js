@@ -1,6 +1,6 @@
 
 function CadastrarProduto(id_form) {
-
+    var img = $("#ProdImagem").prop("files")[0];
     if (NotificarCampos(id_form)) {
         var formData = new FormData();
         formData.append("ProdID", $("#ProdID").val());
@@ -10,7 +10,9 @@ function CadastrarProduto(id_form) {
         formData.append("ProdValorVenda", $("#ProdValorVenda").val());
         formData.append("ProdEstoque", $("#ProdEstoque").val());
         formData.append("ProdEstoqueMin", $("#ProdEstoqueMin").val());
-        formData.append("ProdImagem", $("#ProdImagem").prop("files")[0]);
+        if (img != ""){
+            formData.append("ProdImagem", img);
+        }
         formData.append("btn_cadastrar", 'ajx');
         $.ajax({
             type: "POST",
@@ -18,18 +20,64 @@ function CadastrarProduto(id_form) {
             data: formData,
             processData: false,
             contentType: false,
-            success: function (ret) {
-                $("#produto").modal("hide");
-                RemoverLoad();
-                if (ret == '1') {
+            success: function (resultado) {
+                if (resultado == 1) {
                     MensagemSucesso();
                     LimparCampos(id_form);
                     ConsultarProduto();
+                    $("#produto").modal("hide");
+                } else if (resultado == 10){
+                    MensagemGenerica('Arquivo muito grande !! Max: 2MB');
+                } else if (resultado == 11){
+                    MensagemGenerica('Tipo de arquivo não aceito'); 
                 } else {
                     MensagemErro();
                 }
             }
         })
+    }
+    return false;
+}
+
+function Cadastrarteste(id_form) {
+    let img = $("#ProdImagem").prop("files")[0];
+    
+    if (NotificarCampos(id_form)) {
+        let reader = new FileReader();
+        reader.onload = function () {
+            let base64String = reader.result.split(",")[1];
+            let dados = {
+                ProdID: $("#ProdID").val(),
+                ProdDescricao: $("#ProdDescricao").val(),
+                ProdCodBarra: $("#ProdCodBarra").val(),
+                ProdValorCompra: $("#ProdValorCompra").val(),
+                ProdValorVenda: $("#ProdValorVenda").val(),
+                ProdEstoque: $("#ProdEstoque").val(),
+                ProdEstoqueMin: $("#ProdEstoqueMin").val(),
+                Nome: img['name'],
+                Type: img['type'],
+                Size: img['size'],
+                btn_cadastrar: 'ajx',
+                ProdImagem: base64String
+            };
+            $.ajax({
+                type: "POST",
+                url: BASE_URL_AJAX("produto_dataview"),
+                data: JSON.stringify(dados),
+                success: function (ret) {
+                    $("#produto").modal("hide");
+                    RemoverLoad();
+                    if (ret == 1) {
+                        MensagemSucesso();
+                        LimparCampos(id_form);
+                        ConsultarProduto();
+                    } else {
+                        MensagemErro();
+                    }
+                }
+            })
+        }
+        reader.readAsDataURL(img);
     }
     return false;
 }
@@ -80,3 +128,22 @@ function MudarStatusProduto(id_produto, valor) {
         }
     })
 }
+
+function LimparImgProdutoAjx(){
+    $("#ProdImagem").val('');
+    $("#imgProd").attr('src', '');
+    $("#imgProd").hide(); 
+}
+
+$("#ProdImagem").change(function() {
+    $("#imgProd").show();
+    let ProdImagem = $("#ProdImagem").prop("files")[0];
+    let reader = new FileReader();
+    reader.onload = function() {
+        let base64String = reader.result.split(",")[1]; // Extract the base64 string from the data URL
+        // Adicionar preview da imagem selecionada
+        let imgPreview = document.getElementById("imgProd");
+        imgPreview.src = reader.result;
+    };
+    reader.readAsDataURL(ProdImagem); // Read the file as a data URL
+});
