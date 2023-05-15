@@ -12,6 +12,35 @@ class ChamadoSQL
         return $sql;
     }
 
+    public static function GravarDadosProdOsSQL()
+    {
+
+        $sql = 'INSERT into tb_referencia (chamado_id, produto_ProdID, empresa_EmpID, quantidade, valor) VALUES (?,?,?,?,?)';
+        return $sql;
+    }
+
+
+    public static function ConsultarSaldoProdutoSQL()
+    {
+        $sql = 'SELECT ProdEstoque 
+                    FROM tb_produto
+                        WHERE ProdID = ?';
+        return $sql;
+    }
+
+    public static function AtualizarSaldoProdutoSQL()
+    {
+        return "UPDATE tb_produto SET ProdEstoque = ProdEstoque - ? WHERE ProdID = ?";
+    }
+
+    public static function GravarDadosServOsSQL()
+    {
+
+        $sql = 'INSERT into tb_referencia (chamado_id, servico_ServID, empresa_EmpID, quantidade, valor) VALUES (?,?,?,?,?)';
+        return $sql;
+    }
+
+
     public static function ATUALIZAR_ALOCAMENTO()
     {
         $sql = 'UPDATE tb_alocar set situacao = ?
@@ -54,7 +83,8 @@ class ChamadoSQL
         }
         return $sql;
     }
-    public static function FILTRAR_CHAMADO_ABERTO(){
+    public static function FILTRAR_CHAMADO_ABERTO()
+    {
         $sql = 'SELECT count(0) as QuantidadeChamado 
         from tb_chamado
             where data_abertura is not null and data_atendimento is null and data_encerramento is null';
@@ -136,7 +166,8 @@ class ChamadoSQL
         return $sql;
     }
 
-    public static function ChamadosPorFuncionarioSQL(){
+    public static function ChamadosPorFuncionarioSQL()
+    {
         $sql = 'SELECT us.nome, COUNT(*) as total_chamados, (SELECT SUM(total_chamados) FROM (SELECT COUNT(*) as total_chamados FROM tb_usuario us2 JOIN tb_chamado ch2 ON us2.id = ch2.funcionario_id GROUP BY us2.nome) as subquery) as total_geral
                 FROM tb_usuario us
                      JOIN tb_chamado ch ON us.id = ch.funcionario_id
@@ -144,8 +175,18 @@ class ChamadoSQL
         return $sql;
     }
 
+    public static function CarregarProdutoOSSQL()
+    {
+        $sql = 'SELECT referencia_id, chamado_id, produto_ProdID, ProdDescricao, quantidade, valor, (quantidade*valor) as valorTotal
+                FROM tb_referencia as rf
+                    INNER JOIN tb_produto as prod
+                        on rf.produto_ProdID = prod.ProdID
+                            Where rf.chamado_id = ?';
+        return $sql;
+    }
 
-    public static function ChamadosPorPeriodoSQL(){
+    public static function ChamadosPorPeriodoSQL()
+    {
         $sql = 'SELECT YEAR(data_abertura) AS ano, MONTH(data_abertura) AS mes, COUNT(*) AS total_chamados
                 FROM tb_chamado
                     GROUP BY ano, mes
@@ -153,7 +194,8 @@ class ChamadoSQL
         return $sql;
     }
 
-    public static function ChamadosPorSetorSQL(){
+    public static function ChamadosPorSetorSQL()
+    {
 
         $sql = 'SELECT tb_setor.nome_setor, COUNT(*) as quantidade_por_setor
                 FROM tb_chamado
@@ -162,7 +204,4 @@ class ChamadoSQL
                     GROUP BY tb_setor.nome_setor;';
         return $sql;
     }
-
-
-
 }

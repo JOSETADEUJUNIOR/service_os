@@ -10,6 +10,7 @@ use Src\Controller\EquipamentoController;
 use Src\Controller\ProdutoController;
 use Src\Controller\ClienteController;
 use Src\VO\ChamadoVO;
+use Src\VO\ReferenciaOS;
 use Src\VO\UsuarioVO;
 
 class FuncionarioApi extends ApiRequest
@@ -70,6 +71,39 @@ class FuncionarioApi extends ApiRequest
         $vo->setEmpresa_id($this->params['empresa_id']);
         return (new ChamadoController)->AbrirChamadoController($vo);
     }
+
+    public function GravarDadosOs()
+    {
+        $vo = new ReferenciaOS();
+        
+        $vo->setProduto_ProdID($this->params['produto']);
+        $vo->setQuantidade($this->params['quantidades']);
+        $vo->setValor($this->params['valores']);
+        $vo->setChamado_id($this->params['ordem']);
+        $vo->setEmpresa_EmpID($this->params['empresa_id']);
+        return (new ChamadoController)->GravarDadosOsController($vo);
+    }
+
+
+    public function GravarDadosOsGeral()
+    {
+        
+        $produtos = $this->params['Produtos'] ;
+        $chamado_id = $this->params['chamado_id']; 
+        $empresa_id = $this->params['empresa_id'];
+    
+        return (new ChamadoController)->GravarDadosOsGeralController($produtos, $chamado_id, $empresa_id);
+    }
+
+    public function CarregarProdutosOS()
+    {   
+       
+        return (new ChamadoController)->CarregarProdutosOSController($this->params['chamado_id']);
+    }
+
+    
+
+
 
     public function SelecionarEquipamentosAlocadosSetorController()
     {
