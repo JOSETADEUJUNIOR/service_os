@@ -6,6 +6,7 @@ use Exception;
 use Src\Model\Conexao;
 use Src\VO\ChamadoVO;
 use Src\Model\SQL\ChamadoSQL;
+use Src\VO\ReferenciaOS;
 
 class ChamadoDAO extends Conexao
 {
@@ -16,6 +17,7 @@ class ChamadoDAO extends Conexao
     {
         $this->conexao = parent::retornaConexao();
     }
+
 
     public function AbrirChamado(ChamadoVO $vo): int
     {
@@ -29,9 +31,9 @@ class ChamadoDAO extends Conexao
         $sql->bindValue($i++, $vo->getObservacao());
         $sql->bindValue($i++, $vo->getCliente_id());
         $sql->bindValue($i++, $vo->getEmpresa_id());
-        
 
-       
+
+
         try {
             $sql->execute();
             return 1;
@@ -42,7 +44,88 @@ class ChamadoDAO extends Conexao
             return -1;
         }
     }
-    public function FiltrarChamadoAbertoDAO(){
+
+    public function GravarDadosOsDAO(ReferenciaOS $vo)
+    {
+
+        if ($vo->getServico_ServID() != "") {
+            $sql = $this->conexao->prepare(ChamadoSQL::GravarDadosServOsSQL());
+            $i = 1;
+            $sql->bindValue($i++, $vo->getChamado_id());
+            $sql->bindValue($i++, $vo->getServico_ServID());
+            $sql->bindValue($i++, $vo->getEmpresa_EmpID());
+            $sql->bindValue($i++, $vo->getQuantidade());
+            $sql->bindValue($i++, $vo->getValor());
+        }
+        if ($vo->getProduto_ProdID() != "") {
+            $sql = $this->conexao->prepare(ChamadoSQL::GravarDadosProdOsSQL());
+            $i = 1;
+            $sql->bindValue($i++, $vo->getChamado_id());
+            $sql->bindValue($i++, $vo->getProduto_ProdID());
+            $sql->bindValue($i++, $vo->getEmpresa_EmpID());
+            $sql->bindValue($i++, $vo->getQuantidade());
+            $sql->bindValue($i++, $vo->getValor());
+        }
+        try {
+            $sql->execute();
+            return 1;
+        } catch (\Exception $ex) {
+            $this->conexao->rollBack();
+            $vo->setmsg_erro($ex->getMessage());
+            parent::GravarLogErro($vo);
+            return -1;
+        }
+    }
+
+
+    public function GravarDadosOsGeralDAO($produtos, $chamado_id, $empresa_id)
+    {
+        foreach ($produtos as $p) {
+            $sqlSaldo = $this->conexao->prepare(ChamadoSQL::ConsultarSaldoProdutoSQL());
+            $sqlSaldo->bindValue(1, $p['produto_id']);
+            $sqlSaldo->execute();
+            $saldo = $sqlSaldo->fetch(\PDO::FETCH_ASSOC);
+            if ($saldo['ProdEstoque'] >= $p['qtd']) {
+                // Saldo é suficiente, então você pode prosseguir com a gravação e atualização do saldo
+                $sql = $this->conexao->prepare(ChamadoSQL::GravarDadosProdOsSQL());
+
+                $i = 1;
+                $sql->bindValue($i++, $chamado_id);
+                $sql->bindValue($i++, $p['produto_id']);
+                $sql->bindValue($i++, $empresa_id);
+                $sql->bindValue($i++, $p['qtd']);
+                $sql->bindValue($i++, $p['valor']);
+                $sql->execute();
+
+                $atualizacaoSaldo = $this->conexao->prepare(ChamadoSQL::AtualizarSaldoProdutoSQL());
+                $atualizacaoSaldo->bindValue(1, $p['qtd']);
+                $atualizacaoSaldo->bindValue(2, $p['produto_id']);
+                $atualizacaoSaldo->execute();
+            } else {
+                // Saldo insuficiente, você pode retornar algum código de erro ou mensagem informando isso
+                return -2; // Por exemplo
+            }
+        }
+
+        try {
+            return 1;
+        } catch (\Exception $ex) {
+            return -1;
+        }
+    }
+
+    public function CarregarProdutosOSDAO($chamado_id)
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::CarregarProdutoOSSQL());
+        $sql->bindValue(1, $chamado_id);
+        $sql->execute();
+
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
+    public function FiltrarChamadoAbertoDAO()
+    {
         $sql = $this->conexao->prepare(ChamadoSQL::FILTRAR_CHAMADO_ABERTO());
         $sql->execute();
 
@@ -111,41 +194,34 @@ class ChamadoDAO extends Conexao
         }
     }
 
-    public function CarregarDadosChamadoDAO(){
+    public function CarregarDadosChamadoDAO()
+    {
 
         $sql = $this->conexao->prepare(ChamadoSQL::CarregarDadosChamadoSQL());
         $sql->execute();
         return $sql->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function ChamadosPorFuncionarioDAO(){
+    public function ChamadosPorFuncionarioDAO()
+    {
 
         $sql = $this->conexao->prepare(ChamadoSQL::ChamadosPorFuncionarioSQL());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function ChamadosPorPeriodoDAO(){
+    public function ChamadosPorPeriodoDAO()
+    {
 
         $sql = $this->conexao->prepare(ChamadoSQL::ChamadosPorPeriodoSQL());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
-    public function ChamadosPorSetorDAO(){
+    public function ChamadosPorSetorDAO()
+    {
 
         $sql = $this->conexao->prepare(ChamadoSQL::ChamadosPorSetorSQL());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
-
 }
-
-
-
-
-
-
-
-
-
-

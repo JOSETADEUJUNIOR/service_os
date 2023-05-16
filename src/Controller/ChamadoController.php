@@ -5,6 +5,7 @@ namespace Src\Controller;
 use Src\Model\ChamadoDAO;
 use Src\VO\ChamadoVO;
 use Src\_public\Util;
+use Src\VO\ReferenciaOS;
 
 class ChamadoController
 {
@@ -29,6 +30,27 @@ class ChamadoController
 
         return $this->dao->AbrirChamado($vo);
     }
+
+    public function GravarDadosOsController(ReferenciaOS $vo)
+    {
+        
+        return $this->dao->GravarDadosOsDAO($vo);
+    }
+
+
+    public function GravarDadosOsGeralController(array $produtos, $chamado_id, $empresa_id)
+    {
+
+        
+        return $this->dao->GravarDadosOsGeralDAO($produtos, $chamado_id, $empresa_id);
+    }
+
+    public function CarregarProdutosOSController($chamado_id)
+    {
+        
+        return $this->dao->CarregarProdutosOSDAO($chamado_id);
+    }
+
     public function FiltrarChamadoAbertoController(){
         return $this->dao->FiltrarChamadoAbertoDAO();
     }
