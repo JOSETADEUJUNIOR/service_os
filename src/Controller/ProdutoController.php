@@ -53,6 +53,17 @@ class ProdutoController
         return $this->dao->SelecionarProdutoDAO();
     }
 
+    public function SelecioneProdutoAPICTRL($empresa_id)
+    {
+        
+        return $this->dao->SelecionarProdutoAPIDAO($empresa_id);
+    }
+    public function SelecioneServicoAPICTRL($empresa_id)
+    {
+        
+        return $this->dao->SelecionarServicoAPIDAO($empresa_id);
+    }
+
     public function FiltrarProdutoCTRL($nome_filtro)
     {   
         return $this->dao->FiltrarProdutoDAO($nome_filtro);

@@ -18,7 +18,18 @@ class ChamadoSQL
         $sql = 'INSERT into tb_referencia (chamado_id, produto_ProdID, empresa_EmpID, quantidade, valor) VALUES (?,?,?,?,?)';
         return $sql;
     }
+    public static function GravarDadosServOsSQL()
+    {
 
+        $sql = 'INSERT into tb_referencia (chamado_id, servico_ServID, empresa_EmpID, valor) VALUES (?,?,?,?)';
+        return $sql;
+    }
+
+    public static function RemoveProdOsSQL()
+    {
+        $sql = 'DELETE from tb_referencia WHERE referencia_id = ? and empresa_EmpID = ?';
+        return $sql;
+    }
 
     public static function ConsultarSaldoProdutoSQL()
     {
@@ -33,12 +44,13 @@ class ChamadoSQL
         return "UPDATE tb_produto SET ProdEstoque = ProdEstoque - ? WHERE ProdID = ?";
     }
 
-    public static function GravarDadosServOsSQL()
+    public static function AtualizarSaldoProdutoExcluirSQL()
     {
-
-        $sql = 'INSERT into tb_referencia (chamado_id, servico_ServID, empresa_EmpID, quantidade, valor) VALUES (?,?,?,?,?)';
-        return $sql;
+        return "UPDATE tb_produto SET ProdEstoque = ProdEstoque + ? WHERE ProdID = ?";
     }
+
+    
+   
 
 
     public static function ATUALIZAR_ALOCAMENTO()
@@ -181,6 +193,16 @@ class ChamadoSQL
                 FROM tb_referencia as rf
                     INNER JOIN tb_produto as prod
                         on rf.produto_ProdID = prod.ProdID
+                            Where rf.chamado_id = ?';
+        return $sql;
+    }
+
+    public static function CarregarServicosOSSQL()
+    {
+        $sql = 'SELECT referencia_id, chamado_id, servico_ServID, ServDescricao, ServNome, valor
+                FROM tb_referencia as rf
+                    INNER JOIN tb_servico as serv
+                        on rf.servico_ServID = serv.ServID
                             Where rf.chamado_id = ?';
         return $sql;
     }

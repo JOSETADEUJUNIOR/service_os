@@ -96,6 +96,25 @@ class ProdutoDAO extends Conexao
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function SelecionarProdutoAPIDAO($empresa_id)
+    {
+        
+        $sql = $this->conexao->prepare(ProdutoSQL::SELECT_PRODUTO_SQL());
+        $i = 1;
+        $sql->bindValue($i++, $empresa_id);
+        $sql->execute();
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function SelecionarServicoAPIDAO($empresa_id)
+    {
+        
+        $sql = $this->conexao->prepare(ProdutoSQL::SELECT_SERVICO_SQL());
+        $i = 1;
+        $sql->bindValue($i++, $empresa_id);
+        $sql->execute();
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
     public function FiltrarProdutoDAO($nome_filtro)
     {
         $sql = $this->conexao->prepare(ProdutoSQL::FILTER_PRODUTO_SQL($nome_filtro));

@@ -31,24 +31,47 @@ class ChamadoController
         return $this->dao->AbrirChamado($vo);
     }
 
-    public function GravarDadosOsController(ReferenciaOS $vo)
+/*     public function GravarDadosOsController(ReferenciaOS $vo)
     {
         
         return $this->dao->GravarDadosOsDAO($vo);
+    } */
+
+    public function RemoveProdOsController(ReferenciaOS $vo):int
+    {
+        if (empty($vo->getReferencia_id()) || empty($vo->getEmpresa_EmpID())) {
+            return 0;
+        }
+        return $this->dao->RemoveProdOsDAO($vo);
     }
 
+    public function RemoveServOsController(ReferenciaOS $vo):int
+    {
+        if (empty($vo->getReferencia_id()) || empty($vo->getEmpresa_EmpID())) {
+            return 0;
+        }
+        return $this->dao->RemoveServOsDAO($vo);
+    }
 
     public function GravarDadosOsGeralController(array $produtos, $chamado_id, $empresa_id)
     {
-
-        
         return $this->dao->GravarDadosOsGeralDAO($produtos, $chamado_id, $empresa_id);
+    }
+
+    public function GravarDadosServOsGeralController(array $servicos, $chamado_id, $empresa_id)
+    {
+        return $this->dao->GravarDadosServOsGeralDAO($servicos, $chamado_id, $empresa_id);
     }
 
     public function CarregarProdutosOSController($chamado_id)
     {
         
         return $this->dao->CarregarProdutosOSDAO($chamado_id);
+    }
+    public function CarregarServicosOSController($chamado_id)
+    {
+        
+        return $this->dao->CarregarServicosOSDAO($chamado_id);
     }
 
     public function FiltrarChamadoAbertoController(){

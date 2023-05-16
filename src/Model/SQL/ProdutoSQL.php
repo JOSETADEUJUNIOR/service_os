@@ -27,6 +27,11 @@ class ProdutoSQL{
         $sql = 'SELECT * FROM tb_produto WHERE ProdEmpID = ?';
         return $sql;
     }
+    public static function SELECT_SERVICO_SQL()
+    {
+        $sql = 'SELECT * FROM tb_servico WHERE ServEmpID = ?';
+        return $sql;
+    }
 
     public static function FILTER_PRODUTO_SQL($nome_filtro)
     {
