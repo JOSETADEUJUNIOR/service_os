@@ -222,49 +222,37 @@ function BuscarChamadosTotais() {
     dataType: 'json',
     data: { acao: 'chamado_status' },
     success: function (data) {
-      var ctx = document.getElementById('chamados_por_setor1').getContext('2d');
-      var meuGrafico = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['A', 'B', 'C'],
-          datasets: [
-            {
-              label: 'Dataset 1',
-              data: [1, 2, 3],
-              borderColor: '#36A2EB',
-              backgroundColor: '#9BD0F5',
-            },
-            {
-              label: 'Dataset 2',
-              data: [2, 3, 4],
-              borderColor: '#FF6384',
-              backgroundColor: '#FFB1C1',
-            }
-          ]
+      var options = {
+        chart: {
+          type: 'bar',
+          renderTo: 'chamados_por_setor1'
         },
-        options: {
-          responsive: true,
-          /* plugins: {
-            datalabels: {
-              formatter: function (value, context) {
-                return value + " (" + context.dataset.labels[context.dataIndex] + ")";
-              },
-              color: "#fff"
-            }
+        title: {
+          text: 'Chamados por Setor'
+        },
+        xAxis: {
+          categories: ['A', 'B', 'C']
+        },
+        yAxis: {
+          title: {
+            text: 'Total'
+          }
+        },
+        series: [
+          {
+            name: 'Dataset 1',
+            data: [1, 2, 3],
+            color: '#9BD0F5'
+          },
+          {
+            name: 'Dataset 2',
+            data: [2, 3, 4],
+            color: '#FFB1C1'
+          }
+        ]
+      };
 
-
-          } */
-          /*  scales: {
-             yAxes: [{
-               ticks: {
-                 beginAtZero: true
-               }
-             }]
-           } */
-
-
-        }
-      });
+      var meuGrafico = new Highcharts.Chart(options);
     }
   });
 }

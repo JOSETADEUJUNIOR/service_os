@@ -58,7 +58,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                             <span class="btn btn-app btn-sm btn-danger no-hover">
                                 <!-- conteúdo da primeira div -->
                                 <i class="fa fa-ticket fa-2x card-icon float-left mr-10"></i>
-                                <span id="total_chamados" name="total_chamados" class="line-height-1 bigger-170"></span>
+                                <span id="concluídos" class="line-height-1 bigger-170"></span>
 
                                 <br>
                                 <span class="line-height-1 smaller-90"> O.S em atraso </span>
@@ -95,7 +95,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                         <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
                             <span class="btn btn-app btn-sm btn-secondary no-hover">
                                 <i class="fa fa-ticket fa-2x card-icon float-left mr-10"></i>
-                                <span id="concluidos" class="line-height-1 bigger-170"></span>
+                                <span id="total_chamados" class="line-height-1 bigger-170"></span>
 
                                 <br>
                                 <span class="line-height-1 smaller-90"> Total de O.S </span>
@@ -159,69 +159,71 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 
         </div><!-- /.final do conteudo Princial -->
 
-
+        <?php include_once PATH_URL . '/Template/_includes/_footer.php' ?>
 
         <?php include_once PATH_URL . '/Template/_includes/_scripts.php' ?>
         <script src="../../Resource/ajax/index-ajx.js"></script>
-        <script>
-            BuscarChamadosPorColaborador();
-            BuscarChamadosPorStatus();
-            BuscarChamadosPorSetor();
-            BuscarChamadosTotais();
-            BuscarChamadosPorPeriodo();
-        </script>
-        <script>
-            // Gráfico de barras
-            const chart = new Highcharts.Chart({
-                chart: {
-                    renderTo: 'barras',
-                    type: 'column',
-                    optionsd: {
-                        enabled: true,
-                        alpha: 15,
-                        beta: 15,
-                        depth: 50,
-                        viewDistance: 25
-                    }
-                },
-                xAxis: {
-                    categories: ['O.S em atrasos', 'O.S na fila', 'O.S em andamento', 'O.S concluído', 'Total de O.S',
 
-                    ]
-                },
-                yAxis: {
-                    title: {
-                        enabled: false
-                    }
-                },
-                tooltip: {
-                    headerFormat: '<b>{point.key}</b><br>',
-                    pointFormat: 'Cars sold: {point.y}'
-                },
-                title: {
-                    //  text: 'Sold passenger cars in Norway by brand, January 2021',
-                    align: 'left'
-                },
-                subtitle: {
-                    text: 'Source: ' +
-                        '<a href="https://ofv.no/registreringsstatistikk"' +
-                        'target="_blank">OFV</a>',
-                    align: 'left'
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    column: {
-                        depth: 25
-                    }
-                },
-                series: [{
-                    data: [25, 25, 25, 25, 100],
-                    colorByPoint: true
-                }]
-            });
-        </script>
+        <script>
+  BuscarChamadosPorColaborador();
+  BuscarChamadosPorStatus();
+  BuscarChamadosPorSetor();
+  BuscarChamadosTotais();
+  BuscarChamadosPorPeriodo();
+
+  // Gráfico de barras
+  const totalChamados = parseInt(document.getElementById('total_chamados').textContent);
+  function criarGraficoBarras() {
+    const chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'barras',
+        type: 'column',
+        options2d: {
+          enabled: true,
+          alpha: 15,
+          beta: 15,
+          depth: 50,
+          viewDistance: 25
+        }
+      },
+      xAxis: {
+        categories: ['O.S em atraso', 'O.S na fila', 'O.S em andamento', 'O.S concluído', 'Total de O.S']
+      },
+      yAxis: {
+        title: {
+          text: null
+        }
+      },
+      tooltip: {
+        headerFormat: '<b>{point.key}</b><br>',
+        pointFormat: 'Quantidade: {point.y}'
+      },
+      title: {
+        text: 'Chamados por Status'
+      },
+      subtitle: {
+        text: 'Fonte: OFV',
+        align: 'left'
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        column: {
+          depth: 25
+        }
+      },
+      series: [{
+        name: 'Quantidade',
+        data: [25, 25, 25, 25, totalChamados],
+        colorByPoint: true
+      }]
+    });
+  }
+
+  criarGraficoBarras();
+</script>
+    </div>
 </body>
 
 </html>
