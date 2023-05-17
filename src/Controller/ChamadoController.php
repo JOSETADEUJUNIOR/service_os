@@ -68,6 +68,15 @@ class ChamadoController
         
         return $this->dao->CarregarProdutosOSDAO($chamado_id);
     }
+
+    public function CarregarProdServOSController($chamado_id)
+    {
+        
+        return $this->dao->CarregarProdServOSDAO($chamado_id);
+    }
+
+
+    
     public function CarregarServicosOSController($chamado_id)
     {
         
@@ -91,7 +100,7 @@ class ChamadoController
         if ($tipo == '') {
             return 0;
         }
-
+        
         return $this->dao->FiltrarChamadoGeralDAO($empresa_id, $tipo, $setorID);
     }
 

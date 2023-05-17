@@ -102,7 +102,7 @@ class TecnicoApi extends ApiRequest
     public function FiltrarChamadoGeral()
     {
         if (Util::AuthenticationTokenAccess()) {
-            return (new ChamadoController)->FiltrarChamadoGeralController($this->params['situacao'], $this->params['id_setor'] ?? '');
+            return (new ChamadoController)->FiltrarChamadoGeralController($this->params['empresa_id'], $this->params['situacao'], $this->params['id_setor'] ?? '');
         }else{
             return NAO_AUTORIZADO;
         }

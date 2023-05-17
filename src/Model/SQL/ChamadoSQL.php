@@ -196,7 +196,21 @@ class ChamadoSQL
                             Where rf.chamado_id = ?';
         return $sql;
     }
+    public static function CarregarProdServOSSQL()
+    {
+        $sql = 'SELECT referencia_id, chamado_id, produto_ProdID, servico_ServID, ServDescricao, ServNome, ProdDescricao, quantidade, valor, (quantidade*valor) as valorTotal
+        FROM tb_referencia as rf
+            left JOIN tb_produto as prod
+                on rf.produto_ProdID = prod.ProdID
+                left JOIN tb_servico as serv
+                on rf.servico_ServID = serv.ServID
+                    Where rf.chamado_id = ?';
+        return $sql;
+    }
 
+
+
+    
     public static function CarregarServicosOSSQL()
     {
         $sql = 'SELECT referencia_id, chamado_id, servico_ServID, ServDescricao, ServNome, valor

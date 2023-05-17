@@ -111,6 +111,12 @@ class FuncionarioApi extends ApiRequest
         return (new ChamadoController)->CarregarProdutosOSController($this->params['chamado_id']);
     }
 
+    public function CarregarProdServOS()
+    {   
+       
+        return (new ChamadoController)->CarregarProdServOSController($this->params['chamado_id']);
+    }
+
     public function CarregarServicosOS()
     {   
        

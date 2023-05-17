@@ -21,6 +21,7 @@ function CadastrarProduto(id_form) {
             processData: false,
             contentType: false,
             success: function (resultado) {
+                console.log(resultado);
                 if (resultado == 1) {
                     MensagemSucesso();
                     LimparCampos(id_form);
