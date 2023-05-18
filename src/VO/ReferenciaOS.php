@@ -3,7 +3,7 @@ namespace Src\VO;
 
 use Src\_public\Util;
 
-class ReferenciaOS extends LogErro{
+class ReferenciaOS extends ChamadoVO{
     private $referencia_id;
     private $chamado_id;
     private $produto_ProdID;

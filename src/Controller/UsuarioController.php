@@ -223,7 +223,8 @@ class UsuarioController
                 $dados_usuario = [
                     'tecnico_id'     => $usuario['id'],
                     'nome'           => $usuario['nome'],
-                    'tipo'           => $usuario['tipo']
+                    'tipo'           => $usuario['tipo'],
+                    'empresa_id'     => $usuario['UserEmpID']
                 ];
 
                 $token = Util::CreateTokenAuthentication($dados_usuario);

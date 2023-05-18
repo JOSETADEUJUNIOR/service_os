@@ -72,7 +72,7 @@ class FuncionarioApi extends ApiRequest
         return (new ChamadoController)->AbrirChamadoController($vo);
     }
 
-    public function GravarDadosOs()
+   /*  public function GravarDadosOs()
     {
         $vo = new ReferenciaOS();
         
@@ -82,7 +82,7 @@ class FuncionarioApi extends ApiRequest
         $vo->setChamado_id($this->params['ordem']);
         $vo->setEmpresa_EmpID($this->params['empresa_id']);
         return (new ChamadoController)->GravarDadosOsController($vo);
-    }
+    } */
 
 
     public function GravarDadosOsGeral()
@@ -95,10 +95,32 @@ class FuncionarioApi extends ApiRequest
         return (new ChamadoController)->GravarDadosOsGeralController($produtos, $chamado_id, $empresa_id);
     }
 
+    public function GravarDadosServicosOsGeral()
+    {
+        
+        $servicos = $this->params['Servicos'] ;
+        $chamado_id = $this->params['chamado_id']; 
+        $empresa_id = $this->params['empresa_id'];
+    
+        return (new ChamadoController)->GravarDadosServOsGeralController($servicos, $chamado_id, $empresa_id);
+    }
+
     public function CarregarProdutosOS()
     {   
        
         return (new ChamadoController)->CarregarProdutosOSController($this->params['chamado_id']);
+    }
+
+    public function CarregarProdServOS()
+    {   
+       
+        return (new ChamadoController)->CarregarProdServOSController($this->params['chamado_id']);
+    }
+
+    public function CarregarServicosOS()
+    {   
+       
+        return (new ChamadoController)->CarregarServicosOSController($this->params['chamado_id']);
     }
 
     
@@ -118,6 +140,43 @@ class FuncionarioApi extends ApiRequest
     {
         return (new ProdutoController)->SelecioneProdutoCTRL();
     }
+
+    public function RetornarProdutosAPI()
+    {
+        $empresa_id = $this->params['id_emp_func'];
+        
+        return (new ProdutoController)->SelecioneProdutoAPICTRL($empresa_id);
+    }
+
+    public function RetornarServicosAPI()
+    {
+        $empresa_id = $this->params['id_emp_func'];
+        
+        return (new ProdutoController)->SelecioneServicoAPICTRL($empresa_id);
+    }
+
+    public function RemoveProdOsAPI()
+    {
+        $vo = new ReferenciaOS;
+
+        $vo->setReferencia_id($this->params['referencia_id']);
+        $vo->setQuantidade($this->params['quantidade_produto']);
+        $vo->setProduto_ProdID($this->params['produto_id']);
+        $vo->setEmpresa_EmpID($this->params['empresa_id']);
+        return (new ChamadoController)->RemoveProdOsController($vo);
+    }
+
+    public function RemoveServOsAPI()
+    {
+        $vo = new ReferenciaOS;
+
+        $vo->setReferencia_id($this->params['referencia_id']);
+        $vo->setEmpresa_EmpID($this->params['empresa_id']);
+        return (new ChamadoController)->RemoveServOsController($vo);
+    }
+
+
+    
     public function RetornarClientes()
     {
         return (new ClienteController)->SelecioneClienteCTRL();

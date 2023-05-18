@@ -21,6 +21,7 @@ function CadastrarProduto(id_form) {
             processData: false,
             contentType: false,
             success: function (resultado) {
+                console.log(resultado);
                 if (resultado == 1) {
                     MensagemSucesso();
                     LimparCampos(id_form);
@@ -132,7 +133,8 @@ function MudarStatusProduto(id_produto, valor) {
 function LimparImgProdutoAjx(){
     $("#ProdImagem").val('');
     $("#imgProd").attr('src', '');
-    $("#imgProd").hide(); 
+    $("#imgProd").hide();
+    $('#ProdImagem').ace_file_input('reset_input'); 
 }
 
 $("#ProdImagem").change(function() {
@@ -146,4 +148,17 @@ $("#ProdImagem").change(function() {
         imgPreview.src = reader.result;
     };
     reader.readAsDataURL(ProdImagem); // Read the file as a data URL
+});
+
+$('#ProdImagem').ace_file_input({
+    no_file:'Selecione o arquivo...',
+    btn_choose:'Escolher',
+    btn_change:'Outro',
+    droppable:false,
+    onchange:null,
+    thumbnail:false //| true | large
+    //whitelist:'gif|png|jpg|jpeg'
+    //blacklist:'exe|php'
+    //onchange:''
+    //
 });

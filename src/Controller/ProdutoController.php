@@ -18,7 +18,7 @@ class ProdutoController
 
     public function CadastrarProdutoCTRL(ProdutoVO $vo): int
     {
-        if (empty($vo->getProdDescricao()) || empty($vo->getProdCodBarra()) || empty($vo->getProdValorCompra()) || empty($vo->getProdValorVenda()) || empty($vo->getProdEstoqueMin()) || empty($vo->getProdEstoque()))
+        if (empty($vo->getProdDescricao()) || empty($vo->getProdCodBarra()) || empty($vo->getProdValorCompra()) || empty($vo->getProdValorVenda()) || $vo->getProdEstoqueMin() == "" || $vo->getProdEstoque() == "")
             return 0;
         
         $vo->setProdDtCriacao(date('Y-m-d'));
@@ -31,7 +31,7 @@ class ProdutoController
 
     public function AlterarProdutoCTRL(ProdutoVO $vo): int
     {
-        if (empty($vo->getProdDescricao()) || empty($vo->getProdCodBarra()) || empty($vo->getProdValorCompra()) || empty($vo->getProdValorVenda()) || empty($vo->getProdEstoqueMin()) || empty($vo->getProdEstoque()))
+        if (empty($vo->getProdDescricao()) || empty($vo->getProdCodBarra()) || empty($vo->getProdValorCompra()) || empty($vo->getProdValorVenda()) || $vo->getProdEstoqueMin() == "" || $vo->getProdEstoque() == "")
             return 0;
 
         $vo->setfuncao(ALTERA_PRODUTO);
@@ -51,6 +51,17 @@ class ProdutoController
     public function SelecioneProdutoCTRL(): array
     {
         return $this->dao->SelecionarProdutoDAO();
+    }
+
+    public function SelecioneProdutoAPICTRL($empresa_id)
+    {
+        
+        return $this->dao->SelecionarProdutoAPIDAO($empresa_id);
+    }
+    public function SelecioneServicoAPICTRL($empresa_id)
+    {
+        
+        return $this->dao->SelecionarServicoAPIDAO($empresa_id);
     }
 
     public function FiltrarProdutoCTRL($nome_filtro)

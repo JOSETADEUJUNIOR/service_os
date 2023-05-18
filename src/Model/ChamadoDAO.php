@@ -45,7 +45,7 @@ class ChamadoDAO extends Conexao
         }
     }
 
-    public function GravarDadosOsDAO(ReferenciaOS $vo)
+    /*  public function GravarDadosOsDAO(ReferenciaOS $vo)
     {
 
         if ($vo->getServico_ServID() != "") {
@@ -75,7 +75,7 @@ class ChamadoDAO extends Conexao
             parent::GravarLogErro($vo);
             return -1;
         }
-    }
+    } */
 
 
     public function GravarDadosOsGeralDAO($produtos, $chamado_id, $empresa_id)
@@ -114,6 +114,27 @@ class ChamadoDAO extends Conexao
         }
     }
 
+    public function GravarDadosServOsGeralDAO($servico, $chamado_id, $empresa_id)
+    {
+        foreach ($servico as $p) {
+
+            $sql = $this->conexao->prepare(ChamadoSQL::GravarDadosServOsSQL());
+
+            $i = 1;
+            $sql->bindValue($i++, $chamado_id);
+            $sql->bindValue($i++, $p['servico_id']);
+            $sql->bindValue($i++, $empresa_id);
+            $sql->bindValue($i++, $p['valor']);
+            $sql->execute();
+
+        }
+            try {
+                return 1;
+            } catch (\Exception $ex) {
+                return -1;
+            }
+    }
+
     public function CarregarProdutosOSDAO($chamado_id)
     {
         $sql = $this->conexao->prepare(ChamadoSQL::CarregarProdutoOSSQL());
@@ -123,6 +144,62 @@ class ChamadoDAO extends Conexao
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function CarregarProdServOSDAO($chamado_id)
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::CarregarProdServOSSQL());
+        $sql->bindValue(1, $chamado_id);
+        $sql->execute();
+
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
+    
+    public function CarregarServicosOSDAO($chamado_id)
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::CarregarServicosOSSQL());
+        $sql->bindValue(1, $chamado_id);
+        $sql->execute();
+
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function RemoveProdOsDAO(ReferenciaOS $vo): int
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::RemoveProdOsSQL());
+        $sql->bindValue(1, $vo->getReferencia_id());
+        $sql->bindValue(2, $vo->getEmpresa_EmpID());
+        $sql->execute();
+
+        $atualizacaoSaldo = $this->conexao->prepare(ChamadoSQL::AtualizarSaldoProdutoExcluirSQL());
+        $atualizacaoSaldo->bindValue(1, $vo->getQuantidade());
+        $atualizacaoSaldo->bindValue(2, $vo->getProduto_ProdID());
+        $atualizacaoSaldo->execute();
+
+        try {
+            return 1;
+        } catch (\Exception $ex) {
+            $vo->setmsg_erro($ex->getMessage());
+            parent::GravarLogErro($vo);
+            return -2;
+        }
+    }
+
+    public function RemoveServOsDAO(ReferenciaOS $vo): int
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::RemoveProdOsSQL());
+        $sql->bindValue(1, $vo->getReferencia_id());
+        $sql->bindValue(2, $vo->getEmpresa_EmpID());
+        
+        try {
+            $sql->execute();
+            return 1;
+        } catch (\Exception $ex) {
+            $vo->setmsg_erro($ex->getMessage());
+            parent::GravarLogErro($vo);
+            return -2;
+        }
+    }
 
     public function FiltrarChamadoAbertoDAO()
     {
@@ -142,9 +219,10 @@ class ChamadoDAO extends Conexao
     public function FiltrarChamadoGeralDAO($empresa_id, $tipo, $setorID)
     {
         $sql = $this->conexao->prepare(ChamadoSQL::FILTRAR_CHAMADO_GERAL($tipo, $setorID));
+        
+        $sql->bindValue(1, $empresa_id);
         if (!empty($setorID)) {
 
-            $sql->bindValue(1, $empresa_id);
             $sql->bindValue(2, $setorID);
         }
         $sql->execute();
