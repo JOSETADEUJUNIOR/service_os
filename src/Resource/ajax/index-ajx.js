@@ -182,7 +182,25 @@ function BuscarChamadosPorStatus() {
           datasets: [{
             label: 'Total de chamados',
             data: [data.Aguardando, data.Em_atendimento, data.Encerrando],
-            backgroundColor: ["yellow", "blue", "green"],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 159, 64, 0.2)',
+              'rgba(255, 205, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(201, 203, 207, 0.2)'
+            ],
+            borderColor: [
+              'rgb(255, 99, 132)',
+              'rgb(255, 159, 64)',
+              'rgb(255, 205, 86)',
+              'rgb(75, 192, 192)',
+              'rgb(54, 162, 235)',
+              'rgb(153, 102, 255)',
+              'rgb(201, 203, 207)'
+            ],
+            borderWidth: 1
 
           }]
         },
@@ -222,37 +240,49 @@ function BuscarChamadosTotais() {
     dataType: 'json',
     data: { acao: 'chamado_status' },
     success: function (data) {
-      var options = {
-        chart: {
-          type: 'bar',
-          renderTo: 'chamados_por_setor1'
+      var ctx = document.getElementById('chamados_por_setor1').getContext('2d');
+      var meuGrafico = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['A', 'B', 'C'],
+          datasets: [
+            {
+              label: 'Dataset 1',
+              data: [1, 2, 3],
+              borderColor: '#36A2EB',
+              backgroundColor: '#9BD0F5',
+            },
+            {
+              label: 'Dataset 2',
+              data: [2, 3, 4],
+              borderColor: '#FF6384',
+              backgroundColor: '#FFB1C1',
+            }
+          ]
         },
-        title: {
-          text: 'Chamados por Setor'
-        },
-        xAxis: {
-          categories: ['A', 'B', 'C']
-        },
-        yAxis: {
-          title: {
-            text: 'Total'
-          }
-        },
-        series: [
-          {
-            name: 'Dataset 1',
-            data: [1, 2, 3],
-            color: '#9BD0F5'
-          },
-          {
-            name: 'Dataset 2',
-            data: [2, 3, 4],
-            color: '#FFB1C1'
-          }
-        ]
-      };
+        options: {
+          responsive: true,
+          /* plugins: {
+            datalabels: {
+              formatter: function (value, context) {
+                return value + " (" + context.dataset.labels[context.dataIndex] + ")";
+              },
+              color: "#fff"
+            }
 
-      var meuGrafico = new Highcharts.Chart(options);
+
+          } */
+          /*  scales: {
+             yAxes: [{
+               ticks: {
+                 beginAtZero: true
+               }
+             }]
+           } */
+
+
+        }
+      });
     }
   });
 }
