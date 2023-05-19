@@ -181,7 +181,7 @@ WHERE tb_empresa.EmpID = empID; */
         SUM(CASE WHEN c.data_encerramento IS NOT NULL THEN 1 ELSE 0 END) AS Encerrando
     FROM tb_chamado c
     INNER JOIN tb_empresa e ON c.empresa_EmpID = e.EmpID
-    WHERE e.EmpID = EmpID';
+    WHERE e.EmpID = ?';
 
         return $sql;
     }

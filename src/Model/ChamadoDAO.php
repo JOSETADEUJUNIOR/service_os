@@ -7,6 +7,7 @@ use Src\Model\Conexao;
 use Src\VO\ChamadoVO;
 use Src\Model\SQL\ChamadoSQL;
 use Src\VO\ReferenciaOS;
+use Src\_public\Util;
 
 class ChamadoDAO extends Conexao
 {
@@ -276,6 +277,7 @@ class ChamadoDAO extends Conexao
     {
 
         $sql = $this->conexao->prepare(ChamadoSQL::CarregarDadosChamadoSQL());
+        $sql->bindValue(1, Util::EmpresaLogado());
         $sql->execute();
         return $sql->fetch(\PDO::FETCH_ASSOC);
     }

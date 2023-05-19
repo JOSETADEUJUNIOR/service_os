@@ -92,15 +92,15 @@ const CAMINHO_PARA_SALVAR_IMG_PRODUTO = "arquivos/";
 #para acessos localhost
 define('PATH_URL', $_SERVER["DOCUMENT_ROOT"] . '/service_os/src/');
 
-define('SITE_ADMIN','http://localhost/service_os/src/View/admin/login.php');
+/* define('SITE_ADMIN','http://localhost/service_os/src/View/admin/login.php');
 define('SITE_FUNC', 'http://localhost/service_os_funcionario/src/View/login.php');
 define('SITE_TEC', 'http://localhost/service_os_tecnico/src/View/login.php');
-
+ */
 # para acesso em produção
 
-/* define('SITE_ADMIN','https://siteparaseunegocio.com/service_os/src/View/admin/login.php');
+define('SITE_ADMIN','https://siteparaseunegocio.com/service_os/src/View/admin/login.php');
 define('SITE_FUNC', 'https://siteparaseunegocio.com/service_os_func/src/View/login.php');
-define('SITE_TEC', 'https://siteparaseunegocio.com/service_os_tec/src/View/login.php'); */
+define('SITE_TEC', 'https://siteparaseunegocio.com/service_os_tec/src/View/login.php');
 
 const SECRET_JWT = 'tokenFunc';
 
