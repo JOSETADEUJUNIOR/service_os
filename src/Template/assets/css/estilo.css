@@ -1,105 +1,129 @@
-.ocultar{
+.ocultar {
     display: none;
 }
 
-        #container {
-            height: 400px;
-        }
+#container {
+    height: 400px;
+}
 
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            margin: 10px;
-            padding: 10px;
-        }
+.card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    padding: 10px;
+}
 
-        .card-header {
-            background-color: #f7f7f7;
-            border-bottom: 1px solid #ccc;
-            padding: 10px;
-        }
+.card-header {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
 
-        .chart-container {
-            max-width: 100%;
-            height: auto;
-        }
+.chart-container {
+    max-width: 100%;
+    height: auto;
+}
 
-        .card-primary {
-            background-color: #6495ED;
-            color: #fff;
-        }
+.card-primary {
+    background-color: #6495ED;
+    color: #fff;
+}
 
-        .card-primary .card-header {
-            background-color: #6495ED;
-            color: #fff;
-        }
+.card-primary .card-header {
+    background-color: #6495ED;
+    color: #fff;
+}
 
-        .card-primary .card-body {
-            background-color: white;
-            color: #000;
-        }
+.card-primary .card-body {
+    background-color: white;
+    color: #000;
+}
 
-        .card-primary .card-footer {
-            background-color: #6495ED;
-            color: #fff;
-        }
+.card-primary .card-footer {
+    background-color: #6495ED;
+    color: #fff;
+}
 
-        #container {
-            height: 400px;
-        }
+#container {
+    height: 400px;
+}
 
-        .highcharts-figure,
-        .highcharts-data-table table {
-            min-width: 310px;
-            max-width: 800px;
-            margin: 1em auto;
-        }
+.highcharts-figure,
+.highcharts-data-table table {
+    min-width: 310px;
+    max-width: 800px;
+    margin: 1em auto;
+}
 
-        #sliders td input[type="range"] {
-            display: inline;
-        }
+#sliders td input[type="range"] {
+    display: inline;
+}
 
-        #sliders td {
-            padding-right: 1em;
-            white-space: nowrap;
-        }
+#sliders td {
+    padding-right: 1em;
+    white-space: nowrap;
+}
 
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            margin: 10px;
-            padding: 10px;
-        }
+.card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    padding: 10px;
+}
 
-        .card-header {
-            background-color: #f7f7f7;
-            border-bottom: 1px solid #ccc;
-            padding: 10px;
-        }
+.card-header {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
 
-        .chart-container {
-            max-width: 100%;
-            height: auto;
-        }
+.chart-container {
+    max-width: 100%;
+    height: auto;
+}
 
-        .card-primary {
-            background-color: #6495ED;
-            color: #fff;
-        }
+.card-primary {
+    background-color: #6495ED;
+    color: #fff;
+}
 
-        .card-primary .card-header {
-            background-color: #6495ED;
-            color: #fff;
-        }
+.card-primary .card-header {
+    background-color: #6495ED;
+    color: #fff;
+}
 
-        .card-primary .card-body {
-            background-color: white;
-            color: #000;
-        }
+.card-primary .card-body {
+    background-color: white;
+    color: #000;
+}
 
-        .card-primary .card-footer {
-            background-color: #6495ED;
-            color: #fff;
-        }
+.card-primary .card-footer {
+    background-color: #6495ED;
+    color: #fff;
+}
+
+.custom-card {
+    background-color: #fefefe;
+}
+
+.custom-card {
+    height: 100%;
+}
+
+.custom-chart-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-chart-body canvas {
+    max-width: 80%;
+    height: auto;
+}
+
+.custom-card-pie {
+    max-width: 350px; /* Defina a largura desejada para o gráfico de rosca */
+}

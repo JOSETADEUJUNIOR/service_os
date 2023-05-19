@@ -119,9 +119,17 @@ function BuscarChamadosPorSetor() {
           datasets: [{
             label: 'Total de chamados por Setor',
             data: valores,
-            backgroundColor: cores.slice(0, valores.length), // atribui as cores do array para cada barra,
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 2
+            backgroundColor: [
+              'rgba(132, 99, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)',
+              'rgba(100, 205, 86, 0.2)',
+            ],
+            borderColor: [
+              'rgb(132, 99, 255)',
+              'rgb(255, 159, 64)',
+              'rgb(100, 205, 86)',
+            ],
+            borderWidth: 0.5
           }]
         },
         options: {
@@ -175,37 +183,42 @@ function BuscarChamadosPorStatus() {
       $("#em_atendimento").html(em_atendimento);
       $("#concluidos").html(concluidos);
       var ctx = document.getElementById('chart_chamados_status').getContext('2d');
+
       var meuGrafico = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ["Aguardando", "Em atendimento", "Encerrando"],
+          labels: ["Aguardando", "Produção", "Finalizado"],
           datasets: [{
             label: 'Total de chamados',
             data: [data.Aguardando, data.Em_atendimento, data.Encerrando],
             backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(255, 205, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(201, 203, 207, 0.2)'
+              'rgba(255, 0, 0, 0.5)',
+              'rgba(255, 159, 64, 0.5)',
+              'rgba(100, 205, 86, 0.5)',
             ],
             borderColor: [
-              'rgb(255, 99, 132)',
+              'rgb(255, 0, 0)',
               'rgb(255, 159, 64)',
-              'rgb(255, 205, 86)',
-              'rgb(75, 192, 192)',
-              'rgb(54, 162, 235)',
-              'rgb(153, 102, 255)',
-              'rgb(201, 203, 207)'
+              'rgb(100, 205, 86)',
             ],
             borderWidth: 1
-
           }]
         },
         options: {
           responsive: true,
+          scales: {
+            x: {
+              grid: {
+                display: false // Remova as linhas de grade do eixo x
+              }
+            },
+            y: {
+              display: false, // Remova os números do eixo y
+              grid: {
+                display: false // Remova as linhas de grade do eixo y
+              }
+            }
+          },
           plugins: {
             datalabels: {
               formatter: function (value, context) {
@@ -213,23 +226,15 @@ function BuscarChamadosPorStatus() {
               },
               color: "#fff"
             }
-
-
           }
-          /*  scales: {
-             yAxes: [{
-               ticks: {
-                 beginAtZero: true
-               }
-             }]
-           } */
-
-
         }
       });
     }
   });
 }
+
+
+
 
 
 

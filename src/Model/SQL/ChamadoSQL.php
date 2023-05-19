@@ -6,6 +6,12 @@ namespace Src\Model\SQL;
 class ChamadoSQL
 {
 
+
+    /*     SELECT tb_chamado.*, tb_empresa.*
+FROM tb_chamado
+INNER JOIN tb_empresa ON tb_chamado.empresa_EmpID = tb_empresa.EmpID
+WHERE tb_empresa.EmpID = empID; */
+
     public static function AbrirChamadoSQL()
     {
         $sql = 'INSERT into tb_chamado (data_abertura, descricao_problema, funcionario_id, numero_nf, defeito, observacao, cliente_CliID, empresa_EmpID) VALUES (?,?,?,?,?,?,?,?)';
@@ -49,8 +55,8 @@ class ChamadoSQL
         return "UPDATE tb_produto SET ProdEstoque = ProdEstoque + ? WHERE ProdID = ?";
     }
 
-    
-   
+
+
 
 
     public static function ATUALIZAR_ALOCAMENTO()
@@ -169,11 +175,13 @@ class ChamadoSQL
     public static function CarregarDadosChamadoSQL()
     {
         $sql = 'SELECT 
-                    COUNT(c.id) AS Total, 
-                    SUM(CASE WHEN c.data_atendimento IS NULL AND c.data_encerramento IS NULL THEN 1 ELSE 0 END) AS Aguardando,
-                    SUM(CASE WHEN c.data_atendimento IS NOT NULL AND c.data_encerramento IS NULL THEN 1 ELSE 0 END) AS Em_atendimento,
-                    SUM(CASE WHEN c.data_encerramento IS NOT NULL THEN 1 ELSE 0 END) AS Encerrando
-                FROM tb_chamado c';
+        COUNT(c.id) AS Total, 
+        SUM(CASE WHEN c.data_atendimento IS NULL AND c.data_encerramento IS NULL THEN 1 ELSE 0 END) AS Aguardando,
+        SUM(CASE WHEN c.data_atendimento IS NOT NULL AND c.data_encerramento IS NULL THEN 1 ELSE 0 END) AS Em_atendimento,
+        SUM(CASE WHEN c.data_encerramento IS NOT NULL THEN 1 ELSE 0 END) AS Encerrando
+    FROM tb_chamado c
+    INNER JOIN tb_empresa e ON c.empresa_EmpID = e.EmpID
+    WHERE e.EmpID = EmpID';
 
         return $sql;
     }
@@ -210,7 +218,7 @@ class ChamadoSQL
 
 
 
-    
+
     public static function CarregarServicosOSSQL()
     {
         $sql = 'SELECT referencia_id, chamado_id, servico_ServID, ServDescricao, ServNome, valor
