@@ -194,6 +194,8 @@ function CadastrarUsuario(id_form) {
 
 function CadastrarMeusDados(id_form) {
     if (NotificarCampos(id_form)) {
+        alert($("#cidade_user").val());
+        alert($("#estado_user").val());
         $.ajax({
             type: "POST",
             url: BASE_URL_AJAX("usuario_dataview"),
@@ -202,19 +204,20 @@ function CadastrarMeusDados(id_form) {
                 btn_cadastrar: 'ajx',
                 idUser: $("#id_user").val(),
                 idEnd: $("#id_end").val(),
-                tipo: $("#tipo").val(),
+                tipo: $("#tipo_user").val(),
                 setor: $("#setor").val(),
                 nome_empresa_tec: $("#nome_empresa_tec").val(),
-                nome: $("#nome").val(),
-                email: $("#email").val(),
-                telefone: $("#telefone").val(),
+                nome: $("#nome_user").val(),
+                email: $("#email_user").val(),
+                telefone: $("#telefone_user").val(),
                 cep: $("#cep").val(),
-                endereco: $("#endereco").val(),
-                bairro: $("#bairro").val(),
-                cidade: $("#cidade").val(),
-                estado: $("#estado").val(),
+                endereco: $("#endereco_user").val(),
+                bairro: $("#bairro_user").val(),
+                cidade: $("#cidade_user").val(),
+                estado: $("#estado_user").val(),
             },
             success: function (ret) {
+                console.log(ret);
                 $("#usuario").modal("hide");
                 RemoverLoad();
                 if (ret != '') {

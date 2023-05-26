@@ -27,7 +27,7 @@ WHERE tb_empresa.EmpID = empID; */
     public static function GravarDadosServOsSQL()
     {
 
-        $sql = 'INSERT into tb_referencia (chamado_id, servico_ServID, empresa_EmpID, valor) VALUES (?,?,?,?)';
+        $sql = 'INSERT into tb_referencia (chamado_id, servico_ServID, empresa_EmpID, quantidade, valor) VALUES (?,?,?,?,?)';
         return $sql;
     }
 

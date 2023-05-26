@@ -82,9 +82,9 @@ class usuarioDAO extends Conexao
     public function FiltrarPessoaDAO($nome, $tipo)
     {
         $sql =  $this->conexao->prepare(UsuarioSQL::FILTRAR_USUARIO($nome, $tipo));
-
+        $sql->bindValue(1, Util::EmpresaLogado());
         if (!empty($nome)) {
-            $sql->bindValue(1, '%' . $nome . '%');
+            $sql->bindValue(2, '%' . $nome . '%');
         }
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
@@ -342,6 +342,7 @@ class usuarioDAO extends Conexao
                 $i = 1;
                 $sql->bindValue($i++, $vo->getNomeCidade());
                 $sql->bindValue($i++, $idEstado);
+                $sql->execute();
                 $idCidade = $this->conexao->lastInsertId();
             } else {
                 $idCidade = $temCidade[0]['id'];

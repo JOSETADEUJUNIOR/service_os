@@ -95,11 +95,17 @@ class ClienteDAO extends Conexao
         }
     }
 
-    public function SelecionarClienteDAO()
+    public function SelecionarClienteDAO($empresa_id, $tipo)
     {
         $sql = $this->conexao->prepare(ClienteSQL::SELECT_CLIENTE_SQL());
         $i = 1;
-        $sql->bindValue($i++, Util::EmpresaLogado());
+        if ($tipo == PERFIL_FUNCIONARIO) {
+            $sql->bindValue($i++, $empresa_id);
+            
+        }else if ($tipo == '') {
+            
+            $sql->bindValue($i++, Util::EmpresaLogado());
+        }
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }

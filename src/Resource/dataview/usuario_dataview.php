@@ -190,7 +190,6 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
         $vo->setBairro($_POST['bairro']);
         $vo->setNomeCidade($_POST['cidade']);
         $vo->setEstado($_POST['estado']);
-        //Util::debug($vo);
         $ret = $ctrl_usuario->AlterarUsuarioController($vo);
 
         if ($_POST['btn_cadastrar'] == 'ajx') {
