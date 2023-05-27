@@ -106,7 +106,19 @@ class TecnicoApi extends ApiRequest
         }else{
             return NAO_AUTORIZADO;
         }
+    }
+    public function FiltrarPorNF()
+    {
+        if (Util::AuthenticationTokenAccess()) {
+            return (new ChamadoController)->FiltrarNFController($this->params['empresa_id'], $this->params['buscar_nf']);
+        }else{
+            return NAO_AUTORIZADO;
         }
+    }
+
+
+
+        
 
     public function FinalizarChamado()
     {
@@ -122,7 +134,11 @@ class TecnicoApi extends ApiRequest
             return NAO_AUTORIZADO;
         }
     }
-
+    public function CarregarProdServOS()
+    {   
+       
+        return (new ChamadoController)->CarregarProdServOSController($this->params['chamado_id']);
+    }
 
 
 

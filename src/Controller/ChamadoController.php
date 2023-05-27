@@ -104,6 +104,14 @@ class ChamadoController
         return $this->dao->FiltrarChamadoGeralDAO($empresa_id, $tipo, $setorID);
     }
 
+    public function FiltrarNFController($empresa_id, $valordigitado)
+    {
+       
+        return $this->dao->FiltrarNFDAO($empresa_id, $valordigitado);
+    }
+
+
+    
     public function AtenderChamadoController(ChamadoVO $vo): int
     {
         if (empty($vo->getId()) || empty($vo->getTecnico_atendimento())) {

@@ -231,7 +231,21 @@ class ChamadoDAO extends Conexao
 
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function FiltrarNFDAO($empresa_id, $valordigitado)
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::FILTRAR_NF());
+        
+        $sql->bindValue(1, $empresa_id);
+        $sql->bindValue(2, '%' . $valordigitado . '%');
+        
+        $sql->execute();
 
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
+
+    
     public function AtenderChamadoDAO(ChamadoVO $vo)
     {
         $sql = $this->conexao->prepare(ChamadoSQL::ATENDER_CHAMADO());
