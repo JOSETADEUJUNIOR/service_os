@@ -174,17 +174,26 @@ WHERE tb_empresa.EmpID = empID; */
 
     public static function CarregarDadosChamadoSQL()
     {
-        $sql = 'SELECT 
-        COUNT(c.id) AS Total, 
+        $sql = 'SELECT
+        numero_nf,
+        COUNT(c.id) AS Total,
         SUM(CASE WHEN c.data_atendimento IS NULL AND c.data_encerramento IS NULL THEN 1 ELSE 0 END) AS Aguardando,
         SUM(CASE WHEN c.data_atendimento IS NOT NULL AND c.data_encerramento IS NULL THEN 1 ELSE 0 END) AS Em_atendimento,
         SUM(CASE WHEN c.data_encerramento IS NOT NULL THEN 1 ELSE 0 END) AS Encerrando
-    FROM tb_chamado c
-    INNER JOIN tb_empresa e ON c.empresa_EmpID = e.EmpID
-    WHERE e.EmpID = ?';
-
+    FROM
+        tb_chamado c
+    INNER JOIN
+        tb_empresa e ON c.empresa_EmpID = e.EmpID
+    WHERE
+        e.EmpID = 32
+    GROUP BY
+        numero_nf
+    LIMIT 0, 1000';
+    
+        // Retorna o resultado da consulta SQL
         return $sql;
     }
+    
 
     public static function ChamadosPorFuncionarioSQL()
     {

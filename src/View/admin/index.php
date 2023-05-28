@@ -9,6 +9,8 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
     <?php include_once PATH_URL . '/Template/_includes/_head.php' ?>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     <link rel="stylesheet" href="../../Template/assets/css/estilo.css">
 
 
@@ -141,6 +143,87 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+
+                    <div class="col-sm-12">
+                        <div class="widget-box transparent">
+                            <div class="widget-header widget-header-flat" style="border-bottom: 2px solid #2C6AA0; background-color: #2C6AA0;">
+                                <h4 class="widget-title lighter text-white">
+                                    <i class="ace-icon fa fa-star orange"></i>
+                                    Popular Domains
+                                </h4>
+
+                                <div class="widget-toolbar">
+                                    <a href="#" data-action="collapse">
+                                        <i class="ace-icon fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="widget-body" style="display: block;">
+                                <div class="widget-main no-padding">
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="thin-border-bottom">
+                                            <tr>
+                                                <th>
+                                                    <i class="ace-icon fa fa-caret-right blue"></i>N° Nota Fiscal
+                                                </th>
+                                                <th>
+                                                    <i class="ace-icon fa fa-caret-right blue"></i>Data de Lançamento
+                                                </th>
+                                                <th class="hidden-480">
+                                                    <i class="ace-icon fa fa-caret-right blue"></i>Status
+                                                </th>
+                                                <th class="hidden-480">
+                                                    <i class="ace-icon fa fa-caret-right blue"></i>Valor Total
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="chamado_status">
+                                            <!-- Iterar sobre os chamados e criar as linhas da tabela -->
+                                            <script>
+                                                var chamados = [{
+                                                        nf: 'numero_nf',
+                                                        dataLancamento: 'data_atendimento',
+                                                        status: 'Aguardando',
+                                                        valorTotal: 100.00
+                                                    },
+                                                    {
+                                                        nf: 'NF-002',
+                                                        dataLancamento: '2023-05-27',
+                                                        status: 'Em Andamento',
+                                                        valorTotal: 150.00
+                                                    },
+                                                    // Adicione mais objetos de chamados conforme necessário
+                                                ];
+                                                for (var i = 0; i < chamados.length; i++) {
+                                                    var chamado = chamados[i];
+                                                    console.log(chamado);
+                                                    var nf = chamado.nf;
+                                                    var dataLancamento = chamado.dataLancamento;
+                                                    var status = chamado.status;
+                                                    var valorTotal = chamado.valorTotal;
+                                                    // Criar a linha da tabela com os dados do chamado
+                                                    var row = '<tr>' +
+                                                        '<td>' + nf + '</td>' +
+                                                        '<td><b class="green">' + dataLancamento + '</b></td>' +
+                                                        '<td class="hidden-480">' +
+                                                        '<span class="label label-info arrowed-right arrowed-in">' + status + '</span>' +
+                                                        '</td>' +
+                                                        '<td class="hidden-480">' +
+                                                        '<b class="">' + valorTotal + '</b>' +
+                                                        '</td>' +
+                                                        '</tr>';
+                                                    // Adicionar a linha à tabela
+                                                    $('#chamado_status').append(row);
+                                                }
+                                            </script>
+                                        </tbody>
+                                    </table>
+                                </div><!-- /.widget-main -->
+                            </div><!-- /.widget-body -->
+                        </div><!-- /.widget-box -->
                     </div>
 
 

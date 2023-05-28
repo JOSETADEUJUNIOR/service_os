@@ -1,15 +1,15 @@
-var cores = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'];
+/* var cores = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)']; */
 
 
 
-function BuscarChamadosPorColaborador() {
+/* function BuscarChamadosPorColaborador() {
   $.ajax({
     url: BASE_URL_AJAX("index_dataview"),
     method: 'GET',
     dataType: 'json',
     data: { acao: 'requisicao' },
     success: function (data) {
-     
+
       var labels = [];
       var valores = [];
       var totalGeral = [];
@@ -88,7 +88,7 @@ function BuscarChamadosPorPeriodo() {
       });
     }
   });
-}
+} */
 
 
 
@@ -101,7 +101,7 @@ function BuscarChamadosPorSetor() {
     dataType: 'json',
     data: { acao: 'chamado_por_setor' },
     success: function (setor) {
-     
+
       var dados = setor;
       var labels = [];
       var valores = [];
@@ -174,6 +174,7 @@ function BuscarChamadosPorStatus() {
     dataType: 'json',
     data: { acao: 'chamado_status' },
     success: function (data) {
+      var chamados = data.chamados;
       var total_chamados = data.Total;
       var aguardando = data.Aguardando;
       var em_atendimento = data.Em_atendimento;
@@ -184,13 +185,53 @@ function BuscarChamadosPorStatus() {
       $("#concluidos").html(concluidos);
       var ctx = document.getElementById('chart_chamados_status').getContext('2d');
 
+     /*  // Limpar a tabela antes de adicionar novas linhas
+      $('#chamado_status').empty();
+
+      // Iterar sobre os chamados e criar as linhas da tabela
+      var chamados = [{
+              nf: ['numero_nf'],
+              dataLancamento: ['data_atendimento'],
+              status: 'Aguardando',
+              valorTotal: 100.00
+          },
+          {
+              nf: 'NF-002',
+              dataLancamento: '2023-05-27',
+              status: 'Em Andamento',
+              valorTotal: 150.00
+          },
+          // Adicione mais objetos de chamados conforme necessário
+      ];
+      for (var i = 0; i < chamados.length; i++) {
+          var chamado = chamados[i];
+          console.log(chamado);
+          var nf = chamado.nf;
+          var dataLancamento = chamado.dataLancamento;
+          var status = chamado.status;
+          var valorTotal = chamado.valorTotal;
+          // Criar a linha da tabela com os dados do chamado
+          var row = '<tr>' +
+              '<td>' + nf + '</td>' +
+              '<td><b class="green">' + dataLancamento + '</b></td>' +
+              '<td class="hidden-480">' +
+              '<span class="label label-info arrowed-right arrowed-in">' + status + '</span>' +
+              '</td>' +
+              '<td class="hidden-480">' +
+              '<b class="">' + valorTotal + '</b>' +
+              '</td>' +
+              '</tr>';
+          // Adicionar a linha à tabela
+          $('#chamado_status').append(row);
+      }
+ */
       var meuGrafico = new Chart(ctx, {
         type: 'bar',
         data: {
           labels: ["Aguardando", "Produção", "Finalizado"],
           datasets: [{
             label: 'Total de chamados',
-            data: [data.Aguardando, data.Em_atendimento, data.Encerrando],
+            data: [aguardando, em_atendimento, concluidos],
             backgroundColor: [
               'rgba(255, 0, 0, 0.5)',
               'rgba(255, 159, 64, 0.5)',
@@ -238,6 +279,9 @@ function BuscarChamadosPorStatus() {
 
 
 
+
+
+/* 
 function BuscarChamadosTotais() {
   $.ajax({
     url: BASE_URL_AJAX("index_dataview"),
@@ -266,7 +310,7 @@ function BuscarChamadosTotais() {
           ]
         },
         options: {
-          responsive: true,
+          responsive: true, */
           /* plugins: {
             datalabels: {
               formatter: function (value, context) {
@@ -286,18 +330,12 @@ function BuscarChamadosTotais() {
            } */
 
 
-        }
-      });
-    }
-  });
-}
+   
 
 
 
 
 
-
-/*
 
 function BuscarChamadosPorColaborador(){
 alert('teste');
@@ -351,4 +389,4 @@ $.ajax({
     }
   });
 
-} */
+}
