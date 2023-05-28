@@ -5,6 +5,7 @@ namespace Src\Model;
 use Src\Model\Conexao;
 use Src\VO\SetorVO;
 use Src\Model\SQL\Setor;
+use Src\_public\Util;
 
 class SetorDAO extends Conexao
 {
@@ -20,6 +21,7 @@ class SetorDAO extends Conexao
     {
         $sql = $this->conexao->prepare(Setor::InserirSetor());
         $sql->bindValue(1, $vo->getNomeSetor());
+        $sql->bindValue(2, Util::EmpresaLogado());
 
         try {
             $sql->execute();
@@ -35,9 +37,10 @@ class SetorDAO extends Conexao
     {
 
         $sql = $this->conexao->prepare(Setor::FiltrarSetorSQL($nome_filtro));
+        $sql->bindValue(1, Util::EmpresaLogado());
         if (!empty($nome_filtro)) {
 
-            $sql->bindValue(1, "%" . $nome_filtro . "%");
+            $sql->bindValue(2, "%" . $nome_filtro . "%");
         }
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
@@ -46,6 +49,7 @@ class SetorDAO extends Conexao
     public function RetornarSetorDAO()
     {
         $sql = $this->conexao->prepare(Setor::RetornarSetor());
+        $sql->bindValue(1, Util::EmpresaLogado());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }

@@ -47,9 +47,9 @@ class ClienteController
         return $this->dao->AlterarStatusClienteDAO($vo);
     }
 
-    public function SelecioneClienteCTRL(): array
+    public function SelecioneClienteCTRL($empresa_id=false, $tipo=false): array
     {
-        $dados = $this->dao->SelecionarClienteDAO(); 
+        $dados = $this->dao->SelecionarClienteDAO($empresa_id, $tipo); 
         for ($i = 0; $i < count($dados); $i++){
             $dados[$i]['CliDtNasc'] = Util::ExibirDataBr($dados[$i]['CliDtNasc']);
         }

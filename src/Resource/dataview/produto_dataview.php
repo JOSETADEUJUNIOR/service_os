@@ -22,6 +22,8 @@ if (isset($_POST['btn_cadastrar'])) {
         $vo->setProdValorVenda($_POST['ProdValorVenda']);
         $vo->setProdEstoqueMin($_POST['ProdEstoqueMin']);
         $vo->setProdEstoque($_POST['ProdEstoque']);
+        $OldImg = $_POST['OldImagem'];
+        $OldPath = $_POST['OldPath'];
         if (isset($_FILES) && $_FILES != null) {
             $arquivos = $_FILES['ProdImagem'];
             if ($arquivos['name'] != "") {
@@ -45,6 +47,8 @@ if (isset($_POST['btn_cadastrar'])) {
                 }
             }
         } else {
+            $vo->setProdImagem($OldImg != "" ? $OldImg : "");
+            $vo->setProdImagemPath($OldPath != "" ? $OldPath : "");
             $ret = $ctrl->CadastrarProdutoCTRL($vo);
         }
         if ($_POST['btn_cadastrar'] == 'ajx') {
@@ -59,6 +63,8 @@ if (isset($_POST['btn_cadastrar'])) {
         $vo->setProdValorVenda($_POST['ProdValorVenda']);
         $vo->setProdEstoqueMin($_POST['ProdEstoqueMin']);
         $vo->setProdEstoque($_POST['ProdEstoque']);
+        $OldImg = $_POST['OldImagem'];
+        $OldPath = $_POST['OldPath'];
         if (isset($_FILES) && $_FILES != null) {
             $arquivos = $_FILES['ProdImagem'];
             if ($arquivos['name'] != "") {
@@ -77,18 +83,25 @@ if (isset($_POST['btn_cadastrar'])) {
                         $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
                         $vo->setProdImagem($nomeDoArquivo);
                         $vo->setProdImagemPath($path);
+                        if (file_exists($OldPath)){
+                            unlink($OldPath);
+                        }
                         $ret = $ctrl->AlterarProdutoCTRL($vo);
                     }
                 }
             }
         } else {
+           $vo->setProdImagem($OldImg != "" ? $OldImg : "");
+           $vo->setProdImagemPath($OldPath != "" ? $OldPath : "");
             $ret = $ctrl->AlterarProdutoCTRL($vo);
         }
         if ($_POST['btn_cadastrar'] == 'ajx') {
             echo $ret;
         }
     }
-} else if (isset($_GET['btn_pdf'])) {
+} else if (isset($_GET['btn_pdf']) || isset($_POST['FiltrarNome'])) {
+    $nome_filtro = $_POST['FiltrarNome'];
+    header("location: relatorio_produto_dataview.php?filtro=$nome_filtro");
     //$dados = $ctrl->RetornarSetorController();
 
     //$relatorio = $pdfController->gerarPdf('relatorio_setor.php', $dados);
@@ -100,6 +113,7 @@ if (isset($_POST['btn_cadastrar'])) {
     $vo->setProdID($_POST['ProdID']);
     $vo->setProdStatus($_POST['status_produto']);
     echo $ctrl->AlterarStatusProdutoCTRL($vo);
+
 } else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
 
     $nome_filtro = $_POST['FiltrarNome'];
@@ -130,7 +144,7 @@ if (isset($_POST['btn_cadastrar'])) {
                             <td><?= $produto[$i]['ProdValorVenda'] ?></td>
                             <td><?= $produto[$i]['ProdEstoque'] ?></td>
                             <td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
-                            <?php if ($produto[$i]['ProdImagemPath'] != "") { ?>
+                            <?php if ($produto[$i]['ProdImagemPath'] != "" || $produto[$i]['ProdImagemPath'] != null) { ?>
                                 <td>
                                     <!-- <center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center> -->
                                     <img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>">
@@ -147,7 +161,7 @@ if (isset($_POST['btn_cadastrar'])) {
                             </td>
                             <td>
                                 <div class="hidden-sm hidden-xs action-buttons">
-                                    <a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>')">
+                                    <a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>','<?= $produto[$i]['ProdImagem'] ?>','<?= $produto[$i]['ProdImagemPath'] ?>')">
                                         <i title="Alterar Produto" class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
                                 </div>
@@ -211,7 +225,7 @@ if (isset($_POST['btn_cadastrar'])) {
                         <td><?= $produto[$i]['ProdValorVenda'] ?></td>
                         <td><?= $produto[$i]['ProdEstoque'] ?></td>
                         <td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
-                        <?php if ($produto[$i]['ProdImagemPath'] != "") { ?>
+                        <?php if ($produto[$i]['ProdImagemPath'] != "" || $produto[$i]['ProdImagemPath'] != null) { ?>
                             <td>
                                 <!-- <center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center> -->
                                 <img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem brand-image img-circle elevation-3" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>">
@@ -228,7 +242,7 @@ if (isset($_POST['btn_cadastrar'])) {
                         </td>
                         <td>
                             <div class="hidden-sm hidden-xs action-buttons">
-                                <a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>')">
+                                <a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>','<?= $produto[$i]['ProdImagem'] ?>','<?= $produto[$i]['ProdImagemPath'] ?>')">
                                     <i title="Alterar Produto" class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </div>

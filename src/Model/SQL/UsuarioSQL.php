@@ -131,13 +131,14 @@ LEFT JOIN tb_funcionario as fun
 LEFT JOIN tb_tecnico as tec
         ON usu.id = tec.tecnico_id
         LEFT JOIN tb_setor as st
-		ON fun.setor_id = st.id';
+		ON fun.setor_id = st.id
+            WHERE UserEmpID = ?';
 
         if (!empty($nome)) {
-            $sql .= ' WHERE nome LIKE ?';
+            $sql .= ' AND nome LIKE ?';
         }
         if (!empty($tipo)) {
-            $sql .= " WHERE usu.tipo = '$tipo'";
+            $sql .= " AND usu.tipo = '$tipo'";
         }
 
         return $sql;
@@ -259,4 +260,10 @@ LEFT JOIN tb_setor as st
                     AND tipo = ?';
         return $sql;
     }
+
+    public static function DETALHAR_MEUS_DADOS_SQL()
+    {
+        $sql = 'SELECT * FROM tb_usuario WHERE id = ?';
+        return $sql;
+   }
 }

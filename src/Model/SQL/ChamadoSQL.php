@@ -27,7 +27,7 @@ WHERE tb_empresa.EmpID = empID; */
     public static function GravarDadosServOsSQL()
     {
 
-        $sql = 'INSERT into tb_referencia (chamado_id, servico_ServID, empresa_EmpID, valor) VALUES (?,?,?,?)';
+        $sql = 'INSERT into tb_referencia (chamado_id, servico_ServID, empresa_EmpID, quantidade, valor) VALUES (?,?,?,?,?)';
         return $sql;
     }
 
@@ -112,36 +112,36 @@ WHERE tb_empresa.EmpID = empID; */
     public static function FILTRAR_CHAMADO_GERAL($tipo, $setorID)
     {
 
-        $sql = 'SELECT ch.id,
-                       DATE_FORMAT(ch.data_abertura, "%d/%m/%Y às %Hh%i") as data_abertura,
-                       ch.descricao_problema,
-                       DATE_FORMAT(ch.data_atendimento, "%d/%m/%Y às %Hh%i") as data_atendimento,
-                       DATE_FORMAT(ch.data_encerramento, "%d/%m/%Y às %Hh%i") as data_encerramento,
-                       ch.laudo_tecnico,
-                       ch.tecnico_atendimento,
-                       ch.tecnico_encerramento,
-                       us_fu.nome as nome_funcionario,
-                       us_te.nome as nome_tecnico,
-                       cli.CliNome as nome_cliente,
-                       ch.numero_nf as numero_nf,
-                       ch.defeito as defeito,
-                       ch.observacao as observacao,
-                       (SELECT nome From tb_usuario Where id = ch.tecnico_encerramento) as tecnico_encerramento
-	                    FROM
-	                    tb_chamado as ch
-	                    INNER JOIN tb_funcionario as fu
-	                    on fu.funcionario_id = ch.funcionario_id	
-	                    INNER JOIN tb_usuario as us_fu
-	                    on us_fu.id = fu.funcionario_id
-	                    LEFT JOIN tb_tecnico as te
-	                    on te.tecnico_id = ch.tecnico_atendimento
-	                    LEFT JOIN tb_usuario as us_te
-	                    on us_te.id = te.tecnico_id
-                        INNER JOIN tb_cliente as cli
-                        on ch.cliente_CliID = cli.CliID
-                        INNER JOIN tb_empresa as emp
-                        on ch.empresa_EmpID = emp.EmpID
-	                    WHERE emp.EmpID = ?';
+        $sql = 'SELECT ch.id as id,
+        DATE_FORMAT(ch.data_abertura, "%d/%m/%Y às %Hh%i") as data_abertura,
+        ch.descricao_problema,
+        DATE_FORMAT(ch.data_atendimento, "%d/%m/%Y às %Hh%i") as data_atendimento,
+        DATE_FORMAT(ch.data_encerramento, "%d/%m/%Y às %Hh%i") as data_encerramento,
+        ch.laudo_tecnico,
+        ch.tecnico_atendimento,
+        ch.tecnico_encerramento,
+        us_fu.nome as nome_funcionario,
+        us_te.nome as nome_tecnico,
+        cli.CliNome as nome_cliente,
+        ch.numero_nf as numero_nf,
+        ch.defeito as defeito,
+        ch.observacao as observacao,
+        (SELECT nome From tb_usuario Where id = ch.tecnico_encerramento) as tecnico_encerramento
+         FROM
+         tb_chamado as ch
+         INNER JOIN tb_funcionario as fu
+         on fu.funcionario_id = ch.funcionario_id	
+         INNER JOIN tb_usuario as us_fu
+         on us_fu.id = fu.funcionario_id
+         LEFT JOIN tb_tecnico as te
+         on te.tecnico_id = ch.tecnico_atendimento
+         LEFT JOIN tb_usuario as us_te
+         on us_te.id = te.tecnico_id
+         INNER JOIN tb_cliente as cli
+         on ch.cliente_CliID = cli.CliID
+         INNER JOIN tb_empresa as emp
+         on ch.empresa_EmpID = emp.EmpID
+         WHERE emp.EmpID = ?';
 
         switch ($tipo) {
             case '1':
@@ -157,6 +157,45 @@ WHERE tb_empresa.EmpID = empID; */
         if (!empty($setorID)) {
             $sql .= ' AND fu.setor_id = ?';
         }
+        $sql .= ' Order by data_encerramento desc, data_abertura desc';
+        return $sql;
+    }
+
+    public static function FILTRAR_NF()
+    {
+
+        $sql = 'SELECT ch.id as id,
+        DATE_FORMAT(ch.data_abertura, "%d/%m/%Y às %Hh%i") as data_abertura,
+        ch.descricao_problema,
+        DATE_FORMAT(ch.data_atendimento, "%d/%m/%Y às %Hh%i") as data_atendimento,
+        DATE_FORMAT(ch.data_encerramento, "%d/%m/%Y às %Hh%i") as data_encerramento,
+        ch.laudo_tecnico,
+        ch.tecnico_atendimento,
+        ch.tecnico_encerramento,
+        us_fu.nome as nome_funcionario,
+        us_te.nome as nome_tecnico,
+        cli.CliNome as nome_cliente,
+        ch.numero_nf as numero_nf,
+        ch.defeito as defeito,
+        ch.observacao as observacao,
+        (SELECT nome From tb_usuario Where id = ch.tecnico_encerramento) as tecnico_encerramento
+         FROM
+         tb_chamado as ch
+         INNER JOIN tb_funcionario as fu
+         on fu.funcionario_id = ch.funcionario_id	
+         INNER JOIN tb_usuario as us_fu
+         on us_fu.id = fu.funcionario_id
+         LEFT JOIN tb_tecnico as te
+         on te.tecnico_id = ch.tecnico_atendimento
+         LEFT JOIN tb_usuario as us_te
+         on us_te.id = te.tecnico_id
+         INNER JOIN tb_cliente as cli
+         on ch.cliente_CliID = cli.CliID
+         INNER JOIN tb_empresa as emp
+         on ch.empresa_EmpID = emp.EmpID
+         WHERE emp.EmpID = ? AND ch.numero_nf like ?';
+
+       
         $sql .= ' Order by data_encerramento desc, data_abertura desc';
         return $sql;
     }

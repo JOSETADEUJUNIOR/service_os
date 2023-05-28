@@ -22,7 +22,7 @@ class ServicoSQL
     public static function RetornarServicoSQL()
     {
         $sql = 'SELECT ServID, ServNome, ServValor, ServDescricao, ServEmpID, ServUserID
-                    FROM tb_servico';
+                    FROM tb_servico WHERE ServEmpID = ?';
         return $sql;
     }
 
@@ -44,7 +44,7 @@ class ServicoSQL
 
     public static function ExcluirServico()
     {
-        $sql = 'DELETE FROM tb_servico where Servid = ?';
+        $sql = 'DELETE FROM tb_servico where ServID = ?';
         return $sql;
     }
 }

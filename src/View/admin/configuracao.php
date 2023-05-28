@@ -121,7 +121,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 														<form action="" id="form_alterar_senha">
 															<fieldset>
 																<div class="row">
-																	<input type="hidden" id="id_end">
+																	<input type="hidden" id="id_end_senha">
 																	<div class="col-md-12 col-xs-12">
 																		<div class="row">
 																			<div class="col-md-12 col-xs-12" id="divSenhaAtual">
@@ -266,13 +266,14 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																				<div class="widget-main">
 																					<div class="form-group">
 																						<div class="position-relative">
-																							<img src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid">
+																						<center><img id="imglogo" src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid"></center>
 
 																						</div>
 																					</div>
 																					<div class="form-group">
 																						<div class="col-xs-12">
-																							<label class="ace-file-input"><input type="file" name="logo" id="logo" value="<?= $dados[0]['EmpLogo'] ?>"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."><i class=" ace-icon fa fa-upload"></i></span></span><a class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a></label>
+																						<input type="hidden" name="oldLogo" id="oldLogo" value="<?= $dados[0]['EmpLogoPath'] ?>">
+ 																						<input type="file" name="logo" id="logo">
 																						</div>
 																					</div>
 
@@ -290,22 +291,6 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																			</div>
 																		</div>
 																	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 																	<div style="margin-top: 10px;" class="col-sm-6 col-xs-6">
 
 																		<button onclick="return CadastrarDadosEmpresa('formAlterarEmpresa')" class="col-sm-12 col-xs-12 btn btn-success">
@@ -347,53 +332,53 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																<div class="row">
 																	<input type="hidden" id="id_user" value="<?= $dadosUser['id_user'] ?>">
 																	<input type="hidden" id="id_end" value="<?= $dadosUser['id_end'] ?>">
-																	<input type="hidden" id="tipo" value="<?= $dadosUser['tipo'] ?>">
+																	<input type="hidden" id="tipo_user" value="<?= $dadosUser['tipo'] ?>">
 																	<div class="col-md-4">
 
 																		<label>Nome</label>
-																		<input class="form-control obg" id="nome" name="nome" value="<?= $dadosUser['nome'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg" id="nome_user" name="nome_user" value="<?= $dadosUser['nome'] ?>" placeholder="Digite o aqui....">
 
 																	</div>
 																	<div class="col-md-4">
 
 																		<label>E-mail</label>
-																		<input class="form-control obg" id="email" name="email" value="<?= $dadosUser['login'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg" id="email_user" name="email" value="<?= $dadosUser['login'] ?>" placeholder="Digite o aqui....">
 
 																	</div>
 																	<div class="col-md-4">
 
 																		<label>Telefone</label>
-																		<input class="form-control obg" id="telefone" name="telefone" value="<?= $dadosUser['telefone'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg" id="telefone_user" name="telefone" value="<?= $dadosUser['telefone'] ?>" placeholder="Digite o aqui....">
 
 																	</div>
 																	<div class="col-md-2">
 
 																		<label>Cep</label>
-																		<input class="form-control obg" id="cep" name="cep" value="<?= $dadosUser['cep'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg" id="cep_user" name="cep" value="<?= $dadosUser['cep'] ?>" placeholder="Digite o aqui....">
 
 																	</div>
 																	<div class="col-md-4">
 
 																		<label>Rua</label>
-																		<input class="form-control obg" id="endereco" name="endereco" value="<?= $dadosUser['rua'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg" id="endereco_user" name="endereco" value="<?= $dadosUser['rua'] ?>" placeholder="Digite o aqui....">
 
 																	</div>
 																	<div class="col-md-2">
 
 																		<label>Cidade</label>
-																		<input class="form-control obg" id="cidade" name="cidade" value="<?= $dadosUser['cidade'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg" id="cidade_user" name="cidade" value="<?= $dadosUser['cidade'] ?>" placeholder="Digite o aqui....">
 
 																	</div>
 																	<div class="col-md-3">
 
 																		<label>Bairro</label>
-																		<input class="form-control obg" id="bairro" name="bairro" value="<?= $dadosUser['bairro'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg" id="bairro_user" name="bairro" value="<?= $dadosUser['bairro'] ?>" placeholder="Digite o aqui....">
 
 																	</div>
 																	<div class="col-md-1">
 
 																		<label>Estado</label>
-																		<input class="form-control obg" id="estado" name="estado" value="<?= $dadosUser['sigla_estado'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg" id="estado_user" name="estado" value="<?= $dadosUser['sigla_estado'] ?>" placeholder="Digite o aqui....">
 
 																	</div>
 

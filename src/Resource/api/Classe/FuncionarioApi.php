@@ -143,8 +143,8 @@ class FuncionarioApi extends ApiRequest
 
     public function RetornarProdutosAPI()
     {
-        $empresa_id = $this->params['id_emp_func'];
         
+        $empresa_id = $this->params['id_emp_func'];
         return (new ProdutoController)->SelecioneProdutoAPICTRL($empresa_id);
     }
 
@@ -179,7 +179,7 @@ class FuncionarioApi extends ApiRequest
     
     public function RetornarClientes()
     {
-        return (new ClienteController)->SelecioneClienteCTRL();
+        return (new ClienteController)->SelecioneClienteCTRL($this->params['empresa_id'], $this->params['tipo']);
     }
     public function FiltrarChamado()
     {

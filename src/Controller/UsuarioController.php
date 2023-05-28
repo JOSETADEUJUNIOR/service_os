@@ -132,9 +132,6 @@ class UsuarioController
        
     }
 
-
-
-
     public function ValidarSenhaAtual($id, $senha)
     {
         if (Util::AuthenticationTokenAccess()) {
@@ -208,6 +205,7 @@ class UsuarioController
             }
         }
     }
+
     public function ValidarAcessoTecnicoAPI($email, $senha)
     {
         if (empty($email) || empty($senha)) {
@@ -254,5 +252,9 @@ class UsuarioController
 
 
         return $this->dao->AtualizarSenhaAtual($vo);
+    }
+
+    public function DetalharMeusDadosController(){
+        return $this->dao->DetalharMeusDadosDAO(Util::CodigoLogado());
     }
 }
