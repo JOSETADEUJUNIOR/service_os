@@ -11,6 +11,8 @@
                         <div class="form-group col-md-12">
                             <label>Nome/Descrição</label>
                             <input type="hidden" name="ProdID" id="ProdID">
+                            <input type="hidden" name="OldImagem" id="OldImagem">
+                            <input type="hidden" name="OldPath" id="OldPath">
                             <textarea class="form-control obg" id="ProdDescricao" maxlength="100" name="ProdDescricao" style="resize: vertical" placeholder="Digite aqui...." maxlength="1000"></textarea>
                         </div>
                         <div class="form-group col-md-12">

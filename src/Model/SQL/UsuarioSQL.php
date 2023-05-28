@@ -260,4 +260,10 @@ LEFT JOIN tb_setor as st
                     AND tipo = ?';
         return $sql;
     }
+
+    public static function DETALHAR_MEUS_DADOS_SQL()
+    {
+        $sql = 'SELECT * FROM tb_usuario WHERE id = ?';
+        return $sql;
+   }
 }

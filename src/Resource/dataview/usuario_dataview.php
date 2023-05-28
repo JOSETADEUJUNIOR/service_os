@@ -46,6 +46,7 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
     $vo->setCep($_POST['EmpCep']);
     $vo->setNumero($_POST['EmpNumero']);
     $vo->setCidade($_POST['EmpCidade']);
+    $OldLogo = $_POST['oldLogo'];
     if ($_FILES['arquivos'] != "") {
 
         $arquivos = $_FILES['arquivos'] ?? "";
@@ -63,6 +64,11 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 
         $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
         $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
+    }
+    if ($OldLogo != "") {
+        if (file_exists($OldLogo)) {
+            unlink($OldLogo);
+        }
     }
     $vo->setEmpLogo($nomeDoArquivo);
     $vo->setLogoPath($path);
@@ -556,22 +562,37 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
                         <div class="widget-main">
                             <div class="form-group">
                                 <div class="position-relative">
-                                    <img src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid">
+                                    <center><img id="imglogo" src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid"></center>
 
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <label class="ace-file-input"><input type="file" name="logo" id="logo" value="<?= $dados[0]['EmpLogo'] ?>"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."><i class=" ace-icon fa fa-upload"></i></span></span><a class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a></label>
+                                    <input type="hidden" name="oldLogo" id="oldLogo" value="<?= $dados[0]['EmpLogoPath'] ?>">
+                                    <input type="file" name="logo" id="logo" value="<?= $dados[0]['EmpLogo'] ?>">
+                                    <?php if ($dados[0]['EmpLogoPath'] != "") { ?>
+                                        <script>
+                                            $('#logo').ace_file_input({
+                                                no_file: 'Selecione o arquivo...',
+                                                btn_choose: 'Escolher',
+                                                btn_change: 'Outro',
+                                                droppable: false,
+                                                onchange: null,
+                                                thumbnail: false //| true | large
+                                                //whitelist:'gif|png|jpg|jpeg'
+                                                //blacklist:'exe|php'
+                                                //onchange:''
+                                                //
+                                            });
+                                        </script>
+                                    <?php } ?>
                                 </div>
                             </div>
-
                             <!-- <div class="form-group">
-																						<div class="col-xs-12">
-																							<label class="ace-file-input ace-file-multiple"><input multiple="" type="file" id="id-input-file-3"><span class="ace-file-container" data-title="Drop files here or click to choose"><span class="ace-file-name" data-title="No File ..."><i class=" ace-icon ace-icon fa fa-cloud-upload"></i></span></span><a class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a></label>
-																						</div>
-																					</div> -->
-
+                                <div class="col-xs-12">
+                                    <label class="ace-file-input ace-file-multiple"><input multiple="" type="file" id="id-input-file-3"><span class="ace-file-container" data-title="Drop files here or click to choose"><span class="ace-file-name" data-title="No File ..."><i class=" ace-icon ace-icon fa fa-cloud-upload"></i></span></span><a class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a></label>
+                                </div>
+                            </div> -->
                             <label>
                                 <!-- <input type="checkbox" name="file-format" id="id-file-format" class="ace"> -->
                                 <span class="lbl"></span>

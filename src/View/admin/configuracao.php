@@ -266,13 +266,14 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																				<div class="widget-main">
 																					<div class="form-group">
 																						<div class="position-relative">
-																							<img src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid">
+																						<center><img id="imglogo" src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid"></center>
 
 																						</div>
 																					</div>
 																					<div class="form-group">
 																						<div class="col-xs-12">
-																							<label class="ace-file-input"><input type="file" name="logo" id="logo" value="<?= $dados[0]['EmpLogo'] ?>"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."><i class=" ace-icon fa fa-upload"></i></span></span><a class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a></label>
+																						<input type="hidden" name="oldLogo" id="oldLogo" value="<?= $dados[0]['EmpLogoPath'] ?>">
+ 																						<input type="file" name="logo" id="logo">
 																						</div>
 																					</div>
 
@@ -290,22 +291,6 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																			</div>
 																		</div>
 																	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 																	<div style="margin-top: 10px;" class="col-sm-6 col-xs-6">
 
 																		<button onclick="return CadastrarDadosEmpresa('formAlterarEmpresa')" class="col-sm-12 col-xs-12 btn btn-success">

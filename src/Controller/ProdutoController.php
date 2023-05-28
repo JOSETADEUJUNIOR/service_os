@@ -33,7 +33,7 @@ class ProdutoController
     {
         if (empty($vo->getProdDescricao()) || empty($vo->getProdCodBarra()) || empty($vo->getProdValorCompra()) || empty($vo->getProdValorVenda()) || $vo->getProdEstoqueMin() == "" || $vo->getProdEstoque() == "")
             return 0;
-
+    
         $vo->setfuncao(ALTERA_PRODUTO);
         $vo->setIdLogado(Util::CodigoLogado());
         return $this->dao->AlterarProdutoDAO($vo);

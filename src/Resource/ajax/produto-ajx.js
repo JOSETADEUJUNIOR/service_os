@@ -10,9 +10,9 @@ function CadastrarProduto(id_form) {
         formData.append("ProdValorVenda", $("#ProdValorVenda").val());
         formData.append("ProdEstoque", $("#ProdEstoque").val());
         formData.append("ProdEstoqueMin", $("#ProdEstoqueMin").val());
-        if (img != ""){
-            formData.append("ProdImagem", img);
-        }
+        formData.append("OldImagem", $("#OldImagem").val());
+        formData.append("OldPath", $("#OldPath").val());
+        formData.append("ProdImagem", img);
         formData.append("btn_cadastrar", 'ajx');
         $.ajax({
             type: "POST",
@@ -21,12 +21,12 @@ function CadastrarProduto(id_form) {
             processData: false,
             contentType: false,
             success: function (resultado) {
-                console.log(resultado);
                 if (resultado == 1) {
                     MensagemSucesso();
                     LimparCampos(id_form);
                     ConsultarProduto();
                     $("#produto").modal("hide");
+                    LimparImgProdutoAjx();
                 } else if (resultado == 10){
                     MensagemGenerica('Arquivo muito grande !! Max: 2MB');
                 } else if (resultado == 11){
@@ -162,3 +162,9 @@ $('#ProdImagem').ace_file_input({
     //onchange:''
     //
 });
+
+function Imprimir() {
+    let tipo = $("#tipoFiltro").val();
+    let filtrar_palavra = $("#filtro_palavra").val();
+    location = "relatorio_produto_dataview.php?filtro=" + tipo + "&desc_filtro="+ filtrar_palavra;
+}

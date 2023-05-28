@@ -244,19 +244,18 @@ function CadastrarDadosEmpresa() {
     formData.append("EmpEnd", $("#endereco").val());
     formData.append("EmpNumero", $("#numero").val());
     formData.append("EmpCidade", $("#cidade").val());
+    formData.append("oldLogo", $("#oldLogo").val());
     if ($("#logo").prop("files")[0] == "") {
         formData.append("arquivos", '');
     } else {
-
         formData.append("arquivos", $("#logo").prop("files")[0]);
     }
     formData.append("btnAlterar", 'ajxx');
-    console.log(formData);
     $.ajax({
         type: "POST",
         url: BASE_URL_AJAX("usuario_dataview"),
         data:
-            formData,
+        formData,
         processData: false,
         contentType: false,
         success: function (ret) {
@@ -264,16 +263,11 @@ function CadastrarDadosEmpresa() {
             if (ret != "") {
                 MensagemSucesso();
                 ConsultarEmpresa();
-
             } else {
                 MensagemErro();
             }
         }
-    })
-
-    return false;
-
-
+    }); return false;
 }
 
 
@@ -413,3 +407,29 @@ function VerSenha() {
 
 
 }
+
+$('#logo').ace_file_input({
+    no_file:'Selecione o arquivo...',
+    btn_choose:'Escolher',
+    btn_change:'Outro',
+    droppable:false,
+    onchange:null,
+    thumbnail:false //| true | large
+    //whitelist:'gif|png|jpg|jpeg'
+    //blacklist:'exe|php'
+    //onchange:''
+    //
+});
+
+$("#logo").change(function() {
+    $("#imglogo").show();
+    let logo = $("#logo").prop("files")[0];
+    let reader = new FileReader();
+    reader.onload = function() {
+        let base64String = reader.result.split(",")[1]; // Extract the base64 string from the data URL
+        // Adicionar preview da imagem selecionada
+        let imgPreview = document.getElementById("imglogo");
+        imgPreview.src = reader.result;
+    };
+    reader.readAsDataURL(logo); // Read the file as a data URL
+});

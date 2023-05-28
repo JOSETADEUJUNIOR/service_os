@@ -5,7 +5,7 @@ function RemoverLoad() {
     $("#divload").removeClass("overlay").html('');
 }
 
-function AlterarProdutoModal(ProdID, ProdDescricao, ProdCodBarra, ProdValorCompra, ProdValorVenda, ProdEstoque, ProdEstoqueMin) {
+function AlterarProdutoModal(ProdID, ProdDescricao, ProdCodBarra, ProdValorCompra, ProdValorVenda, ProdEstoque, ProdEstoqueMin, ProdImagem, ProdPath) {
 
     $("#ProdID").val(ProdID);
     $("#ProdDescricao").val(ProdDescricao);
@@ -14,6 +14,8 @@ function AlterarProdutoModal(ProdID, ProdDescricao, ProdCodBarra, ProdValorCompr
     $("#ProdValorVenda").val(ProdValorVenda);
     $("#ProdEstoque").val(ProdEstoque);
     $("#ProdEstoqueMin").val(ProdEstoqueMin);
+    $("#OldImagem").val(ProdImagem);
+    $("#OldPath").val(ProdPath);
 }
 
 function ExcluirModalItem(OsID, id, nome, idProduto, qtd) {

@@ -43,9 +43,9 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 								<div class="col-xs-12">
 									<h4 class="pink">
 										<a href="#produto" role="button" class="btn btn-success" data-toggle="modal"><i class="ace-icon fa fa-plus white"></i>Novo</a>
-										<?php //if (count($setor) > 0) { 
+										<?php // if (count($setor) > 0) { 
 										?>
-										<button style="display: none;" type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
+										<button type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
 										<?php //} 
 										?>
 									</h4>
@@ -78,7 +78,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 														<td><?= $produto[$i]['ProdValorVenda'] ?></td>
 														<td><?= $produto[$i]['ProdEstoque'] ?></td>
 														<td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
-														<?php if ($produto[$i]['ProdImagemPath'] != "") { ?>
+														<?php if ( $produto[$i]['ProdImagemPath'] != "" || $produto[$i]['ProdImagemPath'] != null) { ?>
 															<td>
 																<!-- <center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center> -->
 																<img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem brand-image img-circle elevation-3" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>">
@@ -95,7 +95,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 														</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>')">
+																<a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>','<?= $produto[$i]['ProdImagem'] ?>','<?= $produto[$i]['ProdImagemPath'] ?>')">
 																	<i title="Alterar Produto" class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
 															</div>

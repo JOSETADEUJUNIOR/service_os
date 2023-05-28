@@ -391,4 +391,13 @@ class usuarioDAO extends Conexao
         $sql->execute();
         return $sql->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function DetalharMeusDadosDAO($idUser)
+    {
+        $sql = $this->conexao->prepare(UsuarioSQL::DETALHAR_MEUS_DADOS_SQL());
+        $i = 1;
+        $sql->bindValue($i++, $idUser);
+        $sql->execute();
+        return $sql->fetch(\PDO::FETCH_ASSOC);
+    }
 }
