@@ -38,6 +38,30 @@ class FuncionarioApi extends ApiRequest
         return (new UsuarioController)->DetalharUsuarioController($this->params['id_user']);
     }
 
+    public function DetalharEmpresaOS()
+    {
+
+        if (empty($this->params['empresa_id'])) {
+            return 0;
+        }
+
+        return (new ChamadoController)->DetalharEmpresaController($this->params['empresa_id']);
+    }
+
+    public function DetalharDadosOS()
+    {
+
+        if (empty($this->params['empresa_id'])) {
+            return 0;
+        }
+        
+        return (new ChamadoController)->DetalharDadosOsController($this->params['empresa_id'], $this->params['os_id']);
+    }
+
+
+    
+    
+
     public function AlterarMeusDados()
     {
         $vo = new FuncionarioVO;
@@ -181,6 +205,13 @@ class FuncionarioApi extends ApiRequest
     {
         return (new ClienteController)->SelecioneClienteCTRL($this->params['empresa_id'], $this->params['tipo']);
     }
+    public function DetalharClienteOS()
+    {
+        return (new ClienteController)->DetalharClienteOSController($this->params['empresa_id'], $this->params['tipo'], $this->params['cliente_id']);
+    }
+
+
+    
     public function FiltrarChamado()
     {
         return (new ChamadoController)->FiltrarChamadoController($this->params['situacao'], $this->params['id_setor']);

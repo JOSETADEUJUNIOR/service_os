@@ -124,6 +124,7 @@ WHERE tb_empresa.EmpID = empID; */
         us_te.nome as nome_tecnico,
         cli.CliNome as nome_cliente,
         ch.numero_nf as numero_nf,
+        cli.CliID as cliente_id,
         ch.defeito as defeito,
         ch.observacao as observacao,
         (SELECT nome From tb_usuario Where id = ch.tecnico_encerramento) as tecnico_encerramento
@@ -177,6 +178,7 @@ WHERE tb_empresa.EmpID = empID; */
         cli.CliNome as nome_cliente,
         ch.numero_nf as numero_nf,
         ch.defeito as defeito,
+        cli.CliID as cliente_id,
         ch.observacao as observacao,
         (SELECT nome From tb_usuario Where id = ch.tecnico_encerramento) as tecnico_encerramento
          FROM
@@ -233,6 +235,19 @@ WHERE tb_empresa.EmpID = empID; */
         return $sql;
     }
     
+    public static function DETALHAR_EMPRESA_OS()
+    {
+        $sql = 'SELECT * from tb_empresa where EmpID = ?';
+
+        return $sql;
+    }
+
+    public static function DETALHAR_DADOS_OS()
+    {
+        $sql = 'SELECT * from tb_chamado where empresa_EmpID = ? AND id = ?';
+
+        return $sql;
+    }
 
     public static function ChamadosPorFuncionarioSQL()
     {

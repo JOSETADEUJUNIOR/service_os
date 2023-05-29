@@ -122,6 +122,18 @@ class ClienteDAO extends Conexao
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function DetalharClienteOSDAO($empresa_id, $tipo, $cliente_id)
+    {
+        $sql = $this->conexao->prepare(ClienteSQL::RETORNA_CLIENTE_OS_SQL());
+        $i = 1;
+        if ($tipo == PERFIL_FUNCIONARIO) {
+            $sql->bindValue($i++, $cliente_id);
+            $sql->bindValue($i++, $empresa_id);
+            
+        }
+        $sql->execute();
+        return $sql->fetch(\PDO::FETCH_ASSOC);
+    }
     public function EmailDuplicadoClienteDAO()
     {
         $sql = $this->conexao->prepare(ClienteSQL::EMAIL_DUPLICADO_CLIENTE_SQL());

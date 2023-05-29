@@ -109,7 +109,18 @@ class ChamadoController
        
         return $this->dao->FiltrarNFDAO($empresa_id, $valordigitado);
     }
+    
+    public function DetalharEmpresaController($empresa_id)
+    {
+       
+        return $this->dao->DetalharEmpresaDAO($empresa_id);
+    }
 
+    public function DetalharDadosOsController($empresa_id, $os_id)
+    {
+       
+        return $this->dao->DetalharDadosOsDAO($empresa_id, $os_id);
+    }
 
     
     public function AtenderChamadoController(ChamadoVO $vo): int

@@ -239,13 +239,31 @@ class ChamadoDAO extends Conexao
         $sql->bindValue(2, '%' . $valordigitado . '%');
         
         $sql->execute();
+        
 
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function DetalharEmpresaDAO($empresa_id)
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::DETALHAR_EMPRESA_OS());
+        
+        $sql->bindValue(1, $empresa_id);
+        $sql->execute();
 
+        return $sql->fetch(\PDO::FETCH_ASSOC);
+    }
 
+    public function DetalharDadosOsDAO($empresa_id, $os_id)
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::DETALHAR_DADOS_OS());
+        
+        $sql->bindValue(1, $empresa_id);
+        $sql->bindValue(2, $os_id);
+        $sql->execute();
 
-    
+        return $sql->fetch(\PDO::FETCH_ASSOC);
+    }
+   
     public function AtenderChamadoDAO(ChamadoVO $vo)
     {
         $sql = $this->conexao->prepare(ChamadoSQL::ATENDER_CHAMADO());
