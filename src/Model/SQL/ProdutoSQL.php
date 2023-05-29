@@ -42,4 +42,10 @@ class ProdutoSQL{
 
         return $sql;
     }
+
+    public static function DADOS_EMPRESA_SQL()
+    {
+        $sql = 'SELECT EmpNome, EmpCNPJ, EmpLogoPath, EmpEnd, EmpCidade, EmpNumero  FROM tb_empresa WHERE EmpID = ?';
+        return $sql;
+    }
 }

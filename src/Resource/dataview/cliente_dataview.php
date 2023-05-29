@@ -54,6 +54,16 @@ if (isset($_POST['btn_cadastrar'])) {
             echo $ret;
         }
     }
+} else if (isset($_POST['verificarEmail']) && $_POST['verificarEmail'] == 'ajx'){
+
+    $ret = $ctrl->EmailDuplicadoCTRL($_POST['Email']);
+
+    echo $ret;
+    // if ($ret == 1){
+    // } else {
+    //     echo $ret;
+    // }
+
 } else if (isset($_GET['btn_pdf'])) {
     //$dados = $ctrl->RetornarSetorController();
 
@@ -83,7 +93,7 @@ if (isset($_POST['btn_cadastrar'])) {
                         <th class="sorting_desc">Data Nascimento</th>
                         <th class="sorting_desc">Telefone</th>
                         <th class="sorting_desc">E-mail</th>
-                        <th class="hidden-480">Ativo/Inativo</th>
+                        <th class="sorting_desc">Ativo/Inativo</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -91,7 +101,7 @@ if (isset($_POST['btn_cadastrar'])) {
                     <?php for ($i = 0; $i < count($cliente); $i++) { ?>
                         <tr>
                             <td><?= $cliente[$i]['CliNome'] ?></td>
-                            <td><?= $cliente[$i]['CliDtNasc'] ?></td>
+                            <td><?= Util::ExibirDataBr($cliente[$i]['CliDtNasc']) ?></td>
                             <td><?= $cliente[$i]['CliTelefone'] ?></td>
                             <td><?= $cliente[$i]['CliEmail'] ?></td>
                             <td>
@@ -103,34 +113,10 @@ if (isset($_POST['btn_cadastrar'])) {
                                 </div>
                             </td>
                             <td>
-                                <div class="hidden-sm hidden-xs action-buttons">
+                                <div class="col-xs-3">
                                     <a class="green" href="#cliente" role="button" data-toggle="modal" onclick="AlterarClienteModal('<?= $cliente[$i]['CliID'] ?>','<?= $cliente[$i]['CliNome'] ?>','<?= $cliente[$i]['CliDtNasc'] ?>','<?= $cliente[$i]['CliCpfCnpj'] ?>','<?= $cliente[$i]['CliTipo'] ?>','<?= $cliente[$i]['CliTelefone'] ?>','<?= $cliente[$i]['CliEmail'] ?>','<?= $cliente[$i]['CliCep'] ?>','<?= $cliente[$i]['CliEndereco'] ?>','<?= $cliente[$i]['CliBairro'] ?>','<?= $cliente[$i]['CliNumero'] ?>','<?= $cliente[$i]['CliCidade'] ?>','<?= $cliente[$i]['CliEstado'] ?>')">
                                         <i title="Alterar cliente" class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
-                                </div>
-                                <div class="hidden-md hidden-lg">
-                                    <div class="inline pos-rel">
-                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                            <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                        </button>
-
-                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                            <li>
-                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                    <span class="blue">
-                                                        <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#cliente" onclick="" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                    <span class="green">
-                                                        <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -155,7 +141,7 @@ if (isset($_POST['btn_cadastrar'])) {
                     <th class="sorting_desc">Data Nascimento</th>
                     <th class="sorting_desc">Telefone</th>
                     <th class="sorting_desc">E-mail</th>
-                    <th class="hidden-480">Ativo/Inativo</th>
+                    <th class="sorting_desc">Ativo/Inativo</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -163,7 +149,7 @@ if (isset($_POST['btn_cadastrar'])) {
                 <?php for ($i = 0; $i < count($cliente); $i++) { ?>
                     <tr>
                         <td><?= $cliente[$i]['CliNome'] ?></td>
-                        <td><?= $cliente[$i]['CliDtNasc'] ?></td>
+                        <td><?= Util::ExibirDataBr($cliente[$i]['CliDtNasc']) ?></td>
                         <td><?= $cliente[$i]['CliTelefone'] ?></td>
                         <td><?= $cliente[$i]['CliEmail'] ?></td>
                         <td>
@@ -175,34 +161,10 @@ if (isset($_POST['btn_cadastrar'])) {
                             </div>
                         </td>
                         <td>
-                            <div class="hidden-sm hidden-xs action-buttons">
+                            <div class="col-xs-3">
                                 <a class="green" href="#cliente" role="button" data-toggle="modal" onclick="AlterarClienteModal('<?= $cliente[$i]['CliID'] ?>','<?= $cliente[$i]['CliNome'] ?>','<?= $cliente[$i]['CliDtNasc'] ?>','<?= $cliente[$i]['CliCpfCnpj'] ?>','<?= $cliente[$i]['CliTipo'] ?>','<?= $cliente[$i]['CliTelefone'] ?>','<?= $cliente[$i]['CliEmail'] ?>','<?= $cliente[$i]['CliCep'] ?>','<?= $cliente[$i]['CliEndereco'] ?>','<?= $cliente[$i]['CliBairro'] ?>','<?= $cliente[$i]['CliNumero'] ?>','<?= $cliente[$i]['CliCidade'] ?>','<?= $cliente[$i]['CliEstado'] ?>','<?= $cliente[$i]['CliDescricao'] ?>')">
                                     <i title="Alterar cliente" class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
-                            </div>
-                            <div class="hidden-md hidden-lg">
-                                <div class="inline pos-rel">
-                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                        <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                    </button>
-
-                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                        <li>
-                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                <span class="blue">
-                                                    <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#cliente" onclick="" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                <span class="green">
-                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </div>
                         </td>
                     </tr>

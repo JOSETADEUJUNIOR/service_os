@@ -96,6 +96,7 @@ function ConsultarProduto() {
 }
 
 function FiltrarProduto(nome_filtro) {
+    console.log(nome_filtro);
     $.ajax({
         type: "POST",
         url: BASE_URL_AJAX("produto_dataview"),
@@ -104,6 +105,7 @@ function FiltrarProduto(nome_filtro) {
             FiltrarNome: nome_filtro
         }, success: function (dados) {
             $("#table_result_produto").html(dados);
+            $("#btnImprimir").show();
         }
     })
 }
@@ -164,7 +166,6 @@ $('#ProdImagem').ace_file_input({
 });
 
 function Imprimir() {
-    let tipo = $("#tipoFiltro").val();
-    let filtrar_palavra = $("#filtro_palavra").val();
-    location = "relatorio_produto_dataview.php?filtro=" + tipo + "&desc_filtro="+ filtrar_palavra;
+    let filtrar_palavra = $("#buscaProduto").val();
+    location = "relatorio_produto.php?desc_filtro="+ filtrar_palavra;
 }

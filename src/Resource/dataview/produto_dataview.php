@@ -132,7 +132,7 @@ if (isset($_POST['btn_cadastrar'])) {
                         <th class="sorting_desc">Estoque Total</th>
                         <th class="sorting_desc">Estoque Mínimo</th>
                         <th class="sorting_desc">Img Produto</th>
-                        <th class="hidden-480">Ativo/Inativo</th>
+                        <th class="sorting_desc">Ativo/Inativo</th>
                         <th class="sorting_desc">Ações</th>
                     </tr>
                 </thead>
@@ -146,9 +146,7 @@ if (isset($_POST['btn_cadastrar'])) {
                             <td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
                             <?php if ($produto[$i]['ProdImagemPath'] != "" || $produto[$i]['ProdImagemPath'] != null) { ?>
                                 <td>
-                                    <!-- <center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center> -->
-                                    <img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>">
-
+                                    <center><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>"></center>
                                 </td>
                             <?php } else { ?><td></td><?php } ?>
                             <td>
@@ -160,38 +158,14 @@ if (isset($_POST['btn_cadastrar'])) {
                                 </div>
                             </td>
                             <td>
-                                <div class="hidden-sm hidden-xs action-buttons">
+                                <div class="col-xs-3">
                                     <a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>','<?= $produto[$i]['ProdImagem'] ?>','<?= $produto[$i]['ProdImagemPath'] ?>')">
                                         <i title="Alterar Produto" class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
                                 </div>
-                                <div class="hidden-md hidden-lg">
-                                    <div class="inline pos-rel">
-                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                            <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                            <li>
-                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                    <span class="blue">
-                                                        <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#produto" onclick="" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                    <span class="green">
-                                                        <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </td>
                         </tr>
                     <?php } ?>
-
                 </tbody>
             </table>
         </div>
@@ -213,7 +187,7 @@ if (isset($_POST['btn_cadastrar'])) {
                     <th class="sorting_desc">Estoque Total</th>
                     <th class="sorting_desc">Estoque Mínimo</th>
                     <th class="sorting_desc">Img Produto</th>
-                    <th class="hidden-480">Ativo/Inativo</th>
+                    <th class="sorting_desc">Ativo/Inativo</th>
                     <th class="sorting_desc">Ações</th>
                 </tr>
             </thead>
@@ -227,9 +201,7 @@ if (isset($_POST['btn_cadastrar'])) {
                         <td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
                         <?php if ($produto[$i]['ProdImagemPath'] != "" || $produto[$i]['ProdImagemPath'] != null) { ?>
                             <td>
-                                <!-- <center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center> -->
-                                <img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem brand-image img-circle elevation-3" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>">
-
+                                <center><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem brand-image img-circle elevation-3" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>"></center>
                             </td>
                         <?php } else { ?><td></td><?php } ?>
                         <td>
@@ -241,38 +213,14 @@ if (isset($_POST['btn_cadastrar'])) {
                             </div>
                         </td>
                         <td>
-                            <div class="hidden-sm hidden-xs action-buttons">
+                            <div class="col-xs-3">
                                 <a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>','<?= $produto[$i]['ProdImagem'] ?>','<?= $produto[$i]['ProdImagemPath'] ?>')">
                                     <i title="Alterar Produto" class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </div>
-                            <div class="hidden-md hidden-lg">
-                                <div class="inline pos-rel">
-                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                        <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                        <li>
-                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                <span class="blue">
-                                                    <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#produto" onclick="" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                <span class="green">
-                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                         </td>
                     </tr>
                 <?php } ?>
-
             </tbody>
         </table>
     </div>

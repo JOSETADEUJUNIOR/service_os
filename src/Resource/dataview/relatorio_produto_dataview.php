@@ -5,29 +5,21 @@ include_once '_include_autoload.php';
 use Src\_public\Util;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Src\Controller\EquipamentoController;
+use Src\Controller\ProdutoController;
 
-if (isset($_GET['filtro'])) {
+if (isset($_GET['desc_filtro'])) {
   $options = new Options();
   $options->setChroot('../../Resource/dataview/arquivos');
 
-  $html="";
-  $ctrl = new EquipamentoController();
-  $BuscarTipo = $_GET['filtro'];
+  $html = "";
+  $ctrl = new ProdutoController();
   $filtro_palavra = $_GET['desc_filtro'];
-  $equipamento = $ctrl->ConsultarEquipamentoController($BuscarTipo, $filtro_palavra);
-
-  $empresa = [
-
-    "EmpNome" => "EMpresa 1",
-    "EmpCNPJ" => "010.273.869-62",
-    "EmpEnd"  => "Rua numero 1",
-    "EmpLogoPath" => "/arquivos/6307522795fa9.png"
-  ];
+  $produto = $ctrl->FiltrarProdutoCTRL($filtro_palavra);
+  $dados_empresa = $ctrl->DadosEmpresaCTRL();
 
   // Inicia o buffer de saída
   ob_start();
-  $img = '<img src=../../Resource/dataview/' . $empresa['EmpLogoPath'] . ' height="100px" width="150px" alt="Photo 2" class="img-fluid">'; ?>
+  $img = '<img src=../../Resource/dataview/' . $dados_empresa['EmpLogoPath'] . ' height="100px" width="150px" alt="Photo 2" class="img-fluid">'; ?>
 
 
   <style>
@@ -49,47 +41,51 @@ if (isset($_GET['filtro'])) {
     }
   </style>
 
-
   <table style="width:100%">
     <tr>
       <th><?= $img ?>
       </th>
-      <th colspan="6">
-        <p><?= $empresa['EmpNome'] ?></p>
-        <p><?= $empresa['EmpCNPJ'] ?></p>
-        <p><?= $empresa['EmpEnd'] ?></p>
+      <th colspan="5">
+        <p><?= $dados_empresa['EmpNome'] ?></p>
+        <p><?= $dados_empresa['EmpCNPJ'] ?></p>
+        <p><?= $dados_empresa['EmpEnd'] ?></p>
       </th>
     </tr>
     <tr>
-      <td style="text-align: center;" colspan="7"><strong>Relação de Equipamentos</strong></td>
+      <td style="text-align: center;" colspan="6">
+        <center><strong>Relação de Produto</strong></center>
+      </td>
     </tr>
     <tr>
-      <td><strong>Tipo</strong></td>
-      <td><strong>Modelo</strong></td>
-      <td><strong>Identificação</strong></td>
-      <td colspan="4"><strong>Descrição</strong></td>
+      <td><strong>Nome/Descrição</strong></td>
+      <td><strong>Valor Compra</strong></td>
+      <td><strong>Valor Venda</strong></td>
+      <td><strong>Estoque Atual</strong></td>
+      <td><strong>Estoque Mínino</strong></td>
+      <td><strong>Satatus</strong></td>
     </tr>
-    <?php
-
-
-    ?>
-    <?php $servicoZ=0; for ($i = 0; $i < count($equipamento); $i++) {
+    <?php $servicoZ = 0;
+    for ($i = 0; $i < count($produto); $i++) {
       $servicoZ++; ?>
       <tr>
         <td>
-          <?= $equipamento[$i]['nomeTipo'] ?>
+          <?= $produto[$i]['ProdDescricao'] ?>
         </td>
         <td>
-          <?= $equipamento[$i]['nomeModelo'] ?>
+          <?= $produto[$i]['ProdValorCompra'] ?>
         </td>
         <td>
-          <?= $equipamento[$i]['identificacao'] ?>
+          <?= $produto[$i]['ProdValorVenda'] ?>
         </td>
-        <td colspan="4">
-          <?= $equipamento[$i]['descricao'] ?>
+        <td>
+          <?= $produto[$i]['ProdEstoque'] ?>
         </td>
-
-
+        <td>
+          <?= $produto[$i]['ProdEstoqueMin'] ?>
+        </td>
+        <td>
+          <?= $produto[$i]['ProdStatus'] ?>
+        </td>
       </tr>
     <?php } ?>
   </table>
@@ -113,7 +109,7 @@ if (isset($_GET['filtro'])) {
   $dompdf->loadHtml($html);
 
   // (Optional) Setup the paper size and orientation
-  $dompdf->setPaper('A4', 'landscape');
+  $dompdf->setPaper('A4');
 
   // Define o tipo de conteúdo como PDF
   header("Content-Type: application/pdf");
@@ -130,3 +126,4 @@ if (isset($_GET['filtro'])) {
 } else {
   Util::chamarPagina('produto.php');
 }
+

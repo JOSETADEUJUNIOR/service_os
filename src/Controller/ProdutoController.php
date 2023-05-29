@@ -68,4 +68,9 @@ class ProdutoController
     {   
         return $this->dao->FiltrarProdutoDAO($nome_filtro);
     }
+
+    public function DadosEmpresaCTRL()
+    {   
+        return $this->dao->DadosEmpresaDAO();
+    }
 }

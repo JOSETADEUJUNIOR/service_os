@@ -1,4 +1,5 @@
 <?php
+use Src\_public\Util;
 require_once dirname(__DIR__, 2) . '/Resource/dataview/cliente_dataview.php';
 ?>
 <!DOCTYPE html>
@@ -43,20 +44,16 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/cliente_dataview.php';
 								<div class="col-xs-12">
 									<h4 class="pink">
 										<a href="#cliente" role="button" class="btn btn-success" data-toggle="modal"><i class="ace-icon fa fa-plus white"></i>Novo</a>
-										<?php //if (count($setor) > 0) { 
-										?>
-										<button style="display: none;" type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
-										<?php //} 
-										?>
+										<button id="btnImprimirCliente" type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
 									</h4>
 									<div class="table-header">
 										Clientes Cadastrados
 
 										<div style="display:inline-flex" id="dynamic-table_filter">
-											<input type="search" onkeyup="FiltrarCliente(this.value)" class="form-control input-sm" placeholder="buscar por nome" aria-controls="dynamic-table">
+											<input id="buscaCliente" name="buscaCliente" type="search" onkeyup="FiltrarCliente(this.value)" class="form-control input-sm" placeholder="buscar por nome" aria-controls="dynamic-table">
 										</div>
 									</div>
-									<div id="table_result_cliente">
+									<div class="table-responsive" id="table_result_cliente">
 										<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 											<thead>
 												<tr>
@@ -64,7 +61,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/cliente_dataview.php';
 													<th class="sorting_desc">Data Nascimento</th>
 													<th class="sorting_desc">Telefone</th>
 													<th class="sorting_desc">E-mail</th>
-													<th class="hidden-480">Ativo/Inativo</th>
+													<th class="sorting_desc">Ativo/Inativo</th>
 													<th>Ações</th>
 												</tr>
 											</thead>
@@ -72,7 +69,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/cliente_dataview.php';
 												<?php for ($i = 0; $i < count($cliente); $i++) { ?>
 													<tr>
 														<td><?= $cliente[$i]['CliNome'] ?></td>
-														<td><?= $cliente[$i]['CliDtNasc'] ?></td>
+														<td><?= Util::ExibirDataBr($cliente[$i]['CliDtNasc']); ?></td>
 														<td><?= $cliente[$i]['CliTelefone'] ?></td>
 														<td><?= $cliente[$i]['CliEmail'] ?></td>
 														<td>
@@ -84,34 +81,10 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/cliente_dataview.php';
 															</div>
 														</td>
 														<td>
-															<div class="hidden-sm hidden-xs action-buttons">
+															<div class="col-xs-3">
 																<a class="green" href="#cliente" role="button" data-toggle="modal" onclick="AlterarClienteModal('<?= $cliente[$i]['CliID'] ?>','<?= $cliente[$i]['CliNome'] ?>','<?= $cliente[$i]['CliDtNasc'] ?>','<?= $cliente[$i]['CliCpfCnpj'] ?>','<?= $cliente[$i]['CliTipo'] ?>','<?= $cliente[$i]['CliTelefone'] ?>','<?= $cliente[$i]['CliEmail'] ?>','<?= $cliente[$i]['CliCep'] ?>','<?= $cliente[$i]['CliEndereco'] ?>','<?= $cliente[$i]['CliBairro'] ?>','<?= $cliente[$i]['CliNumero'] ?>','<?= $cliente[$i]['CliCidade'] ?>','<?= $cliente[$i]['CliEstado'] ?>','<?= $cliente[$i]['CliDescricao'] ?>')">
 																	<i title="Alterar cliente" class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
-															</div>
-															<div class="hidden-md hidden-lg">
-																<div class="inline pos-rel">
-																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-																		<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-																	</button>
-
-																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																		<li>
-																			<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-																				<span class="blue">
-																					<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#cliente" onclick="" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
-																				<span class="green">
-																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-																	</ul>
-																</div>
 															</div>
 														</td>
 													</tr>

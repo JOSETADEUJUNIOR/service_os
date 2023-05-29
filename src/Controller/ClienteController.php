@@ -50,18 +50,35 @@ class ClienteController
     public function SelecioneClienteCTRL($empresa_id=false, $tipo=false): array
     {
         $dados = $this->dao->SelecionarClienteDAO($empresa_id, $tipo); 
-        for ($i = 0; $i < count($dados); $i++){
-            $dados[$i]['CliDtNasc'] = Util::ExibirDataBr($dados[$i]['CliDtNasc']);
-        }
+        // for ($i = 0; $i < count($dados); $i++){
+        //     $dados[$i]['CliDtNasc'] = Util::ExibirDataBr($dados[$i]['CliDtNasc']);
+        // }
         return $dados;
     }
 
     public function FiltrarClienteCTRL($nome_filtro)
     {
         $dados = $this->dao->FiltrarClienteDAO($nome_filtro);
-        for ($i = 0; $i < count($dados); $i++){
-            $dados[$i]['CliDtNasc'] = Util::ExibirDataBr($dados[$i]['CliDtNasc']);
-        }
+        // for ($i = 0; $i < count($dados); $i++){
+        //     $dados[$i]['CliDtNasc'] = Util::ExibirDataBr($dados[$i]['CliDtNasc']);
+        // }
         return $dados;
+    }
+
+    public function EmailDuplicadoCTRL($email)
+    {  
+        $dados_cliente = $this->dao->EmailDuplicadoClienteDAO();
+        for ($i = 0; $i < count($dados_cliente); $i++){
+            if ($dados_cliente[$i]['CliEmail'] == $email){
+                return -105; # Caso tenha email duplicado
+            }
+        }
+        $dados_usuario = $this->dao->EmailDuplicadoUsuarioDAO();
+        for ($i = 0; $i < count($dados_usuario); $i++){
+            if ($dados_usuario[$i]['login'] == $email){
+                return -105; # Caso tenha email duplicado
+            } 
+        }
+        return 1;
     }
 }

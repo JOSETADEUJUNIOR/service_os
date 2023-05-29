@@ -121,4 +121,22 @@ class ClienteDAO extends Conexao
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function EmailDuplicadoClienteDAO()
+    {
+        $sql = $this->conexao->prepare(ClienteSQL::EMAIL_DUPLICADO_CLIENTE_SQL());
+        $i = 1;
+        $sql->bindValue($i++, Util::EmpresaLogado());
+        $sql->execute();
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function EmailDuplicadoUsuarioDAO()
+    {
+        $sql = $this->conexao->prepare(ClienteSQL::EMAIL_DUPLICADO_USUARIO_SQL());
+        $i = 1;
+        $sql->bindValue($i++, Util::EmpresaLogado());
+        $sql->execute();
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

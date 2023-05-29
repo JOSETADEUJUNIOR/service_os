@@ -77,6 +77,21 @@ class Util
         return strip_tags(trim($palavra));
     }
 
+    public static function DataHoraAtualPDF()
+    {
+        self::SetarFusoHorario();
+        return date('d-m-Y_H-i-s');
+    }
+
+    public static function Status($status){
+        $tipo = "";
+        if ($status == 1){
+            $tipo = "Ativo";
+        } else {
+            $tipo = "Inativo";
+        }
+        return $tipo;
+    }
 
     private static function SetarFusoHorario()
     {

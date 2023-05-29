@@ -19,7 +19,7 @@
                         </div>
                         <div class="form-group col-md-8">
                             <label>CPF/CNPJ</label>
-                            <input class="form-control obg cpfCnpj" id="CliCpfCnpj" name="CliCpfCnpj" placeholder="Digite aqui...." maxlength="45">
+                            <input onchange="ValidadorCPFeCNPJ(this.value)" class="form-control obg cpfCnpj" id="CliCpfCnpj" name="CliCpfCnpj" placeholder="Digite aqui...." maxlength="45">
                         </div>
                         <div class="form-group col-md-4">
                             <label>Tipo</label>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>E-mail</label>
-                            <input class="form-control obg" id="CliEmail" name="CliEmail" placeholder="Digite aqui...." maxlength="100">
+                            <input class="form-control obg" id="CliEmail" name="CliEmail" onchange="VerificarEmail(this.value)" placeholder="Digite aqui...." maxlength="100">
                         </div>
                         <div class="form-group col-md-3">
                             <label>CEP</label>
@@ -72,7 +72,7 @@
 
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="button" onclick="FechandoModal('form_setor')" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="FechandoModal('form_cliente')" class="btn btn-info" data-dismiss="modal">Cancelar</button>
                 <button name="btnGravar" class="btn btn-success" onclick="return CadastrarCliente('form_cliente')">Salvar</button>
             </div>
         </div>

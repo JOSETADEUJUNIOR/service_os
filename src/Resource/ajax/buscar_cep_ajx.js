@@ -52,12 +52,14 @@ function BuscarCep(){
                     //CEP pesquisado não foi encontrado.
                     LimparCamposEndereco();
                     TravarCamposEndereco(false);
+                    MensagemGenerica("CEP: " + cep + " inválido!");
                 }
             });
         } //end if.
         else {
             //cep é inválido.
             LimparCamposEndereco();
+            //MensagemGenerica("CEP: " + cep + " inválido!");
         }
     } //end if.
     else {

@@ -37,4 +37,14 @@ class ClienteSQL{
 
         return $sql;
     }
+
+    public static function EMAIL_DUPLICADO_CLIENTE_SQL(){
+        $sql = 'SELECT CliEmail FROM tb_cliente WHERE CliEmpID = ?';
+        return $sql;
+    }
+
+    public static function EMAIL_DUPLICADO_USUARIO_SQL(){
+        $sql = 'SELECT login FROM tb_usuario WHERE UserEmpID = ?';
+        return $sql;
+    }
 }

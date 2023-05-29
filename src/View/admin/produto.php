@@ -45,7 +45,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 										<a href="#produto" role="button" class="btn btn-success" data-toggle="modal"><i class="ace-icon fa fa-plus white"></i>Novo</a>
 										<?php // if (count($setor) > 0) { 
 										?>
-										<button type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
+										<button  id="btnImprimir" type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
 										<?php //} 
 										?>
 									</h4>
@@ -53,10 +53,10 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 										Produtos Cadastrados
 
 										<div style="display:inline-flex" id="dynamic-table_filter">
-											<input type="search" onkeyup="FiltrarProduto(this.value)" class="form-control input-sm" placeholder="buscar por produto" aria-controls="dynamic-table">
+											<input id="buscaProduto" name="buscaProduto" type="search" onkeyup="FiltrarProduto(this.value)" class="form-control input-sm" placeholder="buscar por produto" aria-controls="dynamic-table">
 										</div>
 									</div>
-									<div id="table_result_produto">
+									<div class="table-responsive" id="table_result_produto">
 										<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 											<thead>
 												<tr>
@@ -66,7 +66,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 													<th class="sorting_desc">Estoque Total</th>
 													<th class="sorting_desc">Estoque Mínimo</th>
 													<th class="sorting_desc">Img Produto</th>
-													<th class="hidden-480">Ativo/Inativo</th>
+													<th class="sorting_desc">Ativo/Inativo</th>
 													<th class="sorting_desc">Ações</th>
 												</tr>
 											</thead>
@@ -79,10 +79,8 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 														<td><?= $produto[$i]['ProdEstoque'] ?></td>
 														<td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
 														<?php if ( $produto[$i]['ProdImagemPath'] != "" || $produto[$i]['ProdImagemPath'] != null) { ?>
-															<td>
-																<!-- <center><a href="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" target="_blank" rel="noopener noreferrer"><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" class="brand-image img-circle elevation-3" width="50px" height="50px"></a></center> -->
-																<img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem brand-image img-circle elevation-3" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>">
-
+															<td>																
+																<center><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem brand-image img-circle elevation-3" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>"></center>
 															</td>
 														<?php } else { ?><td></td><?php } ?>
 														<td>
@@ -94,38 +92,14 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 															</div>
 														</td>
 														<td>
-															<div class="hidden-sm hidden-xs action-buttons">
+															<div class="col-xs-3">
 																<a class="green" href="#produto" role="button" data-toggle="modal" onclick="AlterarProdutoModal('<?= $produto[$i]['ProdID'] ?>','<?= $produto[$i]['ProdDescricao'] ?>','<?= $produto[$i]['ProdCodBarra'] ?>','<?= $produto[$i]['ProdValorCompra'] ?>','<?= $produto[$i]['ProdValorVenda'] ?>','<?= $produto[$i]['ProdEstoque'] ?>','<?= $produto[$i]['ProdEstoqueMin'] ?>','<?= $produto[$i]['ProdImagem'] ?>','<?= $produto[$i]['ProdImagemPath'] ?>')">
 																	<i title="Alterar Produto" class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
 															</div>
-															<div class="hidden-md hidden-lg">
-																<div class="inline pos-rel">
-																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-																		<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-																	</button>
-																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																		<li>
-																			<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-																				<span class="blue">
-																					<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#produto" onclick="" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
-																				<span class="green">
-																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
 														</td>
 													</tr>
 												<?php } ?>
-
 											</tbody>
 										</table>
 									</div>

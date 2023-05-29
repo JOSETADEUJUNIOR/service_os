@@ -45,11 +45,14 @@ function ConsultarCliente() {
             btn_consultar: 'ajx'
         }, success: function (tabela_preenchida) {
             $("#table_result_cliente").html(tabela_preenchida);
+            //$("#btnImprimirCliente").show();
         }
     })
 }
 
+$("#btnImprimirCliente").show();
 function FiltrarCliente(nome_filtro) {
+    $("#btnImprimirCliente").show();
     $.ajax({
         type: "POST",
         url: BASE_URL_AJAX("cliente_dataview"),
@@ -58,7 +61,10 @@ function FiltrarCliente(nome_filtro) {
             FiltrarNome: nome_filtro
         }, success: function (dados) {
             $("#table_result_cliente").html(dados);
-        }
+            if (dados == '<h4><center>Nenhum registro encontrado!</center><h4>'){
+                $("#btnImprimirCliente").hide();
+            }
+        } 
     })
 }
 
@@ -82,4 +88,30 @@ function MudarStatusCliente(id_cliente, valor) {
             }
         }
     })
+}
+
+function VerificarEmail(email){
+    
+    if(email != ""){
+        $.ajax({
+            type: 'post',
+            url: BASE_URL_AJAX("cliente_dataview"),
+            data:{
+                Email: email,
+                verificarEmail: 'ajx'
+            },
+            success: function(ret){
+                if(ret == -105){
+                    MensagemGenerica("O e-mail " + email + " já existe!");
+                    $("#CliEmail").val('');
+                    $("#CliEmail").focus();
+                }
+            }
+        })
+    }
+}
+
+function Imprimir() {
+    let filtrar_palavra = $("#buscaCliente").val();
+    location = "relatorio_cliente.php?desc_filtro="+ filtrar_palavra;
 }
