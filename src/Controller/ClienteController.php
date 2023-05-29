@@ -64,6 +64,12 @@ class ClienteController
         // }
         return $dados;
     }
+    public function DetalharClienteOSController($empresa_id=false, $tipo=false, $cliente_id=false): array
+    {
+        $dados = $this->dao->DetalharClienteOSDAO($empresa_id, $tipo, $cliente_id); 
+        return $dados;
+    }
+
 
     public function EmailDuplicadoCTRL($email)
     {  

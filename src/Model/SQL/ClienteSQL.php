@@ -38,6 +38,12 @@ class ClienteSQL{
         return $sql;
     }
 
+    public static function RETORNA_CLIENTE_OS_SQL()
+    {
+        $sql = 'SELECT * FROM tb_cliente WHERE CliID = ? AND CliEmpID = ?';
+        return $sql;
+    }
+
     public static function EMAIL_DUPLICADO_CLIENTE_SQL(){
         $sql = 'SELECT CliEmail FROM tb_cliente WHERE CliEmpID = ?';
         return $sql;
