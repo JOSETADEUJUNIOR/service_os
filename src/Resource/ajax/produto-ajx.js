@@ -95,19 +95,20 @@ function ConsultarProduto() {
     })
 }
 
-function FiltrarProduto(nome_filtro) {
-    console.log(nome_filtro);
+function FiltrarProdutoAjx(nome_filtro) {
+    //alert('aqui');
     $.ajax({
         type: "POST",
         url: BASE_URL_AJAX("produto_dataview"),
         data: {
             btnFiltrar: 'ajx',
-            FiltrarNome: nome_filtro
+            FiltrarProduto: nome_filtro
         }, success: function (dados) {
+            console.log(dados);
             $("#table_result_produto").html(dados);
-            $("#btnImprimir").show();
+            //$("#btnImprimir").show();
         }
-    })
+    });
 }
 
 function MudarStatusProduto(id_produto, valor) {

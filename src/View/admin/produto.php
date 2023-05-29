@@ -53,7 +53,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 										Produtos Cadastrados
 
 										<div style="display:inline-flex" id="dynamic-table_filter">
-											<input id="buscaProduto" name="buscaProduto" type="search" onkeyup="FiltrarProduto(this.value)" class="form-control input-sm" placeholder="buscar por produto" aria-controls="dynamic-table">
+											<input id="buscaProduto" name="buscaProduto" type="search" onkeyup="FiltrarProdutoAjx(this.value)" class="form-control input-sm" placeholder="buscar por produto" aria-controls="dynamic-table">
 										</div>
 									</div>
 									<div class="table-responsive" id="table_result_produto">

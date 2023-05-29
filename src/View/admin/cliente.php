@@ -62,7 +62,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/cliente_dataview.php';
 													<th class="sorting_desc">Telefone</th>
 													<th class="sorting_desc">E-mail</th>
 													<th class="sorting_desc">Ativo/Inativo</th>
-													<th>Ações</th>
+													<th class="sorting_desc">Ações</th>
 												</tr>
 											</thead>
 											<tbody>

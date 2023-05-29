@@ -114,9 +114,9 @@ if (isset($_POST['btn_cadastrar'])) {
     $vo->setProdStatus($_POST['status_produto']);
     echo $ctrl->AlterarStatusProdutoCTRL($vo);
 
-} else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
+} else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarProduto'])) {
 
-    $nome_filtro = $_POST['FiltrarNome'];
+    $nome_filtro = $_POST['FiltrarProduto'];
 
     $produto = $ctrl->FiltrarProdutoCTRL($nome_filtro);
 
@@ -146,7 +146,7 @@ if (isset($_POST['btn_cadastrar'])) {
                             <td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
                             <?php if ($produto[$i]['ProdImagemPath'] != "" || $produto[$i]['ProdImagemPath'] != null) { ?>
                                 <td>
-                                    <center><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>"></center>
+                                <center><img src="../../Resource/dataview/<?= $produto[$i]['ProdImagemPath'] ?>" alt="<?= $produto[$i]['ProdImagemPath'] ?>" width="50px" height="50px" class="produto-imagem brand-image img-circle elevation-3" data-toggle="modal" data-target="#modal-imagem" data-imagem="<?= $produto[$i]['ProdImagemPath'] ?>"></center>
                                 </td>
                             <?php } else { ?><td></td><?php } ?>
                             <td>

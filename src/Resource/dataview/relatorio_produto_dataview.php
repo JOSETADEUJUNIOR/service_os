@@ -19,7 +19,7 @@ if (isset($_GET['desc_filtro'])) {
 
   // Inicia o buffer de saída
   ob_start();
-  $img = '<img src=../../Resource/dataview/' . $dados_empresa['EmpLogoPath'] . ' height="100px" width="150px" alt="Photo 2" class="img-fluid">'; ?>
+  $img = ($dados_empresa['EmpLogoPath'] == "" || $dados_empresa['EmpLogoPath'] == null ? "" :'<img src=../../Resource/dataview/' . $dados_empresa['EmpLogoPath'] . ' height="100px" width="150px" alt="Photo 2" class="img-fluid">'); ?>
 
 
   <style>
@@ -84,7 +84,7 @@ if (isset($_GET['desc_filtro'])) {
           <?= $produto[$i]['ProdEstoqueMin'] ?>
         </td>
         <td>
-          <?= $produto[$i]['ProdStatus'] ?>
+          <?= Util::Status($produto[$i]['ProdStatus']) ?>
         </td>
       </tr>
     <?php } ?>

@@ -94,7 +94,7 @@ if (isset($_POST['btn_cadastrar'])) {
                         <th class="sorting_desc">Telefone</th>
                         <th class="sorting_desc">E-mail</th>
                         <th class="sorting_desc">Ativo/Inativo</th>
-                        <th>Ações</th>
+                        <th class="sorting_desc">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -142,7 +142,7 @@ if (isset($_POST['btn_cadastrar'])) {
                     <th class="sorting_desc">Telefone</th>
                     <th class="sorting_desc">E-mail</th>
                     <th class="sorting_desc">Ativo/Inativo</th>
-                    <th>Ações</th>
+                    <th class="sorting_desc">Ações</th>
                 </tr>
             </thead>
             <tbody>

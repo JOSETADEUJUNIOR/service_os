@@ -35,7 +35,7 @@ class ProdutoSQL{
 
     public static function FILTER_PRODUTO_SQL($nome_filtro)
     {
-        $sql = 'SELECT ProdID, ProdDescricao, ProdCodBarra, ProdValorCompra, ProdValorVenda, ProdEstoqueMin, ProdEstoque, ProdStatus, ProdImagemPath FROM tb_produto WHERE ProdEmpID = ?';
+        $sql = 'SELECT ProdID, ProdDescricao, ProdCodBarra, ProdValorCompra, ProdValorVenda, ProdEstoqueMin, ProdEstoque, ProdStatus, ProdImagem, ProdImagemPath FROM tb_produto WHERE ProdEmpID = ?';
 
         if (!empty($nome_filtro))
             $sql = $sql . ' AND ProdDescricao LIKE ?';
