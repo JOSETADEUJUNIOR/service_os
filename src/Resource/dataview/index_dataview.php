@@ -25,6 +25,13 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_status') {
     echo json_encode($dados);
 }
 
+if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_status_tabela') {
+    $dados = $ctrl->CarregarDadosChamadoController();
+
+    echo json_encode($dados);
+    exit;
+}
+
 if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_por_periodo') {
     $chamadosPorPeriodo = $ctrl->ChamadosPorPeriodoController();
 

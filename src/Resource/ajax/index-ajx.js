@@ -101,7 +101,6 @@ function BuscarChamadosPorSetor() {
     dataType: 'json',
     data: { acao: 'chamado_por_setor' },
     success: function (setor) {
-
       var dados = setor;
       var labels = [];
       var valores = [];
@@ -132,7 +131,7 @@ function BuscarChamadosPorSetor() {
             borderWidth: 0.5
           }]
         },
-        options: {
+        /* options: {
           scales: {
             yAxes: [{
               ticks: {
@@ -151,20 +150,39 @@ function BuscarChamadosPorSetor() {
               color: "#fff"
             }
           }
-        }
+        } */
       });
     }
   });
 }
 
+function consultarChamado() {
+  $.ajax({
+    type: "GET",
+    url: BASE_URL_AJAX("index_dataview"),
+    success: function (response) {
+      var chamados = JSON.parse(response);
+      preencherTabelaChamados(chamados);
+    }
+  });
+}
 
 
+function preencherTabelaChamados(chamados) {
+  var tbody = '';
+  chamados.forEach(function (chamado) {
+    tbody += '<tr>' +
+      '<td>' + chamado.numero_nf + '</td>' +
+      '<td><b class="green">' + chamado.data_lancamento + '</b></td>' +
+      '<td class="hidden-480">' +
+      '<span class="label label-info arrowed-right arrowed-in">' + chamado.status + '</span>' +
+      '</td>' +
+      '<td class="hidden-480"><b class="">' + chamado.valor_total + '</b></td>' +
+      '</tr>';
+  });
 
-
-
-
-
-
+  $("#chamado_status_tabela").html(tbody);
+}
 
 
 function BuscarChamadosPorStatus() {
@@ -185,50 +203,10 @@ function BuscarChamadosPorStatus() {
       $("#concluidos").html(concluidos);
       var ctx = document.getElementById('chart_chamados_status').getContext('2d');
 
-     /*  // Limpar a tabela antes de adicionar novas linhas
-      $('#chamado_status').empty();
-
-      // Iterar sobre os chamados e criar as linhas da tabela
-      var chamados = [{
-              nf: ['numero_nf'],
-              dataLancamento: ['data_atendimento'],
-              status: 'Aguardando',
-              valorTotal: 100.00
-          },
-          {
-              nf: 'NF-002',
-              dataLancamento: '2023-05-27',
-              status: 'Em Andamento',
-              valorTotal: 150.00
-          },
-          // Adicione mais objetos de chamados conforme necessário
-      ];
-      for (var i = 0; i < chamados.length; i++) {
-          var chamado = chamados[i];
-          console.log(chamado);
-          var nf = chamado.nf;
-          var dataLancamento = chamado.dataLancamento;
-          var status = chamado.status;
-          var valorTotal = chamado.valorTotal;
-          // Criar a linha da tabela com os dados do chamado
-          var row = '<tr>' +
-              '<td>' + nf + '</td>' +
-              '<td><b class="green">' + dataLancamento + '</b></td>' +
-              '<td class="hidden-480">' +
-              '<span class="label label-info arrowed-right arrowed-in">' + status + '</span>' +
-              '</td>' +
-              '<td class="hidden-480">' +
-              '<b class="">' + valorTotal + '</b>' +
-              '</td>' +
-              '</tr>';
-          // Adicionar a linha à tabela
-          $('#chamado_status').append(row);
-      }
- */
       var meuGrafico = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ["Aguardando", "Produção", "Finalizado"],
+          labels: ["Aguardando", "Em Atendimento", "Concluídos"],
           datasets: [{
             label: 'Total de chamados',
             data: [aguardando, em_atendimento, concluidos],
@@ -250,13 +228,13 @@ function BuscarChamadosPorStatus() {
           scales: {
             x: {
               grid: {
-                display: false // Remova as linhas de grade do eixo x
+                display: false
               }
             },
             y: {
-              display: false, // Remova os números do eixo y
+              display: false,
               grid: {
-                display: false // Remova as linhas de grade do eixo y
+                display: false
               }
             }
           },
@@ -273,7 +251,6 @@ function BuscarChamadosPorStatus() {
     }
   });
 }
-
 
 
 
@@ -373,7 +350,7 @@ $.ajax({
             borderWidth: 1
           }]
         },
-        options: {
+        /* options: {
           scales: {
             yAxes: [{
               ticks: {
@@ -381,7 +358,7 @@ $.ajax({
               }
             }]
           }
-        }
+        } */
       };
 
       // Criação do gráfico

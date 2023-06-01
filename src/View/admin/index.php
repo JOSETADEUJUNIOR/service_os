@@ -1,6 +1,7 @@
 <?php
 
 require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,8 +10,6 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
     <?php include_once PATH_URL . '/Template/_includes/_head.php' ?>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
     <link rel="stylesheet" href="../../Template/assets/css/estilo.css">
 
 
@@ -22,6 +21,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 
 
     <!--inicio do conteudo principal-->
+    
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
             try {
@@ -114,15 +114,14 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                                     </div>
                                 </div>
                                 <div class="widget-body" style="display: block; border: 1px solid #e8e8e8; border-radius: 4px; background-color: #fefefe;">
-                                    <canvas id="chart_chamados_status" style="min-height: 250px; height: 250px; max-height: 350px; max-width: 100%; display: block;"></canvas>
+                                    <canvas id="chart_chamados_status" class="chart-canvas"></canvas>
                                     <div class="widget-main padding-4">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-
-                        <!--  Gráfico de Rosca -->
+                        <!-- Gráfico de Rosca -->
                         <div class="col-sm-6">
                             <div class="widget-box custom-card">
                                 <div class="widget-header widget-header-flat" style="border-bottom: 2px solid #2C6AA0; background-color: #2C6AA0;">
@@ -137,29 +136,24 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                                     </div>
                                 </div>
                                 <div class="widget-body" style="display: block; border: 1px solid #e8e8e8; border-radius: 4px; background-color: #fefefe;">
-                                    <canvas id="chamado_por_setor" style="min-height: 250px; height: 250px; max-height: 318px; max-width: 100%; display: block;"></canvas>
+                                    <canvas id="chamado_por_setor" class="chart-canvas"></canvas>
                                     <div class="widget-main padding-4">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <style>
+                        .chart-canvas {
+                            height: 150px;
+                            max-height: 250px;
+                        }
+                    </style>
 
 
                     <div class="col-sm-12">
                         <div class="widget-box transparent">
-                            <div class="widget-header widget-header-flat" style="border-bottom: 2px solid #2C6AA0; background-color: #2C6AA0;">
-                                <h4 class="widget-title lighter text-white">
-                                    <i class="ace-icon fa fa-star orange"></i>
-                                    Popular Domains
-                                </h4>
-
-                                <div class="widget-toolbar">
-                                    <a href="#" data-action="collapse">
-                                        <i class="ace-icon fa fa-chevron-up"></i>
-                                    </a>
-                                </div>
-                            </div>
+                            <!-- ... existing code ... -->
 
                             <div class="widget-body" style="display: block;">
                                 <div class="widget-main no-padding">
@@ -169,69 +163,55 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                                                 <th>
                                                     <i class="ace-icon fa fa-caret-right blue"></i>N° Nota Fiscal
                                                 </th>
+
                                                 <th>
                                                     <i class="ace-icon fa fa-caret-right blue"></i>Data de Lançamento
                                                 </th>
+
                                                 <th class="hidden-480">
                                                     <i class="ace-icon fa fa-caret-right blue"></i>Status
                                                 </th>
+
                                                 <th class="hidden-480">
                                                     <i class="ace-icon fa fa-caret-right blue"></i>Valor Total
                                                 </th>
                                             </tr>
                                         </thead>
-                                        <tbody id="chamado_status">
-                                            <!-- Iterar sobre os chamados e criar as linhas da tabela -->
-                                            <script>
-                                                var chamados = [{
-                                                        nf: 'numero_nf',
-                                                        dataLancamento: 'data_atendimento',
-                                                        status: 'Aguardando',
-                                                        valorTotal: 100.00
-                                                    },
-                                                    {
-                                                        nf: 'NF-002',
-                                                        dataLancamento: '2023-05-27',
-                                                        status: 'Em Andamento',
-                                                        valorTotal: 150.00
-                                                    },
-                                                    // Adicione mais objetos de chamados conforme necessário
-                                                ];
-                                                for (var i = 0; i < chamados.length; i++) {
-                                                    var chamado = chamados[i];
-                                                    console.log(chamado);
-                                                    var nf = chamado.nf;
-                                                    var dataLancamento = chamado.dataLancamento;
-                                                    var status = chamado.status;
-                                                    var valorTotal = chamado.valorTotal;
-                                                    // Criar a linha da tabela com os dados do chamado
-                                                    var row = '<tr>' +
-                                                        '<td>' + nf + '</td>' +
-                                                        '<td><b class="green">' + dataLancamento + '</b></td>' +
-                                                        '<td class="hidden-480">' +
-                                                        '<span class="label label-info arrowed-right arrowed-in">' + status + '</span>' +
-                                                        '</td>' +
-                                                        '<td class="hidden-480">' +
-                                                        '<b class="">' + valorTotal + '</b>' +
-                                                        '</td>' +
-                                                        '</tr>';
-                                                    // Adicionar a linha à tabela
-                                                    $('#chamado_status').append(row);
-                                                }
-                                            </script>
+
+                                        <tbody>
+                                            <?php
+                                            if (isset($chamadosSQL) && !empty($chamadosSQL)) : ?>
+                                                <?php foreach ($chamadosSQL as $chamado) : ?>
+                                                    <tr>
+                                                        <td><?= $chamado['numero_nf'] ?></td>
+                                                        <td><b class="green"><?= $chamado['data_atendimento'] ?></b></td>
+                                                        <td class="hidden-480">
+                                                            <span class="label label-info arrowed-right arrowed-in"><?= $chamado['status'] ?></span>
+                                                        </td>
+                                                        <td class="hidden-480"><b class=""><?= $chamado['valor_total'] ?></b></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            <?php else : ?>
+                                                <tr>
+                                                    <td colspan="4">Os dados de chamados não foram recebidos.</td>
+                                                </tr>
+                                            <?php endif; ?>
                                         </tbody>
+
+
                                     </table>
                                 </div><!-- /.widget-main -->
                             </div><!-- /.widget-body -->
                         </div><!-- /.widget-box -->
                     </div>
+                </div>
 
 
-                </div><!-- /.final do conteudo da pagina -->
-            </div>
-        </div><!-- /.main-content -->
+            </div><!-- /.final do conteudo da pagina -->
+        </div>
+    </div><!-- /.main-content -->
 
-        <?php include_once PATH_URL . '/Template/_includes/_footer.php' ?>
+    <?php include_once PATH_URL . '/Template/_includes/_footer.php' ?>
 
 
     </div><!-- /.final do conteudo Princial -->
@@ -248,8 +228,8 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
         BuscarChamadosPorColaborador();
         BuscarChamadosPorStatus();
         BuscarChamadosPorSetor();
-        BuscarChamadosTotais();
-        BuscarChamadosPorPeriodo();
+        /* BuscarChamadosTotais(); */
+        /* BuscarChamadosPorPeriodo(); */
     </script>
 
 </body>
