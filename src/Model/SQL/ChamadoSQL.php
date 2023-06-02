@@ -216,26 +216,27 @@ WHERE tb_empresa.EmpID = empID; */
     public static function CarregarDadosChamadoSQL()
     {
         $sql = 'SELECT
-        c.numero_nf,
-        COUNT(c.id) AS Total,
-        SUM(CASE WHEN c.data_atendimento IS NULL AND c.data_encerramento IS NULL THEN 1 ELSE 0 END) AS Aguardando,
-        SUM(CASE WHEN c.data_atendimento IS NOT NULL AND c.data_encerramento IS NULL THEN 1 ELSE 0 END) AS Em_atendimento,
-        SUM(CASE WHEN c.data_encerramento IS NOT NULL THEN 1 ELSE 0 END) AS Encerrando,
-        r.valor
-    FROM
-        tb_chamado c
-    INNER JOIN
-        tb_empresa e ON c.empresa_EmpID = e.EmpID
-    INNER JOIN
-        tb_referencia r ON c.id = r.chamado_id
-    WHERE
-        e.EmpID = 32
-    GROUP BY
-        c.numero_nf';
+            c.numero_nf,
+            COUNT(c.id) AS Total,
+            SUM(CASE WHEN c.data_atendimento IS NULL AND c.data_encerramento IS NULL THEN 1 ELSE 0 END) AS Aguardando,
+            SUM(CASE WHEN c.data_atendimento IS NOT NULL AND c.data_encerramento IS NULL THEN 1 ELSE 0 END) AS Em_atendimento,
+            SUM(CASE WHEN c.data_encerramento IS NOT NULL THEN 1 ELSE 0 END) AS Encerrando,
+            r.valor
+        FROM
+            tb_chamado c
+        INNER JOIN
+            tb_empresa e ON c.empresa_EmpID = e.EmpID
+        INNER JOIN
+            tb_referencia r ON c.id = r.chamado_id
+        WHERE
+            e.EmpID = ?
+        GROUP BY
+            c.numero_nf';
     
-        // Retorna o resultado da consulta SQL
+        // Retorna a consulta SQL
         return $sql;
     }
+    
     
     public static function DETALHAR_EMPRESA_OS()
     {

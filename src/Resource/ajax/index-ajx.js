@@ -158,14 +158,16 @@ function BuscarChamadosPorSetor() {
 
 function consultarChamado() {
   $.ajax({
-    type: "GET",
-    url: BASE_URL_AJAX("index_dataview"),
+    url: 'index_dataview.php',
+    method: 'GET',
+    dataType: 'json',
+    data: { acao: 'chamado_status_tabela' },
     success: function (response) {
-      var chamados = JSON.parse(response);
-      preencherTabelaChamados(chamados);
+      preencherTabelaChamados(response);
     }
   });
 }
+
 
 
 function preencherTabelaChamados(chamados) {

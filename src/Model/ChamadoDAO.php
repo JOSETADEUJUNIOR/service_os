@@ -282,6 +282,17 @@ class ChamadoDAO extends Conexao
         return $sql->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function CarregarTabelaChamadoDAO()
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::CarregarDadosChamadoSQL());
+        $sql->bindValue(1, Util::EmpresaLogado());
+        $sql->execute();
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    
+
+
+
     public function ChamadosPorFuncionarioDAO()
     {
 

@@ -1,5 +1,7 @@
 <?php
 
+use Src\Model\SQL\ChamadoSQL;
+
 require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 
 ?>
@@ -21,7 +23,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 
 
     <!--inicio do conteudo principal-->
-    
+
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
             try {
@@ -154,7 +156,6 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                     <div class="col-sm-12">
                         <div class="widget-box transparent">
                             <!-- ... existing code ... -->
-
                             <div class="widget-body" style="display: block;">
                                 <div class="widget-main no-padding">
                                     <table class="table table-bordered table-striped">
@@ -163,42 +164,19 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                                                 <th>
                                                     <i class="ace-icon fa fa-caret-right blue"></i>N° Nota Fiscal
                                                 </th>
-
                                                 <th>
                                                     <i class="ace-icon fa fa-caret-right blue"></i>Data de Lançamento
                                                 </th>
-
                                                 <th class="hidden-480">
                                                     <i class="ace-icon fa fa-caret-right blue"></i>Status
                                                 </th>
-
                                                 <th class="hidden-480">
                                                     <i class="ace-icon fa fa-caret-right blue"></i>Valor Total
                                                 </th>
                                             </tr>
                                         </thead>
-
-                                        <tbody>
-                                            <?php
-                                            if (isset($chamadosSQL) && !empty($chamadosSQL)) : ?>
-                                                <?php foreach ($chamadosSQL as $chamado) : ?>
-                                                    <tr>
-                                                        <td><?= $chamado['numero_nf'] ?></td>
-                                                        <td><b class="green"><?= $chamado['data_atendimento'] ?></b></td>
-                                                        <td class="hidden-480">
-                                                            <span class="label label-info arrowed-right arrowed-in"><?= $chamado['status'] ?></span>
-                                                        </td>
-                                                        <td class="hidden-480"><b class=""><?= $chamado['valor_total'] ?></b></td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
-                                                <tr>
-                                                    <td colspan="4">Os dados de chamados não foram recebidos.</td>
-                                                </tr>
-                                            <?php endif; ?>
+                                        <tbody id="chamado_status_tabela">
                                         </tbody>
-
-
                                     </table>
                                 </div><!-- /.widget-main -->
                             </div><!-- /.widget-body -->

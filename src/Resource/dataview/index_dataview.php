@@ -11,9 +11,11 @@ use Src\Controller\UsuarioController;
 
 $dados = [];
 $chamadosPorFuncionario = [];
+$chamados = [];
 
 $ctrl = new ChamadoController();
 $userController = new UsuarioController();
+$chamados = new ChamadoController();
 
 if (isset($_GET['acao']) && $_GET['acao'] == 'requisicao') {
     $chamadosPorFuncionario = $ctrl->ChamadosPorFuncionarioController();
@@ -26,10 +28,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_status') {
 }
 
 if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_status_tabela') {
-    $dados = $ctrl->CarregarDadosChamadoController();
-
-    echo json_encode($dados);
-    exit;
+    $chamados = $ctrl->CarregarTabelaChamadoController();
 }
 
 if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_por_periodo') {
