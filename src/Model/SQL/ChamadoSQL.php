@@ -229,7 +229,7 @@ WHERE tb_empresa.EmpID = empID; */
         INNER JOIN
             tb_referencia r ON c.id = r.chamado_id
         WHERE
-            e.EmpID = 32
+            e.EmpID = ?
         GROUP BY
             c.numero_nf';
     
