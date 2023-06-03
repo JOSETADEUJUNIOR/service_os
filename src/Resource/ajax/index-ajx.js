@@ -158,16 +158,16 @@ function BuscarChamadosPorSetor() {
 
 function consultarChamado() {
   $.ajax({
-    url: 'index_dataview.php',
+    url: 'index_dataview',
     method: 'GET',
     dataType: 'json',
-    data: { acao: 'chamado_status_tabela' },
+    data: { acao: 'chamado_status' },
     success: function (response) {
       preencherTabelaChamados(response);
     }
   });
 }
-function preencherTabelaChamados(chamados) {
+/* function preencherTabelaChamados(chamados) {
   var tbody = '';
   chamados.forEach(function (chamado) {
     tbody += '<tr>' +
@@ -181,7 +181,7 @@ function preencherTabelaChamados(chamados) {
   });
 
   $("#chamado_status_tabela").html(tbody);
-}
+} */
 
 
 function BuscarChamadosPorStatus() {

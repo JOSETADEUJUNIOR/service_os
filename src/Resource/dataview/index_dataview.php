@@ -11,11 +11,9 @@ use Src\Controller\UsuarioController;
 
 $dados = [];
 $chamadosPorFuncionario = [];
-$chamados = [];
 
 $ctrl = new ChamadoController();
 $userController = new UsuarioController();
-$chamados = new ChamadoController();
 
 
 if (isset($_GET['acao']) && $_GET['acao'] == 'requisicao') {
@@ -27,11 +25,11 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_status') {
 
     echo json_encode($dados);
 }
+if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_status') {
+    $dados = $ctrl->consultarChamado();
 
-/* if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_status_tabela') {
-    $chamados = $ctrl->CarregarTabelaChamadoController();
-} */
-
+    echo json_encode($dados);
+}
 if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_por_periodo') {
     $chamadosPorPeriodo = $ctrl->ChamadosPorPeriodoController();
 
@@ -47,3 +45,21 @@ $dadosUser = $userController->DetalharUsuarioController($_SESSION['id']);
 $dados = $userController->RetornarDadosCadastraisController(); 
 
 ?>
+
+<!-- <script>
+function preencherTabelaChamados(chamados) {
+  var tbody = '';
+  chamados.forEach(function (chamado) {
+    tbody += '<tr>' +
+      '<td>' + chamado.numero_nf + '</td>' +
+      '<td><b class="green">' + chamado.data_lancamento + '</b></td>' +
+      '<td class="hidden-480">' +
+      '<span class="label label-info arrowed-right arrowed-in">' + chamado.status + '</span>' +
+      '</td>' +
+      '<td class="hidden-480"><b class="">' + chamado.valor_total + '</b></td>' +
+      '</tr>';
+  });
+
+  $("#chamado_status_tabela").html(tbody);
+}
+</script> -->

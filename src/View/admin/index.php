@@ -1,7 +1,5 @@
 <?php
 
-use Src\Model\SQL\ChamadoSQL;
-
 require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 
 ?>
@@ -187,18 +185,9 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 
             </div><!-- /.final do conteudo da pagina -->
         </div>
+        <?php include_once PATH_URL . '/Template/_includes/_footer.php' ?>
     </div><!-- /.main-content -->
-
-    <?php include_once PATH_URL . '/Template/_includes/_footer.php' ?>
-
-
     </div><!-- /.final do conteudo Princial -->
-
-
-
-
-
-
 
     <?php include_once PATH_URL . '/Template/_includes/_scripts.php' ?>
     <script src="../../Resource/ajax/index-ajx.js"></script>
@@ -206,8 +195,8 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
         BuscarChamadosPorColaborador();
         BuscarChamadosPorStatus();
         BuscarChamadosPorSetor();
-        /* BuscarChamadosTotais(); */
-        /* BuscarChamadosPorPeriodo(); */
+        BuscarChamadosTotais();
+        BuscarChamadosPorPeriodo();
     </script>
 
 </body>
