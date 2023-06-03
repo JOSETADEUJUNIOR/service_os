@@ -229,13 +229,14 @@ WHERE tb_empresa.EmpID = empID; */
         INNER JOIN
             tb_referencia r ON c.id = r.chamado_id
         WHERE
-            e.EmpID = ?
+            e.EmpID = 32
         GROUP BY
             c.numero_nf';
     
         // Retorna a consulta SQL
         return $sql;
     }
+    
     
     
     public static function DETALHAR_EMPRESA_OS()

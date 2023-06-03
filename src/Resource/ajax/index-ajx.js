@@ -167,9 +167,6 @@ function consultarChamado() {
     }
   });
 }
-
-
-
 function preencherTabelaChamados(chamados) {
   var tbody = '';
   chamados.forEach(function (chamado) {

@@ -17,6 +17,7 @@ $ctrl = new ChamadoController();
 $userController = new UsuarioController();
 $chamados = new ChamadoController();
 
+
 if (isset($_GET['acao']) && $_GET['acao'] == 'requisicao') {
     $chamadosPorFuncionario = $ctrl->ChamadosPorFuncionarioController();
     echo json_encode($chamadosPorFuncionario);
@@ -27,9 +28,9 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_status') {
     echo json_encode($dados);
 }
 
-if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_status_tabela') {
+/* if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_status_tabela') {
     $chamados = $ctrl->CarregarTabelaChamadoController();
-}
+} */
 
 if (isset($_GET['acao']) && $_GET['acao'] == 'chamado_por_periodo') {
     $chamadosPorPeriodo = $ctrl->ChamadosPorPeriodoController();

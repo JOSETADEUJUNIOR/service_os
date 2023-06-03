@@ -125,15 +125,15 @@ class ChamadoDAO extends Conexao
             $sql->bindValue($i++, $chamado_id);
             $sql->bindValue($i++, $p['servico_id']);
             $sql->bindValue($i++, $empresa_id);
+            $sql->bindValue($i++, 1);
             $sql->bindValue($i++, $p['valor']);
             $sql->execute();
-
         }
-            try {
-                return 1;
-            } catch (\Exception $ex) {
-                return -1;
-            }
+        try {
+            return 1;
+        } catch (\Exception $ex) {
+            return -1;
+        }
     }
 
     public function CarregarProdutosOSDAO($chamado_id)
@@ -155,7 +155,7 @@ class ChamadoDAO extends Conexao
     }
 
 
-    
+
     public function CarregarServicosOSDAO($chamado_id)
     {
         $sql = $this->conexao->prepare(ChamadoSQL::CarregarServicosOSSQL());
@@ -191,7 +191,7 @@ class ChamadoDAO extends Conexao
         $sql = $this->conexao->prepare(ChamadoSQL::RemoveProdOsSQL());
         $sql->bindValue(1, $vo->getReferencia_id());
         $sql->bindValue(2, $vo->getEmpresa_EmpID());
-        
+
         try {
             $sql->execute();
             return 1;
@@ -220,7 +220,7 @@ class ChamadoDAO extends Conexao
     public function FiltrarChamadoGeralDAO($empresa_id, $tipo, $setorID)
     {
         $sql = $this->conexao->prepare(ChamadoSQL::FILTRAR_CHAMADO_GERAL($tipo, $setorID));
-        
+
         $sql->bindValue(1, $empresa_id);
         if (!empty($setorID)) {
 
@@ -229,6 +229,38 @@ class ChamadoDAO extends Conexao
         $sql->execute();
 
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    public function FiltrarNFDAO($empresa_id, $valordigitado)
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::FILTRAR_NF());
+
+        $sql->bindValue(1, $empresa_id);
+        $sql->bindValue(2, '%' . $valordigitado . '%');
+
+        $sql->execute();
+
+
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    public function DetalharEmpresaDAO($empresa_id)
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::DETALHAR_EMPRESA_OS());
+
+        $sql->bindValue(1, $empresa_id);
+        $sql->execute();
+
+        return $sql->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function DetalharDadosOsDAO($empresa_id, $os_id)
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::DETALHAR_DADOS_OS());
+
+        $sql->bindValue(1, $empresa_id);
+        $sql->bindValue(2, $os_id);
+        $sql->execute();
+
+        return $sql->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function AtenderChamadoDAO(ChamadoVO $vo)
@@ -273,15 +305,6 @@ class ChamadoDAO extends Conexao
         }
     }
 
-    public function CarregarDadosChamadoDAO()
-    {
-
-        $sql = $this->conexao->prepare(ChamadoSQL::CarregarDadosChamadoSQL());
-        $sql->bindValue(1, Util::EmpresaLogado());
-        $sql->execute();
-        return $sql->fetch(\PDO::FETCH_ASSOC);
-    }
-
     public function CarregarTabelaChamadoDAO()
     {
         $sql = $this->conexao->prepare(ChamadoSQL::CarregarDadosChamadoSQL());
@@ -289,9 +312,6 @@ class ChamadoDAO extends Conexao
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
-    
-
-
 
     public function ChamadosPorFuncionarioDAO()
     {

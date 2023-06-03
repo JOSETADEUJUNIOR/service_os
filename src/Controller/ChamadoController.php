@@ -150,10 +150,6 @@ class ChamadoController
         return $this->dao->CarregarDadosChamadoDAO();
     }
 
-    public function CarregarTabelaChamadoController(){
-        return $this->dao->CarregarTabelaChamadoDAO();
-    }
-
     public function ChamadosPorFuncionarioController(){
         return $this->dao->ChamadosPorFuncionarioDAO();
     }
