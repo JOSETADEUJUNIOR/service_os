@@ -192,11 +192,7 @@ function ValidadorCPFeCNPJ(cpf_cnpj) {
     cpf_cnpj = cpf_cnpj.replace(/[^\d]+/g, '');
     if (cpf_cnpj != "") {
         if (cpf_cnpj.length <= 11) {
-            if (ValidacaoCPF(cpf_cnpj)) {
-                MensagemGenerica("CPF: " + cpf_cnpj + " inválido!");
-                $("#CliCpfCnpj").val('');
-                $("#CliCpfCnpj").focus();
-            } else {
+            if (!ValidacaoCPF(cpf_cnpj)) {
                 MensagemGenerica("CPF: " + cpf_cnpj + " inválido!");
                 $("#CliCpfCnpj").val('');
                 $("#CliCpfCnpj").focus();
@@ -265,36 +261,47 @@ function ValidacaoCNPJ(cnpj) {
 function ValidacaoCPF(cpf) {
     cpf = cpf.replace(/[^\d]+/g, '');
 
-    // Elimina cpfs invalidos conhecidos
-    if (cpf == "00000000000000" ||
-        cpf == "11111111111111" ||
-        cpf == "22222222222222" ||
-        cpf == "33333333333333" ||
-        cpf == "44444444444444" ||
-        cpf == "55555555555555" ||
-        cpf == "66666666666666" ||
-        cpf == "77777777777777" ||
-        cpf == "88888888888888" ||
-        cpf == "99999999999999")
-        return false;
-
     if (cpf.length !== 11) {
         return false;
     }
 
-    for (var i = 9; i < 11; i++) {
-        var soma = 0;
-        for (var j = 0; j < i; j++) {
-            soma += parseInt(cpf[j]) * (i + 1 - j);
-        }
-        var resto = soma % 11;
-        if (resto < 2 && cpf[i] != 0) {
-            return false;
-        } else if (resto >= 2 && cpf[i] != 11 - resto) {
-            return false;
-        }
+       // Elimina cpfs invalidos conhecidos
+    if (cpf == "00000000000" ||
+        cpf == "11111111111" ||
+        cpf == "22222222222" ||
+        cpf == "33333333333" ||
+        cpf == "44444444444" ||
+        cpf == "55555555555" ||
+        cpf == "66666666666" ||
+        cpf == "77777777777" ||
+        cpf == "88888888888" ||
+        cpf == "99999999999") {
+        return false;
+    }
+
+    var soma = 0;
+    for (var i = 0; i < 9; i++) {
+        soma += parseInt(cpf[i]) * (10 - i);
+    }
+
+    var resto = soma % 11;
+    var digitoVerificador1 = resto < 2 ? 0 : 11 - resto;
+
+    if (digitoVerificador1 !== parseInt(cpf[9])) {
+        return false;
+    }
+
+    soma = 0;
+    for (var i = 0; i < 10; i++) {
+        soma += parseInt(cpf[i]) * (11 - i);
+    }
+
+    resto = soma % 11;
+    var digitoVerificador2 = resto < 2 ? 0 : 11 - resto;
+
+    if (digitoVerificador2 !== parseInt(cpf[10])) {
+        return false;
     }
 
     return true;
 }
-

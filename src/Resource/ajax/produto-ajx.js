@@ -112,6 +112,7 @@ function FiltrarProdutoAjx(nome_filtro) {
 }
 
 function MudarStatusProduto(id_produto, valor) {
+    console.log(valor);
     let status_atual = valor;
     let id = id_produto;
     $.ajax({

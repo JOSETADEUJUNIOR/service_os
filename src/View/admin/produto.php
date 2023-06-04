@@ -43,15 +43,12 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 								<div class="col-xs-12">
 									<h4 class="pink">
 										<a href="#produto" role="button" class="btn btn-success" data-toggle="modal"><i class="ace-icon fa fa-plus white"></i>Novo</a>
-										<?php // if (count($setor) > 0) { 
-										?>
-										<button  id="btnImprimir" type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
-										<?php //} 
-										?>
+										<?php if (count($produto) > 0) { ?>
+											<button  id="btnImprimir" type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
+										<?php } ?>
 									</h4>
 									<div class="table-header">
 										Produtos Cadastrados
-
 										<div style="display:inline-flex" id="dynamic-table_filter">
 											<input id="buscaProduto" name="buscaProduto" type="search" onkeyup="FiltrarProdutoAjx(this.value)" class="form-control input-sm" placeholder="buscar por produto" aria-controls="dynamic-table">
 										</div>

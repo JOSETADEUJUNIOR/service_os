@@ -48,7 +48,7 @@ function Excluir() {
 
 
 function AlterarSetor() {
-    let nome = $("#AlteraNome").val();
+    let nome = $("#nome").val();
     let id = $("#AlteraID").val();
     $.ajax({
         type: "POST",

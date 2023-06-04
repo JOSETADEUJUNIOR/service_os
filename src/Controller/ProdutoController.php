@@ -41,8 +41,8 @@ class ProdutoController
 
     public function AlterarStatusProdutoCTRL(ProdutoVO $vo): int
     {
-        $vo->setProdID($vo->getProdStatus() == STATUS_ATIVO ? STATUS_INATIVO : STATUS_ATIVO);
-        $vo->setProdEmpID(Util::EmpresaLogado());
+        
+        $vo->setProdStatus($vo->getProdStatus() == STATUS_ATIVO ? STATUS_INATIVO : STATUS_ATIVO);
         $vo->setfuncao(STATUS_PRODUTO);
         $vo->setIdLogado(Util::CodigoLogado());
         return $this->dao->AlterarStatusProdutoDAO($vo);

@@ -75,7 +75,7 @@ class ProdutoDAO extends Conexao
         $i = 1;
         $sql->bindValue($i++, $vo->getProdStatus());
         $sql->bindValue($i++, $vo->getProdID());
-        $sql->bindValue($i++, $vo->getProdEmpID());
+        $sql->bindValue($i++, Util::EmpresaLogado());
 
         try {
             $sql->execute();

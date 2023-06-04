@@ -14,7 +14,11 @@ if (isset($_GET['desc_filtro'])) {
   $html = "";
   $ctrl = new ProdutoController();
   $filtro_palavra = $_GET['desc_filtro'];
-  $produto = $ctrl->FiltrarProdutoCTRL($filtro_palavra);
+  if ($filtro_palavra == ""){
+    $produto = $ctrl->SelecioneProdutoAPICTRL(Util::EmpresaLogado());
+  }else{
+    $produto = $ctrl->FiltrarProdutoCTRL($filtro_palavra);
+  }
   $dados_empresa = $ctrl->DadosEmpresaCTRL();
 
   // Inicia o buffer de saída

@@ -10,6 +10,7 @@ function ConsultarUsuario() {
         }
     })
 }
+
 function ConsultarEmpresa() {
     $.ajax({
         type: "POST",
@@ -18,6 +19,10 @@ function ConsultarEmpresa() {
             btn_consultar_empresa: 'ajx'
         }, success: function (tabela_preenchida) {
             $("#resultDadosEmpresa").html(tabela_preenchida);
+            $("#imglogo").attr('height', '100px');
+            $("#imglogo").attr('width', '150px');
+            $("#imglogo").attr('alt', 'Photo 2');
+            $("#imglogo").attr('class', 'img-fluid');
         }
     })
 }
@@ -431,5 +436,9 @@ $("#logo").change(function() {
         let imgPreview = document.getElementById("imglogo");
         imgPreview.src = reader.result;
     };
+    $("#imglogo").attr('height', '100px');
+    $("#imglogo").attr('width', '150px');
+    $("#imglogo").attr('alt', 'Photo 2');
+    $("#imglogo").attr('class', 'img-fluid');
     reader.readAsDataURL(logo); // Read the file as a data URL
 });

@@ -219,9 +219,8 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 													<th class="sorting_desc">E-mail</th>
 													<th class="sorting_desc">Setor/Empresa</th>
 													<th class="sorting_desc">Tipo</th>
-													<th>Ativo/inativo</th>
-
-													<th>Ações</th>
+													<th class="sorting_desc">Ativo/inativo</th>
+													<th class="sorting_desc">Ações</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -246,16 +245,13 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 																	</label>
 																</div></td>
 														<td>
-															<div class="hidden-sm hidden-xs action-buttons">
-																<a st class="green btn btn-warning btn-xs" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
-																	Alterar
+																<a st class="green" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
+                                                                    <i title="Alterar Usuário" class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
-																<a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
+																<!-- <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
 																	Enviar e-mail
-																</a>
-																
-															</div>
-															<div class="hidden-md hidden-lg">
+																</a> -->
+															<!-- <div class="hidden-md hidden-lg">
 																<div class="inline pos-rel">
 																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
 																		<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
@@ -286,7 +282,7 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 																		</li>
 																	</ul>
 																</div>
-															</div>
+															</div> -->
 														</td>
 													</tr>
 												<?php } ?>
@@ -310,9 +306,8 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
                 <th class="sorting_desc">E-mail</th>
                 <th class="sorting_desc">Setor/Empresa</th>
                 <th class="sorting_desc">Tipo</th>
-                <th>Ativo/inativo</th>
-
-                <th>Ações</th>
+                <th class="sorting_desc">Ativo/inativo</th>
+                <th class="sorting_desc">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -337,16 +332,13 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
                                 </label>
                             </div></td>
                     <td>
-                        <div class="hidden-sm hidden-xs action-buttons">
-                            <a st class="green btn btn-warning btn-xs" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
-                                Alterar
+                            <a st class="green" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
+                                <i title="Alterar Usuário" class="ace-icon fa fa-pencil bigger-130"></i>
                             </a>
-                            <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
+                            <!-- <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
                                 Enviar e-mail
-                            </a>
-                            
-                        </div>
-                        <div class="hidden-md hidden-lg">
+                            </a> -->
+                        <!-- <div class="hidden-md hidden-lg">
                             <div class="inline pos-rel">
                                 <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
                                     <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
@@ -377,7 +369,7 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                     </td>
                 </tr>
             <?php } ?>
@@ -412,9 +404,8 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 													<th class="sorting_desc">E-mail</th>
 													<th class="sorting_desc">Setor/Empresa</th>
 													<th class="sorting_desc">Tipo</th>
-													<th>Ativo/inativo</th>
-
-													<th>Ações</th>
+													<th class="sorting_desc">Ativo/inativo</th>
+													<th class="sorting_desc">Ações</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -439,16 +430,13 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 																	</label>
 																</div></td>
 														<td>
-															<div class="hidden-sm hidden-xs action-buttons">
 																<a st class="green btn btn-warning btn-xs" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
 																	Alterar
 																</a>
-																<a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
+																<!-- <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
 																	Enviar e-mail
-																</a>
-																
-															</div>
-															<div class="hidden-md hidden-lg">
+																</a> -->
+															<!-- <div class="hidden-md hidden-lg">
 																<div class="inline pos-rel">
 																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
 																		<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
@@ -479,7 +467,7 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 																		</li>
 																	</ul>
 																</div>
-															</div>
+															</div> -->
 														</td>
 													</tr>
 												<?php } ?>
@@ -562,8 +550,7 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
                         <div class="widget-main">
                             <div class="form-group">
                                 <div class="position-relative">
-                                    <center><img id="imglogo" src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="180px" width="120px" alt="Photo 2" class="img-fluid"></center>
-
+                                    <center><img id="imglogo" src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="" width="" alt="" class=""></center>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -584,6 +571,10 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
                                                 //onchange:''
                                                 //
                                             });
+                                            $("#imglogo").attr('height', '100px');
+                                            $("#imglogo").attr('width', '150px');
+                                            $("#imglogo").attr('alt', 'Photo 2');
+                                            $("#imglogo").attr('class', 'img-fluid');
                                         </script>
                                     <?php } ?>
                                 </div>

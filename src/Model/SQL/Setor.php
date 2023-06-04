@@ -32,7 +32,6 @@ class Setor
     }
     public static function FiltrarSetorSQL($nome_filtro)
     {
-
         $sql = 'SELECT id, nome_setor FROM tb_setor Where SetorEmpID = ?';
 
         if (!empty($nome_filtro))

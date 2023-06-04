@@ -232,3 +232,57 @@ Hora:12:54:12
 Função:CadastrarOsController
 cod Logado:25
 Erro:SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+--------------------------------------------------
+Data:03/06/2023
+Hora:10:04:49
+Função:AlterarSetor
+cod Logado:31
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:03/06/2023
+Hora:10:05:27
+Função:ExcluirSetorController
+cod Logado:31
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:03/06/2023
+Hora:23:45:44
+Função:ExcluirSetorController
+cod Logado:31
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:03/06/2023
+Hora:23:45:56
+Função:AlterarSetor
+cod Logado:31
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:03/06/2023
+Hora:23:47:45
+Função:AlterarSetor
+cod Logado:31
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:03/06/2023
+Hora:23:47:59
+Função:ExcluirSetorController
+cod Logado:31
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:03/06/2023
+Hora:23:53:10
+Função:AlterarSetor
+cod Logado:31
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:03/06/2023
+Hora:23:59:14
+Função:AlterarSetor
+cod Logado:31
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+--------------------------------------------------
+Data:04/06/2023
+Hora:00:02:59
+Função:ExcluirSetorController
+cod Logado:31
+Erro:SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens

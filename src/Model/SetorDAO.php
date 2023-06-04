@@ -58,7 +58,7 @@ class SetorDAO extends Conexao
         $sql = $this->conexao->prepare(Setor::AlterarSetor());
         $sql->bindValue(1, $vo->getNomeSetor());
         $sql->bindValue(2, $vo->getID());
-
+        $sql->bindValue(3, Util::EmpresaLogado());
         try {
             $sql->execute();
             return 1;
@@ -73,6 +73,7 @@ class SetorDAO extends Conexao
     {
         $sql = $this->conexao->prepare(Setor::ExcluirSetor());
         $sql->bindValue(1, $vo->getID());
+        $sql->bindValue(2, Util::EmpresaLogado());
 
         try {
             $sql->execute();

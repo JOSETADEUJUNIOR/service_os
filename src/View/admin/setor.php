@@ -50,9 +50,9 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/setor_dataview.php';
 								<div class="col-xs-12">
 									<h4 class="pink">
 										<a href="#setor" role="button" class="btn btn-success" data-toggle="modal"><i class="ace-icon fa fa-plus white"></i>Novo</a>
-										<?php if (count($setor) > 0) { ?>
+										<!-- <?php // if (count($setor) > 0) { ?>
 											<button type="button" onclick="Imprimir()"class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
-										<?php } ?>
+										<?php // } ?> -->
 									</h4>
 									<div class="table-header">
 										Setores Cadastrados
@@ -66,8 +66,8 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/setor_dataview.php';
 											<thead>
 												<tr>
 													<th class="sorting_desc">Nome Setor</th>
-													<th class="hidden-480">Status</th>
-													<th>Ações</th>
+													<!-- <th class="hidden-480">Status</th> -->
+													<th class="sorting_desc">Ações</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -76,18 +76,19 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/setor_dataview.php';
 														<td>
 															<?= $setor[$i]['nome_setor'] ?>
 														</td>
-														<td class="hidden-480">
+														<!-- <td class="hidden-480">
 															<span class="label label-sm label-warning">Ativo</span>
-														</td>
+														</td> -->
 														<td>
-															<div class="hidden-sm hidden-xs action-buttons">
+															<!-- <div class="hidden-sm hidden-xs action-buttons"> -->
 																<a class="green" href="#setor" role="button" data-toggle="modal" onclick="AlterarSetorModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
 																	<i title="Alterar Setor" class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
+																
 																<a class="red" href="#modalExcluir" data-toggle="modal" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
 																	<i title="Excluir Setor" class="ace-icon fa fa-trash-o bigger-130"></i>
 																</a>
-															</div>
+															<!-- </div>
 															<div class="hidden-md hidden-lg">
 																<div class="inline pos-rel">
 																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
@@ -95,16 +96,16 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/setor_dataview.php';
 																	</button>
 
 																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																		<li>
-																			<a href="#setor" onclick="AlterarSetorModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
+																		<li> -->
+																			<!-- <a href="#setor" onclick="AlterarSetorModal('<?=  $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')" data-toggle="modal" class="tooltip-success" data-rel="tooltip" title="Edit">
 																				<span class="green">
 																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 																				</span>
 																			</a>
-																		</li>
-																		<a href="#setor" role="button" class="btn btn-info btn-xs" data-toggle="modal">Adicionar Setor</a>
-																		<li>
-																			<a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
+																		</li> -->
+																		<!-- <a href="#setor" role="button" class="btn btn-info btn-xs" data-toggle="modal">Adicionar Setor</a>
+																		<li> -->
+																			<!-- <a href="#modalExcluir" role="button" data-toggle="modal" class="tooltip-error" title="Delete" onclick="ExcluirModal('<?= $setor[$i]['id'] ?>', '<?= $setor[$i]['nome_setor'] ?>')">
 																				<span class="red">
 																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																				</span>
@@ -112,7 +113,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/setor_dataview.php';
 																		</li>
 																	</ul>
 																</div>
-															</div>
+															</div> -->
 														</td>
 													</tr>
 												<?php } ?>

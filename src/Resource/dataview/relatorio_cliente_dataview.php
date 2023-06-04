@@ -81,7 +81,7 @@ if (isset($_GET['desc_filtro'])) {
                         <?= $cliente[$i]['CliNome'] ?>
                     </td>
                     <td>
-                        <?= Util::DataAtualBd($cliente[$i]['CliDtNasc']) ?>
+                        <?= Util::ExibirDataBr($cliente[$i]['CliDtNasc']) ?>
                     </td>
                     <td>
                         <?= $cliente[$i]['CliTelefone'] ?>
