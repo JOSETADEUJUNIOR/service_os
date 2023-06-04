@@ -161,7 +161,7 @@ function consultarChamado() {
     url: 'index_dataview',
     method: 'GET',
     dataType: 'json',
-    data: { acao: 'chamado_status' },
+    data: { acao: 'chamado_status_tabela' },
     success: function (response) {
       preencherTabelaChamados(response);
     }

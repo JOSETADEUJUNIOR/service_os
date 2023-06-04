@@ -197,6 +197,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
         BuscarChamadosPorSetor();
         BuscarChamadosTotais();
         BuscarChamadosPorPeriodo();
+        consultarChamado();
     </script>
 
 </body>
