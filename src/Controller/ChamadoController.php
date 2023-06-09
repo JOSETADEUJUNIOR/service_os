@@ -149,6 +149,9 @@ class ChamadoController
     public function CarregarDadosChamadoController(){
         return $this->dao->CarregarDadosChamadoDAO();
     }
+    public function CarregarDadosChamadoTabelaController($tipo=false, $setor=false){
+        return $this->dao->CarregarDadosChamadoTabelaDAO($tipo=false, $setor=false);
+    }
 
     public function ChamadosPorFuncionarioController(){
         return $this->dao->ChamadosPorFuncionarioDAO();

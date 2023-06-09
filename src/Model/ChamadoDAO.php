@@ -320,6 +320,16 @@ class ChamadoDAO extends Conexao
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function CarregarDadosChamadoTabelaDAO()
+    {
+
+        $sql = $this->conexao->prepare(ChamadoSQL::FILTRAR_CHAMADO_GERAL(tipo: false, setorID: false));
+        $sql->bindValue(1, Util::EmpresaLogado());
+        $sql->execute();
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    
 
     public function ChamadosPorPeriodoDAO()
     {
