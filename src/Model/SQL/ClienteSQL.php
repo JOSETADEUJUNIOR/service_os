@@ -33,7 +33,7 @@ class ClienteSQL{
         $sql = 'SELECT * FROM tb_cliente WHERE CliEmpID = ?';
 
         if (!empty($nome_filtro))
-            $sql = $sql . ' AND CliNome LIKE ?';
+            $sql = $sql . ' AND MATCH(CliNome) AGAINST(? IN NATURAL LANGUAGE MODE)';
 
         return $sql;
     }

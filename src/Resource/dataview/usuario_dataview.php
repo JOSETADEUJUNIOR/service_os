@@ -624,6 +624,7 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 
     // Obtém os registros para exibir na página atual
     $pessoas = array_slice($registros, $indiceInicial, $registrosPorPagina);
+    
 }
 
 ?>

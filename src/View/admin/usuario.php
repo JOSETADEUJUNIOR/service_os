@@ -53,12 +53,15 @@ use Src\_public\Util;
 								<div class="col-xs-12">
 									<h4 class="pink">
 										<a href="#usuario" role="button" class="btn btn-success" data-toggle="modal"><i class="ace-icon fa fa-plus white"></i>Novo</a>
+										<?php if (count($pessoas) > 0) { ?>
+											<button id="btnImprimirUsuario" type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
+										<?php } ?>
 									</h4>
 									<div class="table-header">
 										Usuarios Cadastrados
 
 										<div style="display:inline-flex" id="dynamic-table_filter">
-											<input type="search" onkeyup="FiltrarUsuario(this.value)" class="form-control input-sm" placeholder="buscar por usuário" aria-controls="dynamic-table">
+											<input type="search" id="buscaUsuario" onkeyup="FiltrarUsuario(this.value)" class="form-control input-sm" placeholder="buscar por usuário" aria-controls="dynamic-table">
 
 										</div>
 										<label style="margin-left:10px">

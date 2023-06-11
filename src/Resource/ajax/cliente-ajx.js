@@ -113,5 +113,6 @@ function VerificarEmail(email){
 
 function Imprimir() {
     let filtrar_palavra = $("#buscaCliente").val();
-    location = "relatorio_cliente.php?desc_filtro="+ filtrar_palavra;
+    url = "relatorio_cliente.php?desc_filtro="+ encodeURIComponent(filtrar_palavra);
+    window.open(url, "_blank");
 }

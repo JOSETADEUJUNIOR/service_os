@@ -102,7 +102,7 @@ class ClienteDAO extends Conexao
         if ($tipo == PERFIL_FUNCIONARIO) {
             $sql->bindValue($i++, $empresa_id);
             
-        }else if ($tipo == '') {
+    }else if ($tipo == '') {
             
             $sql->bindValue($i++, Util::EmpresaLogado());
         }
@@ -116,7 +116,7 @@ class ClienteDAO extends Conexao
         $i = 1;
         $sql->bindValue($i++, Util::EmpresaLogado());
         if (!empty($nome_filtro)) {
-            $sql->bindValue($i++, "%" . $nome_filtro . "%");
+            $sql->bindValue($i++, $nome_filtro);
         }
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);

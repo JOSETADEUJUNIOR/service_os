@@ -442,3 +442,9 @@ $("#logo").change(function() {
     $("#imglogo").attr('class', 'img-fluid');
     reader.readAsDataURL(logo); // Read the file as a data URL
 });
+
+function Imprimir() {
+    let filtrar_palavra = $("#buscaUsuario").val();
+    url = "relatorio_usuario.php?desc_filtro="+ encodeURIComponent(filtrar_palavra);
+    window.open(url, "_blank");
+}
