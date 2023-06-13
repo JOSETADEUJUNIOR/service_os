@@ -76,10 +76,10 @@ if (isset($_GET['desc_filtro'])) {
           <?= $produto[$i]['ProdDescricao'] ?>
         </td>
         <td>
-          <?= $produto[$i]['ProdValorCompra'] ?>
+          <?= Util::FormatarValorMoedaExibir($produto[$i]['ProdValorCompra']) ?>
         </td>
         <td>
-          <?= $produto[$i]['ProdValorVenda'] ?>
+          <?= Util::FormatarValorMoedaExibir($produto[$i]['ProdValorVenda']) ?>
         </td>
         <td>
           <?= $produto[$i]['ProdEstoque'] ?>

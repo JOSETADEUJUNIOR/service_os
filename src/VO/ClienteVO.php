@@ -24,7 +24,7 @@ class ClienteVO extends LogErro{
 
     public function setCliID($CliID)
     {
-        $this->CliID = Util::TratarDados($CliID);
+        $this->CliID = Util::remove_especial_char($CliID);
     }
 
     public function getCliID()
@@ -34,7 +34,7 @@ class ClienteVO extends LogErro{
     
     public function setCliNome($CliNome)
     {
-        $this->CliNome = Util::TratarDados($CliNome);
+        $this->CliNome = Util::remove_especial_char($CliNome);
     }
 
     public function getCliNome()
@@ -44,7 +44,7 @@ class ClienteVO extends LogErro{
 
     public function setCliDtNasc($CliDtNasc)
     {
-        $this->CliDtNasc = Util::TratarDados($CliDtNasc);
+        $this->CliDtNasc = Util::remove_especial_char($CliDtNasc);
     }
 
     public function getCliDtNasc()
@@ -54,7 +54,7 @@ class ClienteVO extends LogErro{
 
     public function setCliTelefone($CliTelefone)
     {
-        $this->CliTelefone = Util::TratarDados($CliTelefone);
+        $this->CliTelefone = Util::remove_especial_char($CliTelefone);
     }
 
     public function getCliTelefone()
@@ -74,7 +74,7 @@ class ClienteVO extends LogErro{
 
     public function setCliCep($CliCep)
     {
-        $this->CliCep = Util::TratarDados($CliCep);
+        $this->CliCep = Util::remove_especial_char($CliCep);
     }
 
     public function getCliCep()
@@ -84,7 +84,7 @@ class ClienteVO extends LogErro{
     
     public function setCliEndereco($CliEndereco)
     {
-        $this->CliEndereco = Util::TratarDados($CliEndereco);
+        $this->CliEndereco = Util::remove_especial_char($CliEndereco);
     }
 
     public function getCliEndereco()
@@ -94,7 +94,7 @@ class ClienteVO extends LogErro{
 
     public function setCliNumero($CliNumero)
     {
-        $this->CliNumero = Util::TratarDados($CliNumero);
+        $this->CliNumero = Util::remove_especial_char($CliNumero);
     }
 
     public function getCliNumero()
@@ -104,7 +104,7 @@ class ClienteVO extends LogErro{
 
     public function setCliBairro($CliBairro)
     {
-        $this->CliBairro = Util::TratarDados($CliBairro);
+        $this->CliBairro = Util::remove_especial_char($CliBairro);
     }
 
     public function getCliBairro()
@@ -114,7 +114,7 @@ class ClienteVO extends LogErro{
     
     public function setCliCidade($CliCidade)
     {
-        $this->CliCidade = Util::TratarDados($CliCidade);
+        $this->CliCidade = Util::remove_especial_char($CliCidade);
     }
 
     public function getCliCidade()
@@ -124,7 +124,7 @@ class ClienteVO extends LogErro{
 
     public function setCliEstado($CliEstado)
     {
-        $this->CliEstado = Util::TratarDados($CliEstado);
+        $this->CliEstado = Util::remove_especial_char($CliEstado);
     }
 
     public function getCliEstado()
@@ -134,7 +134,7 @@ class ClienteVO extends LogErro{
 
     public function setCliDescricao($CliDescricao)
     {
-        $this->CliDescricao = Util::TratarDados($CliDescricao);
+        $this->CliDescricao = Util::remove_especial_char($CliDescricao);
     }
 
     public function getCliDescricao()
@@ -144,7 +144,7 @@ class ClienteVO extends LogErro{
 
     public function setCliEmpID($CliEmpID)
     {
-        $this->CliEmpID = Util::TratarDados($CliEmpID);
+        $this->CliEmpID = Util::remove_especial_char($CliEmpID);
     }
 
     public function getCliEmpID()
@@ -154,7 +154,7 @@ class ClienteVO extends LogErro{
 
     public function setCliStatus($CliStatus)
     {
-        $this->CliStatus = Util::TratarDados($CliStatus);
+        $this->CliStatus = Util::remove_especial_char($CliStatus);
     }
 
     public function getCliStatus()
@@ -164,7 +164,7 @@ class ClienteVO extends LogErro{
 
     public function setCliUserID($CliUserID)
     {
-        $this->CliUserID = Util::TratarDados($CliUserID);
+        $this->CliUserID = Util::remove_especial_char($CliUserID);
     }
 
     public function getCliUserID()
@@ -174,7 +174,7 @@ class ClienteVO extends LogErro{
 
     public function setCliCpfCnpj($CliCpfCnpj)
     {
-        $this->CliCpfCnpj = Util::TratarDados($CliCpfCnpj);
+        $this->CliCpfCnpj = Util::remove_especial_char($CliCpfCnpj);
     }
 
     public function getCliCpfCnpj()
@@ -184,7 +184,7 @@ class ClienteVO extends LogErro{
 
     public function setCilTipo($CilTipo)
     {
-        $this->CilTipo = Util::TratarDados($CilTipo);
+        $this->CilTipo = Util::remove_especial_char($CilTipo);
     }
 
     public function getCilTipo()

@@ -20,7 +20,7 @@ class ProdutoVO extends LogErro{
 
     public function setProdID($ProdID)
     {
-        $this->ProdID = Util::TratarDados($ProdID);
+        $this->ProdID = Util::remove_especial_char($ProdID);
     }
 
     public function getProdID()
@@ -30,7 +30,7 @@ class ProdutoVO extends LogErro{
     
     public function setProdDescricao($ProdDescricao)
     {
-        $this->ProdDescricao = Util::TratarDados($ProdDescricao);
+        $this->ProdDescricao = Util::remove_especial_char($ProdDescricao);
     }
 
     public function getProdDescricao()
@@ -40,7 +40,7 @@ class ProdutoVO extends LogErro{
 
     public function setProdDtCriacao($ProdDtCriacao)
     {
-        $this->ProdDtCriacao = Util::TratarDados($ProdDtCriacao);
+        $this->ProdDtCriacao = Util::remove_especial_char($ProdDtCriacao);
     }
 
     public function getProdDtCriacao()
@@ -50,7 +50,7 @@ class ProdutoVO extends LogErro{
 
     public function setProdCodBarra($ProdCodBarra)
     {
-        $this->ProdCodBarra = Util::TratarDados($ProdCodBarra);
+        $this->ProdCodBarra = Util::remove_especial_char($ProdCodBarra);
     }
 
     public function getProdCodBarra()
@@ -80,7 +80,7 @@ class ProdutoVO extends LogErro{
     
     public function setProdEstoqueMin($ProdEstoqueMin)
     {
-        $this->ProdEstoqueMin = Util::TratarDados($ProdEstoqueMin);
+        $this->ProdEstoqueMin = Util::remove_especial_char($ProdEstoqueMin);
     }
 
     public function getProdEstoqueMin()
@@ -90,7 +90,7 @@ class ProdutoVO extends LogErro{
 
     public function setProdEstoque($ProdEstoque)
     {
-        $this->ProdEstoque = Util::TratarDados($ProdEstoque);
+        $this->ProdEstoque = Util::remove_especial_char($ProdEstoque);
     }
 
     public function getProdEstoque()
@@ -100,7 +100,7 @@ class ProdutoVO extends LogErro{
 
     public function setProdImagem($ProdImagem)
     {
-        $this->ProdImagem = Util::TratarDados($ProdImagem);
+        $this->ProdImagem = Util::remove_especial_char($ProdImagem);
     }
 
     public function getProdImagem()
@@ -110,7 +110,7 @@ class ProdutoVO extends LogErro{
     
     public function setProdImagemPath($ProdImagemPath)
     {
-        $this->ProdImagemPath = Util::TratarDados($ProdImagemPath);
+        $this->ProdImagemPath = Util::remove_especial_char($ProdImagemPath);
     }
 
     public function getProdImagemPath()
@@ -120,7 +120,7 @@ class ProdutoVO extends LogErro{
 
     public function setProdEmpID($ProdEmpID)
     {
-        $this->ProdEmpID = Util::TratarDados($ProdEmpID);
+        $this->ProdEmpID = Util::remove_especial_char($ProdEmpID);
     }
 
     public function getProdEmpID()
@@ -130,7 +130,7 @@ class ProdutoVO extends LogErro{
 
     public function setProdUserID($ProdUserID)
     {
-        $this->ProdUserID = Util::TratarDados($ProdUserID);
+        $this->ProdUserID = Util::remove_especial_char($ProdUserID);
     }
 
     public function getProdUserID()
@@ -145,7 +145,7 @@ class ProdutoVO extends LogErro{
 
     public function setProdStatus($ProdStatus)
     {
-        $this->ProdStatus = Util::TratarDados($ProdStatus);
+        $this->ProdStatus = Util::remove_especial_char($ProdStatus);
     }
 }
 ?>

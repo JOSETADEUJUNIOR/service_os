@@ -102,7 +102,7 @@ if (isset($_POST['btn_cadastrar'])) {
                         <tr>
                             <td><?= $cliente[$i]['CliNome'] ?></td>
                             <td><?= Util::ExibirDataBr($cliente[$i]['CliDtNasc']) ?></td>
-                            <td><?= $cliente[$i]['CliTelefone'] ?></td>
+                            <td class="tel"><?= $cliente[$i]['CliTelefone'] ?></td>
                             <td><?= $cliente[$i]['CliEmail'] ?></td>
                             <td>
                                 <div class="col-xs-3">
@@ -150,7 +150,7 @@ if (isset($_POST['btn_cadastrar'])) {
                     <tr>
                         <td><?= $cliente[$i]['CliNome'] ?></td>
                         <td><?= Util::ExibirDataBr($cliente[$i]['CliDtNasc']) ?></td>
-                        <td><?= $cliente[$i]['CliTelefone'] ?></td>
+                        <td class="tel"><?= $cliente[$i]['CliTelefone'] ?></td>
                         <td><?= $cliente[$i]['CliEmail'] ?></td>
                         <td>
                             <div class="col-xs-3">

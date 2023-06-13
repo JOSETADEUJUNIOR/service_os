@@ -140,8 +140,8 @@ if (isset($_POST['btn_cadastrar'])) {
                     <?php for ($i = 0; $i < count($produto); $i++) { ?>
                         <tr>
                             <td><?= $produto[$i]['ProdDescricao'] ?></td>
-                            <td><?= $produto[$i]['ProdValorCompra'] ?></td>
-                            <td><?= $produto[$i]['ProdValorVenda'] ?></td>
+                            <td><?= Util::FormatarValorMoedaExibir($produto[$i]['ProdValorCompra']) ?></td>
+                            <td><?= Util::FormatarValorMoedaExibir($produto[$i]['ProdValorVenda']) ?></td>
                             <td><?= $produto[$i]['ProdEstoque'] ?></td>
                             <td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
                             <?php if ($produto[$i]['ProdImagemPath'] != "" || $produto[$i]['ProdImagemPath'] != null) { ?>
@@ -195,8 +195,8 @@ if (isset($_POST['btn_cadastrar'])) {
                 <?php for ($i = 0; $i < count($produto); $i++) { ?>
                     <tr>
                         <td><?= $produto[$i]['ProdDescricao'] ?></td>
-                        <td><?= $produto[$i]['ProdValorCompra'] ?></td>
-                        <td><?= $produto[$i]['ProdValorVenda'] ?></td>
+                        <td><?= Util::FormatarValorMoedaExibir($produto[$i]['ProdValorCompra']) ?></td>
+                        <td><?= Util::FormatarValorMoedaExibir($produto[$i]['ProdValorVenda']) ?></td>
                         <td><?= $produto[$i]['ProdEstoque'] ?></td>
                         <td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
                         <?php if ($produto[$i]['ProdImagemPath'] != "" || $produto[$i]['ProdImagemPath'] != null) { ?>

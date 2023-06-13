@@ -259,4 +259,20 @@ class Util
         endif;
         return false;
     }
+
+    public static function FormatarValorMoedaExibir($val) {
+        $valor = strval($val);
+        // Adiciona vírgula e zeros no final se não houver casas decimais
+        if (strpos($valor, '.') === false) {
+            $valor = str_replace('.', ',', $valor) . ',00';
+        } else {
+            $partes = explode('.', $valor);
+            if (strlen($partes[1]) === 1) {
+                $valor .= '0';
+            }
+        }
+        // Formata o valor como um valor monetário no formato brasileiro
+        $valorFinal = number_format(floatval(str_replace(',', '.', $valor)), 2, ',', '.');
+        return 'R$ ' . $valorFinal;
+    }
 }

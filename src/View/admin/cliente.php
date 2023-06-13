@@ -72,7 +72,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/cliente_dataview.php';
 													<tr>
 														<td><?= $cliente[$i]['CliNome'] ?></td>
 														<td><?= Util::ExibirDataBr($cliente[$i]['CliDtNasc']); ?></td>
-														<td><?= $cliente[$i]['CliTelefone'] ?></td>
+														<td class="tel"><?= $cliente[$i]['CliTelefone'] ?></td>
 														<td><?= $cliente[$i]['CliEmail'] ?></td>
 														<td>
 															<div class="col-xs-3">

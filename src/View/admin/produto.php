@@ -1,4 +1,7 @@
 <?php
+
+use Src\_public\Util;
+
 require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 ?>
 <!DOCTYPE html>
@@ -71,8 +74,8 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/produto_dataview.php';
 												<?php for ($i = 0; $i < count($produto); $i++) { ?>
 													<tr>
 														<td><?= $produto[$i]['ProdDescricao'] ?></td>
-														<td><?= $produto[$i]['ProdValorCompra'] ?></td>
-														<td><?= $produto[$i]['ProdValorVenda'] ?></td>
+														<td><?= Util::FormatarValorMoedaExibir($produto[$i]['ProdValorCompra']) ?></td>
+														<td><?= Util::FormatarValorMoedaExibir($produto[$i]['ProdValorVenda']) ?></td>
 														<td><?= $produto[$i]['ProdEstoque'] ?></td>
 														<td><?= $produto[$i]['ProdEstoqueMin'] ?></td>
 														<?php if ( $produto[$i]['ProdImagemPath'] != "" || $produto[$i]['ProdImagemPath'] != null) { ?>
