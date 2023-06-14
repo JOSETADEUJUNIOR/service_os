@@ -79,9 +79,9 @@ class usuarioDAO extends Conexao
         return  $sql->fetch(\PDO::FETCH_ASSOC)['login'] == '' ? true : false;
     }
 
-    public function FiltrarPessoaDAO($nome, $tipo)
+    public function FiltrarPessoaDAO($nome, $filtro)
     {
-        $sql =  $this->conexao->prepare(UsuarioSQL::FILTRAR_USUARIO($nome, $tipo));
+        $sql =  $this->conexao->prepare(UsuarioSQL::FILTRAR_USUARIO($nome, $filtro));
         $sql->bindValue(1, Util::EmpresaLogado());
         if (!empty($nome)) {
             $sql->bindValue(2, '%' . $nome . '%');

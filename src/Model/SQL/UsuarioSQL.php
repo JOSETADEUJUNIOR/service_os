@@ -120,15 +120,15 @@ class UsuarioSQL
         fun.setor_id,
         st.nome_setor
     FROM tb_usuario as usu
-INNER JOIN tb_endereco as end
+    INNER JOIN tb_endereco as end
         ON usu.id = end.usuario_id
-INNER JOIN tb_cidade as cid
+    INNER JOIN tb_cidade as cid
         ON end.cidade_id = cid.id
-INNER JOIN tb_estado as est
+    INNER JOIN tb_estado as est
         ON cid.estado_id = est.id
-LEFT JOIN tb_funcionario as fun
+    LEFT JOIN tb_funcionario as fun
         ON usu.id = fun.funcionario_id
-LEFT JOIN tb_tecnico as tec
+    LEFT JOIN tb_tecnico as tec
         ON usu.id = tec.tecnico_id
         LEFT JOIN tb_setor as st
 		ON fun.setor_id = st.id
@@ -138,11 +138,38 @@ LEFT JOIN tb_tecnico as tec
             $sql .= ' AND nome LIKE ?';
         }
         if (!empty($tipo)) {
-            $sql .= " AND usu.tipo = '$tipo'";
+            if($tipo == '2'){
+                $sql .= ' AND fun.setor_id IS NOT NULL';
+            } else if ($tipo == '3') {
+                $sql .= ' AND tec.tecnico_id IS NOT NULL';
+            }
+          
         }
 
         return $sql;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static function RETORNAR_USUARIOS()
     {
         $sql =  'SELECT usu.id as id,
@@ -265,5 +292,5 @@ LEFT JOIN tb_setor as st
     {
         $sql = 'SELECT * FROM tb_usuario WHERE id = ?';
         return $sql;
-   }
+    }
 }

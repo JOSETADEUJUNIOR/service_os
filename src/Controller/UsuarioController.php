@@ -100,9 +100,9 @@ class UsuarioController
         return $this->dao->AlterarUsuarioDAO($vo);
     }
 
-    public function FiltrarPessoaController($nome, $tipo)
+    public function FiltrarPessoaController($nome, $filtro)
     {
-        return $this->dao->FiltrarPessoaDAO($nome, $tipo);
+        return $this->dao->FiltrarPessoaDAO($nome, $filtro);
     }
     public function FiltrarUsuariosController()
     {

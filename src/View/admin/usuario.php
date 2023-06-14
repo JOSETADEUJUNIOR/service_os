@@ -37,7 +37,7 @@ use Src\_public\Util;
 					<ul class="breadcrumb">
 						<li>
 							<i class="ace-icon fa fa-home home-icon"></i>
-							<a href="#">Home</a>
+							<a href="index.php">Home</a>
 						</li>
 
 						<li class="active">Usuarios</li>
@@ -65,11 +65,11 @@ use Src\_public\Util;
 
 										</div>
 										<label style="margin-left:10px">
-											<input name="form-field-radio" id="CheckFuncionario" onclick="ChecarFiltro('2')" type="radio" class="ace">
+											<input name="form-field-radio" value="2" id="CheckFuncionario" onclick="ChecarFiltro('2')" type="radio" class="ace">
 											<span class="lbl"> Funcionários</span>
 										</label>
 										<label style="margin-left:10px">
-											<input name="form-field-radio" id="CheckTecnico" onclick="ChecarFiltro('3')" type="radio" class="ace">
+											<input name="form-field-radio" value="3" id="CheckTecnico" onclick="ChecarFiltro('3')" type="radio" class="ace">
 											<span class="lbl"> Técnico</span>
 										</label>
 										<label style="margin-left:10px">
@@ -156,23 +156,7 @@ use Src\_public\Util;
 											</tbody>
 										</table>
 									</div>
-									<div class="row text-center" id="paginacao">
-										<div class="col-12">
-											<div class="card">
-												<div class="card-header">
-													<?php echo '<a class="btn btn-primary btn-sm" href="?pagina=1"><<</a> ';
-													for ($i = max(1, $paginaAtual - 2); $i <= min($paginaAtual + 2, $totalPaginas); $i++) {
-														$classeBotao = ($i == $paginaAtual) ? 'active' : '';
-														echo '<a class="btn btn-primary pages btn-sm'.$classeBotao.'" href="?pagina=' . $i . '">' . $i . '</a> ';
-													}
-
-													echo '<a class="btn btn-primary btn-sm" href="?pagina=' . $totalPaginas . '">>></a>';?>
-
-												</div>
-
-											</div>
-										</div>
-									</div>
+									
 								</div>
 							</div>
 						</div><!-- /.col -->

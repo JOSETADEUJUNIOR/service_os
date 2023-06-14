@@ -9,6 +9,7 @@ use Src\Controller\ProdutoController;
 use Src\Controller\ClienteController;
 use Src\Controller\UsuarioController;
 
+
 if (isset($_GET['desc_filtro'])) {
     $options = new Options();
     $options->setChroot('../../Resource/dataview/arquivos');
@@ -17,10 +18,12 @@ if (isset($_GET['desc_filtro'])) {
     $ctrl_emp = new ProdutoController();
     $ctrl_user = new UsuarioController();
     $filtro_palavra = $_GET['desc_filtro'];
-    if ($filtro_palavra == "") {
-        $usuario = $ctrl_user->FiltrarUsuariosController();
+    $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : '';
+
+    if ($filtro_palavra == "" && $filtro == "") {
+        $usuario = $ctrl_user->FiltrarUsuariosController($filtro);
     } else {
-        $usuario = $ctrl_user->FiltrarPessoaController($filtro_palavra, $tipo);
+        $usuario = $ctrl_user->FiltrarPessoaController($filtro_palavra, $filtro);
     }
     $dados_empresa = $ctrl_emp->DadosEmpresaCTRL();
 
@@ -87,7 +90,7 @@ if (isset($_GET['desc_filtro'])) {
                         <?= $usuario[$i]['login'] ?>
                     </td>
                     <td>
-                        <?= $usuario[$i]['tipo'] ?>
+                        <?= Util::DescricaoTipo($usuario[$i]['tipo']) ?>
                     </td>
                     <td class="<?= ($usuario[$i]['status']==0?'status-inativo':'') ?>">
                         <?= Util::Status($usuario[$i]['status']) ?>

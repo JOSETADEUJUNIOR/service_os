@@ -142,13 +142,26 @@ function VerficarEmail(emailTela) {
 
 
 
+
+
 function FiltrarUsuario(nome_filtro) {
+    var funcionario = $("#CheckFuncionario").is(":checked");
+    var tecnico = $("#CheckTecnico").is(":checked");
+    var tipo = 0;
+    if (funcionario==true) {
+       tipo = 2
+    }else if (tecnico == true) {
+       tipo = 3
+    }{
+
+    }
     $.ajax({
         type: "POST",
         url: BASE_URL_AJAX("usuario_dataview"),
         data: {
             btnFiltrar: 'ajx',
-            FiltrarNome: nome_filtro
+            FiltrarNome: nome_filtro,
+            FiltrarTipo: tipo
         }, success: function (dados) {
             $("#table_result_Usuario").html(dados);
         }
@@ -199,7 +212,7 @@ function CadastrarUsuario(id_form) {
 
 function CadastrarMeusDados(id_form) {
     if (NotificarCampos(id_form)) {
-        alert($("#cidade_user").val());
+        alert($("#cep_user").val());
         alert($("#estado_user").val());
         $.ajax({
             type: "POST",
@@ -215,7 +228,7 @@ function CadastrarMeusDados(id_form) {
                 nome: $("#nome_user").val(),
                 email: $("#email_user").val(),
                 telefone: $("#telefone_user").val(),
-                cep: $("#cep").val(),
+                cep: $("#cep_user").val(),
                 endereco: $("#endereco_user").val(),
                 bairro: $("#bairro_user").val(),
                 cidade: $("#cidade_user").val(),
@@ -323,13 +336,17 @@ function AlterarUsuario(id_form) {
 
 function ChecarFiltro(filtro) {
 
-    filtrar = filtro;
+    var filtrar = filtro;
+    var filtrar_nome = $("#buscaUsuario").val();
+   
+
     $.ajax({
         type: "POST",
         url: BASE_URL_AJAX("usuario_dataview"),
         data: {
             btnFiltrar: 'ajx',
-            FiltrarTipo: filtrar
+            FiltrarTipo: filtrar,
+            FiltrarNome: filtrar_nome
         }, success: function (dados) {
             $("#table_result_Usuario").html(dados);
         }
@@ -445,6 +462,8 @@ $("#logo").change(function() {
 
 function Imprimir() {
     let filtrar_palavra = $("#buscaUsuario").val();
-    url = "relatorio_usuario.php?desc_filtro="+ encodeURIComponent(filtrar_palavra);
+    let filtro_selecionado = $("input[name='form-field-radio']:checked").val();
+    alert(filtro_selecionado);
+    url = "relatorio_usuario.php?desc_filtro=" + encodeURIComponent(filtrar_palavra) + "&filtro=" + filtro_selecionado;
     window.open(url, "_blank");
 }

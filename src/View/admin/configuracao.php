@@ -184,7 +184,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																	</div>
 																	<div class="col-md-4">
 																		<label>CNPJ</label>
-																		<input class="form-control obg" id="cnpj" name="cnpj" value="<?= $dados[0]['EmpCNPJ'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg" id="cnpj" name="cpfCnpj" value="<?= $dados[0]['EmpCNPJ'] ?>" placeholder="Digite o aqui....">
 																	</div>
 																	<div class="col-md-4">
 																		<label>Cep</label>
@@ -225,13 +225,13 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																				<div class="widget-main">
 																					<div class="form-group">
 																						<div class="position-relative">
-																						<center><img id="imglogo" src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="" width="" alt="" class=""></center>
+																							<center><img id="imglogo" src="../../Resource/dataview/<?= $dados[0]['EmpLogoPath'] ?>" heigth="150px" width="150px" alt="" class=""></center>
 																						</div>
 																					</div>
 																					<div class="form-group">
 																						<div class="col-xs-12">
-																						<input type="hidden" name="oldLogo" id="oldLogo" value="<?= $dados[0]['EmpLogoPath'] ?>">
- 																						<input type="file" name="logo" id="logo">
+																							<input type="hidden" name="oldLogo" id="oldLogo" value="<?= $dados[0]['EmpLogoPath'] ?>">
+																							<input type="file" name="logo" id="logo">
 																						</div>
 																					</div>
 																					<!-- <div class="form-group">
@@ -253,9 +253,9 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																		</button>
 																	</div>
 																	<div style="margin-top: 10px;" class="col-sm-6 col-xs-6">
-																		<button class="col-sm-12 col-xs-12 btn btn-warning">
+																		<a href="index.php" class="col-sm-12 col-xs-12 btn btn-warning">
 																			<i class="ace-icon fa fa-undo bigger-110"></i>Voltar
-																		</button>
+																		</a>
 																	</div>
 																</div>
 															</fieldset>
