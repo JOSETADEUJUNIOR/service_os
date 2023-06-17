@@ -7,7 +7,7 @@ class Util
 
     public static function IniciarSessao()
     {
-        if (!isset($_SESSION)) {
+        if (empty($_SESSION)) {
             session_start();
         }
     }
@@ -65,7 +65,7 @@ class Util
     
     public static function VerificarLogado()
     {
-        self::IniciarSessao();
+       self::IniciarSessao();
         if (!isset($_SESSION['id'])) {
             self::IrParaLogin();
         }

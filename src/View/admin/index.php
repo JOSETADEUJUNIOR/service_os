@@ -1,15 +1,9 @@
 <?php
-
 require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 ?>
 <!DOCTYPE html>
 <html>
-
-<head>
     <?php include_once PATH_URL . '/Template/_includes/_head.php' ?>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
-
     <style>
         .card {
             border: 1px solid #ccc;
@@ -77,7 +71,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                             <i class="ace-icon fa fa-home home-icon"></i>
                             <a href="#">Dashboard</a>
                         </li>
-                        <li class="active">Form Elements</li>
+                       
                     </ul><!-- /.breadcrumb -->
 
 
@@ -100,7 +94,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                             <span class="btn btn-app btn-sm btn-purple no-hover">
                                 <!-- conteúdo da primeira div -->
                                 <i class="fa fa-ticket fa-2x card-icon float-left mr-10"></i>
-                                <span id="total_chamados" name="total_chamados" class="line-height-1 bigger-170"></span>
+                                <span id="total_chamados" name="total_chamados" class="line-height-1 bigger-170">10</span>
 
                                 <br>
                                 <span class="line-height-1 smaller-90"> Total Chamados </span>
@@ -180,6 +174,36 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                     </div>
                 </div> -->
                     <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                            <div class="widget-box">
+                                <div class="widget-header widget-header-flat widget-header-small">
+                                    <h5 class="widget-title">
+                                        <i class="ace-icon fa fa-signal"></i>
+                                        Quantidade por Status
+                                    </h5>
+
+
+                                </div>
+
+                                <div class="widget-body" style="margin-bottom: 20px;">
+                                    <div class="widget-main">
+                                    <canvas id="chart_chamados_status" style="min-height: 250px; height: 250px; max-height: 350px; max-width: 100%; display: block; width: 709px;" width="709" height="250" class="chartjs-render-monitor"></canvas>
+                                        <div class="hr hr8 hr-double"></div>
+
+                                        <div class="clearfix">
+                                            <div class="grid12">
+                                                <span class="grey">
+                                                    <i class="ace-icon fa fa-ticket fa-2x blue"></i>
+                                                    &nbsp; Quantidade total de chamados:
+                                                </span>
+                                                <h4 id="qtd_chamado_por_status" class="bigger pull-right"></h4>
+                                            </div>
+
+                                        </div>
+                                    </div><!-- /.widget-main -->
+                                </div><!-- /.widget-body -->
+                            </div><!-- /.widget-box -->
+                        </div>
                         <div class="col-sm-6 col-xs-12">
                             <div class="widget-box">
                                 <div class="widget-header widget-header-flat widget-header-small">
@@ -211,12 +235,18 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                             </div><!-- /.widget-box -->
                         </div>
 
+                        
+
+
+
+
+
                         <div class="col-sm-6 col-xs-12">
                             <div class="widget-box">
                                 <div class="widget-header widget-header-flat widget-header-small">
                                     <h5 class="widget-title">
                                         <i class="ace-icon fa fa-signal"></i>
-                                        Estatística dos chamados
+                                        Quantidade por Setor
                                     </h5>
 
 
@@ -224,152 +254,55 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 
                                 <div class="widget-body" style="margin-bottom: 20px;">
                                     <div class="widget-main">
-                                        <canvas id="chamado_por_periodo" style="min-height: 250px; height: 250px; max-height: 350px; max-width: 100%; display: block; width: 709px;" width="709" height="250" class="chartjs-render-monitor"></canvas>
+                                    <canvas id="chamado_por_setor" style="min-height: 250px; height: 250px; max-height: 350px; max-width: 100%; display: block; width: 709px;" width="709" height="250" class="chartjs-render-monitor"></canvas>
                                         <div class="hr hr8 hr-double"></div>
 
                                         <div class="clearfix">
                                             <div class="grid12">
                                                 <span class="grey">
-                                                    <i class="ace-icon fa fa-envelope-square fa-2x blue"></i>
+                                                    <i class="ace-icon fa fa-ticket fa-2x blue"></i>
                                                     &nbsp; Quantidade total de chamados:
                                                 </span>
-                                                <h4 id="qtd_chamado_por_periodo" class="bigger pull-right">1,255</h4>
+                                                <h4 id="qtd_chamado_por_setor" class="bigger pull-right"></h4>
                                             </div>
 
-                                            <!-- <div class="grid3">
-                                            <span class="grey">
-                                                <i class="ace-icon fa fa-twitter-square fa-2x purple"></i>
-                                                &nbsp; tweets
-                                            </span>
-                                            <h4 class="bigger pull-right">941</h4>
-                                        </div>
-
-                                        <div class="grid3">
-                                            <span class="grey">
-                                                <i class="ace-icon fa fa-pinterest-square fa-2x red"></i>
-                                                &nbsp; pins
-                                            </span>
-                                            <h4 class="bigger pull-right">1,050</h4>
-                                        </div> -->
                                         </div>
                                     </div><!-- /.widget-main -->
                                 </div><!-- /.widget-body -->
                             </div><!-- /.widget-box -->
                         </div>
 
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        
+
 
                     </div>
-                    <div class="row">
-
-                        <div class="col-sm-6">
-                            <div class="widget-box transparent">
-                                <div class="widget-header widget-header-flat">
-                                    <h4 class="widget-title lighter">
-                                        <i class="ace-icon fa fa-signal"></i>
-                                        Chamados por Status
-                                    </h4>
-
-                                    <div class="widget-toolbar">
-                                        <a href="#" data-action="collapse">
-                                            <i class="ace-icon fa fa-chevron-up"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="widget-body" style="display: block;">
-                                    <canvas id="chart_chamados_status" style="min-height: 250px; height: 250px; max-height: 350px; max-width: 100%; display: block; width: 709px;" width="709" height="250" class="chartjs-render-monitor"></canvas>
-                                    <div class="widget-main padding-4">
-
-                                    </div><!-- /.widget-main -->
-                                </div><!-- /.widget-body -->
-                            </div><!-- /.widget-box -->
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="widget-box transparent">
-                                <div class="widget-header widget-header-flat">
-                                    <h4 class="widget-title lighter">
-                                        <i class="ace-icon fa fa-signal"></i>
-                                        Chamados por Setor
-                                    </h4>
-
-                                    <div class="widget-toolbar">
-                                        <a href="#" data-action="collapse">
-                                            <i class="ace-icon fa fa-chevron-up"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="widget-body" style="display: block;">
-                                    <canvas id="chamado_por_setor" style="min-height: 250px; height: 250px; max-height: 350px; max-width: 100%; display: block; width: 709px;" width="709" height="250" class="chartjs-render-monitor"></canvas>
-                                    <div class="widget-main padding-4">
-
-                                    </div><!-- /.widget-main -->
-                                </div><!-- /.widget-body -->
-                            </div><!-- /.widget-box -->
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="widget-box transparent">
-                                <div class="widget-header widget-header-flat">
-                                    <h4 class="widget-title lighter">
-                                        <i class="ace-icon fa fa-star orange"></i>
-                                        Ordem mais recentes
-                                    </h4>
-
-                                    <div class="widget-toolbar">
-                                        <a href="#" data-action="collapse">
-                                            <i class="ace-icon fa fa-chevron-up"></i>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="widget-body">
-                                    <div class="widget-main no-padding">
-                                        <table class="table table-bordered table-striped">
-                                            <thead class="thin-border-bottom">
-                                                <tr>
-                                                    <th>
-                                                        <i class="ace-icon fa fa-caret-right blue"></i>Ordem(NF)
-                                                    </th>
-
-                                                    <th>
-                                                        <i class="ace-icon fa fa-caret-right blue"></i>Data Abertura
-                                                    </th>
-
-                                                    <th class="hidden-480">
-                                                        <i class="ace-icon fa fa-caret-right blue"></i>Status
-                                                    </th>
-                                                    <th class="hidden-480">
-                                                        <i class="ace-icon fa fa-caret-right blue"></i>Valor
-                                                    </th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-                                                <tr>
-                                                    <td>1245456</td>
-
-                                                    <td>
-                                                        <small>
-                                                            <h4 class="red">09/06/2023</h4>
-                                                        </small>
-                                                    </td>
-                                                    <td class="hidden-480">
-                                                        <span class="label label-info arrowed-right arrowed-in">Em andamento</span>
-                                                    </td>
-                                                    <td>
-                                                    <small>
-                                                            <h4 class="red">1.300,00</h4>
-                                                        </small>
-                                                    </td>
-
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div><!-- /.widget-main -->
-                                </div><!-- /.widget-body -->
-                            </div><!-- /.widget-box -->
-                        </div><!-- /.col -->
-
-                    </div>
+                    
 
 
                 </div><!-- /.final do conteudo da pagina -->
@@ -393,9 +326,8 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
         BuscarChamadosPorColaborador();
         BuscarChamadosPorStatus();
         BuscarChamadosPorSetor();
-        BuscarChamadosTotais();
-        BuscarChamadosPorPeriodo();
-        BuscarDadosTabela();
+     
+        
     </script>
 
 </body>

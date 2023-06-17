@@ -230,6 +230,23 @@ class ChamadoDAO extends Conexao
 
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function FiltrarChamadoAdminGeralDAO($tipo)
+    {
+        $sql = $this->conexao->prepare(ChamadoSQL::FILTRAR_CHAMADO_GERAL($tipo, $setorID=false));
+
+        $sql->bindValue(1, Util::EmpresaLogado());
+        if (!empty($setorID)) {
+
+            $sql->bindValue(2, $setorID);
+        }
+        $sql->execute();
+
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
+
+    
     public function FiltrarNFDAO($empresa_id, $valordigitado)
     {
         $sql = $this->conexao->prepare(ChamadoSQL::FILTRAR_NF());
@@ -317,24 +334,16 @@ class ChamadoDAO extends Conexao
     {
 
         $sql = $this->conexao->prepare(ChamadoSQL::ChamadosPorFuncionarioSQL());
-        $sql->execute();
-        return $sql->fetchAll(\PDO::FETCH_ASSOC);
-    }
-    public function CarregarDadosChamadoTabelaDAO()
-    {
-
-        $sql = $this->conexao->prepare(ChamadoSQL::FILTRAR_CHAMADO_GERAL(tipo: false, setorID: false));
         $sql->bindValue(1, Util::EmpresaLogado());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
-
-    
-
+  
     public function ChamadosPorPeriodoDAO()
     {
 
         $sql = $this->conexao->prepare(ChamadoSQL::ChamadosPorPeriodoSQL());
+        $sql->bindValue(1, Util::EmpresaLogado());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -342,6 +351,7 @@ class ChamadoDAO extends Conexao
     {
 
         $sql = $this->conexao->prepare(ChamadoSQL::ChamadosPorSetorSQL());
+        $sql->bindValue(1, Util::EmpresaLogado());
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }

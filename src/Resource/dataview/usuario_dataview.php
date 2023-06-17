@@ -212,46 +212,48 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
     if (count($pessoas) > 0) { ?>
 
         <div class="table-responsive" id="table_result_Usuario">
-										<table id="dynamic-table" class="table table-striped table-bordered table-hover">
-											<thead>
-												<tr>
-													<th class="sorting_desc">Nome</th>
-													<th class="sorting_desc">E-mail</th>
-													<th class="sorting_desc">Setor/Empresa</th>
-													<th class="sorting_desc">Tipo</th>
-													<th class="sorting_desc">Ativo/inativo</th>
-													<th class="sorting_desc">Ações</th>
-												</tr>
-											</thead>
-											<tbody>
-												<?php for ($i = 0; $i < count($pessoas); $i++) { ?>
-													<tr>
-														<td>
-															<?= $pessoas[$i]['nome'] ?>
-														</td>
-														<td>
-															<?= $pessoas[$i]['login'] ?>
-														</td>
-														<td>
-															<?= ($pessoas[$i]['nome_setor'] != '' ? $pessoas[$i]['nome_setor'] : $pessoas[$i]['empresa_tecnico']) ?>
-														</td>
-														<td>
-															<?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
-														</td>
-														<td><div class="col-xs-3">
-																	<label>
-																		<input name="switch-field-1" value="0" id="usuario_status" onclick="MudarStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['status'] ?>')" title="Ativar/inativar usuário" class="ace ace-switch ace-switch-6" <?= $pessoas[$i]['status'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
-																		<span class="lbl"></span>
-																	</label>
-																</div></td>
-														<td>
-																<a st class="green" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
-                                                                    <i title="Alterar Usuário" class="ace-icon fa fa-pencil bigger-130"></i>
-																</a>
-																<!-- <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
+            <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="sorting_desc">Nome</th>
+                        <th class="sorting_desc">E-mail</th>
+                        <th class="sorting_desc">Setor/Empresa</th>
+                        <th class="sorting_desc">Tipo</th>
+                        <th class="sorting_desc">Ativo/inativo</th>
+                        <th class="sorting_desc">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for ($i = 0; $i < count($pessoas); $i++) { ?>
+                        <tr>
+                            <td>
+                                <?= $pessoas[$i]['nome'] ?>
+                            </td>
+                            <td>
+                                <?= $pessoas[$i]['login'] ?>
+                            </td>
+                            <td>
+                                <?= ($pessoas[$i]['nome_setor'] != '' ? $pessoas[$i]['nome_setor'] : $pessoas[$i]['empresa_tecnico']) ?>
+                            </td>
+                            <td>
+                                <?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
+                            </td>
+                            <td>
+                                <div class="col-xs-3">
+                                    <label>
+                                        <input name="switch-field-1" value="0" id="usuario_status" onclick="MudarStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['status'] ?>')" title="Ativar/inativar usuário" class="ace ace-switch ace-switch-6" <?= $pessoas[$i]['status'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
+                                        <span class="lbl"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <a st class="green" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
+                                    <i title="Alterar Usuário" class="ace-icon fa fa-pencil bigger-130"></i>
+                                </a>
+                                <!-- <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
 																	Enviar e-mail
 																</a> -->
-															<!-- <div class="hidden-md hidden-lg">
+                                <!-- <div class="hidden-md hidden-lg">
 																<div class="inline pos-rel">
 																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
 																		<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
@@ -283,13 +285,13 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 																	</ul>
 																</div>
 															</div> -->
-														</td>
-													</tr>
-												<?php } ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
 
-											</tbody>
-										</table>
-									</div>
+                </tbody>
+            </table>
+        </div>
     <?php
     } else {
         echo '<h4><center>Nenhum registro encontrado!</center><h4>';
@@ -298,47 +300,49 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 
     $pessoas = $ctrl_usuario->FiltrarUsuariosController(); ?>
 
-<div class="table-responsive" id="table_result_Usuario">
-    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
-        <thead>
-            <tr>
-                <th class="sorting_desc">Nome</th>
-                <th class="sorting_desc">E-mail</th>
-                <th class="sorting_desc">Setor/Empresa</th>
-                <th class="sorting_desc">Tipo</th>
-                <th class="sorting_desc">Ativo/inativo</th>
-                <th class="sorting_desc">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php for ($i = 0; $i < count($pessoas); $i++) { ?>
+    <div class="table-responsive" id="table_result_Usuario">
+        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+            <thead>
                 <tr>
-                    <td>
-                        <?= $pessoas[$i]['nome'] ?>
-                    </td>
-                    <td>
-                        <?= $pessoas[$i]['login'] ?>
-                    </td>
-                    <td>
-                        <?= ($pessoas[$i]['nome_setor'] != '' ? $pessoas[$i]['nome_setor'] : $pessoas[$i]['empresa_tecnico']) ?>
-                    </td>
-                    <td>
-                        <?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
-                    </td>
-                    <td><div class="col-xs-3">
+                    <th class="sorting_desc">Nome</th>
+                    <th class="sorting_desc">E-mail</th>
+                    <th class="sorting_desc">Setor/Empresa</th>
+                    <th class="sorting_desc">Tipo</th>
+                    <th class="sorting_desc">Ativo/inativo</th>
+                    <th class="sorting_desc">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php for ($i = 0; $i < count($pessoas); $i++) { ?>
+                    <tr>
+                        <td>
+                            <?= $pessoas[$i]['nome'] ?>
+                        </td>
+                        <td>
+                            <?= $pessoas[$i]['login'] ?>
+                        </td>
+                        <td>
+                            <?= ($pessoas[$i]['nome_setor'] != '' ? $pessoas[$i]['nome_setor'] : $pessoas[$i]['empresa_tecnico']) ?>
+                        </td>
+                        <td>
+                            <?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
+                        </td>
+                        <td>
+                            <div class="col-xs-3">
                                 <label>
                                     <input name="switch-field-1" value="0" id="usuario_status" onclick="MudarStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['status'] ?>')" title="Ativar/inativar usuário" class="ace ace-switch ace-switch-6" <?= $pessoas[$i]['status'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
                                     <span class="lbl"></span>
                                 </label>
-                            </div></td>
-                    <td>
+                            </div>
+                        </td>
+                        <td>
                             <a st class="green" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
                                 <i title="Alterar Usuário" class="ace-icon fa fa-pencil bigger-130"></i>
                             </a>
                             <!-- <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
                                 Enviar e-mail
                             </a> -->
-                        <!-- <div class="hidden-md hidden-lg">
+                            <!-- <div class="hidden-md hidden-lg">
                             <div class="inline pos-rel">
                                 <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
                                     <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
@@ -370,13 +374,13 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
                                 </ul>
                             </div>
                         </div> -->
-                    </td>
-                </tr>
-            <?php } ?>
+                        </td>
+                    </tr>
+                <?php } ?>
 
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
 <?php } else if (isset($_POST['btn_consultar']) && $_GET['btn_consultar'] == "ajx") {
 
     $registros = $ctrl_usuario->FiltrarUsuariosController();
@@ -397,46 +401,48 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 ?>
 
     <div class="table-responsive" id="table_result_Usuario">
-										<table id="dynamic-table" class="table table-striped table-bordered table-hover">
-											<thead>
-												<tr>
-													<th class="sorting_desc">Nome</th>
-													<th class="sorting_desc">E-mail</th>
-													<th class="sorting_desc">Setor/Empresa</th>
-													<th class="sorting_desc">Tipo</th>
-													<th class="sorting_desc">Ativo/inativo</th>
-													<th class="sorting_desc">Ações</th>
-												</tr>
-											</thead>
-											<tbody>
-												<?php for ($i = 0; $i < count($pessoas); $i++) { ?>
-													<tr>
-														<td>
-															<?= $pessoas[$i]['nome'] ?>
-														</td>
-														<td>
-															<?= $pessoas[$i]['login'] ?>
-														</td>
-														<td>
-															<?= ($pessoas[$i]['nome_setor'] != '' ? $pessoas[$i]['nome_setor'] : $pessoas[$i]['empresa_tecnico']) ?>
-														</td>
-														<td>
-															<?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
-														</td>
-														<td><div class="col-xs-3">
-																	<label>
-																		<input name="switch-field-1" value="0" id="usuario_status" onclick="MudarStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['status'] ?>')" title="Ativar/inativar usuário" class="ace ace-switch ace-switch-6" <?= $pessoas[$i]['status'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
-																		<span class="lbl"></span>
-																	</label>
-																</div></td>
-														<td>
-																<a st class="green btn btn-warning btn-xs" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
-																	Alterar
-																</a>
-																<!-- <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
+        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="sorting_desc">Nome</th>
+                    <th class="sorting_desc">E-mail</th>
+                    <th class="sorting_desc">Setor/Empresa</th>
+                    <th class="sorting_desc">Tipo</th>
+                    <th class="sorting_desc">Ativo/inativo</th>
+                    <th class="sorting_desc">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php for ($i = 0; $i < count($pessoas); $i++) { ?>
+                    <tr>
+                        <td>
+                            <?= $pessoas[$i]['nome'] ?>
+                        </td>
+                        <td>
+                            <?= $pessoas[$i]['login'] ?>
+                        </td>
+                        <td>
+                            <?= ($pessoas[$i]['nome_setor'] != '' ? $pessoas[$i]['nome_setor'] : $pessoas[$i]['empresa_tecnico']) ?>
+                        </td>
+                        <td>
+                            <?= Util::DescricaoTipo($pessoas[$i]['tipo']) ?>
+                        </td>
+                        <td>
+                            <div class="col-xs-3">
+                                <label>
+                                    <input name="switch-field-1" value="0" id="usuario_status" onclick="MudarStatus('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['status'] ?>')" title="Ativar/inativar usuário" class="ace ace-switch ace-switch-6" <?= $pessoas[$i]['status'] == STATUS_ATIVO ? "checked='checked'" : ''  ?> type="checkbox" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <a st class="green btn btn-warning btn-xs" href="#usuario" role="button" data-toggle="modal" onclick="AlterarUsuarioModal('<?= $pessoas[$i]['id'] ?>', '<?= $pessoas[$i]['tipo'] ?>', '<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= $pessoas[$i]['telefone'] ?>', '<?= $pessoas[$i]['cep'] ?>', '<?= $pessoas[$i]['rua'] ?>', '<?= $pessoas[$i]['bairro'] ?>', '<?= $pessoas[$i]['cidade'] ?>', '<?= $pessoas[$i]['sigla_estado'] ?>', '<?= $pessoas[$i]['empresa_tecnico'] ?>', '<?= $pessoas[$i]['setor_id'] ?>', '<?= $pessoas[$i]['id_end'] ?>')">
+                                Alterar
+                            </a>
+                            <!-- <a st class="green btn btn-purple btn-xs" title="Envia dados de acesso via email" role="button" onclick="EnviarEmailAcesso('<?= $pessoas[$i]['nome'] ?>', '<?= $pessoas[$i]['login'] ?>', '<?= ($pessoas[$i]['tipo'] == 1 ? SITE_ADMIN : ($pessoas[$i]['tipo'] == 2 ? SITE_FUNC : SITE_TEC)) ?>',)">
 																	Enviar e-mail
 																</a> -->
-															<!-- <div class="hidden-md hidden-lg">
+                            <!-- <div class="hidden-md hidden-lg">
 																<div class="inline pos-rel">
 																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
 																		<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
@@ -468,13 +474,13 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 																	</ul>
 																</div>
 															</div> -->
-														</td>
-													</tr>
-												<?php } ?>
+                        </td>
+                    </tr>
+                <?php } ?>
 
-											</tbody>
-										</table>
-									</div>
+            </tbody>
+        </table>
+    </div>
     <?php } else if (isset($_POST['btn_consultar_empresa']) && $_POST['btn_consultar_empresa'] == "ajx") {
 
     $dados = $ctrl_usuario->RetornarDadosCadastraisController();
@@ -491,16 +497,12 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 
             </div>
             <div class="col-md-4">
-
                 <label>CNPJ</label>
-                <input class="form-control obg" id="cnpj" name="cnpj" value="<?= $dados[0]['EmpCNPJ'] ?>" placeholder="Digite o aqui....">
-
+                <input class="form-control obg cpfCnpj" id="cnpj" name="Cnpj" value="<?= $dados[0]['EmpCNPJ'] ?>" placeholder="Digite o aqui....">
             </div>
             <div class="col-md-4">
-
                 <label>Cep</label>
-                <input class="form-control obg" id="cep" name="cep" value="<?= $dados[0]['EmpCep'] ?>" placeholder="Digite o aqui....">
-
+                <input class="form-control obg" onblur="BuscarCep()" id="cep" name="cep" value="<?= $dados[0]['EmpCep'] ?>" placeholder="Digite o aqui....">
             </div>
             <div class="col-md-4">
 
@@ -624,7 +626,6 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
 
     // Obtém os registros para exibir na página atual
     $pessoas = array_slice($registros, $indiceInicial, $registrosPorPagina);
-    
 }
 
 ?>

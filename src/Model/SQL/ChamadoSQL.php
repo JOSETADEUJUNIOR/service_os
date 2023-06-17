@@ -220,16 +220,15 @@ WHERE tb_empresa.EmpID = empID; */
             COUNT(c.id) AS Total,
             SUM(CASE WHEN c.data_atendimento IS NULL AND c.data_encerramento IS NULL THEN 1 ELSE 0 END) AS Aguardando,
             SUM(CASE WHEN c.data_atendimento IS NOT NULL AND c.data_encerramento IS NULL THEN 1 ELSE 0 END) AS Em_atendimento,
-            SUM(CASE WHEN c.data_encerramento IS NOT NULL THEN 1 ELSE 0 END) AS Encerrando,
-            r.valor
+            SUM(CASE WHEN c.data_encerramento IS NOT NULL THEN 1 ELSE 0 END) AS Encerrando
         FROM
             tb_chamado c
         INNER JOIN
             tb_empresa e ON c.empresa_EmpID = e.EmpID
-        INNER JOIN
-            tb_referencia r ON c.id = r.chamado_id
+        /* LEFT JOIN
+            tb_referencia r ON c.id = r.chamado_id */
         WHERE
-            e.EmpID = ?
+            c.empresa_EmpID = ?
         GROUP BY
             c.numero_nf';
     
@@ -255,10 +254,21 @@ WHERE tb_empresa.EmpID = empID; */
 
     public static function ChamadosPorFuncionarioSQL()
     {
-        $sql = 'SELECT us.nome, COUNT(*) as total_chamados, (SELECT SUM(total_chamados) FROM (SELECT COUNT(*) as total_chamados FROM tb_usuario us2 JOIN tb_chamado ch2 ON us2.id = ch2.funcionario_id GROUP BY us2.nome) as subquery) as total_geral
-                FROM tb_usuario us
-                     JOIN tb_chamado ch ON us.id = ch.funcionario_id
-                            GROUP BY us.nome';
+        $sql = 'SELECT
+        Count(*) as total, st.nome_setor as nome_setor, us.nome as nome_funcionario
+     FROM
+         tb_chamado c
+     INNER JOIN
+         tb_empresa e ON c.empresa_EmpID = e.EmpID
+     /* LEFT JOIN
+         tb_referencia r ON c.id = r.chamado_id */
+     INNER JOIN 
+         tb_setor st ON c.empresa_EmpID = st.SetorEmpID 
+     INNER JOIN 
+         tb_usuario us ON c.funcionario_id = us.id
+     WHERE
+         c.empresa_EmpID = ?
+    ';
         return $sql;
     }
 
@@ -300,6 +310,7 @@ WHERE tb_empresa.EmpID = empID; */
     {
         $sql = 'SELECT YEAR(data_abertura) AS ano, MONTH(data_abertura) AS mes, COUNT(*) AS total_chamados
                 FROM tb_chamado
+                Where empresa_EmpID = ?
                     GROUP BY ano, mes
                     ORDER BY ano, mes;';
         return $sql;
@@ -308,11 +319,21 @@ WHERE tb_empresa.EmpID = empID; */
     public static function ChamadosPorSetorSQL()
     {
 
-        $sql = 'SELECT tb_setor.nome_setor, COUNT(*) as quantidade_por_setor
-                FROM tb_chamado
-                    INNER JOIN tb_alocar ON tb_chamado.alocar_id = tb_alocar.id
-                    INNER JOIN tb_setor ON tb_alocar.setor_id = tb_setor.id
-                    GROUP BY tb_setor.nome_setor;';
+        $sql = 'SELECT
+        Count(*) as total, st.nome_setor as nome_setor, us.nome as nome_funcionario
+     FROM
+         tb_chamado c
+     INNER JOIN
+         tb_empresa e ON c.empresa_EmpID = e.EmpID
+    /*  LEFT JOIN
+         tb_referencia r ON c.id = r.chamado_id */
+     INNER JOIN 
+         tb_setor st ON c.empresa_EmpID = st.SetorEmpID 
+     INNER JOIN 
+         tb_usuario us ON c.funcionario_id = us.id
+     WHERE
+         c.empresa_EmpID = ?
+    ';
         return $sql;
     }
 }

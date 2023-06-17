@@ -103,6 +103,14 @@ class ChamadoController
         
         return $this->dao->FiltrarChamadoGeralDAO($empresa_id, $tipo, $setorID);
     }
+    public function FiltrarChamadoGeralAdminController($tipo)
+    {
+        if ($tipo == '') {
+            return 0;
+        }
+        
+        return $this->dao->FiltrarChamadoAdminGeralDAO($tipo);
+    }
 
     public function FiltrarNFController($empresa_id, $valordigitado)
     {
@@ -149,10 +157,7 @@ class ChamadoController
     public function CarregarDadosChamadoController(){
         return $this->dao->CarregarDadosChamadoDAO();
     }
-    public function CarregarDadosChamadoTabelaController($tipo=false, $setor=false){
-        return $this->dao->CarregarDadosChamadoTabelaDAO($tipo=false, $setor=false);
-    }
-
+   
     public function ChamadosPorFuncionarioController(){
         return $this->dao->ChamadosPorFuncionarioDAO();
     }

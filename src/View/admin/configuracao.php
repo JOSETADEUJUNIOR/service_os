@@ -175,7 +175,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 														<form action="" id="formAlterarEmpresa">
 															<fieldset>
 																<div class="row" id="resultDadosEmpresa">
-																	<input type="hidden" id="id_user" value="<?= $dados[0]['id'] ?>">
+																	<input type="hidden" id="id_user_emp" value="<?= $dados[0]['id'] ?>">
 																	<input type="hidden" id="id_emp" value="<?= $dados[0]['EmpID'] ?>">
 																	<input type="hidden" id="tipo" value="<?= $dados[0]['tipo'] ?>">
 																	<div class="col-md-4">
@@ -184,11 +184,11 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																	</div>
 																	<div class="col-md-4">
 																		<label>CNPJ</label>
-																		<input class="form-control obg" id="cnpj" name="cpfCnpj" value="<?= $dados[0]['EmpCNPJ'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg cpfCnpj" id="cnpj" name="Cnpj" value="<?= $dados[0]['EmpCNPJ'] ?>" placeholder="Digite o aqui....">
 																	</div>
 																	<div class="col-md-4">
 																		<label>Cep</label>
-																		<input class="form-control obg" id="cep" name="cep" value="<?= $dados[0]['EmpCep'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg" onblur="BuscarCep()" id="cep" name="cep" value="<?= $dados[0]['EmpCep'] ?>" placeholder="Digite o aqui....">
 																	</div>
 																	<div class="col-md-4">
 																		<label>Endereço</label>
@@ -296,7 +296,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																	</div>
 																	<div class="col-md-2">
 																		<label>Cep</label>
-																		<input class="form-control obg" id="cep_user" name="cep" value="<?= $dadosUser['cep'] ?>" placeholder="Digite o aqui....">
+																		<input class="form-control obg cep_2"  onblur="BuscarCep_2()" id="cep_user" name="cep" value="<?= $dadosUser['cep'] ?>" placeholder="Digite o aqui....">
 																	</div>
 																	<div class="col-md-4">
 																		<label>Rua</label>

@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="../../Template/assets/css/ace-skins.min.css" />
   <link rel="stylesheet" href="../../Template/assets/css/ace-rtl.min.css" />
   <link rel="stylesheet" href="../../Template/assets/css/estilo.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 </head>
 <style>

@@ -8,6 +8,7 @@ use Src\Controller\ServicoController;
 use Src\Controller\UsuarioController;
 use Src\VO\OsVO;
 use Src\_public\Util;
+use Src\Controller\ChamadoController;
 use Src\VO\ServicoOSVO;
 use Src\VO\ProdutoOSVO;
 use Src\VO\AnxOSVO;
@@ -25,10 +26,21 @@ $servicos = $ctrlServ->RetornarServicoController();
 $produtos = $ctrlProd->SelecioneProdutoCTRL();
 $clientes = $cliCtrl->SelecioneClienteCTRL();
 $ctrl = new OsController();
+$ctrl_os = new ChamadoController;
 $vo = new OsVO;
 $ProdOrdem = $ctrl->RetornaProdOrdem($vo);
 
 $dadosOS = $ctrl->RetornarDadosOsController();
+
+if (isset($_POST['FiltrarOSGeral']) && $_POST['FiltrarOSGeral'] == 'ajx') {
+    $dados = $ctrl_os->FiltrarChamadoGeralAdminController($tipo=4);
+
+    echo $dados;
+}
+
+
+
+
 
 if (isset($_POST['btn_detalhar_os'])) {
     $vo = new OsVO;
@@ -920,5 +932,7 @@ if (isset($_GET['OsMes'])) {
 
     $os = $ctrl->RetornarOsController();
 }
+
+
 
 ?>

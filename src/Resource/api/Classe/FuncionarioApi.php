@@ -2,6 +2,7 @@
 
 namespace Src\Resource\api\Classe;
 
+use Src\_public\Util;
 use Src\Controller\ChamadoController;
 use Src\Resource\api\Classe\ApiRequest;
 use Src\Controller\UsuarioController;
@@ -57,11 +58,14 @@ class FuncionarioApi extends ApiRequest
         
         return (new ChamadoController)->DetalharDadosOsController($this->params['empresa_id'], $this->params['os_id']);
     }
-
-
-    
-    
-
+    public function FiltrarPorNF()
+    {
+        if (Util::AuthenticationTokenAccess()) {
+            return (new ChamadoController)->FiltrarNFController($this->params['empresa_id'], $this->params['buscar_nf']);
+        }else{
+            return NAO_AUTORIZADO;
+        }
+    }
     public function AlterarMeusDados()
     {
         $vo = new FuncionarioVO;

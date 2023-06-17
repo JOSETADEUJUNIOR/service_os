@@ -212,8 +212,6 @@ function CadastrarUsuario(id_form) {
 
 function CadastrarMeusDados(id_form) {
     if (NotificarCampos(id_form)) {
-        alert($("#cep_user").val());
-        alert($("#estado_user").val());
         $.ajax({
             type: "POST",
             url: BASE_URL_AJAX("usuario_dataview"),
@@ -463,7 +461,6 @@ $("#logo").change(function() {
 function Imprimir() {
     let filtrar_palavra = $("#buscaUsuario").val();
     let filtro_selecionado = $("input[name='form-field-radio']:checked").val();
-    alert(filtro_selecionado);
     url = "relatorio_usuario.php?desc_filtro=" + encodeURIComponent(filtrar_palavra) + "&filtro=" + filtro_selecionado;
     window.open(url, "_blank");
 }

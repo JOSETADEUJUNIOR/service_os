@@ -8,10 +8,10 @@ $(document).ready(function () {
     $('.cel').mask('(00)00000-0000');
     $('.phone_us').mask('(000) 000-0000');
     $('.mixed').mask('AAA 000-S0S');
-    $('.cpf').mask('000.000.000-00', {reverse: true});
-    $('.dinheiro').mask('00000000.00', {reverse: true});
-    $('.porcentagem').mask('00.00', {reverse: true});
-    $('.money').mask('000.000.000.000.000,00', {reverse: true});
+    $('.cpf').mask('000.000.000-00', { reverse: true });
+    $('.dinheiro').mask('00000000.00', { reverse: true });
+    $('.porcentagem').mask('00.00', { reverse: true });
+    $('.money').mask('000.000.000.000.000,00', { reverse: true });
     $('.num').keypress(function (event) {
         var tecla = (window.event) ? event.keyCode : event.which;
         if ((tecla > 47 && tecla < 58))
@@ -32,28 +32,29 @@ $(document).ready(function () {
             $('.date').val('');
     });
     var options = {
-        onKeyPress: function(cpf, ev, el, op) {
+        onKeyPress: function (cpf, ev, el, op) {
             var masks = ['000.000.000-000', '00.000.000/0000-00'];
             $('.cpfCnpj').mask((cpf.length > 14) ? masks[1] : masks[0], op);
         }
     }
 
-    $('.cpfCnpj').length > 11 ? $('$cpfCnpj').mask('00.000.000/0000-00', options) : $('.cpfCnpj').mask('000.000.000-00#', options);
+    $('.cpfCnpj').length > 11 ? $('.cpfCnpj').mask('00.000.000/0000-00', options) : $('.cpfCnpj').mask('000.000.000-00#', options);
     var options = {
-        onKeyPress: function(cpf, ev, el, op) {
+        onKeyPress: function (cpf, ev, el, op) {
             var masks = ['000.000.000-000', '00.000.000/0000-00'];
             $('#AlteracpfCnpj').mask((cpf.length > 14) ? masks[1] : masks[0], op);
         }
-    }
+    };
+
 
     $('#AlteracpfCnpj').length > 11 ? $('$AlteracpfCnpj').mask('00.000.000/0000-00', options) : $('#AlteracpfCnpj').mask('000.000.000-00#', options);
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#telefone").mask('(00)00000-0000')
         $("#Alteratelefone").mask('(00)00000-0000')
         $("#AlteraCep").mask('00.000-000')
         $("#cep").mask('00.000-000')
 
     });
-   
+
 });

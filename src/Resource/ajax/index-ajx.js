@@ -6,14 +6,13 @@ function BuscarChamadosPorColaborador() {
     dataType: 'json',
     data: { acao: 'requisicao' },
     success: function (data) {
-   
       var labels = [];
       var valores = [];
       var totalGeral = [];
       $.each(data, function (index, item) {
-        labels.push(item.nome);
-        valores.push(item.total_chamados);
-        totalGeral = item.total_geral;
+        labels.push(item.nome_funcionario);
+        valores.push(item.total);
+        totalGeral = item.total;
       });
      $("#qtd_chamado_por_responsável").html(totalGeral);
       $("#qtd_chamado_por_periodo").html(totalGeral);
@@ -54,48 +53,7 @@ function BuscarChamadosPorColaborador() {
   });
 }
 
-function BuscarChamadosPorPeriodo() {
-  $.ajax({
-    url: BASE_URL_AJAX("index_dataview"),
-    method: 'GET',
-    dataType: 'json',
-    data: { acao: 'chamado_por_periodo' },
-    success: function (periodo) {
-      var dados = periodo;
-      var labels = [];
-      var valores = [];
 
-      for (var i = 0; i < dados.length; i++){
-        labels.push(dados[i].mes + '/' + dados[i].ano);
-        valores.push(dados[i].total_chamados);
-      }
-
-      var ctx = document.getElementById('chamado_por_periodo').getContext('2d');
-      var meuGrafico = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: 'Total de chamados por Periodo',
-            data: valores,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
-      });
-    }
-  });
-}
 
 function BuscarChamadosPorSetor() {
   $.ajax({
@@ -103,19 +61,22 @@ function BuscarChamadosPorSetor() {
     method: 'GET',
     dataType: 'json',
     data: { acao: 'chamado_por_setor' },
-    success: function (setor) {
-      var dados = setor;
+    success: function (dados) {
+      console.log(dados);
+      
       var labels = [];
       var valores = [];
 
-      for (var i in dados){
-        labels.push(dados[i].nome_setor);
-        valores.push(dados[i].quantidade_por_setor);
+      for (var i = 0; i < dados.length; i++) {
+        var setor = dados[i];
+        
+        labels.push(setor.nome_setor);
+        valores.push(setor.total);
       }
-
+      $("#qtd_chamado_por_setor").html(setor.total);
       var ctx = document.getElementById('chamado_por_setor').getContext('2d');
       var meuGrafico = new Chart(ctx, {
-        type: 'pie',
+        type: 'bar',
         data: {
           labels: labels,
           datasets: [{
@@ -143,13 +104,6 @@ function BuscarChamadosPorSetor() {
 
 
 
-
-
-
-
-
-
-
 function BuscarChamadosPorStatus() {
   $.ajax({
     url: BASE_URL_AJAX("index_dataview"),
@@ -157,14 +111,27 @@ function BuscarChamadosPorStatus() {
     dataType: 'json',
     data: { acao: 'chamado_status' },
     success: function (data) {
-      var total_chamados = data.Total;
-      var aguardando = data.Aguardando;
-      var em_atendimento = data.Em_atendimento;
-      var concluidos = data.Encerrando;
+      var total_chamados = 0;
+      var aguardando = 0;
+      var em_atendimento = 0;
+      var concluidos = 0;
+      
+      // Iterar sobre a matriz de objetos
+      for (var i = 0; i < data.length; i++) {
+        var chamado = data[i];
+        
+        total_chamados += chamado.Total;
+        aguardando += parseInt(chamado.Aguardando);
+        em_atendimento += parseInt(chamado.Em_atendimento);
+        concluidos += parseInt(chamado.Encerrando);
+      }
+      
       $("#total_chamados").html(total_chamados);
       $("#aguardando").html(aguardando);
       $("#em_atendimento").html(em_atendimento);
       $("#concluidos").html(concluidos);
+      $("#qtd_chamado_por_status").html(total_chamados);
+      
       var ctx = document.getElementById('chart_chamados_status').getContext('2d');
       var meuGrafico = new Chart(ctx, {
         type: 'bar',
@@ -172,9 +139,8 @@ function BuscarChamadosPorStatus() {
           labels: ["Aguardando", "Em atendimento", "Encerrando"],
           datasets: [{
             label: 'Total de chamados',
-            data: [data.Aguardando, data.Em_atendimento, data.Encerrando],
+            data: [aguardando, em_atendimento, concluidos],
             backgroundColor: ["yellow", "blue", "green"],
-
           }]
         },
         options: {
@@ -186,162 +152,9 @@ function BuscarChamadosPorStatus() {
               },
               color: "#fff"
             }
-
-
           }
-          /*  scales: {
-             yAxes: [{
-               ticks: {
-                 beginAtZero: true
-               }
-             }]
-           } */
-
-
         }
       });
     }
   });
 }
-
-function BuscarDadosTabela()
-{
-
-  $.ajax({
-    url: BASE_URL_AJAX("index_dataview"),
-    method: 'GET',
-    dataType: 'json',
-    data: { acao: 'chamado_dados_tabela' },
-    success: function (tabela_html) {
-        console.log(tabela_html);
-      
-
-    /*   var total_chamados = data.Total;
-      var aguardando = data.Aguardando;
-      var em_atendimento = data.Em_atendimento;
-      var concluidos = data.Encerrando;
-      $("#total_chamados").html(total_chamados);
-      $("#aguardando").html(aguardando);
-      $("#em_atendimento").html(em_atendimento);
-      $("#concluidos").html(concluidos); */
-    }
-  });
-
-
-}
-
-
-function BuscarChamadosTotais() {
-  $.ajax({
-    url: BASE_URL_AJAX("index_dataview"),
-    method: 'GET',
-    dataType: 'json',
-    data: { acao: 'chamado_status' },
-    success: function (data) {
-      var ctx = document.getElementById('chamados_por_setor1').getContext('2d');
-      var meuGrafico = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['A', 'B', 'C'],
-          datasets: [
-            {
-              label: 'Dataset 1',
-              data: [1, 2, 3],
-              borderColor: '#36A2EB',
-              backgroundColor: '#9BD0F5',
-            },
-            {
-              label: 'Dataset 2',
-              data: [2, 3, 4],
-              borderColor: '#FF6384',
-              backgroundColor: '#FFB1C1',
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          /* plugins: {
-            datalabels: {
-              formatter: function (value, context) {
-                return value + " (" + context.dataset.labels[context.dataIndex] + ")";
-              },
-              color: "#fff"
-            }
-
-
-          } */
-          /*  scales: {
-             yAxes: [{
-               ticks: {
-                 beginAtZero: true
-               }
-             }]
-           } */
-
-
-        }
-      });
-    }
-  });
-}
-
-
-
-
-
-
-/*
-
-function BuscarChamadosPorColaborador(){
-alert('teste');
-$.ajax({
-    type: 'GET',
-    url: BASE_URL_AJAX("index_dataview"), // Coloque aqui o arquivo PHP que executa a consulta
-    data: {
-        consultarChamado: 'ajx'
-    },success: function(data) {
-
-
-
-      // Variáveis para armazenar os dados
-      var nomes = [];
-      var totais = [];
-
-      // Loop pelos resultados da consulta
-      for (var i = 0; i < data.length; i++) {
-        nomes.push(data[i].nome);
-        totais.push(data[i].total_chamados);
-        console.log(nomes);
-        console.log(totais);
-      }
-
-      // Configuração do gráfico
-      var config = {
-        type: 'bar',
-        data: {
-          labels: nomes,
-          datasets: [{
-            label: 'Total de chamados',
-            data: totais,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
-      };
-
-      // Criação do gráfico
-      var chart = new Chart(document.getElementById('chart'), config);
-    }
-  });
-
-} */
