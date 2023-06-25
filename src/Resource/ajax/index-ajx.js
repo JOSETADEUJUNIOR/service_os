@@ -18,11 +18,10 @@ function BuscarChamadosPorColaborador() {
       $("#qtd_chamado_por_periodo").html(totalGeral);
       var ctx = document.getElementById('chamado_por_responsavel').getContext('2d');
       var meuGrafico = new Chart(ctx, {
-        type: 'bar',
+        type: 'doughnut',
         data: {
           labels: labels,
           datasets: [{
-            label: 'Chamados por responsável',
             data: valores,
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
             borderColor: 'rgba(54, 162, 235, 1)',
@@ -30,22 +29,17 @@ function BuscarChamadosPorColaborador() {
           }]
         },
         options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          },
           plugins: {
+            legend: {
+              display: false, // Exibir legenda
+              position: 'bottom' // Posição da legenda (pode ser 'top', 'bottom', 'left' ou 'right')
+            },
             datalabels: {
               formatter: function (value, context) {
-                return value + " (" + context.dataset.labels[context.dataIndex] + ")";
+                return value + " (" + context.chart.data.labels[context.dataIndex] + ")";
               },
               color: "#fff"
             }
-
-
           }
         }
       });
@@ -76,11 +70,11 @@ function BuscarChamadosPorSetor() {
       $("#qtd_chamado_por_setor").html(setor.total);
       var ctx = document.getElementById('chamado_por_setor').getContext('2d');
       var meuGrafico = new Chart(ctx, {
-        type: 'bar',
+        type: 'doughnut',
         data: {
           labels: labels,
           datasets: [{
-            label: 'Total de chamados por Setor',
+            label: 'Total de chamados por setor',
             data: valores,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
@@ -104,12 +98,17 @@ function BuscarChamadosPorSetor() {
           }]
         },
         options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
+          plugins: {
+            legend: {
+              display: false, // Exibir legenda
+              position: 'bottom' // Posição da legenda (pode ser 'top', 'bottom', 'left' ou 'right')
+            },
+            datalabels: {
+              formatter: function (value, context) {
+                return value + " (" + context.chart.data.labels[context.dataIndex] + ")";
+              },
+              color: "#fff"
+            }
           }
         }
       });
@@ -180,6 +179,10 @@ function BuscarChamadosPorStatus() {
         options: {
           responsive: true,
           plugins: {
+            legend: {
+              display: false, // Exibir legenda
+              position: 'bottom' // Posição da legenda (pode ser 'top', 'bottom', 'left' ou 'right')
+            },
             datalabels: {
               formatter: function (value, context) {
                 return value + " (" + context.dataset.labels[context.dataIndex] + ")";

@@ -25,7 +25,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
         }
 
         .card-primary {
-            background-color: #6495ED;
+            background-color: #2C6AA0;
             color: #fff;
         }
 
@@ -176,10 +176,10 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                     <div class="row">
                     <div class="col-sm-12 col-xs-12">
                             <div class="widget-box">
-                                <div class="widget-header widget-header-flat widget-header-small">
+                                <div class="widget-header widget-header-flat widget-header-small card-primary">
                                     <h5 class="widget-title">
                                         <i class="ace-icon fa fa-signal"></i>
-                                        Quantidade por Status
+                                        Quantidade por status
                                     </h5>
 
 
@@ -206,7 +206,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                         </div>
                         <div class="col-sm-6 col-xs-12">
                             <div class="widget-box">
-                                <div class="widget-header widget-header-flat widget-header-small">
+                                <div class="widget-header widget-header-flat widget-header-small card-primary">
                                     <h5 class="widget-title">
                                         <i class="ace-icon fa fa-signal"></i>
                                         Estatística das ordens de serviços
@@ -243,7 +243,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 
                         <div class="col-sm-6 col-xs-12">
                             <div class="widget-box">
-                                <div class="widget-header widget-header-flat widget-header-small">
+                                <div class="widget-header widget-header-flat widget-header-small card-primary">
                                     <h5 class="widget-title">
                                         <i class="ace-icon fa fa-signal"></i>
                                         Quantidade por Setor
