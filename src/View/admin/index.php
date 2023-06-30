@@ -25,7 +25,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
         }
 
         .card-primary {
-            background-color: #6495ED;
+            background-color: #2C6AA0;
             color: #fff;
         }
 
@@ -80,10 +80,10 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                 <div class="page-content">
                     <div class="page-header">
                         <h1>
-                            Dashboard dos chamados
+                            Dashboard das O.S
                             <small>
                                 <i class="ace-icon fa fa-angle-double-right"></i>
-                                Aqui são exibidos os dados e estatísticas dos chamados
+                                Aqui são exibidos os dados e estatísticas das ordens de serviços
                             </small>
                         </h1>
                     </div><!-- /.page-header -->
@@ -91,32 +91,32 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                            <span class="btn btn-app btn-sm btn-purple no-hover">
+                            <span class="btn btn-app btn-sm btn-primary no-hover">
                                 <!-- conteúdo da primeira div -->
                                 <i class="fa fa-ticket fa-2x card-icon float-left mr-10"></i>
                                 <span id="total_chamados" name="total_chamados" class="line-height-1 bigger-170">10</span>
 
                                 <br>
-                                <span class="line-height-1 smaller-90"> Total Chamados </span>
+                                <span class="line-height-1 smaller-90"> Total O.S </span>
 
+                            </span>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <span class="btn btn-app btn-sm btn-danger no-hover">
+                                <i class="fa fa-ticket fa-2x card-icon float-left mr-10"></i>
+                                <span id="aguardando" class="line-height-1 bigger-170"></span>
+
+                                <br>
+                                <span class="line-height-1 smaller-90"> O.S aguardando </span>
                             </span>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                             <span class="btn btn-app btn-sm btn-yellow no-hover">
                                 <i class="fa fa-ticket fa-2x card-icon float-left mr-10"></i>
-                                <span id="aguardando" class="line-height-1 bigger-170"></span>
-
-                                <br>
-                                <span class="line-height-1 smaller-90"> Aguardando </span>
-                            </span>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                            <span class="btn btn-app btn-sm btn-blue no-hover">
-                                <i class="fa fa-ticket fa-2x card-icon float-left mr-10"></i>
                                 <span id="em_atendimento" class="line-height-1 bigger-170"></span>
 
                                 <br>
-                                <span class="line-height-1 smaller-90"> Em Atendimento </span>
+                                <span class="line-height-1 smaller-90"> O.S em atendimento </span>
                             </span>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
@@ -125,7 +125,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                                 <span id="concluidos" class="line-height-1 bigger-170"></span>
 
                                 <br>
-                                <span class="line-height-1 smaller-90"> Concluídos </span>
+                                <span class="line-height-1 smaller-90"> O.S concluídas </span>
                             </span>
                         </div>
                     </div>
@@ -176,10 +176,10 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                     <div class="row">
                     <div class="col-sm-12 col-xs-12">
                             <div class="widget-box">
-                                <div class="widget-header widget-header-flat widget-header-small">
+                                <div class="widget-header widget-header-flat widget-header-small card-primary">
                                     <h5 class="widget-title">
                                         <i class="ace-icon fa fa-signal"></i>
-                                        Quantidade por Status
+                                        Quantidade por status
                                     </h5>
 
 
@@ -194,7 +194,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                                             <div class="grid12">
                                                 <span class="grey">
                                                     <i class="ace-icon fa fa-ticket fa-2x blue"></i>
-                                                    &nbsp; Quantidade total de chamados:
+                                                    &nbsp; Quantidade total de ordens de serviços:
                                                 </span>
                                                 <h4 id="qtd_chamado_por_status" class="bigger pull-right"></h4>
                                             </div>
@@ -206,10 +206,10 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                         </div>
                         <div class="col-sm-6 col-xs-12">
                             <div class="widget-box">
-                                <div class="widget-header widget-header-flat widget-header-small">
+                                <div class="widget-header widget-header-flat widget-header-small card-primary">
                                     <h5 class="widget-title">
                                         <i class="ace-icon fa fa-signal"></i>
-                                        Estatística dos chamados
+                                        Estatística das ordens de serviços
                                     </h5>
 
 
@@ -224,7 +224,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                                             <div class="grid12">
                                                 <span class="grey">
                                                     <i class="ace-icon fa fa-ticket fa-2x blue"></i>
-                                                    &nbsp; Quantidade total de chamados:
+                                                    &nbsp; Quantidade total de ordens de serviços:
                                                 </span>
                                                 <h4 id="qtd_chamado_por_responsável" class="bigger pull-right"></h4>
                                             </div>
@@ -243,7 +243,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 
                         <div class="col-sm-6 col-xs-12">
                             <div class="widget-box">
-                                <div class="widget-header widget-header-flat widget-header-small">
+                                <div class="widget-header widget-header-flat widget-header-small card-primary">
                                     <h5 class="widget-title">
                                         <i class="ace-icon fa fa-signal"></i>
                                         Quantidade por Setor
@@ -261,7 +261,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
                                             <div class="grid12">
                                                 <span class="grey">
                                                     <i class="ace-icon fa fa-ticket fa-2x blue"></i>
-                                                    &nbsp; Quantidade total de chamados:
+                                                    &nbsp; Quantidade total de ordens de serviços:
                                                 </span>
                                                 <h4 id="qtd_chamado_por_setor" class="bigger pull-right"></h4>
                                             </div>
