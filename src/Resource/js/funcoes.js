@@ -19,7 +19,6 @@ function AlterarProdutoModal(ProdID, ProdDescricao, ProdCodBarra, ProdValorCompr
 }
 
 function ExcluirModalItem(OsID, id, nome, idProduto, qtd) {
-    alert('item');
     $("#ExcluirOsID").val(OsID);
     $("#ExcluirID").val(id);
     $("#ExcluirNome").html(nome);

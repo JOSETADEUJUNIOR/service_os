@@ -98,20 +98,36 @@ require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
         <li class="hover">
             <a href="produto.php">
                 <i class="menu-icon fa fa-laptop"></i>
-                Produto
+                Materiais / Insumos
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+        <li class="hover">
+            <a href="modelo.php">
+                <i class="menu-icon fa fa-laptop"></i>
+                Modelo equipamento
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+        <li class="hover">
+            <a href="tipoequipamento.php">
+                <i class="menu-icon fa fa-laptop"></i>
+                Tipo equipamento
             </a>
 
             <b class="arrow"></b>
         </li>
 
-       <!--  <li class="hover">
+      <li class="hover">
             <a href="equipamento.php">
                 <i class="menu-icon fa fa-laptop"></i>
                 Equipamento
             </a>
 
             <b class="arrow"></b>
-        </li> -->
+        </li>
         <li class="hover">
             <a href="servico.php">
                 <i class="menu-icon fa fa-laptop"></i>

@@ -71,7 +71,8 @@ if (isset($_POST['btn_cadastrar'])) {
                 if ($arquivos['size'] > 2097152) { # 2097152 = 2MB
                     $ret = 10;
                 } else {
-                    $pasta = CAMINHO_PARA_SALVAR_IMG_PRODUTO;
+                    /* $pasta = CAMINHO_PARA_SALVAR_IMG_PRODUTO; */
+                    $pasta = "arquivos/";
                     @mkdir($pasta);
                     $nomeDoArquivo = $arquivos['name'];
                     $novoNomeDoArquivo = uniqid();
@@ -79,7 +80,7 @@ if (isset($_POST['btn_cadastrar'])) {
                     if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != '') {
                         $ret = 11;
                     } else {
-                        $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
+                        $path = $pasta . $novoNomeDoArquivo . '.' . $extensao;
                         $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
                         $vo->setProdImagem($nomeDoArquivo);
                         $vo->setProdImagemPath($path);

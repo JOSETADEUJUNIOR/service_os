@@ -50,6 +50,8 @@ const ABRIR_CHAMADO = 'AbrirChamadoController';
 const ATENDER_CHAMADO = 'AtenderChamadoController';
 const FINALIZAR_CHAMADO = 'FinalizarChamadoController';
 
+const CADASTRAR_LOTE = 'CadastrarLoteController';
+
 const CADASTRO_PRODUTO = 'CadastrarProdutoController';
 const ALTERA_PRODUTO = 'AlterarProdutoController';
 const STATUS_PRODUTO = 'StatusProdutoController';

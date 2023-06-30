@@ -18,6 +18,9 @@ Util::VerificarLogado();
 $ordemOS = 0;
 $OsID = 0;
 $ctrlEmp = new UsuarioController();
+$ctr_chamado = new ChamadoController();
+$ch = $ctr_chamado->FiltrarChamadoGeralAdminController($tipo=4);
+
 $dadosEmp = $ctrlEmp->RetornarDadosCadastraisController();
 $cliCtrl = new ClienteController();
 $ctrlProd = new ProdutoController();
@@ -26,21 +29,10 @@ $servicos = $ctrlServ->RetornarServicoController();
 $produtos = $ctrlProd->SelecioneProdutoCTRL();
 $clientes = $cliCtrl->SelecioneClienteCTRL();
 $ctrl = new OsController();
-$ctrl_os = new ChamadoController;
 $vo = new OsVO;
 $ProdOrdem = $ctrl->RetornaProdOrdem($vo);
 
 $dadosOS = $ctrl->RetornarDadosOsController();
-
-if (isset($_POST['FiltrarOSGeral']) && $_POST['FiltrarOSGeral'] == 'ajx') {
-    $dados = $ctrl_os->FiltrarChamadoGeralAdminController($tipo=4);
-
-    echo $dados;
-}
-
-
-
-
 
 if (isset($_POST['btn_detalhar_os'])) {
     $vo = new OsVO;
@@ -53,8 +45,6 @@ if (isset($_POST['btn_detalhar_os'])) {
             Produtos e serviços da ordem de serviço
 
         </div>
-
-
         <table id="dynamic-table" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
@@ -932,7 +922,5 @@ if (isset($_GET['OsMes'])) {
 
     $os = $ctrl->RetornarOsController();
 }
-
-
 
 ?>

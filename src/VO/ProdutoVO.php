@@ -100,7 +100,7 @@ class ProdutoVO extends LogErro{
 
     public function setProdImagem($ProdImagem)
     {
-        $this->ProdImagem = Util::remove_especial_char($ProdImagem);
+        $this->ProdImagem = $ProdImagem;
     }
 
     public function getProdImagem()
@@ -110,7 +110,7 @@ class ProdutoVO extends LogErro{
     
     public function setProdImagemPath($ProdImagemPath)
     {
-        $this->ProdImagemPath = Util::remove_especial_char($ProdImagemPath);
+        $this->ProdImagemPath = $ProdImagemPath;
     }
 
     public function getProdImagemPath()

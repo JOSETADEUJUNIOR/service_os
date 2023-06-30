@@ -7,8 +7,11 @@ use Src\Controller\ChamadoController;
 use Src\Resource\api\Classe\ApiRequest;
 use Src\Controller\UsuarioController;
 use Src\Controller\EquipamentoController;
+use Src\Controller\LoteController;
 use Src\VO\UsuarioVO;
 use Src\VO\ChamadoVO;
+use Src\VO\Lote_insumoVO;
+use Src\VO\LoteVO;
 use Src\VO\TecnicoVO;
 
 class TecnicoApi extends ApiRequest
@@ -92,6 +95,40 @@ class TecnicoApi extends ApiRequest
         }
     }
 
+    public function InserirLoteAPI(){
+        if (Util::AuthenticationTokenAccess()) {
+            $vo = new LoteVO;
+            
+            $vo->setNumero_lote($this->params['numero_lote']);
+            $vo->setEquipamento_id($this->params['equipamento_id']);
+            $vo->setEmpresa_id($this->params['empresa_id']);
+            $vo->setQtdEquip($this->params['qtd_equip']);
+            /* $vo->setInsumo_id($this->params['insumo_id']);
+            $vo->setValor_insumo($this->params['valor_insumo']);
+            $vo->setQuantidade_insumo($this->params['quantidade_insumo']);
+            
+            $vo->setServico_id($this->params['servico_id']);
+            $vo->setValor_servico($this->params['valor_servico']);
+            $vo->setQuantidade_servico($this->params['quantidade_servico']); */
+            
+            return (new LoteController)->InserirLoteController($vo);
+
+
+        }else{
+            return NAO_AUTORIZADO;
+        }
+    }
+    public function FiltrarLote(){
+        if (Util::AuthenticationTokenAccess()) {
+            return (new LoteController)->FiltrarLoteController($this->params['empresa_id']);
+        }else{
+            return NAO_AUTORIZADO;
+        }
+    }
+
+
+    
+
     public function FiltrarChamadoAberto(){
         if (Util::AuthenticationTokenAccess()) {
             return (new ChamadoController)->FiltrarChamadoAbertoController();
@@ -139,7 +176,9 @@ class TecnicoApi extends ApiRequest
        
         return (new ChamadoController)->CarregarProdServOSController($this->params['chamado_id']);
     }
-
+    public function ConsultarEquipamento(){
+        return (new EquipamentoController)->ConsultarEquipamentoAllController();
+    }
 
 
     /* public function AbrirChamado()
