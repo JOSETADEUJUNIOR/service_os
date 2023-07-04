@@ -51,7 +51,9 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php'
 								<div class="col-sm-12">
 									<h4 class="pink">
 										<a href="#equipamento" role="button" class="btn btn-success" data-toggle="modal"><i class="ace-icon fa fa-plus white"></i>Novo</a>
-										<button onclick="Imprimir()" id="relatorioEquipamento" role="button" class="btn btn-purple ocultar"><i class="ace-icon fa fa-print white"></i>Imprimir</button>
+										<?php if (count($equipamento) > 0) { ?>
+											<button id="btnImprimirEquip" type="button" onclick="Imprimir()" class="btn btn-purple"><i class="ace-icon fa fa-plus white"></i>Relatorio</button>
+										<?php } ?>
 									</h4>
 								</div>
 							</div>

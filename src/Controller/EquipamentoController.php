@@ -46,7 +46,7 @@ class EquipamentoController
     public function ConsultarEquipamentoController($BuscarTipo, $filtro_palavra): array
     {
         if (empty(trim($filtro_palavra))) {
-            return 0;
+            return [];
         }
         return $this->dao->ConsultarEquipamentoDAO($BuscarTipo, $filtro_palavra);
     }
