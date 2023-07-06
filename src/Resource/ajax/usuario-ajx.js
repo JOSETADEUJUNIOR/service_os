@@ -261,6 +261,7 @@ function CadastrarDadosEmpresa() {
     formData.append("EmpNumero", $("#numero").val());
     formData.append("EmpCidade", $("#cidade").val());
     formData.append("oldLogo", $("#oldLogo").val());
+    formData.append("OldPathLogo", $("#OldPathLogo").val());
     if ($("#logo").prop("files")[0] == "") {
         formData.append("arquivos", '');
     } else {

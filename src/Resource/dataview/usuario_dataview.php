@@ -47,33 +47,34 @@ if (isset($_POST['EnviarEmail']) and $_POST['EnviarEmail'] == 'ajx') {
     $vo->setNumero($_POST['EmpNumero']);
     $vo->setCidade($_POST['EmpCidade']);
     $OldLogo = $_POST['oldLogo'];
-    if ($_FILES['arquivos'] != "") {
-
-        $arquivos = $_FILES['arquivos'] ?? "";
-
-        if ($arquivos['size'] > 2097152)
-            die("Arquivo muito grande !! Max: 2MB");
-
-        $pasta = "arquivos/";
-        @mkdir($pasta);
-        $nomeDoArquivo = $arquivos['name'];
-        $novoNomeDoArquivo = uniqid();
-        $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
-        if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != '')
-            die("Tipo de arquivo não aceito");
-
-        $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
-        $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
-    }
-    if ($OldLogo != "") {
-        if (file_exists($OldLogo)) {
-            unlink($OldLogo);
+    $OldPathLogo = $_POST['OldPathLogo'];
+    if (isset($_FILES) && $_FILES != null) {
+        $arquivos = $_FILES['arquivos'];
+        if ($arquivos['name'] != ""){
+            if ($arquivos['size'] > 2097152) { # 2097152 = 2MB
+                $ret = 10;
+            } else {
+                $pasta = CAMINHO_PARA_SALVAR_IMG_PRODUTO;
+                @mkdir($pasta);
+                $nomeDoArquivo = $arquivos['name'];
+                $novoNomeDoArquivo = uniqid();
+                $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
+                if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != '') {
+                    $ret = 11;
+                } else {
+                    $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
+                    $deu_certo = move_uploaded_file($arquivos["tmp_name"], $path);
+                    $vo->setEmpLogo($nomeDoArquivo);
+                    $vo->setLogoPath($path);
+                    $ret = $ctrl->AlterarEmpresaController($vo);
+                }
+            }
         }
+    }else{
+        $vo->setEmpLogo($OldLogo != "" ? $OldLogo : "");
+            $vo->setLogoPath($OldPathLogo != "" ? $OldPathLogo : "");
+            $ret = $ctrl->AlterarEmpresaController($vo);
     }
-    $vo->setEmpLogo($nomeDoArquivo);
-    $vo->setLogoPath($path);
-
-    $ret = $ctrl_usuario->AlterarEmpresaController($vo);
 
     if ($_POST['btnAlterar'] == 'ajxx') {
         echo $ret;

@@ -230,7 +230,8 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/index_dataview.php';
 																					</div>
 																					<div class="form-group">
 																						<div class="col-xs-12">
-																							<input type="hidden" name="oldLogo" id="oldLogo" value="<?= $dados[0]['EmpLogoPath'] ?>">
+																							<input type="hidden" name="OldPathLogo" id="OldPathLogo" value="<?= $dados[0]['EmpLogoPath'] ?>">
+																							<input type="hidden" name="oldLogo" id="oldLogo" value="<?= $dados[0]['EmpLogo'] ?>">
 																							<input type="file" name="logo" id="logo">
 																						</div>
 																					</div>
