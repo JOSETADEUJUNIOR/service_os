@@ -39,6 +39,8 @@ const ALTERAR_MODELO  = 'AlterarModeloController';
 const CADASTRO_EQUIPAMENTO = 'CadastrarEquipamentoController';
 const ALTERA_EQUIPAMENTO = 'AlterarEquipamentoController';
 const EXCLUI_EQUIPAMENTO = 'ExcluirEquipamentoController';
+const EXCLUI_PRODUTO_EQUIPAMENTO = 'ExcluirProdutoEquipamentoController';
+const EXCLUI_SERVICO_EQUIPAMENTO = 'ExcluirServicoEquipamentoController';
 
 const CADASTRO_USUARIO = 'CadastrarUsuarioController';
 const ALTERA_USUARIO = 'AlterarUsuarioController';

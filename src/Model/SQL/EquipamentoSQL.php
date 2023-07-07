@@ -187,4 +187,40 @@ class EquipamentoSQL
                         AND al.situacao = ? ORDER BY nome_modelo';
         return $sql;
     }
+
+    public static function SELECT_SERVICO_PARA_EQUIPAMENTO_SQL()
+    {
+        $sql = 'SELECT ServID, ServNome FROM tb_servico WHERE ServEmpID = ?';
+        return $sql;
+    }
+
+    public static function SELECT_PRODUTO_PARA_EQUIPAMENTO_SQL()
+    {
+        $sql = 'SELECT ProdID, ProdDescricao FROM tb_produto WHERE ProdEmpID = ?';
+        return $sql;
+    }
+
+    public static function INSERT_SERVICO_PARA_EQUIPAMENTO_SQL()
+    {
+        $sql = 'INSERT INTO tb_equipamento_servico (equipamento_id, servico_ServID) VALUE (?,?)';
+        return $sql;
+    }
+
+    public static function INSERT_PRODUTO_PARA_EQUIPAMENTO_SQL()
+    {
+        $sql = 'INSERT INTO tb_equipamento_insumo (produto_ProdID, equipamento_id) VALUE (?,?)';
+        return $sql;
+    }
+
+    public static function DELETE_PRODUTO_PARA_EQUIPAMENTO_SQL()
+    {
+        $sql = 'DELETE FROM tb_equipamento_insumo WHERE produto_ProdID = ?';
+        return $sql;
+    }
+
+    public static function DELETE_SERVICO_PARA_EQUIPAMENTO_SQL()
+    {
+        $sql = 'DELETE FROM tb_equipamento_servico WHERE servico_ServID = ?';
+        return $sql;
+    }
 }

@@ -97,7 +97,11 @@ function CadastrarEquipamento(id_form) {
         let identificacao = $("#identificacao").val();
         let descricao = $("#descricao").val();
         let ID = $("#idEquip").val();
-
+        let servico = $("#servico").val();
+        let insumo = $("#insumo").val();
+        // let servicosString = servico.join(",");
+        // let insumosString = insumo.join(",");
+       // console.log(modelo,tipoequip,identificacao,descricao,ID,servico,insumo,servicosString,insumosString); exit();
         $.ajax({
             type: "POST",
             url: BASE_URL_AJAX("equipamento_dataview"),
@@ -107,9 +111,12 @@ function CadastrarEquipamento(id_form) {
                 tipoequip: tipoequip,
                 identificacao: identificacao,
                 descricao: descricao,
-                idEquip: ID
+                idEquip: ID,
+                IdProdutoEquipamento: insumo,
+                IdServicoEquipamento: servico
             },
             success: function (ret) {
+                 
                 $("#equipamento").modal("hide");
                 RemoverLoad();
                 if (ret == 1) {
@@ -160,16 +167,11 @@ function FiltrarEquipamentos(id_form) {
 return false;
 }
 
-
-
 function Imprimir() {
     let tipo = $("#tipoFiltro").val();
     let filtrar_palavra = $("#filtro_palavra").val();
     location = "relatorio_equipamento.php?filtro=" + tipo + "&desc_filtro="+ filtrar_palavra;
-
-
 }
-
 
 function FiltrarEquipamento(nome_filtro) {
 

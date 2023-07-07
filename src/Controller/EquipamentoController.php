@@ -6,6 +6,7 @@ use Src\Model\EquipamentoDAO;
 use Src\VO\EquipamentoVO;
 use Src\_public\Util;
 use Src\VO\AlocarVO;
+use Src\VO\LogErro;
 
 class EquipamentoController
 {
@@ -20,7 +21,6 @@ class EquipamentoController
     public function CadastrarEquipamentoController(EquipamentoVO $vo): int
     {
         if (empty($vo->getIdentificacao()) || empty($vo->getDescricao()) || empty($vo->getTipoEquipID()) || empty($vo->getModeloEquipID()))
-
             return 0;
 
         $vo->setfuncao(CADASTRO_EQUIPAMENTO);
@@ -115,5 +115,41 @@ class EquipamentoController
         $vo->setIdLogado(Util::CodigoLogado());
 
         return $this->dao->RemoverAlocamentoDAO($vo);
+    }
+
+    public function SelecionarServicoEquipamentoController()
+    {
+        return $this->dao->SelecionarServicoEquipamentoDAO();
+    }
+
+    public function SelecionarProdutoEquipamentoController()
+    {
+        return $this->dao->SelecionarProdutoEquipamentoDAO();
+    }
+
+    public function RemoverProdutoEquipamentoController($id_produto_equipamento)
+    {
+        if (empty($id_produto_equipamento))
+            return 0;
+
+        $vo = new LogErro();    
+        
+        $vo->setfuncao(EXCLUI_PRODUTO_EQUIPAMENTO);
+        $vo->setIdLogado(Util::CodigoLogado());
+
+        return $this->dao->RemoverProdutoEquipamentoDAO($vo);
+    }
+
+    public function RemoverServicoEquipamentoController($id_servico_equipamento)
+    {
+        if (empty($id_servico_equipamento))
+            return 0;
+
+        $vo = new LogErro();    
+        
+        $vo->setfuncao(EXCLUI_SERVICO_EQUIPAMENTO);
+        $vo->setIdLogado(Util::CodigoLogado());
+
+        return $this->dao->RemoverServicoEquipamentoDAO($vo);
     }
 }

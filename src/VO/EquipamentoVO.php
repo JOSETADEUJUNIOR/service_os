@@ -13,6 +13,8 @@ class EquipamentoVO extends LogErro
     private $descricao;
     private $tipoequip_id;
     private $modeloequip_id;
+    private $id_produto_equipamento;
+    private $id_servico_equipamento;
     
 
 
@@ -27,6 +29,30 @@ class EquipamentoVO extends LogErro
     {
 
         return $this->id;
+    }
+
+    public function setIdServicoEquipamento($id_servico_equipamento)
+    {
+
+        $this->id_servico_equipamento = $id_servico_equipamento;
+    }
+
+    public function getIdServicoEquipamento()
+    {
+        return $this->id_servico_equipamento;
+        //return explode(",", $this->id_servico_equipamento);
+    }
+
+    public function setIdProdutoEquipamento($id_produto_equipamento)
+    {
+
+        $this->id_produto_equipamento = $id_produto_equipamento;
+    }
+
+    public function getIdProdutoEquipamento()
+    {
+        return $this->id_produto_equipamento;
+        //return explode(",", $this->id_produto_equipamento);
     }
 
     # Get Set Identificacao

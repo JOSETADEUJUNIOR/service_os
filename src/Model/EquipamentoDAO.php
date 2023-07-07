@@ -7,6 +7,7 @@ use Src\VO\EquipamentoVO;
 use Src\Model\SQL\EquipamentoSQL;
 use Src\VO\AlocarVO;
 use Src\_public\Util;
+use Src\VO\LogErro;
 
 
 
@@ -21,27 +22,65 @@ class EquipamentoDAO extends Conexao
     }
     public function CadastrarEquipamentoDAO(EquipamentoVO $vo): int
     {
-
-        if (!empty($vo->getId())) {
-            $sql = $this->conexao->prepare(EquipamentoSQL::AlterarEquipamentoSQL());
-            $sql->bindValue(1, $vo->getIdentificacao());
-            $sql->bindValue(2, $vo->getDescricao());
-            $sql->bindValue(3, $vo->getTipoEquipID());
-            $sql->bindValue(4, $vo->getModeloEquipID());
-            $sql->bindValue(5, $vo->getId());
-        } else {
-            $sql = $this->conexao->prepare(EquipamentoSQL::InserirEquipamentoSQL());
-            $sql->bindValue(1, $vo->getIdentificacao());
-            $sql->bindValue(2, $vo->getDescricao());
-            $sql->bindValue(3, $vo->getTipoEquipID());
-            $sql->bindValue(4, $vo->getModeloEquipID());
-        }
-
-
         try {
-            $sql->execute();
+            $this->conexao->beginTransaction();
+            if (!empty($vo->getId())) {
+                $sql = $this->conexao->prepare(EquipamentoSQL::AlterarEquipamentoSQL());
+                $sql->bindValue(1, $vo->getIdentificacao());
+                $sql->bindValue(2, $vo->getDescricao());
+                $sql->bindValue(3, $vo->getTipoEquipID());
+                $sql->bindValue(4, $vo->getModeloEquipID());
+                $sql->bindValue(5, $vo->getId());
+                $sql->execute();
+                $id_servico_equipamento = $vo->getIdServicoEquipamento();
+                if ($id_servico_equipamento != "") {
+                    $sql = $this->conexao->prepare(EquipamentoSQL::INSERT_SERVICO_PARA_EQUIPAMENTO_SQL());
+                    foreach ($id_servico_equipamento as $servico) {
+                        $sql->bindValue(1, $vo->getId());
+                        $sql->bindValue(2, $servico);
+                        $sql->execute();
+                    }
+                }
+                $id_produto_equipamento = $vo->getIdProdutoEquipamento();
+                if ($id_produto_equipamento != "") {
+                    $sql = $this->conexao->prepare(EquipamentoSQL::INSERT_PRODUTO_PARA_EQUIPAMENTO_SQL());
+                    foreach ($id_produto_equipamento as $produto) {
+                        $sql->bindValue(1, $produto);
+                        $sql->bindValue(2, $vo->getId());
+                        $sql->execute();
+                    }
+                }
+            } else {
+                $sql = $this->conexao->prepare(EquipamentoSQL::InserirEquipamentoSQL());
+                $sql->bindValue(1, $vo->getIdentificacao());
+                $sql->bindValue(2, $vo->getDescricao());
+                $sql->bindValue(3, $vo->getTipoEquipID());
+                $sql->bindValue(4, $vo->getModeloEquipID());
+                $sql->execute();
+                $id_equipamento = $this->conexao->lastInsertId();
+                $id_servico_equipamento = $vo->getIdServicoEquipamento();
+                if ($id_servico_equipamento != "") {
+                    $sql = $this->conexao->prepare(EquipamentoSQL::INSERT_SERVICO_PARA_EQUIPAMENTO_SQL());
+                    //foreach ($id_servico_equipamento as $servico) {
+                        $sql->bindValue(1, $id_equipamento);
+                        $sql->bindValue(2, $id_servico_equipamento);
+                        $sql->execute();
+                    //}
+                }
+                $id_produto_equipamento = $vo->getIdProdutoEquipamento();
+                if ($id_produto_equipamento != "") {
+                    $sql = $this->conexao->prepare(EquipamentoSQL::INSERT_PRODUTO_PARA_EQUIPAMENTO_SQL());
+                   // foreach ($id_produto_equipamento as $produto) {
+                        $sql->bindValue(1, $id_produto_equipamento);
+                        $sql->bindValue(2, $id_equipamento);
+                        $sql->execute();
+                    //}
+                }
+            }
+            $this->conexao->commit();
             return 1;
         } catch (\Exception $ex) {
+            $this->conexao->rollBack();
             $vo->setmsg_erro($ex->getMessage());
             parent::GravarLogErro($vo);
             return -1;
@@ -65,7 +104,6 @@ class EquipamentoDAO extends Conexao
     }
     public function SelecionarEquipamentosNaoAlocadosDAO($situacao): array
     {
-
         $sql = $this->conexao->prepare(EquipamentoSQL::SelecionarEquipamentoNaoAlocado());
         $sql->bindValue(1, $situacao);
         $sql->execute();
@@ -147,7 +185,6 @@ class EquipamentoDAO extends Conexao
         if (!empty($situacao)) {
 
             $sql->bindValue(1, "%" . $situacao . "%");
-            
         }
         $sql->execute();
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
@@ -158,6 +195,56 @@ class EquipamentoDAO extends Conexao
         $sql->bindValue(1, $vo->getSituacao());
         $sql->bindValue(2, $vo->getDataRemocao());
         $sql->bindValue(3, $vo->getIdAlocar());
+
+        try {
+            $sql->execute();
+            return 1;
+        } catch (\Exception $ex) {
+            $vo->setmsg_erro($ex->getMessage());
+            parent::GravarLogErro($vo);
+            return -2;
+        }
+    }
+
+    public function SelecionarServicoEquipamentoDAO()
+    {
+        $sql = $this->conexao->prepare(EquipamentoSQL::SELECT_SERVICO_PARA_EQUIPAMENTO_SQL());
+        $sql->bindValue(1, Util::EmpresaLogado());
+        $sql->execute();
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function SelecionarProdutoEquipamentoDAO()
+    {
+        $sql = $this->conexao->prepare(EquipamentoSQL::SELECT_PRODUTO_PARA_EQUIPAMENTO_SQL());
+        $sql->bindValue(1, Util::EmpresaLogado());
+        $sql->execute();
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function RemoverProdutoEquipamentoDAO($id_produto_equipamento)
+    {
+        $sql = $this->conexao->prepare(EquipamentoSQL::DELETE_PRODUTO_PARA_EQUIPAMENTO_SQL());
+        $sql->bindValue(1, $id_produto_equipamento);
+
+        $vo = new LogErro();
+
+        try {
+            $sql->execute();
+            return 1;
+        } catch (\Exception $ex) {
+            $vo->setmsg_erro($ex->getMessage());
+            parent::GravarLogErro($vo);
+            return -2;
+        }
+    }
+
+    public function RemoverServicoEquipamentoDAO($id_servico_equipamento)
+    {
+        $sql = $this->conexao->prepare(EquipamentoSQL::DELETE_SERVICO_PARA_EQUIPAMENTO_SQL());
+        $sql->bindValue(1, $id_servico_equipamento);
+
+        $vo = new LogErro();
 
         try {
             $sql->execute();

@@ -19,6 +19,7 @@
 <script src="../../Template/assets/js/jquery.flot.min.js"></script>
 <script src="../../Template/assets/js/jquery.flot.pie.min.js"></script>
 <script src="../../Template/assets/js/jquery.flot.resize.min.js"></script>
+<script src="../../Template/assets/js/select2.min.js"></script>
 <script src="../../Template/plugins/toastr/toastr.min.js"></script>
 <script src="../../Resource/js/mensagem.js"></script>
 <script src="../../Resource/js/funcoes.js"></script>

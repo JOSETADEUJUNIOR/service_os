@@ -17,6 +17,8 @@ $ctrlModelo = new ModeloController();
 $tipos = $ctrlTipo->RetornarTiposEquipamentosController();
 $modelo = $ctrlModelo->RetornaModeloController();
 $ctrl = new EquipamentoController;
+$produto = $ctrl->SelecionarProdutoEquipamentoController();
+$servico = $ctrl->SelecionarServicoEquipamentoController();
 
 if (isset($_POST['btn_cadastrar'])) {
     $vo = new EquipamentoVO;
@@ -25,6 +27,9 @@ if (isset($_POST['btn_cadastrar'])) {
     $vo->setDescricao($_POST['descricao']);
     $vo->setTipoEquipID($_POST['tipoequip']);
     $vo->setModeloEquipID($_POST['modelo']);
+    $vo->setIdProdutoEquipamento($_POST['IdProdutoEquipamento']);
+    $vo->setIdServicoEquipamento($_POST['IdServicoEquipamento']);
+
     $ret = $ctrl->CadastrarEquipamentoController($vo);
 
     if (isset($_POST['btn_cadastrar']) && $_POST['btn_cadastrar'] == 'ajx') {
@@ -40,7 +45,23 @@ if (isset($_POST['btn_cadastrar'])) {
     if ($_POST['btnExcluir'] == 'ajx') {
         echo $ret;
     }
-}else if (isset($_POST['btn_filtro']) && $_POST['btn_filtro'] == 'ajx') {
+} else if (isset($_POST['btnRemoverServico'])) {
+    $vo = new EquipamentoVO;
+    $vo->setId($_POST['RemoverServico']);
+    $ret = $ctrl->RemoverServicoEquipamentoController($vo);
+
+    if ($_POST['btnRemoverServico'] == 'ajx') {
+        echo $ret;
+    }
+} else if (isset($_POST['btnRemoverProduto'])) {
+    $vo = new EquipamentoVO;
+    $vo->setId($_POST['RemoverProduto']);
+    $ret = $ctrl->RemoverProdutoEquipamentoController($vo);
+
+    if ($_POST['btnRemoverProduto'] == 'ajx') {
+        echo $ret;
+    }
+} else if (isset($_POST['btn_filtro']) && $_POST['btn_filtro'] == 'ajx') {
     $BuscarTipo = $_POST['BuscarTipo'];
     $filtro_palavra = $_POST['filtro_palavra'];
     $equipamento = $ctrl->ConsultarEquipamentoController($BuscarTipo, $filtro_palavra); 
@@ -276,7 +297,6 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
                             </td>
                         </tr>
                     <?php } ?>
-
                 </tbody>
             </table>
         </div>

@@ -191,10 +191,14 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php'
 	<script src="../../Template/assets/js/bootbox.js"></script>
 	<script src="../../Resource/js/mensagem.js"></script>
 	<script src="../../Resource/ajax/equipamento-ajx.js"></script>
-
-
-
-
+	<script>
+	// $('#servico').select2({
+    //     dropdownParent: $('#equipamento')
+    // });
+	// $('#insumo').select2({
+    //     dropdownParent: $('#equipamento')
+    // });
+	</script>
 </body>
 
 

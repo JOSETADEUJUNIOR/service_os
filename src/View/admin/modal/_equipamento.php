@@ -38,6 +38,30 @@
                             <input class="form-control obg" id="identificacao" name="identificacao" placeholder="Digite o aqui....">
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Serviço</label>
+                            <select class="form-control obg" id="servico" name="servico">
+                                <option value="">Selecione</option>
+                                <?php foreach ($servico as $sc) { ?>
+                                    <option value="<?= $sc['ServID'] ?>"><?= $sc['ServNome'] ?></option>
+                                <?php } ?>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Insumo</label>
+                            <select class="form-control obg" id="insumo" name="insumo">
+                                <option value="">Selecione</option>
+                                <?php foreach ($produto as $prod) { ?>
+                                    <option value="<?= $prod['ProdID'] ?>"><?= $prod['ProdDescricao'] ?></option>
+                                <?php } ?>
+
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Descrição</label>
