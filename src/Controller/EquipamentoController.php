@@ -18,7 +18,7 @@ class EquipamentoController
         $this->dao = new EquipamentoDAO;
     }
 
-    public function CadastrarEquipamentoController(EquipamentoVO $vo): int
+    public function CadastrarEquipamentoController(EquipamentoVO $vo)
     {
         if (empty($vo->getIdentificacao()) || empty($vo->getDescricao()) || empty($vo->getTipoEquipID()) || empty($vo->getModeloEquipID()))
             return 0;

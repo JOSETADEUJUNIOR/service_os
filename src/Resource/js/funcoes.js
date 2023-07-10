@@ -104,7 +104,9 @@ function AlterarTipoEquipamentoModal(id, nome) {
 }
 
 function FechandoModal(form_id) {
-    LimparCampos(form_id)
+    LimparCampos(form_id);
+    $('#tipo_servico').val([]).trigger('change');
+    $('#tipo_insumo').val([]).trigger('change');
 }
 
 function NotificarCampos(form_id) {

@@ -38,34 +38,36 @@
                             <input class="form-control obg" id="identificacao" name="identificacao" placeholder="Digite o aqui....">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="form-group">
-                            <label>Serviço</label>
-                            <select class="form-control obg" id="servico" name="servico">
-                                <option value="">Selecione</option>
-                                <?php foreach ($servico as $sc) { ?>
-                                    <option value="<?= $sc['ServID'] ?>"><?= $sc['ServNome'] ?></option>
-                                <?php } ?>
+                            <label id="labelServico">Serviço</label>
+                            <center>
+                                <select multiple="multiple" class="select2" id="tipo_servico" name="tipo_servico[]">
+                                    <?php foreach ($servico as $sc) { ?>
+                                        <option value="<?= $sc['ServID'] ?>"><?= $sc['ServNome'] ?></option>
+                                    <?php } ?>
 
-                            </select>
+                                </select>
+                            </center>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="form-group">
-                            <label>Insumo</label>
-                            <select class="form-control obg" id="insumo" name="insumo">
-                                <option value="">Selecione</option>
-                                <?php foreach ($produto as $prod) { ?>
-                                    <option value="<?= $prod['ProdID'] ?>"><?= $prod['ProdDescricao'] ?></option>
-                                <?php } ?>
+                            <label id="labelInsumo">Insumo</label>
+                            <center>
+                                <select multiple="multiple" class="select2" id="tipo_insumo" name="tipo_insumo[]">
+                                    <?php foreach ($produto as $prod) { ?>
+                                        <option value="<?= $prod['ProdID'] ?>"><?= $prod['ProdDescricao'] ?></option>
+                                    <?php } ?>
 
-                            </select>
+                                </select>
+                            </center>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Descrição</label>
-                            <textarea class="form-control obg" id="descricao" name="descricao" style="resize: vertical" placeholder="Digite o aqui...."></textarea>
+                            <textarea class="form-control" id="descricao" name="descricao" style="resize: vertical" placeholder="Digite o aqui...."></textarea>
                         </div>
                     </div>
                 </div>

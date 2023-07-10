@@ -20,7 +20,7 @@ class EquipamentoDAO extends Conexao
     {
         $this->conexao = parent::retornaConexao();
     }
-    public function CadastrarEquipamentoDAO(EquipamentoVO $vo): int
+    public function CadastrarEquipamentoDAO(EquipamentoVO $vo)
     {
         try {
             $this->conexao->beginTransaction();
@@ -34,8 +34,8 @@ class EquipamentoDAO extends Conexao
                 $sql->execute();
                 $id_servico_equipamento = $vo->getIdServicoEquipamento();
                 if ($id_servico_equipamento != "") {
-                    $sql = $this->conexao->prepare(EquipamentoSQL::INSERT_SERVICO_PARA_EQUIPAMENTO_SQL());
                     foreach ($id_servico_equipamento as $servico) {
+                        $sql = $this->conexao->prepare(EquipamentoSQL::INSERT_SERVICO_PARA_EQUIPAMENTO_SQL());
                         $sql->bindValue(1, $vo->getId());
                         $sql->bindValue(2, $servico);
                         $sql->execute();
@@ -43,8 +43,8 @@ class EquipamentoDAO extends Conexao
                 }
                 $id_produto_equipamento = $vo->getIdProdutoEquipamento();
                 if ($id_produto_equipamento != "") {
-                    $sql = $this->conexao->prepare(EquipamentoSQL::INSERT_PRODUTO_PARA_EQUIPAMENTO_SQL());
                     foreach ($id_produto_equipamento as $produto) {
+                        $sql = $this->conexao->prepare(EquipamentoSQL::INSERT_PRODUTO_PARA_EQUIPAMENTO_SQL());
                         $sql->bindValue(1, $produto);
                         $sql->bindValue(2, $vo->getId());
                         $sql->execute();
@@ -60,21 +60,21 @@ class EquipamentoDAO extends Conexao
                 $id_equipamento = $this->conexao->lastInsertId();
                 $id_servico_equipamento = $vo->getIdServicoEquipamento();
                 if ($id_servico_equipamento != "") {
-                    $sql = $this->conexao->prepare(EquipamentoSQL::INSERT_SERVICO_PARA_EQUIPAMENTO_SQL());
-                    //foreach ($id_servico_equipamento as $servico) {
+                    foreach ($id_servico_equipamento as $servico) {
+                        $sql = $this->conexao->prepare(EquipamentoSQL::INSERT_SERVICO_PARA_EQUIPAMENTO_SQL());
                         $sql->bindValue(1, $id_equipamento);
-                        $sql->bindValue(2, $id_servico_equipamento);
+                        $sql->bindValue(2, $servico);
                         $sql->execute();
-                    //}
+                    }
                 }
                 $id_produto_equipamento = $vo->getIdProdutoEquipamento();
                 if ($id_produto_equipamento != "") {
-                    $sql = $this->conexao->prepare(EquipamentoSQL::INSERT_PRODUTO_PARA_EQUIPAMENTO_SQL());
-                   // foreach ($id_produto_equipamento as $produto) {
-                        $sql->bindValue(1, $id_produto_equipamento);
+                    foreach ($id_produto_equipamento as $produto) {
+                        $sql = $this->conexao->prepare(EquipamentoSQL::INSERT_PRODUTO_PARA_EQUIPAMENTO_SQL());
+                        $sql->bindValue(1, $produto);
                         $sql->bindValue(2, $id_equipamento);
                         $sql->execute();
-                    //}
+                    }
                 }
             }
             $this->conexao->commit();

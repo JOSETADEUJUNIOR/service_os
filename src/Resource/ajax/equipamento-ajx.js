@@ -97,11 +97,10 @@ function CadastrarEquipamento(id_form) {
         let identificacao = $("#identificacao").val();
         let descricao = $("#descricao").val();
         let ID = $("#idEquip").val();
-        let servico = $("#servico").val();
-        let insumo = $("#insumo").val();
-        // let servicosString = servico.join(",");
-        // let insumosString = insumo.join(",");
-       // console.log(modelo,tipoequip,identificacao,descricao,ID,servico,insumo,servicosString,insumosString); exit();
+        let servico = $("#tipo_servico").val();
+        let insumo = $("#tipo_insumo").val();
+        let servicosString = servico.join(",");
+        let insumosString = insumo.join(",");
         $.ajax({
             type: "POST",
             url: BASE_URL_AJAX("equipamento_dataview"),
@@ -112,8 +111,8 @@ function CadastrarEquipamento(id_form) {
                 identificacao: identificacao,
                 descricao: descricao,
                 idEquip: ID,
-                IdProdutoEquipamento: insumo,
-                IdServicoEquipamento: servico
+                IdProdutoEquipamento: insumosString,
+                IdServicoEquipamento: servicosString
             },
             success: function (ret) {
                  
@@ -123,7 +122,8 @@ function CadastrarEquipamento(id_form) {
                     MensagemSucesso();
                     ConsultarEquipamentos();
                     LimparCampos(id_form);
-
+                    $('#tipo_servico').val([]).trigger('change');
+                    $('#tipo_insumo').val([]).trigger('change');
                 } else {
                     MensagemErro();
                 }

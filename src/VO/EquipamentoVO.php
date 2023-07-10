@@ -39,8 +39,7 @@ class EquipamentoVO extends LogErro
 
     public function getIdServicoEquipamento()
     {
-        return $this->id_servico_equipamento;
-        //return explode(",", $this->id_servico_equipamento);
+        return explode(",", $this->id_servico_equipamento);
     }
 
     public function setIdProdutoEquipamento($id_produto_equipamento)
@@ -51,8 +50,7 @@ class EquipamentoVO extends LogErro
 
     public function getIdProdutoEquipamento()
     {
-        return $this->id_produto_equipamento;
-        //return explode(",", $this->id_produto_equipamento);
+        return explode(",", $this->id_produto_equipamento);
     }
 
     # Get Set Identificacao

@@ -9,9 +9,6 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php'
 	<?php include_once PATH_URL . '/Template/_includes/_head.php' ?>
 
 	<meta name="description" content="Static &amp; Dynamic Tables" />
-
-
-
 </head>
 
 <body class="skin-1">
@@ -94,7 +91,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php'
 
 							</div>
 
-							<div class="table-resposive" id="tabela_result_equipamento">
+							<div class="table-responsive" id="tabela_result_equipamento">
 								<table id="dynamic-table" style="max-width: 100%;" class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
@@ -102,8 +99,8 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php'
 											<th class="sorting_desc">Modelo</th>
 											<th class="sorting_desc">Identificação</th>
 											<th class="sorting_desc">Descrição</th>
-											<th class="hidden-480">Status</th>
-											<th>Ações</th>
+											<th class="sorting_desc">Status</th>
+											<th class="sorting_desc">Ações</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -122,11 +119,11 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php'
 												<td>
 													<?= $equipamento[$i]['descricao'] ?>
 												</td>
-												<td class="hidden-480">
+												<td>
 													<span class="label label-sm label-warning">Ativo</span>
 												</td>
 												<td>
-													<div class="hidden-sm hidden-xs action-buttons">
+													<div class="action-buttons">
 														<a class="green" href="#equipamento" role="button" data-toggle="modal" onclick="AlterarEquipamentoModal('<?= $equipamento[$i]['idEquip'] ?>', '<?= $equipamento[$i]['idTipo'] ?>', '<?= $equipamento[$i]['idModelo'] ?>', '<?= $equipamento[$i]['identificacao'] ?>', '<?= $equipamento[$i]['descricao'] ?>')">
 															<i title="Alterar Setor" class="ace-icon fa fa-pencil bigger-130"></i>
 														</a>
@@ -134,7 +131,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php'
 															<i title="Excluir Equipamento" class="ace-icon fa fa-trash-o bigger-130"></i>
 														</a>
 													</div>
-													<div class="hidden-md hidden-lg">
+													<!-- <div class="hidden-md hidden-lg">
 														<div class="inline pos-rel">
 															<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
 																<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
@@ -158,7 +155,7 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php'
 																</li>
 															</ul>
 														</div>
-													</div>
+													</div> -->
 												</td>
 											</tr>
 										<?php } ?>
@@ -192,12 +189,21 @@ require_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php'
 	<script src="../../Resource/js/mensagem.js"></script>
 	<script src="../../Resource/ajax/equipamento-ajx.js"></script>
 	<script>
-	// $('#servico').select2({
-    //     dropdownParent: $('#equipamento')
-    // });
-	// $('#insumo').select2({
-    //     dropdownParent: $('#equipamento')
-    // });
+	$('#tipo_servico').select2({
+		placeholder: '+Serviço....',
+        dropdownParent: $('#equipamento')
+    });
+	$('#tipo_insumo').select2({
+		placeholder: '+Insumo....',
+        dropdownParent: $('#equipamento')
+    });
+	$('#tipo_insumo').next('.select2-container').css('width', '96%');
+    $('#tipo_servico').next('.select2-container').css('width', '96%');
+	var label = $('#labelInsumo');
+	label.css('margin-left', '10px');
+	var label = $('#labelServico');
+  	// Ajustar o deslocamento da label
+  	label.css('margin-left', '10px');
 	</script>
 </body>
 

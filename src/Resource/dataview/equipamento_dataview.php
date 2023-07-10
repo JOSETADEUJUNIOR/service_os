@@ -29,7 +29,6 @@ if (isset($_POST['btn_cadastrar'])) {
     $vo->setModeloEquipID($_POST['modelo']);
     $vo->setIdProdutoEquipamento($_POST['IdProdutoEquipamento']);
     $vo->setIdServicoEquipamento($_POST['IdServicoEquipamento']);
-
     $ret = $ctrl->CadastrarEquipamentoController($vo);
 
     if (isset($_POST['btn_cadastrar']) && $_POST['btn_cadastrar'] == 'ajx') {
@@ -66,7 +65,7 @@ if (isset($_POST['btn_cadastrar'])) {
     $filtro_palavra = $_POST['filtro_palavra'];
     $equipamento = $ctrl->ConsultarEquipamentoController($BuscarTipo, $filtro_palavra); 
     if (count($equipamento) > 0) { ?>
-        <div class="table-resposive" id="tabela_result_equipamento">
+        <div class="table-responsive" id="tabela_result_equipamento">
             <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
@@ -74,8 +73,8 @@ if (isset($_POST['btn_cadastrar'])) {
                         <th class="sorting_desc">Modelo</th>
                         <th class="sorting_desc">Identificação</th>
                         <th class="sorting_desc">Descrição</th>
-                        <th class="hidden-480">Status</th>
-                        <th>Ações</th>
+                        <th class="sorting_desc">Status</th>
+                        <th class="sorting_desc">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,11 +92,11 @@ if (isset($_POST['btn_cadastrar'])) {
                             <td>
                                 <?= $equipamento[$i]['descricao'] ?>
                             </td>
-                            <td class="hidden-480">
+                            <td>
                                 <span class="label label-sm label-warning">Ativo</span>
                             </td>
                             <td>
-                                <div class="hidden-sm hidden-xs action-buttons">
+                                <div class="action-buttons">
                                     <a class="green" href="#equipamento" role="button" data-toggle="modal" onclick="AlterarEquipamentoModal('<?= $equipamento[$i]['idEquip'] ??'' ?>', '<?= $equipamento[$i]['idTipo'] ??'' ?>', '<?= $equipamento[$i]['idModelo'] ??'' ?>', '<?= $equipamento[$i]['identificacao'] ??'' ?>', '<?= $equipamento[$i]['descricao'] ??'' ?>')">
                                         <i title="Alterar Setor" class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
@@ -105,7 +104,7 @@ if (isset($_POST['btn_cadastrar'])) {
                                         <i title="Excluir Equipamento" class="ace-icon fa fa-trash-o bigger-130"></i>
                                     </a>
                                 </div>
-                                <div class="hidden-md hidden-lg">
+                                <!-- <div class="hidden-md hidden-lg">
                                     <div class="inline pos-rel">
                                         <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
                                             <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
@@ -129,7 +128,7 @@ if (isset($_POST['btn_cadastrar'])) {
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> -->
                             </td>
                         </tr>
                     <?php } ?>
@@ -149,7 +148,7 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
     
 
     if (count($equipamento) > 0) { ?>
-        <div  class="table-resposive" id="tabela_result_equipamento">
+        <div  class="table-responsive" id="tabela_result_equipamento">
             <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
@@ -157,8 +156,8 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
                         <th class="sorting_desc">Modelo</th>
                         <th class="sorting_desc">Identificação</th>
                         <th class="sorting_desc">Descrição</th>
-                        <th class="hidden-480">Status</th>
-                        <th>Ações</th>
+                        <th class="sorting_desc">Status</th>
+                        <th class="sorting_desc">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -176,11 +175,11 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
                             <td>
                                 <?= $equipamento[$i]['descricao'] ?>
                             </td>
-                            <td class="hidden-480">
+                            <td>
                                 <span class="label label-sm label-warning">Ativo</span>
                             </td>
                             <td>
-                                <div class="hidden-sm hidden-xs action-buttons">
+                                <div class="action-buttons">
                                     <a class="green" href="#equipamento" role="button" data-toggle="modal" onclick="AlterarEquipamentoModal('<?= $equipamento[$i]['idEquip'] ?>', '<?= $equipamento[$i]['idTipo'] ?>', '<?= $equipamento[$i]['idModelo'] ?>', '<?= $equipamento[$i]['identificacao'] ?>', '<?= $equipamento[$i]['descricao'] ?>')">
                                         <i title="Alterar Setor" class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
@@ -188,7 +187,7 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
                                         <i title="Excluir Equipamento" class="ace-icon fa fa-trash-o bigger-130"></i>
                                     </a>
                                 </div>
-                                <div class="hidden-md hidden-lg">
+                                <!-- <div class="hidden-md hidden-lg">
                                     <div class="inline pos-rel">
                                         <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
                                             <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
@@ -212,7 +211,7 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> -->
                             </td>
                         </tr>
                     <?php } ?>
@@ -230,7 +229,7 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
 
     if (count($equipamento) > 0) { ?>
 
-        <div class="table-resposive" id="tabela_result_equipamento">
+        <div class="table-responsive" id="tabela_result_equipamento">
             <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
@@ -238,8 +237,8 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
                         <th class="sorting_desc">Modelo</th>
                         <th class="sorting_desc">Identificação</th>
                         <th class="sorting_desc">Descrição</th>
-                        <th class="hidden-480">Status</th>
-                        <th>Ações</th>
+                        <th class="sorting_desc">Status</th>
+                        <th class="sorting_desc">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -257,11 +256,11 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
                             <td>
                                 <?= $equipamento[$i]['descricao'] ?>
                             </td>
-                            <td class="hidden-480">
+                            <td>
                                 <span class="label label-sm label-warning">Ativo</span>
                             </td>
                             <td>
-                                <div class="hidden-sm hidden-xs action-buttons">
+                                <div class="action-buttons">
                                     <a class="green" href="#equipamento" role="button" data-toggle="modal" onclick="AlterarEquipamentoModal('<?= $equipamento[$i]['idEquip'] ?>', '<?= $equipamento[$i]['idTipo'] ?>', '<?= $equipamento[$i]['idModelo'] ?>', '<?= $equipamento[$i]['identificacao'] ?>', '<?= $equipamento[$i]['descricao'] ?>')">
                                         <i title="Alterar Setor" class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
@@ -269,7 +268,7 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
                                         <i title="Excluir Equipamento" class="ace-icon fa fa-trash-o bigger-130"></i>
                                     </a>
                                 </div>
-                                <div class="hidden-md hidden-lg">
+                                <!-- <div class="hidden-md hidden-lg">
                                     <div class="inline pos-rel">
                                         <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
                                             <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
@@ -293,7 +292,7 @@ else if (isset($_POST['btnFiltrar']) && isset($_POST['FiltrarNome'])) {
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> -->
                             </td>
                         </tr>
                     <?php } ?>
